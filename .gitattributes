@@ -1,0 +1,11 @@
+# Rendered CVs are binary - never apply line-ending conversion to them.
+*.pdf binary
+*.png binary
+*.jpg binary
+
+# Keep generated data files with LF endings so diffs stay stable across machines.
+*.py text eol=lf
+*.md text eol=lf
+*.html text eol=lf
+*.csv text eol=lf
+*.jsonl text eol=lf

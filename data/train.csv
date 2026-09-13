@@ -1,0 +1,801 @@
+id,name,education_level,education_field,education_start_year,grad_year,domain,total_years_experience,num_skills,top_skills,num_companies,best_company,best_company_tier,education_score,general_experience_score,stack_score,company_score,overall_score
+TRAIN00001,Joshua Johnson,Bachelor,Communications,2019,2022,Data/AI/ML,3.4,6,PostgreSQL:2.9;PyTorch:1.7;NumPy:1.4;AWS:0.9;Kafka:0.7,2,Lumen Works,3,36,39,17,43,34
+TRAIN00002,John Watson,Bachelor,Data Science,2021,2025,Software Development,0.7,7,FastAPI:0.7;Git:0.7;SQL:0.7;CI/CD:0.6;TensorFlow:0.6,0,,,59,11,20,18,27
+TRAIN00003,Kimberly Jenkins,Bachelor,Computer Science,2023,2026,Data Analysis,0.7,6,Spark:0.7;Redshift:0.7;Snowflake:0.7;PyTorch:0.7;Power BI:0.6,0,,,54,6,13,17,22
+TRAIN00004,Darlene P. Byrd,Bachelor,Computer Science,2011,2015,Software Development,9.6,12,Elasticsearch:9.1;Docker:9.0;pytest:8.9;Go:7.7;FastAPI:6.9,3,Lumen Works,3,66,72,85,40,66
+TRAIN00005,Jodi Stewart,Master,Business Administration,2020,2021,Data Analysis,3.4,6,Hugging Face:2.8;Redshift:2.7;Azure:2.2;Airflow:1.8;PostgreSQL:1.4,1,Vantage Point Technologies,3,52,33,29,29,36
+TRAIN00006,Lauren Gardner,Bachelor,Communications,2017,2020,Data/AI/ML,5.9,10,Databricks:5.0;REST APIs:4.6;Spark:3.9;Spring Boot:3.8;Kafka:3.4,1,IBM,2,40,52,68,72,58
+TRAIN00007,Kyle Reed,Master,Economics,2021,2023,Product/Design,2.4,5,Linux:1.2;Looker:1.1;Excel:0.9;Cypress:0.7;Power BI:0.6,1,Intel,2,61,16,17,73,42
+TRAIN00008,Kyle Ward,High School,,2018,2022,Software Development,3.3,7,Git:1.9;Spring Boot:1.7;GraphQL:1.6;Playwright:1.1;Airflow:0.9,2,Cisco,2,28,40,31,63,40
+TRAIN00009,Brandon Perez,Master,Software Engineering,2018,2020,QA/Testing,4.1,8,Selenium:4.0;Kotlin:3.7;Java:2.9;Python:2.6;Postman:1.3,1,Ridgeline Analytics,3,73,37,47,34,48
+TRAIN00010,Heidi Johnson,Master,Mathematics,2013,2015,Data Analysis,10.2,12,Spring Boot:9.9;Python:7.7;Databricks:7.6;Terraform:7.0;Tableau:6.7,1,Northbridge IT,3,63,77,85,37,66
+TRAIN00011,Steven Frazier,Bachelor,Software Engineering,2014,2018,QA/Testing,6.0,8,Java:5.5;GCP:5.5;Ansible:4.3;Git:3.6;TypeScript:3.5,1,Cobalt Applications,3,64,51,64,40,55
+TRAIN00012,Dwayne Brown,High School,,2020,2024,Data/AI/ML,1.6,5,Kafka:1.4;Linux:1.2;Python:1.1;Nginx:0.9;Docker:0.6,1,Dell,2,34,19,22,57,33
+TRAIN00013,Ricky W. Lopez,High School,,1997,2000,Data/AI/ML,25.8,16,Docker:22.8;Redis:21.6;MLflow:17.7;Scikit-learn:17.1;Pandas:16.0,5,Intel,2,35,92,97,53,69
+TRAIN00014,Dakota A. Miranda,PhD,Communications,2020,2024,Software Development,2.6,6,Vue.js:2.3;GraphQL:1.7;JavaScript:1.4;Git:1.2;Go:0.9,1,Adobe,2,50,24,19,62,39
+TRAIN00015,Ruben Davis,Master,Electrical Engineering,2011,2012,QA/Testing,12.2,10,BigQuery:11.9;GitHub Actions:11.6;Selenium:11.5;Playwright:8.6;Nginx:8.3,5,Google,1,71,71,75,51,67
+TRAIN00016,Evan G. Whitaker,High School,,2019,2023,Data Analysis,1.9,6,Airflow:1.9;Snowflake:1.6;MongoDB:1.2;BigQuery:1.1;dbt:0.8,1,Nova Tech Group,3,33,22,19,34,27
+TRAIN00017,Derrick Gonzalez,High School,,2019,2023,DevOps/Infrastructure,2.3,5,JavaScript:2.1;Redis:2.0;Nginx:1.5;Bash:0.9;Python:0.8,1,Fenwick Digital,3,36,25,22,38,30
+TRAIN00018,Gabriel Taylor,Master,Economics,2019,2021,Data Analysis,4.3,7,SQL:4.3;Excel:3.7;Tableau:2.8;Pandas:2.5;Snowflake:1.1,1,Blue Orbit Labs,3,48,30,38,33,37
+TRAIN00019,Alyssa Price,Bachelor,Information Systems,2021,2024,DevOps/Infrastructure,1.0,4,Cypress:0.9;Python:0.8;AWS:0.8;Vue.js:0.5,1,Silverline Data,3,46,13,14,38,28
+TRAIN00020,Andrea J. Grant,Master,Economics,2013,2015,Data Analysis,11.8,13,Pandas:8.9;NumPy:8.7;Go:7.7;Power BI:7.2;Airflow:6.5,3,Ridgeline Analytics,3,55,84,90,36,66
+TRAIN00021,Edward Jones,Bachelor,Business Administration,2013,2016,Product/Design,9.8,12,Databricks:7.2;Looker:6.1;Jenkins:5.2;TypeScript:4.9;Jira:4.8,4,Clearwater Systems,3,42,64,73,36,54
+TRAIN00022,Tina Sanchez,Bachelor,Business Administration,2022,2026,Data/AI/ML,0.4,6,NumPy:0.4;Scikit-learn:0.4;SQL:0.4;Airflow:0.4;C++:0.4,0,,,50,2,0,19,18
+TRAIN00023,Brian Pena,Bachelor,Electrical Engineering,1998,2002,DevOps/Infrastructure,22.6,16,Kubernetes:20.3;Redis:20.0;Python:19.1;Grafana:18.4;GCP:18.0,3,Blue Orbit Labs,3,50,81,100,34,66
+TRAIN00024,Sarah Evans,Master,Economics,2021,2023,Data/AI/ML,1.8,7,Looker:1.6;pytest:1.6;NumPy:1.1;AWS:0.9;Airflow:0.8,1,Summit Digital,3,56,14,12,44,32
+TRAIN00025,Dale Romero,Master,Software Engineering,2015,2016,Software Development,9.5,12,C++:8.6;PostgreSQL:6.1;JavaScript:5.7;Angular:5.6;FastAPI:5.5,2,Fenwick Digital,3,75,75,70,42,66
+TRAIN00026,Sharon Hayden,Bachelor,Computer Science,2012,2016,Data Analysis,9.9,10,Kubernetes:9.9;SQL:9.6;NumPy:8.6;Snowflake:5.7;Power BI:5.0,3,Silverline Data,3,66,78,81,35,65
+TRAIN00027,Karen Perez,High School,,2020,2024,Data Analysis,1.7,6,Python:1.2;dbt:1.2;Ansible:0.8;Selenium:0.7;Tableau:0.6,1,Adobe,2,38,15,15,62,32
+TRAIN00028,Kristi Lawson,Bachelor,Biology,2022,2025,Data Analysis,1.1,6,Snowflake:1.1;Tableau:1.0;Python:1.0;GitHub Actions:1.0;dbt:0.8,1,Amber Creek Software,3,39,10,15,27,23
+TRAIN00029,Jessica Cannon,PhD,Mathematics,2017,2022,Software Development,3.3,6,FastAPI:3.1;Next.js:2.9;REST APIs:2.8;Go:2.4;Scala:1.6,2,Summit Digital,3,79,26,33,30,42
+TRAIN00030,Michael May,Master,Software Engineering,2020,2021,Data Analysis,4.9,8,Figma:3.8;Power BI:3.7;MLflow:3.7;SQL:3.1;Airflow:3.1,1,Nova Tech Group,3,77,50,50,37,54
+TRAIN00031,Dana Green,Master,Physics,2021,2023,Data Analysis,1.3,7,Docker:1.2;Power BI:1.1;PostgreSQL:1.1;Prometheus:1.1;Looker:0.9,1,Silverline Data,3,77,18,30,40,41
+TRAIN00032,Colin Roberts,Bachelor,Economics,2018,2022,Data Analysis,3.2,6,Looker:2.6;Redshift:2.4;Tableau:2.0;Node.js:2.0;BigQuery:1.8,2,Summit Digital,3,49,26,35,39,37
+TRAIN00033,David Campbell,Bachelor,Mathematics,2018,2021,Product/Design,3.6,6,Docker:3.0;gRPC:2.1;TypeScript:1.9;React:1.6;Git:1.0,2,Shopify,2,55,33,35,51,44
+TRAIN00034,Lisa Gutierrez,Bachelor,Physics,1998,2002,DevOps/Infrastructure,22.1,16,Terraform:21.6;REST APIs:19.4;GCP:18.0;Bash:16.9;Linux:16.5,3,Palantir,2,50,94,95,55,74
+TRAIN00035,Eric Ortiz,Bachelor,Computer Science,2021,2025,Software Development,1.0,5,React:1.0;GraphQL:0.9;PostgreSQL:0.9;Python:0.7;Airflow:0.7,1,LinkedIn,2,57,11,17,63,37
+TRAIN00036,Patricia Adams,Master,Mathematics,1995,1996,Data Analysis,28.4,16,Python:25.5;Spark:22.6;Grafana:20.5;Looker:18.4;Power BI:17.5,5,Stripe,2,78,97,92,48,79
+TRAIN00037,Austin Jones,Bachelor,Mathematics,2020,2024,Product/Design,0.2,6,Excel:0.2;Figma:0.2;React:0.2;Looker:0.2;Django:0.2,0,,,62,2,9,19,23
+TRAIN00038,Timothy P. Freeman,Bachelor,Electrical Engineering,2021,2024,Software Development,0.8,4,Django:0.8;Java:0.8;Scikit-learn:0.8;Vue.js:0.6,0,,,57,15,1,14,22
+TRAIN00039,Isabella Thompson,High School,,2017,2021,Data Analysis,3.1,6,Kafka:2.0;NumPy:1.6;Snowflake:1.1;Airflow:1.1;Excel:1.0,1,Amber Creek Software,3,37,33,23,36,32
+TRAIN00040,John Wilson,Master,Information Systems,2009,2011,Data/AI/ML,14.7,15,Pandas:14.6;MLflow:13.9;Snowflake:13.7;BigQuery:13.1;PyTorch:11.6,2,Summit Digital,3,70,80,93,34,69
+TRAIN00041,Kristi Dillon,Bachelor,Physics,2022,2026,Software Development,0.3,7,Python:0.3;TypeScript:0.3;GraphQL:0.3;Redis:0.3;GCP:0.3,0,,,51,1,7,25,21
+TRAIN00042,Jessica Gallagher,PhD,Communications,2002,2005,DevOps/Infrastructure,20.4,16,Figma:18.7;Nginx:15.9;Terraform:11.6;GCP:11.4;Azure:9.9,3,Nova Tech Group,3,54,88,89,50,70
+TRAIN00043,Douglas Simon,Bachelor,Communications,2020,2023,Data/AI/ML,1.2,5,Kafka:1.1;Tableau:1.1;Redshift:1.1;AWS:0.9;Docker:0.5,1,Amber Creek Software,3,31,9,17,30,22
+TRAIN00044,Alisha Smith,High School,,2006,2010,Software Development,15.1,13,PostgreSQL:15.0;REST APIs:12.8;GraphQL:12.7;Python:12.1;pytest:10.6,2,Clearwater Systems,3,29,89,91,44,63
+TRAIN00045,Haley Lyons,Master,Physics,2015,2016,QA/Testing,9.6,9,Java:9.1;Jira:7.5;Terraform:7.3;Cypress:6.5;pytest:5.7,3,SAP,2,75,66,61,49,63
+TRAIN00046,Scott Jones,High School,,2017,2021,Data/AI/ML,4.1,6,JavaScript:3.8;Kafka:2.9;Scikit-learn:2.8;LangChain:2.6;Redshift:2.1,2,Summit Digital,3,31,46,40,36,38
+TRAIN00047,Cory Thompson,PhD,Information Systems,2005,2008,Data Analysis,16.0,12,NumPy:15.9;Kotlin:14.3;Snowflake:11.4;Jenkins:10.9;Redshift:10.5,3,Nvidia,1,78,85,89,71,81
+TRAIN00048,David Ruiz,Bachelor,Electrical Engineering,2007,2011,Data/AI/ML,13.5,13,PyTorch:12.4;Confluence:12.2;Pandas:11.5;Databricks:11.2;AWS:10.8,4,Summit Digital,3,54,95,95,42,72
+TRAIN00049,Candice Baker,Master,Physics,2024,2025,DevOps/Infrastructure,1.3,4,GitHub Actions:1.1;GCP:1.1;Looker:1.1;Elasticsearch:0.8,1,Cisco,2,69,16,12,65,40
+TRAIN00050,Nicole Williams,Master,Communications,2012,2014,Data Analysis,10.7,10,Pandas:10.4;Snowflake:10.2;NumPy:9.4;Tableau:8.7;Go:8.6,3,Summit Digital,3,49,72,81,44,62
+TRAIN00051,Alexandra Chang,High School,,2021,2024,QA/Testing,2.1,6,GitHub Actions:1.9;Playwright:1.8;JavaScript:1.7;Confluence:1.7;TypeScript:1.2,1,Meridian Software,3,37,13,25,29,26
+TRAIN00052,Alice Small,Bachelor,Mathematics,2009,2013,DevOps/Infrastructure,11.1,11,AWS:8.5;Kubernetes:8.3;Datadog:8.2;Next.js:7.4;Redis:7.0,1,Blue Orbit Labs,3,49,78,88,33,62
+TRAIN00053,Shannon Jordan,Master,Physics,1996,1997,QA/Testing,27.5,16,Python:25.2;Selenium:24.8;Angular:24.7;Tableau:16.1;DynamoDB:15.6,4,Silverline Data,3,69,90,88,45,73
+TRAIN00054,Desiree Smith,Master,Computer Science,2020,2021,Software Development,4.6,7,Next.js:4.2;MLflow:2.4;Looker:1.5;FastAPI:1.5;Git:1.4,2,Cobalt Applications,3,77,52,29,44,50
+TRAIN00055,Patricia T. Miller,Bachelor,Biology,2019,2023,QA/Testing,1.2,6,JavaScript:0.9;AWS:0.9;GitHub Actions:0.6;Playwright:0.5;Docker:0.5,1,BrightPath Solutions,3,40,15,12,33,25
+TRAIN00056,Devon Rogers,Bachelor,Software Engineering,2021,2024,DevOps/Infrastructure,1.4,4,Datadog:1.1;Next.js:1.1;Confluence:0.7;GitHub Actions:0.5,1,IBM,2,66,12,14,66,40
+TRAIN00057,Sherry Avery,High School,,2001,2004,Product/Design,20.2,15,Python:17.1;React:16.5;Node.js:14.1;C++:13.6;Jira:12.1,5,Salesforce,2,36,96,86,60,70
+TRAIN00058,Shannon Cook,High School,,2017,2020,QA/Testing,4.3,6,GitHub Actions:3.9;Playwright:2.2;Python:2.0;TypeScript:1.7;Java:1.1,1,Nvidia,1,34,47,31,100,53
+TRAIN00059,Matthew Valenzuela,Bachelor,Economics,1998,2002,Data Analysis,22.5,16,Tableau:21.4;SQL:20.8;Looker:20.8;MySQL:20.2;Power BI:16.8,5,Ironwood Consulting,3,40,100,96,38,68
+TRAIN00060,Kimberly Jones,Bachelor,Mathematics,1994,1998,QA/Testing,26.9,16,pytest:24.2;Java:23.2;NumPy:21.8;Jira:18.3;Selenium:14.1,4,Amber Creek Software,3,54,89,89,38,68
+TRAIN00061,Andrew Spencer,Bachelor,Communications,2012,2015,QA/Testing,9.7,12,Cypress:9.2;Figma:8.6;React:8.2;TensorFlow:7.2;Playwright:6.9,4,Fenwick Digital,3,39,72,96,37,61
+TRAIN00062,Beth Williams,Master,Economics,2020,2021,Software Development,3.3,8,Django:3.2;TypeScript:3.2;Spring Boot:3.1;Redis:2.7;Scala:2.5,2,Silverline Data,3,58,34,49,34,44
+TRAIN00063,Jill Wright,Bachelor,Information Systems,2012,2015,Software Development,9.7,12,Go:9.1;Django:9.0;Angular:8.9;Pandas:8.2;Postman:7.1,1,Ironwood Consulting,3,47,79,85,36,62
+TRAIN00064,Debbie Bowers,Master,Computer Science,2013,2014,Software Development,10.1,11,Azure:9.8;TypeScript:7.8;Snowflake:6.0;Kafka:6.0;Next.js:5.9,1,Northbridge IT,3,82,74,77,36,67
+TRAIN00065,Edward Moore,Master,Communications,2020,2022,QA/Testing,2.5,7,Postman:2.5;React:2.0;Docker:1.8;Selenium:1.7;Jenkins:1.5,1,Intel,2,39,24,18,59,35
+TRAIN00066,Kimberly Parker,Master,Data Science,2019,2021,Product/Design,4.4,8,TypeScript:4.1;Figma:3.6;Excel:3.2;Tableau:2.7;Sketch:2.7,1,Vantage Point Technologies,3,74,40,46,38,50
+TRAIN00067,Tiffany Hodges,Master,Software Engineering,2022,2023,Software Development,1.5,6,Docker:1.5;Node.js:1.3;GCP:0.9;REST APIs:0.7;GraphQL:0.5,1,Lumen Works,3,76,21,17,30,36
+TRAIN00068,Julian N. Martinez,Bachelor,Data Science,2018,2022,Product/Design,2.5,6,C++:2.5;Sketch:2.3;SQL:2.0;TypeScript:1.9;Jira:1.7,1,DeepMind,1,61,26,26,98,53
+TRAIN00069,Thomas Ferguson,PhD,Mathematics,2012,2015,Product/Design,11.2,13,Confluence:7.3;Bash:7.3;Power BI:7.1;React:7.1;Sketch:4.3,1,Nova Tech Group,3,87,71,79,36,68
+TRAIN00070,Kevin Snyder,Bachelor,Mathematics,2005,2009,Product/Design,16.8,13,Jira:16.1;Excel:15.4;Databricks:13.8;SQL:11.6;Linux:9.9,2,Intel,2,52,85,82,61,70
+TRAIN00071,Andrew Evans,Bachelor,Information Systems,2006,2010,DevOps/Infrastructure,14.4,12,Prometheus:14.0;Azure:13.6;Go:11.0;Node.js:10.9;Kotlin:8.1,5,Intel,2,52,78,86,56,68
+TRAIN00072,Steven Lucas,Bachelor,Electrical Engineering,2018,2022,QA/Testing,2.6,6,Postman:1.9;Selenium:1.7;Jira:1.4;Terraform:1.4;Git:1.2,1,Apple,1,48,29,21,97,49
+TRAIN00073,Daniel Hernandez,High School,,2018,2022,Software Development,2.1,8,TypeScript:2.0;Bash:2.0;Vue.js:1.9;Node.js:1.8;GraphQL:0.9,1,Vantage Point Technologies,3,32,25,27,40,31
+TRAIN00074,Paul Johnson,Bachelor,Physics,2017,2020,Software Development,4.0,7,pytest:3.5;CI/CD:3.3;Jira:1.8;Vue.js:1.4;Power BI:1.1,2,Silverline Data,3,43,36,31,36,36
+TRAIN00075,Jennifer Burns,Bachelor,Data Science,2022,2025,QA/Testing,1.1,4,NumPy:1.0;Docker:0.9;Swift:0.8;Git:0.6,1,Ridgeline Analytics,3,66,21,13,34,34
+TRAIN00076,Richard Montgomery,Bachelor,Biology,2020,2023,Product/Design,3.0,5,Power BI:2.1;SQL:1.7;Looker:1.5;PyTorch:1.1;Go:0.7,2,Vantage Point Technologies,3,37,36,15,36,31
+TRAIN00077,Jason Barron,High School,,2019,2023,Data Analysis,1.6,7,Rust:1.5;Confluence:1.4;Power BI:1.1;PostgreSQL:1.1;pytest:0.8,1,Northbridge IT,3,35,22,23,33,28
+TRAIN00078,Peggy F. Mccoy,Bachelor,Software Engineering,2014,2018,DevOps/Infrastructure,8.4,11,Nginx:8.3;Prometheus:8.0;Scala:7.9;GCP:5.9;Ansible:5.5,2,Amber Creek Software,3,65,72,86,34,64
+TRAIN00079,Casey Hubbard,Master,Physics,1994,1996,DevOps/Infrastructure,28.0,16,Jenkins:26.5;PyTorch:25.8;AWS:20.3;NumPy:20.1;GCP:19.8,4,IBM,2,70,96,92,64,80
+TRAIN00080,Christopher Montoya,Bachelor,Mathematics,2017,2021,DevOps/Infrastructure,4.4,6,Python:4.3;Kafka:4.2;Bash:4.2;Redis:2.7;REST APIs:1.5,2,Summit Digital,3,45,39,49,33,42
+TRAIN00081,Jennifer Patterson,Bachelor,Data Science,2018,2021,Software Development,4.4,7,pytest:3.5;Spring Boot:2.6;Figma:2.2;Java:2.0;Redis:1.7,2,SAP,2,56,45,36,66,51
+TRAIN00082,Claudia Richards,Bachelor,Physics,2020,2024,Software Development,1.2,6,C#:1.1;Redis:1.1;CI/CD:0.8;gRPC:0.8;React:0.6,1,Meridian Software,3,53,16,11,41,30
+TRAIN00083,Meagan Trevino,Master,Economics,2021,2022,Product/Design,4.7,8,Terraform:4.7;Jira:4.5;TensorFlow:4.5;React:4.2;Git:3.7,1,Spotify,2,48,39,59,67,53
+TRAIN00084,Sarah Combs,Bachelor,Mathematics,2013,2016,Data/AI/ML,8.6,8,Redis:8.0;PyTorch:6.3;Snowflake:5.1;Python:3.0;Power BI:2.7,2,Ridgeline Analytics,3,57,59,60,42,54
+TRAIN00085,Joshua Brown,High School,,2022,2026,DevOps/Infrastructure,0.6,7,Jenkins:0.6;CI/CD:0.6;JavaScript:0.6;Rust:0.6;TypeScript:0.6,0,,,29,12,10,31,20
+TRAIN00086,Mary Cochran,High School,,2016,2020,QA/Testing,5.6,7,Swift:4.2;JavaScript:3.8;pytest:3.1;Selenium:3.1;GitHub Actions:2.9,1,Summit Digital,3,35,51,58,36,45
+TRAIN00087,Zachary Hall,Bachelor,Mathematics,1998,2001,Data/AI/ML,23.2,16,Python:22.4;Scikit-learn:21.8;Databricks:15.5;NumPy:15.3;PyTorch:14.3,3,Uber,2,53,97,98,56,76
+TRAIN00088,Rachael Ibarra,High School,,2009,2013,Software Development,11.7,10,Go:11.4;CI/CD:11.4;MySQL:10.1;Django:9.8;Redis:9.4,2,Ironwood Consulting,3,42,77,71,53,61
+TRAIN00089,Timothy Phillips,Bachelor,Data Science,2011,2015,Data Analysis,9.3,9,dbt:8.9;Redshift:8.9;Postman:7.8;Selenium:6.5;Pandas:5.4,2,Northbridge IT,3,58,67,76,43,61
+TRAIN00090,Mark Tran,Bachelor,Physics,2021,2024,QA/Testing,1.7,4,NumPy:1.0;Playwright:0.7;Jira:0.7;React:0.7,1,Ridgeline Analytics,3,56,12,10,29,27
+TRAIN00091,Robert Larsen,Master,Biology,2021,2023,DevOps/Infrastructure,1.7,5,C#:1.6;TensorFlow:1.4;Azure:1.3;CI/CD:1.2;Python:1.1,1,Airbnb,2,46,20,16,68,38
+TRAIN00092,Christine Barnes,Master,Software Engineering,2024,2025,Data Analysis,0.8,5,BigQuery:0.8;NumPy:0.8;Python:0.8;Redis:0.8;Snowflake:0.7,0,,,78,12,13,15,30
+TRAIN00093,Corey Swanson,Master,Information Systems,2021,2022,QA/Testing,3.6,9,Prometheus:3.5;pytest:2.9;Docker:2.8;Postman:1.7;Selenium:1.6,2,Fenwick Digital,3,66,40,37,36,45
+TRAIN00094,Tanner Bird,Master,Electrical Engineering,2019,2020,DevOps/Infrastructure,5.6,9,Redis:4.9;TypeScript:3.3;Kubernetes:2.7;Grafana:2.5;Cypress:2.1,2,Northbridge IT,3,72,46,43,38,50
+TRAIN00095,Thomas Rowe,Master,Information Systems,2024,2025,Software Development,1.6,4,Selenium:1.4;pytest:0.8;CI/CD:0.7;Angular:0.6,1,Northbridge IT,3,73,22,6,40,35
+TRAIN00096,Edward Rivera,Bachelor,Software Engineering,2019,2022,Product/Design,2.4,6,Kubernetes:2.4;Linux:2.3;Tableau:1.9;Excel:1.8;Jira:0.9,1,Silverline Data,3,67,21,30,27,36
+TRAIN00097,Ashley Todd,High School,,2019,2023,Product/Design,1.2,7,Sketch:1.2;dbt:1.2;Power BI:1.1;React:0.8;Tableau:0.6,1,Cobalt Applications,3,36,12,11,27,22
+TRAIN00098,Thomas Anderson,Bachelor,Biology,1998,2002,Product/Design,23.4,16,Excel:23.2;GCP:22.6;Kotlin:15.7;Power BI:15.6;Jira:15.2,4,Stripe,2,37,95,91,70,73
+TRAIN00099,Yolanda Burns,Bachelor,Electrical Engineering,2012,2016,Data Analysis,9.0,10,Power BI:7.6;Excel:6.8;Python:6.6;Pandas:6.2;Spark:5.6,3,Clearwater Systems,3,57,72,70,41,60
+TRAIN00100,Leah Greene,High School,,2018,2021,DevOps/Infrastructure,4.4,9,Kafka:3.6;Redis:2.5;Django:2.0;Nginx:1.3;MongoDB:1.3,2,BrightPath Solutions,3,37,43,35,37,38
+TRAIN00101,Mark Daugherty,Master,Software Engineering,2020,2021,DevOps/Infrastructure,4.6,7,Kafka:3.8;Looker:3.5;Redis:2.6;Jira:2.2;Prometheus:2.1,1,Clearwater Systems,3,72,45,32,32,45
+TRAIN00102,Suzanne Huff,Bachelor,Business Administration,2021,2024,Data Analysis,1.1,6,Redshift:1.1;Kotlin:1.1;SQL:1.0;Snowflake:1.0;BigQuery:0.8,1,Vantage Point Technologies,3,39,8,23,37,27
+TRAIN00103,Megan Hall,Master,Mathematics,2011,2013,Data Analysis,12.7,12,Python:12.2;NumPy:10.8;SQL:10.6;Power BI:10.3;Pandas:7.3,5,Airbnb,2,70,84,87,56,74
+TRAIN00104,Theresa Thomas,Bachelor,Data Science,2017,2021,QA/Testing,4.8,6,DynamoDB:4.5;Playwright:4.1;Selenium:3.2;Postman:2.0;Python:1.1,1,Ridgeline Analytics,3,58,43,42,42,46
+TRAIN00105,Antonio Cervantes,High School,,2011,2015,Software Development,10.2,12,PostgreSQL:8.7;Java:8.3;BigQuery:8.0;GraphQL:6.8;REST APIs:6.8,3,Fenwick Digital,3,34,72,93,46,61
+TRAIN00106,Andrew F. Butler,Bachelor,Business Administration,1999,2003,Data/AI/ML,21.1,16,Hugging Face:21.1;BigQuery:20.5;NumPy:20.1;Elasticsearch:19.6;Docker:19.1,3,Clearwater Systems,3,48,94,90,38,68
+TRAIN00107,Tracy Guerrero,Bachelor,Electrical Engineering,2020,2023,Data/AI/ML,2.8,6,BigQuery:2.2;Airflow:2.1;Next.js:2.0;Tableau:1.6;Spark:0.9,1,Fenwick Digital,3,45,22,30,37,34
+TRAIN00108,Jennifer Collins,Bachelor,Software Engineering,2016,2020,Data Analysis,4.5,9,Looker:4.5;Snowflake:3.9;Power BI:3.7;Airflow:3.0;Vue.js:2.7,1,LinkedIn,2,58,48,54,63,56
+TRAIN00109,Jennifer Black,PhD,Computer Science,2009,2012,Data Analysis,12.1,13,PostgreSQL:11.1;Java:10.7;Python:10.2;Prometheus:8.1;Looker:6.4,2,Adobe,2,85,86,86,66,81
+TRAIN00110,Justin Boone,Master,Physics,2007,2008,Software Development,17.0,13,Git:16.7;Confluence:15.0;JavaScript:14.6;Vue.js:12.0;Spark:11.8,3,Nvidia,1,73,87,88,61,77
+TRAIN00111,Paige P. Smith,Bachelor,Physics,2014,2018,Data Analysis,8.5,10,Bash:8.2;Looker:7.5;NumPy:7.4;Python:5.8;Pandas:4.8,1,Vantage Point Technologies,3,51,62,67,36,54
+TRAIN00112,Robert W. Hall,Master,Software Engineering,2024,2025,DevOps/Infrastructure,0.0,7,Ansible:0.0;GitHub Actions:0.0;Redis:0.0;Bash:0.0;Python:0.0,0,,,81,6,0,22,27
+TRAIN00113,Julia Kline,High School,,2010,2014,DevOps/Infrastructure,11.5,13,Kafka:11.0;Docker:8.0;Linux:6.8;Azure:5.7;Terraform:5.6,4,Oracle,2,34,81,79,52,62
+TRAIN00114,Ashley Adams,Master,Communications,2022,2023,Data/AI/ML,1.4,4,Playwright:1.1;TensorFlow:1.0;Docker:1.0;TypeScript:0.8,1,Lumen Works,3,44,18,14,30,26
+TRAIN00115,Nathan S. Gallegos,PhD,Data Science,2022,2026,QA/Testing,0.2,5,Python:0.2;TypeScript:0.2;Playwright:0.2;Ansible:0.2;Looker:0.2,0,,,93,5,4,19,30
+TRAIN00116,Albert Howell,PhD,Economics,2019,2023,QA/Testing,1.3,4,GitHub Actions:1.2;Airflow:1.0;Selenium:0.9;Python:0.6,1,Fenwick Digital,3,64,18,15,34,33
+TRAIN00117,Elaine Nelson,High School,,2022,2025,Software Development,0.8,7,Docker:0.8;gRPC:0.8;Spring Boot:0.8;Scikit-learn:0.8;Node.js:0.7,0,,,32,8,23,17,20
+TRAIN00118,Paul Mills,PhD,Computer Science,2005,2010,Data/AI/ML,16.2,15,Scikit-learn:14.6;MLflow:14.4;Docker:11.8;BigQuery:11.4;MySQL:9.3,3,Northbridge IT,3,92,89,97,41,80
+TRAIN00119,Lauren M. Byrd,Bachelor,Data Science,2016,2019,DevOps/Infrastructure,5.9,8,CI/CD:5.3;Grafana:3.9;FastAPI:3.9;Kubernetes:2.7;Datadog:2.6,1,Vantage Point Technologies,3,59,54,54,36,51
+TRAIN00120,Amy Hartman,High School,,2019,2023,DevOps/Infrastructure,2.0,6,MLflow:2.0;Redis:1.7;Datadog:1.7;gRPC:1.5;Linux:1.4,1,Meridian Software,3,42,27,19,35,31
+TRAIN00121,Julie Smith,Bachelor,Data Science,2016,2020,Data/AI/ML,5.9,8,MLflow:5.9;Ruby:4.9;Airflow:3.7;SQL:2.9;Databricks:2.4,2,Vantage Point Technologies,3,65,49,56,37,52
+TRAIN00122,Robert Gutierrez,Bachelor,Physics,2018,2021,Data/AI/ML,4.3,9,MLflow:3.9;Kafka:3.2;Confluence:2.9;Selenium:2.9;GCP:2.7,2,LinkedIn,2,48,50,52,62,53
+TRAIN00123,Christopher Stevens,Master,Electrical Engineering,1995,1997,Product/Design,28.0,16,SQL:27.4;LangChain:26.9;TypeScript:20.1;Excel:19.9;Tableau:18.0,5,Microsoft,1,70,96,100,41,77
+TRAIN00124,Andrea Rowe,Master,Economics,2021,2022,Data Analysis,3.7,6,Figma:3.4;Jenkins:2.5;Snowflake:1.8;Excel:1.3;Redshift:1.3,1,Ironwood Consulting,3,60,30,25,36,38
+TRAIN00125,Donna Peck,Bachelor,Software Engineering,2015,2018,Software Development,8.0,10,C#:7.2;PostgreSQL:6.0;Cypress:5.9;CI/CD:5.3;JavaScript:4.7,1,Blue Orbit Labs,3,54,64,71,34,56
+TRAIN00126,Shannon Shepherd,Bachelor,Economics,2014,2017,DevOps/Infrastructure,8.0,9,Kubernetes:8.0;Bash:7.9;Django:6.7;Kafka:5.8;Jenkins:5.0,3,Fenwick Digital,3,41,59,79,30,52
+TRAIN00127,Bryan Parsons,Bachelor,Electrical Engineering,2020,2024,Data/AI/ML,1.8,7,Pandas:1.2;Databricks:0.9;Scikit-learn:0.9;SQL:0.8;PyTorch:0.8,1,Ridgeline Analytics,3,58,17,20,31,32
+TRAIN00128,Michael Johnson,Bachelor,Software Engineering,2016,2020,Product/Design,5.5,10,Sketch:5.3;Looker:4.3;Spark:4.3;PostgreSQL:3.3;TypeScript:3.2,1,Cisco,2,67,55,59,68,62
+TRAIN00129,Samuel Holmes,Bachelor,Software Engineering,2010,2014,Data/AI/ML,10.7,11,Pandas:10.5;Hugging Face:10.4;MLflow:10.4;Snowflake:10.3;AWS:9.3,1,Vantage Point Technologies,3,55,78,81,40,64
+TRAIN00130,Ronald J. White,High School,,2022,2025,Software Development,1.5,6,CI/CD:1.3;MySQL:1.1;Docker:1.0;Postman:1.0;Go:0.9,1,Ridgeline Analytics,3,32,14,11,36,23
+TRAIN00131,Jason Payne,Bachelor,Computer Science,2013,2016,QA/Testing,8.8,8,pytest:6.9;Python:6.5;Postman:5.1;Git:4.3;Pandas:3.7,1,Ironwood Consulting,3,58,63,54,33,52
+TRAIN00132,Elizabeth Durham,Bachelor,Communications,1994,1998,QA/Testing,27.4,16,Python:26.5;GitHub Actions:25.8;Java:25.1;TypeScript:17.7;Git:12.2,5,Ridgeline Analytics,3,35,100,95,42,68
+TRAIN00133,Luke Miller,Bachelor,Communications,2019,2022,Data/AI/ML,2.2,8,SQL:2.1;Redshift:1.9;MLflow:1.4;DynamoDB:1.4;PyTorch:1.3,1,SAP,2,31,15,33,61,35
+TRAIN00134,Nicholas Vega,PhD,Biology,2017,2022,DevOps/Infrastructure,3.9,6,GitHub Actions:3.7;Kubernetes:3.6;GCP:3.0;Grafana:2.1;Figma:1.8,1,Cobalt Applications,3,54,39,45,35,43
+TRAIN00135,Pamela Rodriguez,Bachelor,Economics,2013,2016,Software Development,10.2,10,GraphQL:10.1;dbt:9.7;REST APIs:8.7;pytest:5.2;Angular:5.0,1,Nova Tech Group,3,43,71,83,31,57
+TRAIN00136,Amber Vance,Master,Physics,2022,2023,DevOps/Infrastructure,1.9,5,Ansible:1.9;Sketch:1.7;Docker:1.4;Azure:1.1;Bash:0.9,1,Vantage Point Technologies,3,63,18,19,34,34
+TRAIN00137,Charles G. Martin,Master,Economics,2010,2011,Product/Design,14.8,12,Swift:13.9;Looker:11.4;React:10.3;CI/CD:9.9;SQL:6.4,2,OpenAI,1,53,84,83,68,72
+TRAIN00138,Kristen Hayes,PhD,Business Administration,2014,2017,Product/Design,8.7,10,Confluence:8.5;dbt:7.2;React:6.6;Figma:6.0;SQL:5.2,1,Oracle,2,65,64,74,67,68
+TRAIN00139,Katie Jackson,PhD,Computer Science,2014,2018,Product/Design,7.3,8,Sketch:7.0;Power BI:5.5;MySQL:3.6;Airflow:3.2;Jira:3.0,2,Ironwood Consulting,3,100,66,50,46,66
+TRAIN00140,Steve P. Patel,Master,Electrical Engineering,1997,1999,DevOps/Infrastructure,25.8,16,Grafana:21.6;GitHub Actions:21.2;Prometheus:20.7;Redis:19.2;Jenkins:17.2,4,Cobalt Applications,3,67,97,85,41,72
+TRAIN00141,Amy Levine,Bachelor,Business Administration,2019,2023,Data/AI/ML,3.7,6,MongoDB:3.3;Terraform:1.8;BigQuery:1.4;Databricks:1.2;Airflow:1.2,1,Cobalt Applications,3,38,36,28,39,35
+TRAIN00142,Andrea Barber,Master,Business Administration,2002,2003,Software Development,23.1,16,Spring Boot:23.0;Git:22.9;PostgreSQL:22.1;pytest:22.1;Angular:21.3,5,Amazon,1,54,92,100,48,74
+TRAIN00143,Jeanette Krause,Bachelor,Computer Science,2019,2023,DevOps/Infrastructure,2.0,8,Linux:1.9;Docker:1.9;GCP:1.7;LangChain:1.6;Go:1.2,1,Nova Tech Group,3,61,22,33,35,38
+TRAIN00144,Kevin Cannon,Master,Software Engineering,1998,2000,Data Analysis,26.4,16,Excel:22.7;SQL:22.6;Python:20.4;PostgreSQL:17.3;Snowflake:17.2,4,Blue Orbit Labs,3,71,95,94,39,75
+TRAIN00145,Jacob Barnett,PhD,Data Science,2015,2018,QA/Testing,8.5,11,TypeScript:8.2;Postman:7.8;pytest:7.1;Tableau:6.4;Ansible:6.1,1,Amber Creek Software,3,96,59,74,37,66
+TRAIN00146,Anthony Ortiz,PhD,Business Administration,2014,2018,Software Development,7.3,9,FastAPI:6.9;DynamoDB:3.9;CI/CD:3.7;Django:2.3;Docker:2.0,3,Summit Digital,3,63,60,57,56,59
+TRAIN00147,Amanda Mejia,Bachelor,Communications,2016,2020,Software Development,5.9,9,Jenkins:5.3;Confluence:5.2;CI/CD:4.6;Redis:4.2;Go:2.9,1,BrightPath Solutions,3,25,50,59,44,44
+TRAIN00148,Mark Smith,PhD,Communications,2007,2012,Data Analysis,13.6,11,Looker:13.3;Tableau:10.5;CI/CD:9.8;Pandas:7.5;SQL:7.3,3,Summit Digital,3,55,83,85,38,65
+TRAIN00149,Tyler Johnson,Master,Business Administration,2003,2005,QA/Testing,19.0,16,Java:15.0;Ruby:15.0;Playwright:14.1;JavaScript:13.4;pytest:12.6,4,Spotify,2,55,92,100,65,78
+TRAIN00150,Natalie Arroyo,Bachelor,Economics,2016,2020,Product/Design,5.7,9,Hugging Face:5.6;React:4.8;TypeScript:4.7;Confluence:4.4;Git:4.2,2,Adobe,2,44,51,68,54,54
+TRAIN00151,Jill Tran,Bachelor,Communications,2021,2025,Product/Design,1.0,5,Sketch:1.0;Bash:1.0;Scala:0.9;Tableau:0.7;Looker:0.7,1,Summit Digital,3,34,9,13,39,24
+TRAIN00152,Kelly Brooks,PhD,Biology,2014,2017,Product/Design,7.6,8,Figma:6.3;PyTorch:6.2;Jira:4.7;Rust:4.0;Confluence:3.7,1,Ironwood Consulting,3,63,60,65,42,58
+TRAIN00153,Martin Saunders,Bachelor,Data Science,2015,2019,QA/Testing,5.6,8,Docker:5.2;CI/CD:4.5;Jira:3.9;dbt:2.5;Kubernetes:2.3,2,Amber Creek Software,3,64,50,45,45,51
+TRAIN00154,Timothy Alvarado,PhD,Information Systems,2015,2018,QA/Testing,8.4,9,Python:7.9;Java:7.6;JavaScript:7.0;Playwright:5.0;Cypress:3.7,2,Cobalt Applications,3,78,65,65,41,62
+TRAIN00155,Kristen Stevenson,Bachelor,Mathematics,2017,2021,DevOps/Infrastructure,4.0,8,PyTorch:3.4;Datadog:3.2;GCP:2.5;Docker:2.5;Linux:1.9,1,BrightPath Solutions,3,49,36,57,30,43
+TRAIN00156,Cynthia Zavala,Bachelor,Physics,2006,2009,Software Development,15.0,12,Git:12.7;MLflow:12.2;Spring Boot:11.8;TypeScript:11.0;Docker:10.0,2,Lumen Works,3,54,87,88,34,66
+TRAIN00157,Tyler Burton,High School,,2003,2006,Data Analysis,18.4,16,Pandas:15.4;Next.js:14.7;PostgreSQL:14.1;NumPy:13.8;Prometheus:13.7,4,Adobe,2,35,91,87,59,68
+TRAIN00158,Angela Vargas,High School,,2020,2024,Software Development,1.8,8,MLflow:1.8;Python:1.7;dbt:1.4;FastAPI:1.3;CI/CD:1.3,1,Cobalt Applications,3,36,15,23,30,26
+TRAIN00159,Brian P. Rowe,Bachelor,Information Systems,2020,2024,QA/Testing,0.6,5,pytest:0.6;GitHub Actions:0.6;DynamoDB:0.6;Docker:0.5;Rust:0.5,0,,,56,8,12,18,24
+TRAIN00160,Timothy Harrington,Master,Data Science,2019,2020,DevOps/Infrastructure,5.9,8,MongoDB:5.5;Snowflake:4.5;Figma:3.7;Redis:3.1;Azure:2.6,2,Shopify,2,83,48,45,58,58
+TRAIN00161,James Johnson,Master,Business Administration,2020,2021,Data/AI/ML,4.4,6,PyTorch:2.7;NumPy:2.5;LangChain:2.3;Docker:1.8;AWS:1.2,2,Spotify,2,61,42,31,53,47
+TRAIN00162,Ethan Kelley,Master,Electrical Engineering,2018,2020,DevOps/Infrastructure,4.2,8,Terraform:4.2;Bash:4.1;GraphQL:3.8;Prometheus:3.5;Grafana:2.6,1,Amber Creek Software,3,67,38,52,38,49
+TRAIN00163,Harold B. Curry,Master,Physics,1999,2001,Software Development,25.1,16,Docker:21.7;Go:21.3;Java:20.6;TypeScript:20.0;Excel:19.3,4,Fenwick Digital,3,71,91,93,32,72
+TRAIN00164,Patrick S. Chase,Master,Communications,2019,2021,Data/AI/ML,4.8,9,BigQuery:4.0;AWS:3.2;Elasticsearch:2.6;Pandas:2.5;TensorFlow:2.3,1,Nova Tech Group,3,37,54,46,32,42
+TRAIN00165,Brenda Sanchez,Master,Physics,2019,2021,QA/Testing,3.3,5,TypeScript:2.7;GitHub Actions:2.0;Jira:1.7;Kotlin:0.8;Java:0.6,2,Amber Creek Software,3,70,41,26,31,42
+TRAIN00166,David Johnston,PhD,Mathematics,2000,2005,Data Analysis,20.6,16,Excel:20.5;PyTorch:19.6;Redshift:18.4;PostgreSQL:18.1;Snowflake:17.9,4,Nova Tech Group,3,78,87,98,31,74
+TRAIN00167,Daniel Lopez,Bachelor,Information Systems,2021,2024,Data Analysis,1.6,6,Scikit-learn:1.4;BigQuery:1.2;Excel:1.0;pytest:0.9;Pandas:0.8,1,Silverline Data,3,57,14,22,31,31
+TRAIN00168,John Caldwell,High School,,2018,2021,QA/Testing,3.8,7,Hugging Face:3.5;GitHub Actions:2.7;CI/CD:1.9;pytest:1.9;Airflow:1.7,1,Summit Digital,3,29,36,33,33,33
+TRAIN00169,Brian Kim,Master,Communications,2011,2012,Data/AI/ML,12.0,12,NumPy:12.0;Power BI:11.7;SQL:10.8;Airflow:10.5;PyTorch:8.4,3,Cisco,2,54,83,85,53,69
+TRAIN00170,Desiree Ruiz,Bachelor,Computer Science,2014,2017,Product/Design,8.3,11,Power BI:7.8;Redis:6.9;PostgreSQL:6.3;Tableau:5.4;Confluence:4.0,1,Amber Creek Software,3,63,55,67,39,56
+TRAIN00171,Alexis K. Chen,High School,,2016,2020,DevOps/Infrastructure,5.4,8,Jenkins:3.6;GraphQL:3.6;Airflow:2.5;Linux:2.1;Bash:1.9,2,Nova Tech Group,3,35,39,37,32,36
+TRAIN00172,Katie Kent,Bachelor,Business Administration,2020,2024,Product/Design,1.4,6,Looker:1.2;Node.js:1.2;Figma:0.9;Kafka:0.9;Tableau:0.7,1,Lumen Works,3,39,14,19,42,28
+TRAIN00173,John Murray,Bachelor,Information Systems,2007,2010,Product/Design,14.2,14,Git:13.8;Confluence:12.2;Kotlin:9.6;Vue.js:9.3;Sketch:9.0,3,Oracle,2,55,79,94,57,71
+TRAIN00174,Andrew D. Davis,Bachelor,Communications,2018,2021,Software Development,4.2,6,React:3.4;MySQL:3.1;CI/CD:2.9;Node.js:2.7;FastAPI:2.3,2,Cobalt Applications,3,37,40,35,53,41
+TRAIN00175,Steven Oconnor,Bachelor,Business Administration,2016,2019,DevOps/Infrastructure,6.8,9,Azure:5.5;PyTorch:4.4;Python:3.8;Django:3.4;AWS:3.0,1,IBM,2,38,59,58,60,54
+TRAIN00176,Joseph Miller,Master,Computer Science,2019,2020,Data/AI/ML,4.3,7,Kafka:3.5;Pandas:3.1;MongoDB:3.0;MLflow:2.8;Airflow:2.5,2,Oracle,2,76,37,47,53,53
+TRAIN00177,Debra Wilson,Master,Communications,2022,2023,Product/Design,1.4,6,Power BI:1.3;Figma:1.0;TypeScript:0.8;Ansible:0.8;Confluence:0.6,1,Meridian Software,3,50,17,18,36,30
+TRAIN00178,Laura Knight,Master,Data Science,2020,2022,Software Development,3.0,7,FastAPI:2.8;Terraform:2.6;GCP:2.4;Redis:2.3;Tableau:2.0,2,Oracle,2,81,27,29,50,47
+TRAIN00179,Alicia Krueger,Master,Physics,2023,2025,Data/AI/ML,0.4,6,Pandas:0.4;BigQuery:0.4;SQL:0.4;Airflow:0.4;Databricks:0.4,0,,,66,0,9,22,24
+TRAIN00180,Elizabeth Edwards,Bachelor,Biology,2016,2019,QA/Testing,6.3,10,pytest:4.6;Git:4.6;JavaScript:4.6;Cypress:3.7;Pandas:2.6,1,Silverline Data,3,33,53,64,30,45
+TRAIN00181,Theresa Anderson,PhD,Biology,2011,2016,QA/Testing,9.0,10,Java:8.8;Selenium:6.4;Jira:5.1;Spring Boot:4.5;CI/CD:3.3,3,LinkedIn,2,55,65,63,53,59
+TRAIN00182,Alexander Clark,Bachelor,Computer Science,2017,2021,Data/AI/ML,3.2,5,Hugging Face:3.0;Ruby:1.8;Kafka:1.7;SQL:1.6;CI/CD:1.2,1,Palantir,2,64,34,25,61,46
+TRAIN00183,Tara Chavez,Master,Software Engineering,2024,2026,Product/Design,0.5,7,Tableau:0.5;Git:0.5;Sketch:0.5;TypeScript:0.5;Figma:0.5,0,,,88,7,11,21,32
+TRAIN00184,Cassandra Clarke,Bachelor,Business Administration,2014,2018,Data Analysis,7.7,8,Power BI:7.6;Swift:6.3;Redshift:6.0;Excel:5.6;Kubernetes:3.2,2,Salesforce,2,43,62,65,51,55
+TRAIN00185,Garrett Moore,High School,,2020,2023,Data/AI/ML,2.8,6,Snowflake:2.8;Scikit-learn:2.8;Airflow:2.5;CI/CD:2.1;Datadog:1.8,1,Airbnb,2,39,29,36,66,42
+TRAIN00186,Joseph Mullen,Master,Biology,2016,2017,DevOps/Infrastructure,7.1,7,Kafka:6.0;NumPy:5.7;Datadog:5.2;Docker:5.1;gRPC:5.1,3,Lumen Works,3,51,59,61,49,55
+TRAIN00187,Mary Elliott,PhD,Electrical Engineering,2005,2009,DevOps/Infrastructure,16.1,13,Python:15.4;Linux:15.0;Terraform:12.7;Ansible:9.3;Redis:9.2,4,Meridian Software,3,89,86,87,47,77
+TRAIN00188,Scott Bowen,High School,,2013,2017,QA/Testing,8.4,8,PyTorch:7.3;Java:6.8;FastAPI:5.2;GitHub Actions:4.9;JavaScript:4.6,2,Fenwick Digital,3,38,65,68,40,53
+TRAIN00189,Kathryn Jordan,Master,Mathematics,2021,2022,QA/Testing,2.3,8,JavaScript:2.2;Ruby:2.2;REST APIs:2.1;Scikit-learn:1.4;Java:0.8,1,Amazon,1,66,24,26,100,54
+TRAIN00190,Carol Cox,Bachelor,Business Administration,2018,2021,Software Development,3.5,8,JavaScript:3.3;LangChain:2.8;C++:2.5;REST APIs:1.8;Django:1.7,1,SAP,2,40,35,37,65,44
+TRAIN00191,Rebecca Turner,High School,,2005,2009,QA/Testing,15.5,14,Playwright:14.5;pytest:13.8;Docker:12.6;Java:11.3;Kafka:8.8,2,Fenwick Digital,3,32,87,98,34,63
+TRAIN00192,Christian Elliott,Master,Software Engineering,2009,2011,Data/AI/ML,14.7,15,Databricks:14.5;Scikit-learn:13.0;Hugging Face:11.4;SQL:10.0;Docker:8.8,2,Palantir,2,75,90,97,64,82
+TRAIN00193,Sara King,Master,Communications,2016,2017,DevOps/Infrastructure,8.9,9,Ansible:6.8;Airflow:5.2;FastAPI:4.9;Cypress:4.4;Python:3.2,1,Uber,2,44,70,67,62,61
+TRAIN00194,Kayla Brown,High School,,2019,2023,Data Analysis,1.2,5,REST APIs:1.2;Redshift:1.1;Power BI:1.0;Tableau:0.7;PostgreSQL:0.5,1,Amber Creek Software,3,38,24,8,42,28
+TRAIN00195,Stephanie Washington,Master,Biology,2020,2022,Software Development,3.2,5,Angular:3.1;FastAPI:2.2;JavaScript:0.8;MySQL:0.7;PostgreSQL:0.6,1,Clearwater Systems,3,55,34,17,32,34
+TRAIN00196,Sheila Williams,Bachelor,Economics,2017,2021,Data Analysis,4.8,9,Prometheus:4.4;Looker:4.1;Scikit-learn:3.4;Power BI:3.2;GitHub Actions:2.6,2,Meridian Software,3,34,36,48,53,43
+TRAIN00197,Joshua Wright,High School,,2017,2020,Data Analysis,4.3,7,Spark:3.4;React:3.4;Django:3.0;Python:2.8;Airflow:1.2,2,Summit Digital,3,39,37,45,36,39
+TRAIN00198,Joan Kane,Master,Software Engineering,2022,2024,Software Development,1.7,5,Scikit-learn:1.6;Spring Boot:1.5;Go:1.3;Docker:1.1;Django:0.7,1,Lumen Works,3,72,29,21,36,40
+TRAIN00199,Brian Miller,Bachelor,Physics,2013,2017,QA/Testing,7.0,10,Git:6.7;LangChain:6.6;Jira:6.1;Datadog:4.4;Airflow:3.8,1,IBM,2,51,59,73,64,62
+TRAIN00200,Brian Bell,Bachelor,Computer Science,2020,2024,Data/AI/ML,1.4,5,Databricks:1.2;Hugging Face:0.8;PyTorch:0.6;Selenium:0.6;Git:0.5,1,Oracle,2,63,18,15,66,40
+TRAIN00201,Diana Bright,Bachelor,Mathematics,2017,2021,Data/AI/ML,3.3,5,Docker:3.1;Scikit-learn:2.3;DynamoDB:2.0;Databricks:0.8;PyTorch:0.7,2,Fenwick Digital,3,57,30,29,53,42
+TRAIN00202,Bobby Moss,High School,,2020,2023,Software Development,1.7,7,Java:1.5;GraphQL:1.4;Next.js:1.4;CI/CD:1.4;LangChain:1.1,1,Oracle,2,29,23,28,58,34
+TRAIN00203,Lindsey Ruiz,Bachelor,Software Engineering,2013,2016,Data Analysis,8.7,9,SQL:8.1;BigQuery:8.0;Jira:6.7;Pandas:4.0;NumPy:3.2,2,Shopify,2,61,64,69,60,64
+TRAIN00204,Charles Harris,High School,,2013,2016,Software Development,9.6,11,PostgreSQL:9.2;MySQL:8.0;React:7.1;Node.js:7.1;Redis:6.5,3,Adobe,2,34,67,82,60,61
+TRAIN00205,Mathew J. Aguilar,High School,,2011,2015,Data Analysis,10.7,10,Looker:10.7;Power BI:9.8;Datadog:7.5;Confluence:7.3;Airflow:6.7,1,Lumen Works,3,36,78,82,40,59
+TRAIN00206,Colin Barnett,Bachelor,Software Engineering,2019,2023,DevOps/Infrastructure,3.2,6,Redis:2.5;DynamoDB:2.5;CI/CD:2.0;Bash:1.9;Prometheus:1.3,2,SAP,2,68,31,27,54,45
+TRAIN00207,Joseph Young,Bachelor,Data Science,2021,2024,QA/Testing,1.0,7,JavaScript:1.0;GitHub Actions:1.0;Playwright:0.9;Vue.js:0.8;MLflow:0.8,1,Meridian Software,3,55,11,25,40,33
+TRAIN00208,Rachel L. Marshall,Bachelor,Business Administration,2022,2025,Data/AI/ML,1.4,7,Node.js:1.3;gRPC:1.3;Python:1.2;Airflow:1.1;Snowflake:0.9,1,Summit Digital,3,49,14,25,27,29
+TRAIN00209,Frank Armstrong,Master,Electrical Engineering,2009,2010,QA/Testing,14.8,15,Jira:14.5;Playwright:11.2;Prometheus:9.9;Swift:9.8;JavaScript:9.1,2,Amber Creek Software,3,73,92,86,42,73
+TRAIN00210,Renee Murphy,Bachelor,Business Administration,2022,2026,DevOps/Infrastructure,0.3,5,Azure:0.3;CI/CD:0.3;Prometheus:0.3;PostgreSQL:0.3;Kafka:0.3,0,,,38,0,3,18,15
+TRAIN00211,Jose Green,Master,Computer Science,2013,2014,DevOps/Infrastructure,11.4,10,Grafana:9.4;GCP:9.3;Cypress:7.8;Prometheus:7.4;AWS:6.8,2,Fenwick Digital,3,73,66,79,30,62
+TRAIN00212,Alicia Diaz,Bachelor,Economics,2021,2024,Software Development,1.1,7,GraphQL:1.0;C#:0.9;Prometheus:0.8;NumPy:0.8;Go:0.7,1,Summit Digital,3,31,20,19,38,27
+TRAIN00213,Zachary Smith,Master,Electrical Engineering,2018,2020,DevOps/Infrastructure,6.5,10,Nginx:5.9;Jira:5.9;Redis:5.3;Datadog:5.3;Jenkins:3.6,1,Clearwater Systems,3,64,56,66,38,56
+TRAIN00214,Michael Ortega,High School,,2018,2022,Software Development,2.1,8,Django:2.1;JavaScript:1.8;GraphQL:1.4;Next.js:1.3;Java:1.1,1,Spotify,2,38,26,32,62,40
+TRAIN00215,Dennis Jones,Bachelor,Communications,2013,2016,Data/AI/ML,9.7,12,Databricks:9.6;GraphQL:7.3;Rust:7.0;Scikit-learn:6.8;Airflow:6.6,4,Silverline Data,3,40,77,75,31,56
+TRAIN00216,Bryan Santana,Bachelor,Data Science,2019,2023,Software Development,2.0,5,Vue.js:2.0;NumPy:1.1;MySQL:0.9;React:0.8;LangChain:0.6,1,Nova Tech Group,3,62,23,14,26,31
+TRAIN00217,Danielle Clark,Bachelor,Business Administration,2013,2016,DevOps/Infrastructure,8.3,9,pytest:8.1;Jenkins:7.6;Python:6.1;Kubernetes:5.3;Redis:2.9,3,Lumen Works,3,47,60,67,37,53
+TRAIN00218,James Christensen,Master,Business Administration,2008,2010,Software Development,14.6,14,Python:14.6;Bash:12.7;Git:11.0;Spring Boot:10.8;REST APIs:10.8,5,Northbridge IT,3,51,86,91,37,66
+TRAIN00219,Ariel Hodge,Bachelor,Economics,2004,2008,Software Development,16.5,16,Node.js:15.5;PostgreSQL:15.2;Angular:14.8;JavaScript:13.5;Django:13.5,3,Blue Orbit Labs,3,44,84,100,49,69
+TRAIN00220,Madison Sanders,Master,Computer Science,2024,2025,Data Analysis,1.2,4,PostgreSQL:1.0;MySQL:0.9;Looker:0.8;Airflow:0.5,1,Lumen Works,3,77,12,14,28,33
+TRAIN00221,Tyrone Moran,PhD,Physics,2019,2022,Product/Design,3.7,7,Power BI:3.2;React:2.8;Rust:2.7;Elasticsearch:2.2;Tableau:1.5,2,Blue Orbit Labs,3,71,32,39,28,42
+TRAIN00222,Shawn Perry,Master,Information Systems,2022,2024,Data Analysis,0.6,5,Redshift:0.6;Pandas:0.6;NumPy:0.6;Azure:0.6;Postman:0.6,0,,,62,1,11,19,23
+TRAIN00223,Daniel Cox,Bachelor,Business Administration,2010,2014,Software Development,11.6,11,CI/CD:11.0;PostgreSQL:10.9;Docker:8.3;Go:7.7;Bash:5.9,2,Fenwick Digital,3,45,73,82,41,60
+TRAIN00224,Michele Cohen,Master,Economics,2022,2023,Data Analysis,2.6,7,Cypress:2.2;Snowflake:2.1;SQL:1.9;Selenium:1.5;Airflow:1.4,1,Dell,2,48,27,34,59,42
+TRAIN00225,Adam Kane,High School,,2019,2022,DevOps/Infrastructure,2.6,7,Sketch:2.6;Jenkins:2.0;Linux:1.8;Databricks:1.8;GCP:1.5,1,Clearwater Systems,3,38,35,26,30,32
+TRAIN00226,Michael Walker,Bachelor,Communications,2017,2020,Data Analysis,4.1,8,Airflow:4.0;Snowflake:3.2;NumPy:3.1;Tableau:1.9;BigQuery:1.5,2,Cobalt Applications,3,39,38,38,47,40
+TRAIN00227,William Bullock,Bachelor,Communications,2020,2024,Software Development,0.2,4,React:0.2;Spring Boot:0.2;PyTorch:0.2;Excel:0.2,0,,,36,0,9,18,16
+TRAIN00228,Dana Williamson,Bachelor,Data Science,2023,2026,QA/Testing,0.8,6,Selenium:0.8;Git:0.8;Postman:0.6;AWS:0.6;LangChain:0.6,0,,,58,1,15,18,23
+TRAIN00229,Kelly Roberts,Bachelor,Biology,2009,2013,Data/AI/ML,11.2,10,Sketch:10.2;Python:9.7;Elasticsearch:7.5;Spark:7.3;PyTorch:7.0,3,Fenwick Digital,3,41,78,84,40,61
+TRAIN00230,Amber Smith,High School,,1994,1998,QA/Testing,26.8,16,Kotlin:25.0;Jira:21.3;FastAPI:21.2;Swift:20.3;Postman:19.2,5,BrightPath Solutions,3,36,98,100,39,68
+TRAIN00231,Mallory Simpson,Bachelor,Communications,2019,2022,QA/Testing,4.7,7,Selenium:4.3;Playwright:3.9;Snowflake:3.9;Python:3.4;Postman:2.8,1,Lumen Works,3,32,50,55,36,43
+TRAIN00232,Erica James,Bachelor,Computer Science,2008,2012,Product/Design,12.9,14,Looker:12.3;Java:11.2;Tableau:10.4;Scala:10.0;Ansible:9.1,4,OpenAI,1,59,79,86,41,66
+TRAIN00233,April J. Welch,Master,Physics,2007,2008,DevOps/Infrastructure,17.1,16,Angular:15.7;Docker:14.9;Kubernetes:14.5;GitHub Actions:14.4;CI/CD:10.0,2,LinkedIn,2,70,86,84,55,74
+TRAIN00234,Karen Bowers,Bachelor,Biology,2007,2010,Data/AI/ML,15.6,12,Python:10.2;PyTorch:10.1;Spark:8.2;TensorFlow:7.7;Pandas:6.7,5,Amber Creek Software,3,32,92,91,44,65
+TRAIN00235,Shelly Moore,Master,Electrical Engineering,2011,2012,Software Development,12.3,10,Django:10.5;React:10.3;PostgreSQL:9.1;Docker:8.8;pytest:6.6,3,Vantage Point Technologies,3,71,72,79,50,68
+TRAIN00236,Michael Avila,Master,Business Administration,2019,2020,Product/Design,5.8,10,Excel:5.6;Sketch:5.6;Looker:5.3;Go:4.6;Jira:4.4,2,Ridgeline Analytics,3,55,53,57,41,52
+TRAIN00237,Christina Branch,Bachelor,Computer Science,2018,2022,Data Analysis,4.2,8,Playwright:4.0;Python:3.9;Excel:3.1;Snowflake:2.9;Node.js:2.0,2,Fenwick Digital,3,61,42,47,33,46
+TRAIN00238,Michelle S. Newton,Bachelor,Business Administration,2021,2024,Data/AI/ML,0.6,4,Airflow:0.6;SQL:0.6;FastAPI:0.6;gRPC:0.6,0,,,47,11,1,26,21
+TRAIN00239,Manuel M. Moon,Master,Data Science,2008,2009,Product/Design,16.6,13,Git:13.1;Sketch:12.9;Power BI:12.6;React:12.4;SQL:11.5,2,Vantage Point Technologies,3,76,81,86,36,70
+TRAIN00240,Stephanie Smith,Bachelor,Information Systems,2018,2021,QA/Testing,5.2,7,Datadog:3.9;Redis:3.6;GraphQL:2.5;Postman:1.9;Selenium:1.7,2,OpenAI,1,54,44,38,79,54
+TRAIN00241,Samantha Riddle,Master,Information Systems,2014,2015,QA/Testing,10.0,12,dbt:9.9;JavaScript:9.8;Spark:8.5;Java:8.1;React:7.9,4,Ironwood Consulting,3,63,71,82,40,64
+TRAIN00242,Sarah Garcia,High School,,2018,2022,Data Analysis,3.8,9,Snowflake:3.0;SQL:2.4;Pandas:2.3;Jenkins:2.2;dbt:1.8,1,Nova Tech Group,3,42,35,44,40,40
+TRAIN00243,Luis Owens,High School,,2019,2023,DevOps/Infrastructure,1.6,6,Kafka:1.6;Linux:1.5;Ansible:1.4;Terraform:0.7;Python:0.7,1,Meridian Software,3,33,15,17,35,25
+TRAIN00244,Chelsea Lee,Bachelor,Economics,2004,2007,Product/Design,17.0,14,Power BI:16.5;Sketch:15.9;Azure:14.2;Elasticsearch:13.8;Terraform:13.7,2,Blue Orbit Labs,3,36,88,87,30,60
+TRAIN00245,Lindsey Lee,Master,Mathematics,2019,2020,Data/AI/ML,4.0,9,SQL:3.9;Grafana:3.8;Scikit-learn:3.5;AWS:3.4;Terraform:3.4,2,Blue Orbit Labs,3,73,44,69,36,56
+TRAIN00246,Jacqueline Miller,Master,Biology,2014,2015,DevOps/Infrastructure,10.0,9,TensorFlow:9.8;Kubernetes:5.5;Azure:4.4;Docker:3.7;Datadog:3.4,3,Blue Orbit Labs,3,49,75,69,48,60
+TRAIN00247,Amanda Sims,Bachelor,Business Administration,2021,2024,Data/AI/ML,1.3,5,Kotlin:1.0;Python:0.8;Scikit-learn:0.7;LangChain:0.6;DynamoDB:0.6,1,Ridgeline Analytics,3,35,19,8,38,25
+TRAIN00248,Thomas Alvarez,Bachelor,Communications,2012,2016,QA/Testing,9.1,9,Node.js:6.4;Tableau:6.4;Selenium:5.8;Kubernetes:5.4;Jira:4.7,4,Ironwood Consulting,3,27,69,70,43,52
+TRAIN00249,Clarence Santiago,Bachelor,Software Engineering,2014,2018,DevOps/Infrastructure,6.2,10,Redis:5.8;Jenkins:5.3;Python:4.9;CI/CD:4.1;GitHub Actions:3.8,1,Ironwood Consulting,3,53,54,62,30,50
+TRAIN00250,Denise Morris,Bachelor,Software Engineering,1999,2002,Software Development,23.8,16,Python:22.2;CI/CD:20.8;Spring Boot:20.4;AWS:19.3;Go:18.4,3,BrightPath Solutions,3,64,94,91,40,72
+TRAIN00251,Jacqueline Reyes,Bachelor,Economics,2015,2019,QA/Testing,5.2,9,Java:5.0;GitHub Actions:4.8;Postman:4.3;Playwright:3.8;Docker:3.1,1,Fenwick Digital,3,42,45,60,42,47
+TRAIN00252,Michael Parker,High School,,2001,2004,Data/AI/ML,20.3,16,Git:19.0;Docker:18.8;Bash:17.9;Hugging Face:16.9;AWS:16.3,5,Ironwood Consulting,3,34,92,93,34,63
+TRAIN00253,Heather N. Williams,High School,,2017,2020,Product/Design,5.1,9,Datadog:4.9;C++:4.9;TypeScript:4.6;Excel:4.2;Sketch:4.0,2,Cisco,2,31,57,65,61,54
+TRAIN00254,Shane Glass,Master,Biology,2024,2025,Software Development,1.1,7,Docker:1.1;JavaScript:1.0;React:0.9;Django:0.9;TypeScript:0.6,1,Summit Digital,3,46,18,22,34,30
+TRAIN00255,Amy Smith,Master,Mathematics,2007,2009,Product/Design,16.6,16,Power BI:15.4;Redshift:15.0;SQL:14.6;MongoDB:13.6;Figma:13.5,4,Netflix,1,72,82,98,84,84
+TRAIN00256,Cheryl Pearson,Bachelor,Electrical Engineering,2014,2018,QA/Testing,7.7,8,Cypress:7.5;Excel:6.7;DynamoDB:6.0;JavaScript:5.3;TypeScript:5.2,3,Lumen Works,3,48,67,70,36,55
+TRAIN00257,Jimmy W. Allen,High School,,2011,2015,Product/Design,9.2,10,gRPC:7.6;Figma:7.4;Jira:7.3;React:7.2;Git:6.3,4,Ridgeline Analytics,3,39,63,68,50,55
+TRAIN00258,Steven Peterson,Master,Data Science,2017,2018,Data/AI/ML,6.6,7,React:5.8;Spark:4.3;Docker:3.7;NumPy:3.5;C++:3.1,1,Cobalt Applications,3,74,65,53,34,56
+TRAIN00259,Diana Bates,High School,,2019,2022,DevOps/Infrastructure,3.9,9,GCP:3.9;Kubernetes:2.6;AWS:2.6;CI/CD:2.0;Go:1.9,1,Airbnb,2,42,34,49,71,49
+TRAIN00260,Jeffrey Dudley,Bachelor,Biology,1994,1997,Data Analysis,27.4,16,Figma:25.4;Airflow:24.4;Python:23.5;Cypress:22.6;Tableau:21.2,4,Meridian Software,3,46,98,97,46,72
+TRAIN00261,Christopher Williams,High School,,2020,2024,Data/AI/ML,1.5,7,Pandas:1.5;Kotlin:1.5;Kafka:1.2;Databricks:1.0;MySQL:0.7,1,Stripe,2,36,19,19,60,34
+TRAIN00262,Stephanie Stevenson,PhD,Biology,1993,1997,DevOps/Infrastructure,27.1,16,Next.js:26.3;Prometheus:25.8;Linux:25.6;C++:23.7;Datadog:23.6,5,Fenwick Digital,3,64,84,100,49,74
+TRAIN00263,Kenneth Ward,Bachelor,Biology,2017,2020,QA/Testing,5.4,10,TypeScript:4.4;JavaScript:3.7;Selenium:3.4;Playwright:3.0;Java:1.9,1,Salesforce,2,34,53,48,62,49
+TRAIN00264,Alexander Mccall,Bachelor,Information Systems,2020,2024,Software Development,0.3,6,MySQL:0.3;JavaScript:0.3;React:0.3;GraphQL:0.3;Hugging Face:0.3,0,,,48,5,9,23,21
+TRAIN00265,Douglas Murray,High School,,2009,2012,DevOps/Infrastructure,13.7,12,Sketch:13.4;Datadog:12.3;Go:10.2;Terraform:10.1;CI/CD:8.3,2,DeepMind,1,33,82,86,80,70
+TRAIN00266,Elizabeth Gomez,Bachelor,Data Science,2012,2016,Software Development,8.9,9,C#:8.1;MySQL:6.5;Angular:5.2;Terraform:5.2;PostgreSQL:4.6,3,Vantage Point Technologies,3,65,67,71,43,62
+TRAIN00267,Robert Peters,Bachelor,Communications,2008,2011,Software Development,14.6,15,FastAPI:13.8;CI/CD:13.7;Redis:12.8;Spring Boot:9.9;pytest:8.9,4,Dell,2,46,93,87,61,72
+TRAIN00268,Heidi M. Crawford,Master,Mathematics,2016,2018,Data Analysis,8.0,11,Spark:6.8;NumPy:6.7;dbt:6.5;SQL:6.4;Python:6.0,2,LinkedIn,2,71,66,84,51,68
+TRAIN00269,William King,PhD,Electrical Engineering,2019,2024,Data/AI/ML,0.5,5,PyTorch:0.5;Scikit-learn:0.5;Spark:0.5;TypeScript:0.5;Redis:0.5,0,,,91,2,9,18,30
+TRAIN00270,Dorothy Tucker,Master,Economics,2011,2013,DevOps/Infrastructure,12.3,10,Azure:11.5;Grafana:10.4;Scala:10.3;Prometheus:9.8;Hugging Face:8.7,5,Northbridge IT,3,48,77,73,39,59
+TRAIN00271,Steven Leonard,Master,Computer Science,2024,2025,Product/Design,0.5,6,Confluence:0.5;Figma:0.5;Tableau:0.5;Jira:0.5;Bash:0.5,0,,,83,3,3,23,28
+TRAIN00272,Charles Bradley,Bachelor,Economics,2017,2021,Data/AI/ML,3.2,8,SQL:3.2;Airflow:3.1;GraphQL:2.4;LangChain:1.9;MLflow:0.9,2,Ironwood Consulting,3,39,25,43,33,35
+TRAIN00273,Erin Moreno,Bachelor,Communications,2020,2024,DevOps/Infrastructure,1.1,6,Grafana:1.1;Bash:1.0;Spark:0.8;Python:0.7;Snowflake:0.7,1,Meridian Software,3,37,10,17,36,25
+TRAIN00274,Angela Ponce,Bachelor,Physics,2007,2010,DevOps/Infrastructure,15.3,15,Datadog:13.8;Figma:13.5;SQL:11.2;Redis:11.1;CI/CD:10.8,4,Northbridge IT,3,54,96,88,51,72
+TRAIN00275,Jesse Shepherd,High School,,2008,2011,Software Development,14.4,13,Git:14.4;Jenkins:13.9;Tableau:13.0;Go:11.3;C#:11.1,4,Lumen Works,3,42,90,86,42,65
+TRAIN00276,Cassandra Lane,High School,,2011,2015,Product/Design,9.7,12,Confluence:8.7;Grafana:8.4;Excel:6.3;Linux:5.0;Jira:4.9,2,Dell,2,29,75,85,65,64
+TRAIN00277,Alexander Valdez,High School,,2020,2023,Data/AI/ML,1.6,6,Pandas:1.2;PyTorch:0.9;NumPy:0.9;GraphQL:0.8;Python:0.7,1,Ironwood Consulting,3,36,17,17,41,28
+TRAIN00278,Sherry Morgan,Bachelor,Business Administration,2020,2023,QA/Testing,1.0,6,Playwright:0.9;pytest:0.7;Selenium:0.7;CI/CD:0.6;Kubernetes:0.6,1,Northbridge IT,3,48,13,7,39,27
+TRAIN00279,Kristina Sherman,High School,,2010,2014,Software Development,10.0,9,REST APIs:9.2;pytest:8.5;GraphQL:8.2;Redis:7.6;JavaScript:7.2,1,Intel,2,29,68,76,60,58
+TRAIN00280,Stacy Miller,Master,Economics,2015,2017,Data/AI/ML,8.6,10,SQL:8.3;Docker:7.5;GitHub Actions:6.8;AWS:5.8;Pandas:5.2,3,Nova Tech Group,3,51,62,76,34,56
+TRAIN00281,Megan Ward,Bachelor,Electrical Engineering,2021,2024,QA/Testing,2.3,8,GitHub Actions:1.7;JavaScript:1.7;Jira:1.7;Django:1.7;TypeScript:1.5,1,Clearwater Systems,3,55,22,25,38,35
+TRAIN00282,Breanna Shaw,Bachelor,Communications,2019,2022,QA/Testing,2.1,8,Go:2.1;Cypress:2.0;PyTorch:1.4;Python:1.3;GCP:0.9,1,BrightPath Solutions,3,31,25,19,39,28
+TRAIN00283,Mario Padilla,Bachelor,Business Administration,2022,2026,Data Analysis,0.6,5,Redshift:0.6;Looker:0.6;Snowflake:0.6;pytest:0.6;Postman:0.6,0,,,38,9,10,21,20
+TRAIN00284,Brittany Taylor,High School,,2020,2023,Software Development,3.0,7,JavaScript:2.9;Scikit-learn:2.2;React:2.1;Sketch:1.7;REST APIs:1.5,2,Northbridge IT,3,40,33,33,41,37
+TRAIN00285,William Rodriguez,Bachelor,Communications,2004,2008,Data/AI/ML,17.6,14,MLflow:14.2;Sketch:14.1;Python:14.0;Spark:10.6;Kafka:5.0,4,Nvidia,1,38,84,100,45,67
+TRAIN00286,Sean E. Young,Master,Electrical Engineering,2022,2024,Product/Design,2.5,8,Looker:2.1;Node.js:2.1;GitHub Actions:1.9;Confluence:1.8;Figma:1.6,1,Dell,2,74,24,26,70,48
+TRAIN00287,Brian Cervantes,Bachelor,Electrical Engineering,2018,2021,Data/AI/ML,3.4,6,Hugging Face:2.8;MongoDB:1.6;BigQuery:1.5;Grafana:1.5;PyTorch:1.2,2,Uber,2,53,45,25,68,48
+TRAIN00288,Christopher M. Hansen,Bachelor,Software Engineering,2021,2024,Data Analysis,2.0,8,GitHub Actions:2.0;Redshift:1.9;dbt:1.8;Confluence:1.6;Excel:1.4,1,Cisco,2,61,24,25,70,45
+TRAIN00289,Keith Jennings,Master,Information Systems,2016,2017,Data/AI/ML,8.2,11,TensorFlow:7.8;Ansible:7.3;Scikit-learn:7.0;AWS:6.7;SQL:6.2,2,Dell,2,67,61,89,61,70
+TRAIN00290,Joan D. Clark,High School,,1993,1997,DevOps/Infrastructure,28.2,16,CI/CD:25.2;Linux:23.4;GCP:21.0;Kubernetes:19.9;Playwright:19.5,4,Silverline Data,3,36,94,97,38,66
+TRAIN00291,Ruth Flores,Master,Physics,2022,2024,QA/Testing,1.7,6,Docker:1.4;Databricks:1.2;JavaScript:1.1;pytest:0.9;NumPy:0.9,1,IBM,2,71,13,15,65,41
+TRAIN00292,Ashley Diaz,High School,,2022,2025,Software Development,0.6,6,Go:0.6;Vue.js:0.6;CI/CD:0.6;PostgreSQL:0.6;Python:0.6,0,,,44,11,10,20,21
+TRAIN00293,Lauren Peterson,Master,Data Science,2015,2016,DevOps/Infrastructure,8.1,11,AWS:7.8;CI/CD:7.8;Kafka:7.2;Bash:7.1;Node.js:7.1,2,Shopify,2,80,66,81,49,69
+TRAIN00294,Donna Chavez,Bachelor,Software Engineering,2007,2011,QA/Testing,13.7,11,Snowflake:13.0;Ruby:12.9;pytest:9.6;Postman:9.5;Git:9.1,5,Northbridge IT,3,59,75,77,35,62
+TRAIN00295,Michelle Bryan,Bachelor,Electrical Engineering,1992,1995,Data/AI/ML,29.4,16,Docker:29.3;BigQuery:24.4;Vue.js:24.4;Spark:21.7;LangChain:18.7,4,Cobalt Applications,3,61,92,98,38,72
+TRAIN00296,John B. Williams,PhD,Business Administration,2012,2016,QA/Testing,9.3,10,Jira:8.7;Selenium:8.6;Cypress:8.3;Postman:7.5;PyTorch:7.0,4,Netflix,1,71,70,72,58,68
+TRAIN00297,Jeffrey Keller,Master,Business Administration,2012,2013,Data/AI/ML,11.5,10,NumPy:11.3;Figma:10.6;LangChain:9.7;BigQuery:6.4;Kafka:6.1,3,Oracle,2,54,80,85,44,66
+TRAIN00298,Heather Lutz,Bachelor,Data Science,2021,2024,Product/Design,1.8,8,SQL:1.7;React:1.7;Excel:1.4;TypeScript:1.3;Git:0.9,1,Lumen Works,3,52,16,31,33,33
+TRAIN00299,Vanessa Jones,Bachelor,Data Science,2017,2021,Data Analysis,5.0,9,TensorFlow:5.0;Python:3.7;Power BI:3.6;Spark:3.0;dbt:2.6,1,Ridgeline Analytics,3,56,45,59,33,48
+TRAIN00300,Angela Lee,Master,Communications,2015,2016,Data/AI/ML,9.5,10,Git:7.6;Airflow:7.4;LangChain:7.1;Snowflake:6.3;C++:6.2,4,DeepMind,1,46,70,75,72,66
+TRAIN00301,Scott F. Peck,Bachelor,Electrical Engineering,2019,2023,Data/AI/ML,2.9,7,Jenkins:2.7;Spark:2.4;Kafka:2.2;Airflow:2.1;Looker:1.8,1,Nova Tech Group,3,60,33,34,28,39
+TRAIN00302,Tamara Novak,Bachelor,Communications,2012,2016,Data Analysis,8.1,11,Pandas:7.7;Linux:7.3;Looker:7.2;Python:7.0;NumPy:6.9,1,Nova Tech Group,3,29,67,91,35,56
+TRAIN00303,Marcus R. Johnson,Master,Information Systems,2024,2026,Software Development,0.6,6,GraphQL:0.6;Redis:0.6;Node.js:0.6;Java:0.6;REST APIs:0.5,0,,,60,9,17,24,28
+TRAIN00304,Frank M. Gray,Master,Mathematics,2022,2024,DevOps/Infrastructure,1.3,5,Nginx:1.3;Jira:1.1;CI/CD:0.9;Terraform:0.6;MySQL:0.6,1,Blue Orbit Labs,3,73,16,23,30,36
+TRAIN00305,Ryan Stevens,High School,,2018,2021,Product/Design,4.8,6,SQL:3.5;TypeScript:2.9;Bash:2.6;GraphQL:1.3;Excel:0.9,1,LinkedIn,2,34,44,38,67,46
+TRAIN00306,Marcus Fletcher,Bachelor,Economics,2014,2017,Product/Design,7.2,9,Excel:6.4;TypeScript:3.9;Power BI:3.8;Scala:3.5;PostgreSQL:3.3,3,Netflix,1,35,57,65,89,62
+TRAIN00307,Sharon Taylor,Bachelor,Business Administration,2017,2020,DevOps/Infrastructure,5.4,8,Prometheus:5.2;Linux:4.3;Power BI:3.2;JavaScript:3.2;TypeScript:2.1,2,Lumen Works,3,44,48,49,40,45
+TRAIN00308,Kayla Schwartz,High School,,2019,2023,Product/Design,1.8,8,SQL:1.4;Git:1.3;Excel:1.3;Scikit-learn:1.2;Figma:1.0,1,Vantage Point Technologies,3,34,20,23,34,28
+TRAIN00309,Andrew Nguyen,High School,,2018,2021,Software Development,4.3,8,Go:3.1;REST APIs:2.9;Angular:2.3;Cypress:2.0;React:1.8,2,Clearwater Systems,3,31,36,34,37,34
+TRAIN00310,Jennifer Brooks,Bachelor,Biology,1997,2001,Data Analysis,24.2,16,Tableau:24.1;NumPy:23.4;Python:21.7;GitHub Actions:21.3;Redshift:16.9,4,Apple,1,37,100,93,63,73
+TRAIN00311,Sean D. Moore,Master,Data Science,2009,2011,Product/Design,14.2,12,Redis:13.7;Power BI:11.2;Excel:8.5;Scikit-learn:7.8;Tableau:6.9,4,Fenwick Digital,3,86,80,75,37,70
+TRAIN00312,Jennifer Rodriguez,Bachelor,Information Systems,2017,2020,DevOps/Infrastructure,4.2,8,Nginx:3.9;MongoDB:3.7;Jenkins:3.6;Kafka:2.6;Redshift:1.9,1,Lumen Works,3,54,43,42,38,44
+TRAIN00313,Melissa Miller,Bachelor,Mathematics,2003,2007,Product/Design,18.7,16,Scala:15.6;Elasticsearch:15.3;Git:14.9;Figma:14.4;TypeScript:13.9,4,Lumen Works,3,57,100,85,35,69
+TRAIN00314,Bethany Barnes,Master,Economics,1995,1997,Product/Design,28.0,16,Excel:27.3;React:26.4;Jira:25.7;Tableau:20.5;Figma:15.8,4,Vantage Point Technologies,3,52,100,96,28,69
+TRAIN00315,Daniel Higgins,High School,,2018,2021,Software Development,4.1,7,JavaScript:3.8;React:2.9;gRPC:1.5;Airflow:1.5;Java:1.1,2,Cisco,2,32,42,40,61,44
+TRAIN00316,Jennifer Martinez,PhD,Information Systems,2019,2024,DevOps/Infrastructure,1.9,6,Ruby:1.9;Sketch:1.6;Datadog:1.5;Kubernetes:1.3;Jenkins:1.1,1,Intel,2,77,21,21,69,47
+TRAIN00317,Amy Morris,PhD,Software Engineering,2008,2012,Product/Design,13.1,13,Jira:12.9;DynamoDB:11.6;Prometheus:11.1;Spring Boot:10.6;TypeScript:10.1,5,Oracle,2,95,74,89,49,77
+TRAIN00318,Jessica Elliott,Master,Mathematics,2015,2017,Software Development,8.4,9,Azure:8.0;Docker:7.8;Django:7.4;Angular:6.8;DynamoDB:6.2,3,Meridian Software,3,66,68,74,50,64
+TRAIN00319,Cory Miles,Master,Physics,2010,2012,Software Development,14.0,12,Django:13.3;Nginx:13.2;TypeScript:12.9;Angular:12.6;Next.js:11.1,2,Salesforce,2,73,85,87,49,74
+TRAIN00320,Michael Arnold,Bachelor,Information Systems,2014,2018,Software Development,6.6,7,PyTorch:6.5;gRPC:6.4;Redis:6.0;C#:3.9;Databricks:2.2,1,Dell,2,47,60,56,61,56
+TRAIN00321,Sarah Rogers,Master,Economics,2020,2022,Product/Design,2.0,7,TypeScript:1.9;Swift:1.8;Tableau:1.3;Git:1.3;PostgreSQL:1.0,1,Northbridge IT,3,54,32,30,36,38
+TRAIN00322,Deborah Higgins,High School,,2021,2025,Software Development,1.6,5,Django:1.5;MongoDB:1.4;Redis:1.3;MySQL:0.7;GraphQL:0.7,1,Amber Creek Software,3,37,17,14,30,24
+TRAIN00323,Dana G. Page,Bachelor,Business Administration,2020,2023,DevOps/Infrastructure,1.4,4,Kafka:1.1;TypeScript:1.1;Azure:1.0;Node.js:0.6,1,Salesforce,2,44,12,15,60,33
+TRAIN00324,Gabriella Ryan,Master,Economics,2018,2019,QA/Testing,6.5,10,pytest:5.4;Python:5.4;Power BI:3.6;Git:2.6;CI/CD:2.5,2,Clearwater Systems,3,49,51,60,34,48
+TRAIN00325,Julie Hernandez,Bachelor,Biology,2020,2023,Software Development,2.1,8,GraphQL:2.1;Kubernetes:1.8;C#:1.4;Angular:1.4;gRPC:1.2,1,Ridgeline Analytics,3,37,29,34,31,33
+TRAIN00326,Kyle Gutierrez,Bachelor,Mathematics,2008,2011,Product/Design,13.9,13,Sketch:12.3;Jira:12.0;Selenium:10.0;Rust:7.5;Git:6.3,3,Blue Orbit Labs,3,44,80,94,40,64
+TRAIN00327,Adrian Pena,Bachelor,Economics,2003,2007,Software Development,17.6,14,Vue.js:16.8;JavaScript:16.3;GraphQL:16.2;Tableau:14.2;Snowflake:14.1,4,Apple,1,46,89,92,44,68
+TRAIN00328,Elizabeth Gomez,Bachelor,Business Administration,2018,2022,Software Development,4.2,8,CI/CD:4.0;Java:3.6;PostgreSQL:3.5;React:2.6;Node.js:2.1,2,BrightPath Solutions,3,36,37,54,32,40
+TRAIN00329,Donald Pierce,Bachelor,Economics,2020,2023,Software Development,1.3,7,Django:1.3;Go:1.1;Node.js:0.8;Vue.js:0.8;GCP:0.8,1,Silverline Data,3,34,16,19,34,26
+TRAIN00330,Elizabeth Rivera,High School,,2015,2019,Data/AI/ML,5.4,8,MLflow:4.3;TensorFlow:3.0;Scikit-learn:2.8;DynamoDB:2.7;NumPy:1.6,1,BrightPath Solutions,3,30,44,43,37,38
+TRAIN00331,John Martinez,Master,Software Engineering,2017,2018,Software Development,8.2,9,React:8.2;Git:7.6;TypeScript:7.6;Django:6.4;REST APIs:6.1,2,SAP,2,75,61,78,66,70
+TRAIN00332,Robert Shields,Bachelor,Biology,2017,2021,Software Development,3.0,6,JavaScript:2.0;Prometheus:1.8;Go:1.6;Redis:1.6;Git:1.5,2,Ironwood Consulting,3,41,31,29,37,34
+TRAIN00333,Gregory Harrell,Master,Electrical Engineering,2008,2009,Product/Design,16.3,14,TypeScript:15.8;Figma:15.5;MySQL:14.0;Power BI:13.4;Hugging Face:12.3,3,Ridgeline Analytics,3,68,89,88,40,71
+TRAIN00334,Courtney Alvarez,Bachelor,Business Administration,2004,2008,Data/AI/ML,16.8,14,AWS:15.4;Prometheus:13.6;Kubernetes:12.3;Airflow:12.2;Pandas:10.4,4,BrightPath Solutions,3,42,93,100,34,67
+TRAIN00335,Richard Phillips,Bachelor,Computer Science,2019,2023,Product/Design,2.6,8,SQL:2.3;Vue.js:1.8;Postman:1.8;Swift:1.6;Confluence:1.5,1,BrightPath Solutions,3,63,34,35,25,39
+TRAIN00336,Crystal Cantrell,Master,Computer Science,2024,2025,Product/Design,1.0,4,Jira:0.9;Prometheus:0.9;Looker:0.7;Power BI:0.6,1,Intel,2,80,11,9,62,40
+TRAIN00337,Anthony H. Vaughan,High School,,2013,2017,Product/Design,8.6,11,React:8.3;TypeScript:8.2;Confluence:7.4;Kafka:7.0;Excel:4.9,3,Uber,2,36,64,83,50,58
+TRAIN00338,Richard Donovan,PhD,Software Engineering,1996,2000,Data/AI/ML,25.4,16,Sketch:24.9;Node.js:23.2;Airflow:19.4;Kafka:19.0;Pandas:16.9,5,Blue Orbit Labs,3,96,90,99,34,80
+TRAIN00339,Pamela Thomas,Master,Communications,2021,2023,Software Development,1.9,8,LangChain:1.8;MongoDB:1.4;Django:1.2;Go:1.1;gRPC:1.0,1,Lumen Works,3,43,17,31,32,31
+TRAIN00340,Richard Young,PhD,Data Science,2008,2013,Product/Design,12.7,12,Ruby:11.7;Looker:10.2;Figma:8.7;MongoDB:8.3;Docker:5.2,2,Amber Creek Software,3,94,81,66,36,69
+TRAIN00341,Kendra Dickerson,PhD,Electrical Engineering,2005,2008,Software Development,16.6,15,Java:15.9;Linux:15.7;Ansible:13.4;Redis:12.9;TypeScript:11.3,3,Summit Digital,3,77,92,97,31,74
+TRAIN00342,Audrey Rivera,High School,,2008,2011,QA/Testing,14.0,14,Git:12.6;Datadog:12.0;Elasticsearch:11.0;TypeScript:10.6;Linux:9.8,4,Oracle,2,37,84,85,47,63
+TRAIN00343,Monica Harvey,Bachelor,Mathematics,1997,2000,Data/AI/ML,24.1,16,GitHub Actions:21.7;Figma:18.1;Kafka:14.2;Snowflake:13.2;Databricks:12.7,4,Clearwater Systems,3,53,97,92,42,71
+TRAIN00344,Robert W. Eaton,Master,Mathematics,2019,2021,DevOps/Infrastructure,4.4,9,Redis:3.8;Kafka:3.3;Confluence:2.9;Ansible:2.8;Python:2.8,2,Shopify,2,70,48,53,54,56
+TRAIN00345,Leah Frye,Bachelor,Data Science,2016,2019,Product/Design,6.3,8,Tableau:5.8;Swift:5.8;Kubernetes:5.2;Vue.js:5.1;Excel:4.4,3,Salesforce,2,63,47,59,51,55
+TRAIN00346,Robert Day,Bachelor,Electrical Engineering,2020,2023,Software Development,1.3,5,Spring Boot:1.2;Linux:1.2;CI/CD:1.0;TypeScript:0.9;GCP:0.6,1,Silverline Data,3,52,17,13,34,29
+TRAIN00347,Michael Taylor,Master,Information Systems,2024,2025,DevOps/Infrastructure,0.5,4,Nginx:0.5;AWS:0.5;Kubernetes:0.5;MLflow:0.5,0,,,73,7,0,24,26
+TRAIN00348,Omar Smith,Bachelor,Software Engineering,2022,2025,Software Development,0.4,6,PostgreSQL:0.4;Spring Boot:0.4;MySQL:0.4;Vue.js:0.4;Git:0.4,0,,,64,1,16,25,26
+TRAIN00349,Susan Williams,Bachelor,Biology,2021,2024,QA/Testing,0.9,4,Rust:0.8;TypeScript:0.7;Selenium:0.7;Vue.js:0.7,0,,,41,16,7,17,20
+TRAIN00350,Frank Luna,Bachelor,Software Engineering,2013,2016,Data/AI/ML,9.6,9,AWS:8.5;Spark:6.7;Python:6.3;Ruby:5.6;Scikit-learn:5.0,2,Northbridge IT,3,64,66,73,49,63
+TRAIN00351,Christopher Richard,Bachelor,Data Science,2020,2024,Data/AI/ML,1.8,5,Pandas:1.7;Hugging Face:1.4;Redis:1.2;dbt:1.1;Python:0.7,1,Ironwood Consulting,3,58,16,18,34,32
+TRAIN00352,Gilbert Caldwell,Bachelor,Economics,2021,2024,Software Development,1.6,5,Linux:1.3;Redis:1.2;GraphQL:1.0;Git:0.9;Snowflake:0.8,1,BrightPath Solutions,3,43,15,17,34,27
+TRAIN00353,Kimberly Anderson,Master,Mathematics,2019,2021,Data Analysis,4.8,8,Pandas:4.7;GitHub Actions:3.7;BigQuery:3.3;MongoDB:2.9;PostgreSQL:2.3,2,Adobe,2,67,41,54,70,58
+TRAIN00354,Robert Pierce,Master,Physics,2018,2019,DevOps/Infrastructure,6.5,7,pytest:5.1;Databricks:4.3;Go:3.3;Azure:3.2;Nginx:2.4,2,Fenwick Digital,3,68,50,53,39,52
+TRAIN00355,Darrell Lam,Bachelor,Physics,2019,2023,Software Development,1.7,4,Python:1.4;Kafka:1.0;Next.js:0.6;MongoDB:0.6,1,Blue Orbit Labs,3,53,10,17,35,29
+TRAIN00356,Emily Taylor,Master,Computer Science,2017,2019,Software Development,5.4,9,REST APIs:4.1;Redis:3.4;TypeScript:2.7;Node.js:2.5;Azure:1.9,2,SAP,2,80,51,57,52,60
+TRAIN00357,Daniel James,PhD,Information Systems,2021,2025,DevOps/Infrastructure,1.2,5,Linux:1.0;Spark:0.9;GCP:0.8;AWS:0.7;Cypress:0.7,1,IBM,2,79,11,11,68,42
+TRAIN00358,Debra Christian,Master,Communications,2018,2020,Software Development,6.2,10,Vue.js:5.9;pytest:5.8;C#:5.4;Django:5.3;Datadog:4.5,1,Blue Orbit Labs,3,44,51,61,37,48
+TRAIN00359,Donna Miller,Master,Software Engineering,2022,2024,DevOps/Infrastructure,1.6,4,React:1.0;Terraform:0.7;Go:0.6;LangChain:0.6,1,Cobalt Applications,3,69,16,1,29,29
+TRAIN00360,Michael Ellis,Bachelor,Mathematics,2007,2011,Data Analysis,14.4,14,Node.js:14.2;Snowflake:13.2;Pandas:10.0;dbt:9.6;PostgreSQL:9.4,4,Dell,2,57,85,93,48,71
+TRAIN00361,Jeremy Mccarty,Bachelor,Physics,2018,2022,Product/Design,2.0,8,Confluence:1.7;Jira:1.4;dbt:1.4;React:1.1;TypeScript:0.7,1,Uber,2,42,24,23,65,38
+TRAIN00362,Christopher Walker,Master,Economics,2019,2021,Data/AI/ML,3.8,9,Spring Boot:3.6;Hugging Face:3.4;Snowflake:3.0;Terraform:2.9;Spark:2.4,1,Airbnb,2,58,39,56,63,54
+TRAIN00363,Ashley Bush,High School,,2006,2009,Data Analysis,16.1,12,Python:15.6;NumPy:13.7;Power BI:12.3;PostgreSQL:11.9;BigQuery:9.5,5,Northbridge IT,3,33,94,87,44,64
+TRAIN00364,Craig Harvey,PhD,Physics,2007,2012,DevOps/Infrastructure,13.1,13,Jenkins:12.6;Docker:12.6;Linux:10.4;C++:8.0;GitHub Actions:7.5,4,Ironwood Consulting,3,75,84,86,35,70
+TRAIN00365,Jeffrey Moody,Master,Biology,2020,2022,DevOps/Infrastructure,3.8,7,Bash:3.8;Python:2.9;Linux:2.7;Azure:2.6;LangChain:2.5,2,Cobalt Applications,3,44,39,48,46,44
+TRAIN00366,Stephanie Adams,Master,Biology,2013,2014,QA/Testing,10.9,10,Cypress:10.2;JavaScript:10.2;TypeScript:9.9;Confluence:9.3;Java:7.1,3,Airbnb,2,51,74,76,56,64
+TRAIN00367,Yesenia Ramos,Bachelor,Physics,2019,2022,Software Development,2.5,6,gRPC:2.2;Databricks:1.8;Java:1.7;Angular:1.0;LangChain:1.0,1,IBM,2,59,20,15,60,38
+TRAIN00368,Thomas Miller,Bachelor,Physics,2020,2024,Software Development,1.6,4,Vue.js:1.0;MLflow:0.9;Excel:0.8;C#:0.7,1,Spotify,2,54,20,4,67,36
+TRAIN00369,Linda Melendez,Master,Data Science,2025,2026,Data/AI/ML,0.4,4,Python:0.4;NumPy:0.4;SQL:0.4;Confluence:0.4,0,,,73,3,12,19,27
+TRAIN00370,Andrea Cole,Master,Data Science,2010,2012,QA/Testing,13.7,11,TypeScript:13.2;Git:13.0;Docker:10.6;CI/CD:10.5;Elasticsearch:10.5,4,DeepMind,1,86,76,90,69,80
+TRAIN00371,Natalie T. Ford,High School,,2017,2021,Product/Design,3.1,7,dbt:3.0;Git:2.3;GCP:1.5;Sketch:1.4;Scala:1.2,2,BrightPath Solutions,3,31,31,35,39,34
+TRAIN00372,Timothy Burton,Bachelor,Software Engineering,2019,2023,DevOps/Infrastructure,3.0,8,Looker:2.5;Docker:2.2;PyTorch:2.0;SQL:1.9;Redis:1.6,1,Clearwater Systems,3,64,30,40,34,42
+TRAIN00373,Laura Patel,Bachelor,Electrical Engineering,2014,2018,QA/Testing,7.3,9,JavaScript:6.3;Python:4.8;Git:4.6;Power BI:4.5;Selenium:3.5,3,Nvidia,1,50,64,57,54,56
+TRAIN00374,Randy Espinoza,Bachelor,Data Science,2019,2022,Product/Design,2.4,5,React:2.2;Figma:1.7;Git:1.6;Scala:1.4;Nginx:1.1,1,BrightPath Solutions,3,54,27,22,33,34
+TRAIN00375,Jacob Conrad,Master,Electrical Engineering,2021,2023,Data/AI/ML,3.2,5,Pandas:2.9;TensorFlow:2.8;Scikit-learn:2.7;Django:2.4;Java:1.9,2,Fenwick Digital,3,78,34,42,57,53
+TRAIN00376,Shannon Pierce,High School,,2021,2025,DevOps/Infrastructure,0.3,4,Kafka:0.3;Prometheus:0.3;Linux:0.3;PostgreSQL:0.3,0,,,37,7,8,20,18
+TRAIN00377,Jason Thompson,Master,Physics,2021,2023,Software Development,2.6,5,Next.js:2.3;C#:1.0;CI/CD:0.9;Python:0.8;Kubernetes:0.8,1,Amber Creek Software,3,66,24,18,32,35
+TRAIN00378,Samantha Zuniga,Master,Business Administration,2002,2004,Software Development,20.0,16,Git:18.2;GraphQL:18.1;REST APIs:18.1;Redis:15.0;Looker:14.2,3,Ridgeline Analytics,3,52,97,92,38,70
+TRAIN00379,Jenna L. Moore,Bachelor,Physics,2005,2008,Software Development,16.6,16,Tableau:14.7;MySQL:14.5;pytest:14.1;Node.js:14.1;REST APIs:13.9,4,Amazon,1,42,81,89,73,71
+TRAIN00380,Bradley Roy,Master,Communications,2010,2011,DevOps/Infrastructure,15.1,12,Linux:13.5;Bash:11.8;Snowflake:11.0;Kafka:10.2;FastAPI:10.1,4,Northbridge IT,3,51,89,86,42,67
+TRAIN00381,Samuel K. Wolfe,Master,Software Engineering,2017,2018,QA/Testing,7.8,10,Playwright:7.1;GraphQL:6.7;Java:6.5;Docker:6.1;Jira:6.0,2,Shopify,2,83,64,80,53,70
+TRAIN00382,Julia Mcneil,Bachelor,Biology,2019,2022,QA/Testing,2.0,6,pytest:1.7;GraphQL:1.5;Java:1.3;Cypress:1.1;TypeScript:0.8,1,Blue Orbit Labs,3,46,23,21,34,31
+TRAIN00383,Vanessa Graham,Master,Physics,2014,2016,QA/Testing,9.8,11,gRPC:7.7;TypeScript:7.4;Postman:7.1;CI/CD:7.0;GCP:6.6,2,Vantage Point Technologies,3,71,79,84,35,67
+TRAIN00384,Michelle Smith,Bachelor,Data Science,2013,2016,Product/Design,9.1,10,Scikit-learn:8.7;Looker:8.1;TypeScript:7.4;Selenium:6.7;Excel:6.5,4,Silverline Data,3,56,67,67,41,58
+TRAIN00385,Brady Meyers,Bachelor,Business Administration,2018,2022,DevOps/Infrastructure,3.0,6,Jenkins:2.6;Kubernetes:2.5;Docker:2.3;Cypress:2.0;Prometheus:1.6,1,LinkedIn,2,40,29,37,60,42
+TRAIN00386,Jessica N. Meyer,Master,Physics,2014,2015,DevOps/Infrastructure,10.0,10,Git:9.8;Ansible:7.4;Azure:5.0;Nginx:4.8;Prometheus:4.5,4,Ironwood Consulting,3,62,78,73,36,62
+TRAIN00387,Jessica Stanley,Bachelor,Mathematics,2021,2024,Data/AI/ML,1.9,8,FastAPI:1.8;Tableau:1.7;SQL:1.4;Kafka:1.1;Docker:1.0,1,Blue Orbit Labs,3,53,20,30,36,35
+TRAIN00388,Katie Henderson,Bachelor,Software Engineering,2018,2021,Product/Design,5.5,9,Figma:5.2;Spark:4.3;Terraform:3.9;Git:3.6;Confluence:3.4,1,Summit Digital,3,57,58,72,38,56
+TRAIN00389,Kristina Smith,Bachelor,Electrical Engineering,2014,2017,DevOps/Infrastructure,8.2,10,Redis:7.4;GCP:7.3;Jenkins:6.6;Go:6.5;Grafana:4.6,2,IBM,2,49,69,81,52,63
+TRAIN00390,Katelyn Mitchell,Bachelor,Business Administration,2017,2020,Data Analysis,6.3,10,BigQuery:6.0;C#:5.7;Pandas:5.1;NumPy:4.9;Jira:4.4,2,BrightPath Solutions,3,51,51,68,29,50
+TRAIN00391,William Mckinney,Bachelor,Computer Science,2010,2013,Data/AI/ML,12.9,11,Airflow:12.5;Ansible:11.1;MLflow:10.4;Grafana:5.8;Looker:4.9,3,BrightPath Solutions,3,51,85,83,31,62
+TRAIN00392,Molly Perez,High School,,2016,2020,Data Analysis,4.0,9,Looker:3.6;Redis:3.4;NumPy:2.9;Kafka:2.7;Python:2.1,2,Silverline Data,3,30,39,44,33,36
+TRAIN00393,Daniel Tran,Bachelor,Software Engineering,2021,2025,DevOps/Infrastructure,0.1,6,Terraform:0.1;Grafana:0.1;Jenkins:0.1;GitHub Actions:0.1;Selenium:0.1,0,,,66,0,4,13,21
+TRAIN00394,Laura Schneider,PhD,Communications,2006,2009,QA/Testing,16.0,15,JavaScript:15.9;GitHub Actions:14.8;pytest:13.5;Nginx:12.8;Ruby:11.0,4,Adobe,2,62,82,91,51,72
+TRAIN00395,Andrew W. Brown,Bachelor,Information Systems,2018,2021,Data Analysis,3.2,5,REST APIs:3.1;Looker:2.3;PostgreSQL:1.9;Python:1.6;TypeScript:0.5,1,SAP,2,55,34,18,62,42
+TRAIN00396,John Garrison,High School,,2013,2016,Product/Design,8.2,9,React:7.8;Git:6.4;AWS:6.4;JavaScript:6.1;Confluence:5.0,1,Silverline Data,3,37,67,70,28,50
+TRAIN00397,Lauren Johnson,High School,,2020,2024,DevOps/Infrastructure,2.0,6,GitHub Actions:1.9;Docker:1.8;Terraform:1.5;Python:1.3;Java:1.3,1,Vantage Point Technologies,3,39,25,21,38,31
+TRAIN00398,Heather Harris,Bachelor,Computer Science,2012,2015,DevOps/Infrastructure,9.0,12,Nginx:8.6;Bash:7.2;Selenium:7.0;FastAPI:5.4;Terraform:4.5,1,Fenwick Digital,3,56,63,72,35,56
+TRAIN00399,Kelly Ware,Bachelor,Software Engineering,2008,2011,QA/Testing,13.8,11,Rust:11.7;Playwright:11.5;Sketch:10.9;Docker:8.7;Hugging Face:6.6,4,Fenwick Digital,3,70,85,85,37,69
+TRAIN00400,Madeline Jones,High School,,2013,2017,DevOps/Infrastructure,8.9,9,Databricks:8.5;Linux:8.0;Nginx:5.9;Redis:5.4;Kafka:5.2,2,Shopify,2,36,68,73,47,56
+TRAIN00401,Meagan Wallace,Master,Economics,2015,2016,Data/AI/ML,9.4,11,gRPC:8.0;Kafka:6.6;PyTorch:4.5;Django:4.4;Looker:3.6,2,Cobalt Applications,3,61,67,70,43,60
+TRAIN00402,Jill Sanchez,Bachelor,Business Administration,2017,2021,QA/Testing,5.0,8,TypeScript:4.5;Kubernetes:4.3;C#:4.2;Selenium:3.3;Java:2.6,1,Silverline Data,3,41,49,58,34,46
+TRAIN00403,Danny Mullen,High School,,2022,2025,Software Development,0.7,7,REST APIs:0.7;pytest:0.7;PostgreSQL:0.7;Spring Boot:0.7;Next.js:0.7,0,,,38,9,12,17,19
+TRAIN00404,Michael Thompson,Bachelor,Data Science,2011,2015,Data Analysis,10.7,11,Airflow:8.4;Python:7.5;Angular:7.2;Docker:6.3;Power BI:5.5,2,Lumen Works,3,62,70,81,39,63
+TRAIN00405,Charles P. Miller,Master,Computer Science,1994,1996,Data/AI/ML,28.2,16,Java:26.6;Pandas:26.0;Git:25.0;Spark:24.1;Python:20.6,5,Clearwater Systems,3,83,100,97,41,80
+TRAIN00406,Amy Morris,Master,Biology,2024,2025,Product/Design,1.0,4,Figma:0.9;Git:0.8;Jira:0.6;Grafana:0.6,1,Clearwater Systems,3,48,17,7,36,27
+TRAIN00407,Heather C. Taylor,Master,Electrical Engineering,2011,2013,Software Development,11.3,11,TypeScript:11.2;Ansible:11.1;Ruby:8.6;PostgreSQL:6.7;React:5.7,4,Cobalt Applications,3,71,75,80,41,67
+TRAIN00408,Kevin Hayden,PhD,Computer Science,2010,2014,DevOps/Infrastructure,10.4,11,Go:9.4;Selenium:8.7;Jenkins:5.8;GCP:5.5;Vue.js:5.5,3,Silverline Data,3,94,72,84,44,74
+TRAIN00409,Amy Davenport,Master,Software Engineering,2012,2014,QA/Testing,11.7,11,CI/CD:11.3;Power BI:11.0;Docker:10.7;LangChain:8.6;Python:7.7,2,Lumen Works,3,84,77,95,58,78
+TRAIN00410,Gary Colon,Bachelor,Economics,2020,2023,QA/Testing,1.5,6,Selenium:1.5;Figma:1.0;GitHub Actions:0.8;Jira:0.8;Postman:0.7,1,Lumen Works,3,44,22,10,36,28
+TRAIN00411,Margaret C. Williams,Master,Electrical Engineering,2005,2006,DevOps/Infrastructure,18.5,16,Bash:18.4;GCP:18.3;Git:18.0;Kubernetes:17.7;Kafka:16.7,3,Palantir,2,74,94,92,62,80
+TRAIN00412,Robert Carlson,Bachelor,Mathematics,2018,2022,DevOps/Infrastructure,3.0,8,AWS:2.8;GitHub Actions:2.4;Kotlin:1.8;Kubernetes:1.7;Terraform:1.5,1,Ironwood Consulting,3,54,39,34,36,41
+TRAIN00413,Allison Fowler,High School,,2007,2011,DevOps/Infrastructure,15.3,13,GitHub Actions:14.7;Docker:14.2;Kafka:13.3;Django:11.9;Postman:11.6,2,Cobalt Applications,3,34,79,95,42,62
+TRAIN00414,William Walker,Master,Electrical Engineering,2024,2026,DevOps/Infrastructure,0.9,4,Grafana:0.9;CI/CD:0.9;Ansible:0.7;REST APIs:0.5,0,,,73,14,10,26,31
+TRAIN00415,Michael F. Herman,High School,,2013,2017,QA/Testing,7.1,8,Java:6.9;Selenium:6.6;Spring Boot:6.1;Cypress:5.8;Postman:4.5,3,Meta,1,27,60,68,77,58
+TRAIN00416,Cindy Brown,Bachelor,Computer Science,2000,2003,Software Development,22.3,16,Docker:20.2;Angular:18.6;TypeScript:16.9;Sketch:15.7;GitHub Actions:15.6,5,Vantage Point Technologies,3,49,98,97,37,70
+TRAIN00417,Jessica Stuart,Bachelor,Communications,2020,2024,QA/Testing,2.0,8,Playwright:2.0;Cypress:1.8;JavaScript:1.7;Nginx:1.2;GitHub Actions:1.1,1,Ridgeline Analytics,3,29,20,27,38,28
+TRAIN00418,Valerie Peck,Bachelor,Mathematics,2022,2025,Product/Design,1.4,6,React:1.0;Power BI:1.0;Tableau:0.9;Pandas:0.7;TypeScript:0.6,1,Silverline Data,3,49,20,19,37,31
+TRAIN00419,Christopher Anthony,High School,,2007,2010,DevOps/Infrastructure,15.5,13,Kubernetes:14.3;Jira:12.2;Cypress:12.2;Looker:10.9;GCP:10.7,4,Clearwater Systems,3,28,88,80,36,58
+TRAIN00420,Christopher Myers,Bachelor,Computer Science,2008,2012,Data Analysis,12.4,12,Postman:11.5;PostgreSQL:10.1;Pandas:8.2;Looker:8.1;Datadog:7.3,3,Summit Digital,3,54,82,85,47,67
+TRAIN00421,Cheryl Archer,Master,Information Systems,2021,2023,Software Development,2.4,7,C#:2.3;TensorFlow:2.3;Java:2.2;REST APIs:2.1;Ruby:2.0,1,Lumen Works,3,70,22,41,37,42
+TRAIN00422,Corey Pearson,High School,,2019,2022,DevOps/Infrastructure,2.8,8,Redis:2.7;Swift:2.6;Prometheus:2.2;Azure:1.8;Scala:1.8,1,Summit Digital,3,41,33,43,37,38
+TRAIN00423,Raymond Hamilton,Bachelor,Economics,2015,2018,Data/AI/ML,7.3,8,TensorFlow:6.9;Spark:6.9;Tableau:6.7;BigQuery:5.0;Hugging Face:4.1,3,Cobalt Applications,3,52,56,67,38,53
+TRAIN00424,Michael Watts,Master,Biology,2015,2016,Data/AI/ML,8.3,8,React:7.5;LangChain:6.4;Cypress:6.0;BigQuery:4.5;Jenkins:3.3,3,Dell,2,58,68,64,41,58
+TRAIN00425,Kristina Cooper,Bachelor,Information Systems,2018,2021,Product/Design,4.5,6,Confluence:3.7;MongoDB:2.9;TensorFlow:2.8;Power BI:1.2;TypeScript:1.2,1,Clearwater Systems,3,48,42,30,25,36
+TRAIN00426,Andrea Gates,High School,,2021,2024,Product/Design,2.0,8,Excel:2.0;Hugging Face:1.9;Looker:1.8;Power BI:1.7;Vue.js:1.3,1,Clearwater Systems,3,31,24,27,36,30
+TRAIN00427,Joseph Mahoney,High School,,2015,2019,Data/AI/ML,6.4,9,Kafka:5.4;Spring Boot:5.0;LangChain:4.3;Snowflake:4.3;C#:4.3,2,Lumen Works,3,28,57,70,39,48
+TRAIN00428,Melissa Smith,Bachelor,Computer Science,2013,2016,QA/Testing,9.2,11,Docker:8.6;Jira:8.6;Snowflake:8.2;Python:6.7;Scala:5.5,3,IBM,2,61,74,78,57,68
+TRAIN00429,Gabrielle R. Ramirez,Bachelor,Communications,2023,2026,DevOps/Infrastructure,0.1,6,Datadog:0.1;Grafana:0.1;Python:0.1;CI/CD:0.1;Elasticsearch:0.1,0,,,35,6,2,21,16
+TRAIN00430,Todd Hardy,Bachelor,Mathematics,2006,2009,Data/AI/ML,16.7,13,Snowflake:14.4;MySQL:12.7;AWS:11.6;JavaScript:11.5;LangChain:11.1,5,Blue Orbit Labs,3,48,92,95,38,68
+TRAIN00431,Ryan Baird,Master,Business Administration,2010,2012,QA/Testing,13.3,12,Looker:11.7;Playwright:11.4;Git:11.4;Rust:11.3;Jira:10.8,3,Airbnb,2,56,83,86,55,70
+TRAIN00432,Mary Ramirez,High School,,2012,2015,Data/AI/ML,11.1,13,TensorFlow:10.5;Docker:10.3;Node.js:10.1;PyTorch:8.2;Python:5.8,2,Amber Creek Software,3,39,77,83,38,59
+TRAIN00433,Katie Lee,Master,Economics,2024,2026,QA/Testing,0.2,5,Playwright:0.2;Cypress:0.2;Jira:0.2;Next.js:0.2;Excel:0.2,0,,,51,8,7,12,20
+TRAIN00434,Diana Smith,PhD,Biology,1992,1996,Data Analysis,29.8,16,Elasticsearch:25.3;Python:25.0;Redshift:24.2;Excel:21.9;Tableau:21.0,5,SAP,2,58,94,100,60,78
+TRAIN00435,Jose Donovan,High School,,2017,2021,Data/AI/ML,4.6,6,TensorFlow:4.4;PyTorch:4.2;REST APIs:3.8;MLflow:2.7;LangChain:1.5,1,Silverline Data,3,39,47,47,28,40
+TRAIN00436,Kim Garrett,Bachelor,Software Engineering,2021,2024,Product/Design,0.3,5,Power BI:0.3;Sketch:0.3;Jira:0.3;GCP:0.3;GitHub Actions:0.3,0,,,59,8,10,17,24
+TRAIN00437,Kayla Gibson,Master,Data Science,2023,2024,DevOps/Infrastructure,1.4,5,Jenkins:1.3;CI/CD:1.1;Linux:1.0;GCP:0.8;Jira:0.5,1,Nova Tech Group,3,76,16,7,35,34
+TRAIN00438,Rebecca Moore,Master,Business Administration,2013,2015,Data Analysis,9.7,10,Docker:8.8;BigQuery:8.6;Spark:7.3;Looker:6.8;PostgreSQL:5.7,2,Nova Tech Group,3,59,63,78,41,60
+TRAIN00439,Angela T. Andrews,PhD,Business Administration,2016,2019,DevOps/Infrastructure,6.6,10,Docker:6.6;Azure:6.5;dbt:5.5;Ansible:4.1;Prometheus:3.0,3,Ridgeline Analytics,3,71,51,65,27,54
+TRAIN00440,Tommy Estrada,Bachelor,Data Science,2018,2021,Data/AI/ML,5.3,9,Databricks:4.3;FastAPI:3.5;Docker:2.7;LangChain:1.6;Spark:1.6,2,Apple,1,58,48,41,78,56
+TRAIN00441,Michael Paul,Master,Physics,2019,2021,Software Development,3.7,8,MySQL:3.3;React:3.1;gRPC:2.8;Redis:2.6;Django:2.1,1,Stripe,2,74,43,45,66,57
+TRAIN00442,Jenny Arias,Bachelor,Information Systems,2002,2005,QA/Testing,21.0,16,Ruby:19.4;Git:18.2;Java:17.8;JavaScript:15.0;TypeScript:14.0,3,Northbridge IT,3,48,91,99,36,68
+TRAIN00443,Catherine Hamilton,Master,Physics,2021,2022,Software Development,4.2,6,Python:3.8;Django:3.6;GraphQL:3.3;Go:3.1;Playwright:3.1,1,Meridian Software,3,67,41,47,37,48
+TRAIN00444,Bradley Jackson,High School,,2015,2018,Software Development,6.4,8,TypeScript:5.9;JavaScript:5.3;Spring Boot:5.3;Prometheus:5.1;gRPC:4.6,1,Airbnb,2,35,63,66,72,59
+TRAIN00445,Shannon Ramos,Bachelor,Business Administration,2020,2024,Data Analysis,1.0,7,dbt:1.0;Tableau:0.8;Redshift:0.8;PostgreSQL:0.7;pytest:0.7,1,Google,1,42,17,13,95,42
+TRAIN00446,Edward L. Riley,Bachelor,Mathematics,2016,2020,Data/AI/ML,4.7,9,Databricks:4.7;Docker:4.6;Scikit-learn:4.5;C++:3.5;BigQuery:2.7,1,Northbridge IT,3,50,47,63,33,48
+TRAIN00447,Andrea Petersen,Bachelor,Biology,2005,2008,DevOps/Infrastructure,16.7,14,Python:13.8;MLflow:13.4;Docker:12.8;Ruby:11.2;Kafka:11.0,3,Summit Digital,3,39,90,83,35,62
+TRAIN00448,Gail Johnston,Bachelor,Computer Science,1996,1999,Data/AI/ML,25.9,16,Python:25.3;Airflow:24.0;LangChain:23.9;Playwright:19.8;AWS:18.3,5,OpenAI,1,62,95,97,81,84
+TRAIN00449,Jaclyn Moss,Bachelor,Mathematics,2015,2018,Software Development,7.5,9,Docker:6.6;Python:6.0;FastAPI:5.4;Kotlin:5.1;Django:3.6,3,Microsoft,1,52,62,73,67,64
+TRAIN00450,Christopher Moreno,High School,,2013,2016,Data Analysis,8.7,10,dbt:8.7;Spark:8.2;SQL:8.2;Excel:6.1;Power BI:5.8,1,Uber,2,35,66,79,67,62
+TRAIN00451,Wendy Atkinson,Master,Electrical Engineering,2020,2022,Product/Design,3.7,9,Sketch:3.7;React:3.1;TypeScript:3.1;NumPy:2.7;Excel:2.6,1,Ironwood Consulting,3,72,36,54,32,48
+TRAIN00452,Anne Hansen,Master,Data Science,2024,2025,QA/Testing,1.4,7,MongoDB:1.4;Swift:1.0;JavaScript:0.7;Playwright:0.7;Python:0.7,1,Spotify,2,81,22,12,62,44
+TRAIN00453,Todd Price,Bachelor,Computer Science,2015,2019,DevOps/Infrastructure,5.9,8,Pandas:5.8;AWS:5.2;CI/CD:4.3;Bash:3.2;NumPy:2.9,2,Northbridge IT,3,55,53,58,49,54
+TRAIN00454,Rebecca Ramos,Bachelor,Business Administration,2023,2026,DevOps/Infrastructure,0.5,6,Docker:0.5;Ansible:0.5;AWS:0.5;Azure:0.5;Spark:0.5,0,,,42,9,3,18,18
+TRAIN00455,Patrick F. Hernandez,High School,,2016,2019,Data/AI/ML,6.8,7,JavaScript:6.4;Sketch:5.2;NumPy:5.1;Swift:4.1;TensorFlow:2.4,2,DeepMind,1,36,60,51,52,50
+TRAIN00456,Tammy Mueller,Bachelor,Software Engineering,2020,2023,Software Development,2.8,6,Java:2.3;React:1.9;Kotlin:1.7;REST APIs:1.6;CI/CD:1.2,1,Lumen Works,3,58,28,23,37,36
+TRAIN00457,Bradley Page,Bachelor,Mathematics,2005,2008,Software Development,16.7,16,Python:14.6;Bash:14.3;Node.js:13.4;Next.js:10.8;Spring Boot:10.0,4,Nova Tech Group,3,56,99,83,35,68
+TRAIN00458,Jason Whitehead,Master,Electrical Engineering,1999,2000,Data Analysis,25.3,16,Python:25.0;dbt:24.4;Pandas:23.7;SQL:18.8;Grafana:17.9,5,Nvidia,1,67,97,95,56,79
+TRAIN00459,Crystal Andrews,High School,,2019,2022,DevOps/Infrastructure,3.6,7,Ansible:3.3;AWS:3.2;Prometheus:2.7;Snowflake:2.5;Redis:2.1,2,Adobe,2,38,40,45,63,46
+TRAIN00460,Eddie Dawson,High School,,2016,2019,Software Development,5.5,7,Vue.js:5.2;Swift:4.9;Spring Boot:4.2;Python:3.2;TypeScript:2.5,1,Silverline Data,3,42,43,54,35,44
+TRAIN00461,Kevin Rush,Bachelor,Data Science,2021,2024,Software Development,1.5,6,gRPC:1.3;C#:1.1;Spring Boot:1.0;Go:0.9;Snowflake:0.9,1,IBM,2,60,16,21,66,41
+TRAIN00462,Jon Wyatt,PhD,Software Engineering,2019,2024,DevOps/Infrastructure,2.2,5,Figma:2.0;CI/CD:1.7;Grafana:1.6;Node.js:1.2;Python:0.6,1,Ironwood Consulting,3,89,28,19,31,42
+TRAIN00463,Ashley A. Barnett,High School,,2012,2015,QA/Testing,9.7,9,TypeScript:9.1;Redis:7.8;Docker:7.4;pytest:6.4;CI/CD:4.7,1,Northbridge IT,3,31,72,69,39,53
+TRAIN00464,Ann Michael,Master,Computer Science,2024,2026,Data Analysis,0.9,4,Tableau:0.9;Selenium:0.7;Excel:0.6;Figma:0.6,0,,,72,6,6,23,27
+TRAIN00465,Casey Holland,High School,,2013,2017,Data Analysis,8.7,11,Snowflake:7.8;Power BI:7.4;Python:6.5;MySQL:6.4;Pandas:5.4,3,Lumen Works,3,29,67,80,37,53
+TRAIN00466,Amy Gibbs,PhD,Business Administration,2018,2021,Product/Design,4.5,6,Prometheus:4.0;Power BI:3.4;SQL:2.8;Rust:1.7;React:1.2,1,Summit Digital,3,66,46,38,37,47
+TRAIN00467,Joseph Butler,Master,Computer Science,2022,2024,DevOps/Infrastructure,0.8,7,Go:0.8;Grafana:0.8;PostgreSQL:0.8;Hugging Face:0.8;Nginx:0.7,0,,,82,6,22,18,32
+TRAIN00468,Debra Thompson,PhD,Software Engineering,2016,2020,DevOps/Infrastructure,4.6,9,Vue.js:3.5;AWS:3.0;Python:2.8;SQL:2.8;C#:2.7,1,Ridgeline Analytics,3,96,43,51,40,58
+TRAIN00469,Lisa Hawkins,Bachelor,Data Science,2018,2022,QA/Testing,3.0,8,Angular:2.7;PostgreSQL:2.4;Cypress:2.2;Tableau:2.0;Selenium:1.9,2,Vantage Point Technologies,3,49,34,30,35,37
+TRAIN00470,Linda Rivera,Bachelor,Computer Science,2015,2018,Data/AI/ML,6.0,10,Linux:4.7;Snowflake:4.0;Airflow:3.9;Spark:3.5;Scikit-learn:3.2,1,Palantir,2,60,62,69,65,64
+TRAIN00471,Daniel Jordan,Master,Business Administration,2018,2019,Data Analysis,5.5,8,Snowflake:3.6;Spark:3.4;MySQL:3.1;PostgreSQL:2.9;Tableau:1.4,2,BrightPath Solutions,3,50,49,47,51,49
+TRAIN00472,Christopher Baker,PhD,Software Engineering,2021,2025,DevOps/Infrastructure,1.2,7,Redis:1.1;AWS:1.1;Prometheus:1.0;Playwright:0.9;Angular:0.8,1,Vantage Point Technologies,3,88,5,15,36,36
+TRAIN00473,Ashley Mckinney,High School,,2009,2012,Data Analysis,13.3,14,Pandas:13.2;Tableau:11.1;NumPy:9.7;BigQuery:8.2;Cypress:7.8,5,Summit Digital,3,34,80,87,27,57
+TRAIN00474,Stacy B. Mcintosh,Master,Information Systems,2018,2020,Software Development,6.3,8,MySQL:5.1;Tableau:5.0;Django:4.1;Node.js:3.1;Vue.js:2.7,1,BrightPath Solutions,3,71,45,53,32,50
+TRAIN00475,Christopher May,Master,Economics,2018,2019,Data Analysis,5.8,10,Hugging Face:5.5;Snowflake:5.3;NumPy:5.0;Pandas:4.9;Kotlin:4.5,2,Ironwood Consulting,3,51,50,64,28,48
+TRAIN00476,Christopher Zimmerman,Bachelor,Economics,2021,2025,QA/Testing,0.2,6,JavaScript:0.2;Docker:0.2;TypeScript:0.2;Selenium:0.2;Terraform:0.2,0,,,46,0,2,19,17
+TRAIN00477,John E. Williams,Master,Physics,2019,2021,DevOps/Infrastructure,3.2,8,Bash:3.2;Nginx:2.1;BigQuery:1.8;PyTorch:1.4;LangChain:1.2,1,Vantage Point Technologies,3,64,34,23,27,37
+TRAIN00478,Jennifer Olson,Bachelor,Data Science,2021,2024,Software Development,1.9,6,Tableau:1.5;FastAPI:1.4;Java:1.4;Redis:1.0;Python:0.6,1,LinkedIn,2,53,19,22,70,41
+TRAIN00479,Tyler Jimenez,Bachelor,Data Science,2018,2021,Software Development,4.0,8,PostgreSQL:3.4;Java:2.9;Hugging Face:2.7;Angular:2.2;Vue.js:1.9,2,Dell,2,58,44,50,54,52
+TRAIN00480,Sara Thompson,High School,,1999,2003,Software Development,22.3,16,Playwright:19.6;Go:17.6;Docker:15.0;JavaScript:14.8;Angular:12.0,5,Fenwick Digital,3,36,91,88,37,63
+TRAIN00481,Jeffery Lee,PhD,Physics,2000,2005,Data Analysis,19.9,16,Pandas:18.8;NumPy:18.7;Snowflake:13.5;Redshift:12.9;Bash:12.2,5,BrightPath Solutions,3,80,90,91,34,74
+TRAIN00482,Mary Miller,PhD,Economics,2019,2023,Data/AI/ML,3.4,8,NumPy:2.4;SQL:2.0;Kafka:1.8;MySQL:1.4;PyTorch:0.7,1,Cobalt Applications,3,73,32,30,35,42
+TRAIN00483,Joseph Cruz,Master,Data Science,2024,2025,QA/Testing,1.3,5,GitHub Actions:1.3;CI/CD:1.2;Linux:1.0;Cypress:0.8;Jira:0.6,1,Oracle,2,70,16,19,63,42
+TRAIN00484,Christian Cooper,High School,,2015,2019,Product/Design,7.7,10,pytest:7.6;Tableau:7.4;Playwright:6.9;Redis:5.4;React:4.8,1,Cisco,2,38,62,66,65,58
+TRAIN00485,James Huber,PhD,Physics,2015,2018,Product/Design,8.1,9,Sketch:7.7;React:5.0;Elasticsearch:4.8;TypeScript:4.4;Jira:3.8,3,Nova Tech Group,3,81,66,70,50,67
+TRAIN00486,Bailey Henderson,Master,Electrical Engineering,2004,2005,Data Analysis,19.9,16,Grafana:18.2;Airflow:16.7;Swift:16.0;Looker:15.4;Tableau:11.3,4,Clearwater Systems,3,69,87,93,45,74
+TRAIN00487,Michael Garrett,High School,,2019,2023,Software Development,1.7,7,Vue.js:1.7;Spring Boot:1.5;Power BI:1.3;Bash:0.9;REST APIs:0.8,1,Fenwick Digital,3,41,16,16,33,26
+TRAIN00488,Michael Flores,Bachelor,Business Administration,2018,2021,QA/Testing,4.5,7,Docker:4.0;CI/CD:4.0;Next.js:2.4;Kafka:2.2;Datadog:2.0,1,Uber,2,47,46,44,57,48
+TRAIN00489,Stacey Martin,Bachelor,Business Administration,2021,2024,Data/AI/ML,1.2,7,Hugging Face:1.0;JavaScript:0.9;Power BI:0.9;Kafka:0.8;Grafana:0.8,1,Stripe,2,47,17,16,68,37
+TRAIN00490,Blake Shields,Bachelor,Communications,1994,1997,Data/AI/ML,27.5,16,Databricks:18.2;SQL:17.7;Kafka:16.3;MLflow:15.6;Docker:13.6,5,Summit Digital,3,29,93,100,46,67
+TRAIN00491,Curtis L. Miller,Master,Computer Science,2025,2026,DevOps/Infrastructure,0.2,6,GitHub Actions:0.2;Go:0.2;Kubernetes:0.2;Terraform:0.2;C#:0.2,0,,,81,6,0,23,28
+TRAIN00492,Gary Mcclure,High School,,2021,2024,Product/Design,2.2,5,Sketch:2.2;Jira:1.6;Figma:1.5;Angular:0.7;AWS:0.6,1,Northbridge IT,3,30,24,16,32,26
+TRAIN00493,Lauren Soto,High School,,2020,2023,Data/AI/ML,1.5,7,GraphQL:1.5;gRPC:1.4;Snowflake:1.2;FastAPI:1.2;Spark:1.1,1,Salesforce,2,33,16,29,63,35
+TRAIN00494,Molly Murphy,Bachelor,Communications,2016,2020,QA/Testing,5.4,10,Git:5.1;Swift:4.5;Cypress:4.4;Java:4.0;Postman:3.8,2,Blue Orbit Labs,3,24,49,68,47,47
+TRAIN00495,Adam Arnold,Bachelor,Biology,2020,2023,Data/AI/ML,1.6,4,FastAPI:1.3;Hugging Face:1.2;Docker:0.6;Sketch:0.5,1,Clearwater Systems,3,41,17,7,28,23
+TRAIN00496,Christian Mccall,PhD,Electrical Engineering,2000,2004,Data Analysis,20.6,15,C#:20.2;Power BI:19.2;PostgreSQL:15.8;Spark:14.6;Elasticsearch:13.7,5,Ridgeline Analytics,3,79,91,93,48,78
+TRAIN00497,Joseph W. Smith,Bachelor,Business Administration,2019,2022,Software Development,3.1,8,Java:3.0;Looker:2.9;Next.js:2.8;Docker:1.4;CI/CD:1.4,2,BrightPath Solutions,3,38,30,33,53,38
+TRAIN00498,Heather Barnett,Bachelor,Computer Science,1997,2000,DevOps/Infrastructure,24.6,16,Ruby:24.5;GCP:23.2;Spark:23.2;Datadog:22.4;Go:21.9,5,Meta,1,59,99,95,35,72
+TRAIN00499,David Green,Master,Business Administration,2014,2016,Product/Design,8.9,11,SQL:7.2;TypeScript:7.2;Kafka:6.6;Databricks:6.4;Power BI:5.7,3,SAP,2,59,63,83,63,67
+TRAIN00500,Mary Harris,PhD,Economics,2017,2022,Software Development,3.1,5,Vue.js:2.7;Excel:2.5;Ansible:2.0;Angular:1.5;PostgreSQL:1.1,1,Silverline Data,3,63,30,29,33,39
+TRAIN00501,Amy Romero,High School,,1997,2000,DevOps/Infrastructure,24.5,16,Spring Boot:21.7;Azure:21.5;Kubernetes:20.9;Redis:17.7;Datadog:16.2,4,Meridian Software,3,33,93,97,39,66
+TRAIN00502,Anita Freeman,Bachelor,Business Administration,1994,1997,DevOps/Infrastructure,28.4,16,Ansible:27.4;Nginx:25.2;Docker:24.1;Bash:23.3;Redis:21.7,5,Clearwater Systems,3,47,93,96,37,68
+TRAIN00503,Joel White,High School,,2012,2016,Software Development,9.5,9,GraphQL:8.7;Spring Boot:8.4;Docker:7.9;NumPy:6.6;PostgreSQL:4.4,2,Cisco,2,41,66,71,49,57
+TRAIN00504,William Harrison,Master,Computer Science,2022,2024,Product/Design,0.3,5,Confluence:0.3;Tableau:0.3;SQL:0.3;Kafka:0.3;MySQL:0.3,0,,,79,10,10,23,30
+TRAIN00505,Joseph King,Bachelor,Business Administration,2007,2010,Product/Design,15.3,13,Spring Boot:15.2;Figma:14.7;SQL:11.1;Excel:10.3;Confluence:9.4,5,SAP,2,41,86,87,51,66
+TRAIN00506,Leonard Ramirez,Bachelor,Mathematics,2017,2020,Product/Design,4.2,6,GraphQL:4.0;Power BI:3.4;Tableau:2.4;Sketch:1.8;Git:1.7,2,Northbridge IT,3,54,28,38,38,40
+TRAIN00507,Joshua P. Lewis,Master,Information Systems,2022,2024,Software Development,1.5,6,Vue.js:1.4;Terraform:1.4;MySQL:1.1;PostgreSQL:0.7;Python:0.6,1,Meridian Software,3,59,18,19,32,32
+TRAIN00508,Stephen Martinez,High School,,2016,2019,Data/AI/ML,6.3,7,Node.js:5.7;AWS:4.8;Next.js:4.4;Kafka:3.6;Python:1.9,3,OpenAI,1,40,49,56,52,49
+TRAIN00509,Jacqueline Williams,Bachelor,Mathematics,2018,2021,Product/Design,3.5,8,Java:3.5;Elasticsearch:3.3;Go:2.5;Excel:2.4;Sketch:2.1,1,Summit Digital,3,58,37,42,31,42
+TRAIN00510,Joshua Whitehead,High School,,2019,2022,QA/Testing,3.0,7,JavaScript:2.8;Looker:2.8;Postman:2.5;Jira:2.3;Kafka:0.9,1,Cobalt Applications,3,39,34,31,33,34
+TRAIN00511,Jade Bell,Bachelor,Biology,2014,2017,Data/AI/ML,7.3,8,MLflow:6.9;Python:6.4;Kafka:6.3;Jenkins:5.7;REST APIs:5.6,2,Fenwick Digital,3,37,63,72,31,51
+TRAIN00512,Jacob Smith,Bachelor,Computer Science,2020,2023,Product/Design,1.5,6,TensorFlow:1.5;Confluence:1.4;Sketch:0.9;Jira:0.6;Power BI:0.6,1,Lumen Works,3,59,12,16,41,32
+TRAIN00513,Jose Henderson,Master,Communications,2023,2024,Software Development,2.0,8,Python:1.9;PostgreSQL:1.8;Kubernetes:1.5;NumPy:1.3;Redis:0.9,1,Meridian Software,3,40,25,25,44,34
+TRAIN00514,John Jones,Master,Computer Science,2006,2008,QA/Testing,17.3,15,Spring Boot:17.1;Pandas:16.5;pytest:16.3;Docker:13.2;Playwright:13.1,5,Fenwick Digital,3,79,90,93,36,74
+TRAIN00515,Melanie Valdez,Bachelor,Data Science,2008,2011,Data/AI/ML,14.4,14,Kafka:14.3;MongoDB:13.2;MLflow:11.3;Vue.js:11.2;Airflow:10.9,3,Lumen Works,3,63,78,89,34,66
+TRAIN00516,Jacob Holmes,Master,Information Systems,2017,2018,DevOps/Infrastructure,6.8,10,Linux:6.1;Kubernetes:5.0;AWS:4.3;Go:4.0;Jenkins:3.7,2,SAP,2,71,62,74,58,66
+TRAIN00517,Zachary Gomez,Bachelor,Information Systems,2018,2021,QA/Testing,4.4,9,Ruby:4.4;Jira:4.2;CI/CD:3.2;Python:2.8;Cypress:2.4,1,Cisco,2,52,36,51,72,53
+TRAIN00518,Eric Waller,Bachelor,Business Administration,2008,2012,Data Analysis,13.4,11,C#:10.6;Ansible:10.0;Power BI:8.8;Pandas:7.7;PostgreSQL:7.7,4,Clearwater Systems,3,42,85,80,39,62
+TRAIN00519,Tracie Conner,Bachelor,Business Administration,2014,2018,QA/Testing,6.2,7,Kubernetes:5.6;Looker:5.5;pytest:3.6;Cypress:3.0;Java:2.6,2,BrightPath Solutions,3,52,59,58,30,50
+TRAIN00520,Emily Meadows,Master,Software Engineering,2020,2022,QA/Testing,2.7,7,Docker:2.5;pytest:2.4;TypeScript:2.2;Confluence:2.1;Jira:1.8,1,Oracle,2,75,29,26,67,49
+TRAIN00521,Renee Aguirre,High School,,2020,2024,Data/AI/ML,1.5,5,Spark:1.2;Docker:1.0;Scikit-learn:1.0;MLflow:1.0;Hugging Face:0.6,1,BrightPath Solutions,3,31,14,22,32,25
+TRAIN00522,Kristina Johnson,PhD,Information Systems,2011,2016,Product/Design,9.3,10,React:7.7;Power BI:7.5;Confluence:7.0;Go:6.1;TypeScript:5.6,4,Lumen Works,3,73,58,77,42,62
+TRAIN00523,Danielle Fields,Bachelor,Software Engineering,2017,2021,QA/Testing,4.1,9,Python:3.7;Playwright:2.9;PyTorch:2.6;Git:2.5;Angular:2.5,2,Blue Orbit Labs,3,62,42,45,38,47
+TRAIN00524,James N. Gonzales,Bachelor,Electrical Engineering,2023,2026,DevOps/Infrastructure,0.0,6,Nginx:0.0;Redis:0.0;Jenkins:0.0;Kubernetes:0.0;Go:0.0,0,,,46,4,0,18,17
+TRAIN00525,Janet Hill,High School,,2013,2017,Data Analysis,8.2,11,Spark:7.9;Tableau:7.6;Spring Boot:7.5;Snowflake:4.9;Looker:4.0,3,Google,1,36,72,74,72,64
+TRAIN00526,Kimberly Palmer,Bachelor,Physics,2013,2017,Data Analysis,7.1,7,Airflow:6.1;gRPC:5.5;GraphQL:5.3;Excel:5.1;SQL:3.2,2,Spotify,2,51,59,61,55,56
+TRAIN00527,Allison Luna,PhD,Biology,2013,2017,QA/Testing,8.9,9,JavaScript:8.1;pytest:6.9;Postman:6.0;MongoDB:4.4;Java:2.7,3,Adobe,2,63,73,58,54,62
+TRAIN00528,Kaylee Young,High School,,2019,2023,Data/AI/ML,1.8,5,Airflow:1.1;Docker:1.0;Python:0.9;Spring Boot:0.9;Angular:0.6,1,Lumen Works,3,35,14,16,41,26
+TRAIN00529,Michael Santos,Bachelor,Mathematics,2020,2024,Product/Design,1.3,4,Linux:1.0;Sketch:0.9;Databricks:0.7;React:0.6,1,Nova Tech Group,3,50,20,11,37,30
+TRAIN00530,Joel Brewer,Bachelor,Biology,2006,2009,Software Development,16.3,16,Docker:15.8;Next.js:14.6;FastAPI:14.2;Playwright:11.9;gRPC:11.8,2,IBM,2,40,89,87,58,68
+TRAIN00531,Melissa Galvan,Bachelor,Physics,2013,2017,DevOps/Infrastructure,8.5,8,Next.js:7.3;Spark:7.1;Redis:6.9;SQL:5.2;Python:4.6,3,Cobalt Applications,3,48,57,70,40,54
+TRAIN00532,Ashley A. Alexander,High School,,1995,1998,DevOps/Infrastructure,27.5,16,Bash:25.6;GCP:23.5;Datadog:20.0;Ansible:16.5;Azure:15.9,4,Ironwood Consulting,3,34,92,91,32,62
+TRAIN00533,Bryan Scott,Bachelor,Information Systems,2006,2010,DevOps/Infrastructure,14.3,11,Prometheus:12.8;BigQuery:12.8;Bash:11.2;Grafana:9.5;Linux:8.9,5,Fenwick Digital,3,54,80,90,38,66
+TRAIN00534,Candace Cruz,High School,,2013,2016,Data/AI/ML,8.8,10,Spark:8.7;LangChain:7.6;Airflow:7.0;Python:6.9;BigQuery:5.5,3,Adobe,2,29,66,71,55,55
+TRAIN00535,Kelly Hughes,Bachelor,Computer Science,2016,2019,Data/AI/ML,7.5,11,FastAPI:6.3;MongoDB:6.0;Pandas:5.1;SQL:4.4;Git:3.1,1,Ridgeline Analytics,3,61,65,77,30,58
+TRAIN00536,Gregory Watkins,Bachelor,Data Science,2018,2022,Software Development,3.6,6,Redis:3.2;NumPy:3.1;CI/CD:2.5;Java:1.5;REST APIs:1.4,2,Clearwater Systems,3,51,41,32,42,42
+TRAIN00537,Cameron Davis,Master,Communications,2006,2008,Software Development,17.9,13,Vue.js:15.5;Terraform:14.7;MySQL:14.1;gRPC:12.9;Angular:12.7,2,Fenwick Digital,3,51,91,89,33,66
+TRAIN00538,Nicole Pena,Master,Economics,2016,2018,DevOps/Infrastructure,6.0,10,Go:5.7;Python:4.7;AWS:3.9;Linux:3.9;Jenkins:3.6,1,Fenwick Digital,3,61,45,65,29,50
+TRAIN00539,Charles S. Thompson,High School,,2021,2025,QA/Testing,0.7,4,Jira:0.7;Selenium:0.6;CI/CD:0.6;MLflow:0.5,0,,,37,5,7,10,15
+TRAIN00540,Kevin Morrison,Bachelor,Information Systems,2020,2023,Data/AI/ML,1.3,5,Scikit-learn:1.1;PyTorch:1.0;SQL:0.9;Databricks:0.8;React:0.5,1,Blue Orbit Labs,3,65,15,13,34,32
+TRAIN00541,Lauren Barron,Master,Information Systems,2019,2020,Data/AI/ML,5.2,7,Snowflake:5.0;Hugging Face:4.8;Python:2.9;AWS:2.7;FastAPI:2.4,2,Amber Creek Software,3,76,51,57,55,60
+TRAIN00542,Megan Garcia,Bachelor,Electrical Engineering,2019,2023,QA/Testing,3.4,5,JavaScript:1.8;Kafka:1.5;GitHub Actions:1.4;Swift:0.8;Python:0.5,1,Adobe,2,59,37,21,67,46
+TRAIN00543,Michael Valdez,Master,Economics,2017,2019,Data Analysis,6.3,7,Prometheus:5.8;PostgreSQL:5.1;Python:4.0;NumPy:2.2;Swift:1.7,3,Meridian Software,3,54,54,57,35,50
+TRAIN00544,Tara Webster,Bachelor,Biology,1993,1996,Data Analysis,29.0,16,dbt:27.9;NumPy:27.9;Excel:24.8;Figma:24.3;JavaScript:23.6,4,Nova Tech Group,3,39,94,91,40,66
+TRAIN00545,Cynthia Harris,Master,Information Systems,2024,2025,Software Development,0.0,6,JavaScript:0.0;pytest:0.0;CI/CD:0.0;Java:0.0;Rust:0.0,0,,,63,5,1,23,23
+TRAIN00546,Ethan Schmidt,Bachelor,Mathematics,2023,2026,Data/AI/ML,0.5,7,Python:0.5;Hugging Face:0.5;Spark:0.5;Scikit-learn:0.5;Terraform:0.5,0,,,56,8,6,20,22
+TRAIN00547,Ryan Smith,Bachelor,Computer Science,2010,2013,Product/Design,11.0,10,Nginx:10.0;Confluence:9.1;TypeScript:9.1;SQL:8.0;Tableau:7.6,1,Fenwick Digital,3,55,76,86,35,63
+TRAIN00548,Cynthia Hill,High School,,2012,2016,DevOps/Infrastructure,9.5,12,Ruby:9.3;FastAPI:9.0;React:8.4;Bash:7.9;Docker:7.7,3,Shopify,2,31,73,89,61,64
+TRAIN00549,Mark S. James,High School,,2000,2004,Data Analysis,20.9,15,Airflow:20.6;Linux:18.6;Hugging Face:15.9;Cypress:15.3;SQL:15.1,4,Fenwick Digital,3,42,99,90,38,67
+TRAIN00550,Franklin Bond,Master,Physics,2014,2015,DevOps/Infrastructure,10.1,10,Nginx:9.4;CI/CD:8.9;Azure:6.8;Terraform:6.0;Excel:5.0,4,Blue Orbit Labs,3,67,71,78,45,65
+TRAIN00551,Tyler Bates,Bachelor,Communications,2019,2023,Data/AI/ML,2.5,7,Java:2.0;Prometheus:1.9;Confluence:1.5;Airflow:1.3;Hugging Face:1.2,1,SAP,2,32,32,28,67,40
+TRAIN00552,Pamela James,Master,Data Science,2022,2023,Data/AI/ML,1.9,6,AWS:1.7;Snowflake:1.4;PyTorch:1.2;Docker:1.1;Angular:1.1,1,Vantage Point Technologies,3,80,12,24,34,38
+TRAIN00553,Lindsay Blair,Master,Computer Science,2021,2022,Data Analysis,3.2,8,Pandas:2.8;Tableau:2.7;Redis:2.5;Looker:2.3;NumPy:2.0,1,Shopify,2,78,33,29,72,53
+TRAIN00554,Douglas Aguilar,Master,Information Systems,2022,2023,Product/Design,2.9,6,Tableau:2.8;TypeScript:2.2;Git:2.1;Hugging Face:1.7;Figma:1.5,1,Uber,2,58,30,30,68,46
+TRAIN00555,Christina Graham,Bachelor,Business Administration,2015,2019,Software Development,6.4,9,Ruby:5.6;JavaScript:4.4;Selenium:4.4;REST APIs:3.0;MySQL:2.6,3,Cisco,2,35,61,67,47,52
+TRAIN00556,Jasmine Graham,Master,Computer Science,2012,2013,DevOps/Infrastructure,12.3,11,C++:9.9;Redshift:8.7;Looker:8.7;CI/CD:8.5;Kafka:8.1,4,Vantage Point Technologies,3,82,78,89,41,72
+TRAIN00557,John Porter,Master,Economics,2020,2021,Product/Design,3.7,6,Nginx:3.7;TypeScript:3.6;Redshift:3.2;Git:2.6;Looker:1.7,1,Silverline Data,3,56,28,28,36,37
+TRAIN00558,Joseph Wallace,Master,Electrical Engineering,2023,2024,Data Analysis,0.4,6,BigQuery:0.4;Excel:0.4;Tableau:0.4;NumPy:0.4;pytest:0.4,0,,,71,9,6,18,26
+TRAIN00559,Vickie Quinn,Master,Information Systems,2015,2016,QA/Testing,9.8,9,Redshift:8.8;MySQL:8.7;Jira:8.3;Cypress:7.5;Git:6.5,1,Northbridge IT,3,71,72,75,33,63
+TRAIN00560,Adriana Hendrix,High School,,2020,2024,Software Development,1.4,4,Next.js:1.3;Java:1.0;FastAPI:0.6;GCP:0.6,1,BrightPath Solutions,3,45,14,14,39,28
+TRAIN00561,Brian T. Decker,Bachelor,Mathematics,2008,2012,Data/AI/ML,12.2,13,gRPC:12.0;PostgreSQL:10.7;Looker:10.0;Pandas:9.3;Spark:7.1,4,LinkedIn,2,41,72,91,58,66
+TRAIN00562,Rodney Barnes,High School,,2018,2021,DevOps/Infrastructure,4.3,8,Kafka:2.5;Nginx:2.2;Jira:1.5;Confluence:1.4;Python:1.2,2,Meta,1,38,33,25,89,46
+TRAIN00563,Patricia Cook,Bachelor,Data Science,2008,2012,Data/AI/ML,12.1,12,Databricks:9.8;Airflow:9.6;Pandas:8.7;Playwright:7.8;MLflow:6.5,4,Adobe,2,64,77,81,58,70
+TRAIN00564,Michael Davis,PhD,Computer Science,2014,2017,DevOps/Infrastructure,8.4,9,Ansible:8.2;Redis:5.6;Kafka:5.5;Tableau:3.5;SQL:3.3,3,Silverline Data,3,95,72,53,35,64
+TRAIN00565,George Green,Bachelor,Software Engineering,2005,2008,Product/Design,17.0,14,Tableau:14.6;Confluence:14.3;Looker:13.6;Rust:12.8;React:12.1,4,Cisco,2,63,86,85,50,71
+TRAIN00566,Carlos Decker,Master,Electrical Engineering,2018,2020,Software Development,4.2,8,gRPC:4.0;Spring Boot:3.3;Rust:2.6;Next.js:2.4;React:2.2,2,Blue Orbit Labs,3,72,34,42,29,44
+TRAIN00567,Darrell Collins,Master,Economics,2009,2010,DevOps/Infrastructure,15.2,12,Java:14.8;MySQL:14.8;CI/CD:14.0;Docker:12.7;Azure:8.6,2,Nova Tech Group,3,55,82,90,46,68
+TRAIN00568,Sandra Carlson,Master,Biology,2022,2024,Product/Design,1.8,5,Excel:1.5;Confluence:1.5;Snowflake:1.2;Power BI:0.8;TypeScript:0.5,1,Palantir,2,55,20,8,61,36
+TRAIN00569,Brian Harmon,Master,Physics,2017,2018,Product/Design,7.2,10,Looker:7.0;Jira:6.7;Tableau:5.3;Sketch:5.0;Power BI:4.8,2,Palantir,2,61,62,61,47,58
+TRAIN00570,Karen Finley,Bachelor,Software Engineering,2020,2024,QA/Testing,1.9,8,Java:1.7;JavaScript:1.7;Vue.js:1.2;Postman:1.1;GitHub Actions:0.8,1,Fenwick Digital,3,61,13,25,41,35
+TRAIN00571,Gregory Johnson,High School,,2018,2021,Data Analysis,4.8,6,LangChain:4.6;Snowflake:4.4;Power BI:3.8;NumPy:3.3;Excel:2.1,2,Lumen Works,3,42,41,42,24,37
+TRAIN00572,Sheryl Jones,Bachelor,Information Systems,2016,2019,Product/Design,6.6,7,Excel:5.8;Git:5.1;Elasticsearch:4.6;Confluence:4.0;SQL:3.8,3,Amber Creek Software,3,52,55,56,39,50
+TRAIN00573,Natalie Green,Bachelor,Physics,2006,2010,Product/Design,14.2,11,Scala:12.3;Kotlin:11.2;C++:8.3;Looker:8.1;Jira:7.3,2,Uber,2,60,79,75,52,66
+TRAIN00574,Tracy Davis,Bachelor,Software Engineering,2019,2022,Product/Design,3.5,6,Figma:3.2;Jira:3.1;Ruby:2.7;Excel:2.5;Jenkins:2.3,2,Airbnb,2,59,41,35,54,47
+TRAIN00575,Kristina Lane,Bachelor,Data Science,2014,2017,DevOps/Infrastructure,7.8,8,GitHub Actions:6.2;AWS:6.0;Bash:5.3;Selenium:5.1;Ansible:4.8,2,Cobalt Applications,3,55,55,63,29,50
+TRAIN00576,Mark Davis,Bachelor,Communications,2014,2017,DevOps/Infrastructure,7.5,9,Docker:7.4;Scala:6.2;Ansible:6.1;Python:6.1;Prometheus:5.7,2,Ironwood Consulting,3,32,59,75,58,56
+TRAIN00577,Alan Grimes,PhD,Economics,2020,2023,Data/AI/ML,1.3,5,Databricks:0.9;Redis:0.8;Scikit-learn:0.7;PyTorch:0.6;Angular:0.5,1,Lumen Works,3,65,16,19,32,33
+TRAIN00578,Jennifer Ortiz,Master,Communications,2014,2016,Software Development,10.0,9,Git:8.1;Go:7.0;GraphQL:5.5;Next.js:4.6;REST APIs:4.2,1,Ridgeline Analytics,3,44,79,74,41,60
+TRAIN00579,Raymond Goodman,Bachelor,Business Administration,2004,2007,Data Analysis,18.4,16,Tableau:18.1;Excel:17.1;Redshift:14.4;Airflow:13.6;PostgreSQL:12.4,3,Ridgeline Analytics,3,38,86,91,41,64
+TRAIN00580,Robert Rhodes,Master,Physics,2020,2021,Software Development,3.7,7,Django:2.4;Python:2.0;C#:1.9;dbt:1.9;Jenkins:1.4,1,Cisco,2,70,37,32,62,50
+TRAIN00581,Maria Cohen,Bachelor,Software Engineering,2015,2019,QA/Testing,7.6,10,JavaScript:6.3;Cypress:5.8;MySQL:5.0;Git:4.9;Postman:4.8,1,Cisco,2,53,56,78,63,62
+TRAIN00582,Shannon Schultz,PhD,Electrical Engineering,2022,2025,DevOps/Infrastructure,0.5,7,Grafana:0.5;Kubernetes:0.5;Terraform:0.5;Datadog:0.5;dbt:0.5,0,,,75,10,14,22,30
+TRAIN00583,Monique Johnson,Bachelor,Mathematics,1999,2003,Software Development,21.3,16,Jira:19.9;pytest:19.5;Linux:19.1;FastAPI:16.5;Angular:15.4,4,Google,1,45,85,98,57,71
+TRAIN00584,Randall Rocha,Bachelor,Information Systems,2020,2023,QA/Testing,3.2,6,Postman:2.6;CI/CD:2.1;Python:1.7;Git:1.4;JavaScript:1.3,1,SAP,2,45,32,24,72,43
+TRAIN00585,Joshua Bean,High School,,2005,2009,Data/AI/ML,17.0,15,PyTorch:16.1;Snowflake:15.2;Databricks:14.8;Pandas:14.8;CI/CD:14.6,3,Clearwater Systems,3,35,83,93,34,61
+TRAIN00586,Christopher Lopez,Bachelor,Data Science,2019,2023,Software Development,1.7,7,Next.js:1.4;PostgreSQL:1.0;React:1.0;Scala:1.0;Redis:0.9,1,LinkedIn,2,58,15,14,64,38
+TRAIN00587,Marissa Price,Master,Business Administration,2010,2011,Software Development,14.6,12,TypeScript:14.2;pytest:13.6;C++:9.8;Node.js:9.1;Redis:8.3,5,Fenwick Digital,3,53,80,84,48,66
+TRAIN00588,Brittany Hood,Bachelor,Software Engineering,2021,2024,Data Analysis,1.4,5,MongoDB:0.9;Grafana:0.9;Python:0.8;Power BI:0.6;NumPy:0.5,1,Ridgeline Analytics,3,58,10,9,39,29
+TRAIN00589,Mark Pugh,PhD,Electrical Engineering,2022,2025,Software Development,0.7,7,MySQL:0.7;Spark:0.7;GitHub Actions:0.7;Jenkins:0.7;Spring Boot:0.6,0,,,84,2,15,14,29
+TRAIN00590,Carla Moore,Bachelor,Mathematics,2020,2024,Product/Design,1.7,5,MongoDB:1.6;SQL:1.4;REST APIs:1.4;React:0.7;Sketch:0.5,1,Nova Tech Group,3,54,22,10,36,30
+TRAIN00591,Patrick Washington,Bachelor,Software Engineering,2021,2024,DevOps/Infrastructure,1.8,7,Nginx:1.8;Datadog:1.5;Linux:1.4;C#:1.3;Kubernetes:1.2,1,Clearwater Systems,3,64,17,26,34,35
+TRAIN00592,Linda Browning,Master,Electrical Engineering,1995,1997,Software Development,27.5,16,C#:25.8;gRPC:23.5;FastAPI:19.6;Excel:18.3;Postman:13.9,4,Amber Creek Software,3,61,90,99,39,72
+TRAIN00593,Kayla Williams,Bachelor,Computer Science,2022,2025,QA/Testing,1.2,6,Java:1.2;Kubernetes:1.0;Jira:0.7;Postman:0.6;CI/CD:0.5,1,Clearwater Systems,3,69,20,6,44,35
+TRAIN00594,Julia Tapia,Bachelor,Business Administration,2023,2026,Data Analysis,0.8,4,Airflow:0.8;MySQL:0.8;PostgreSQL:0.7;Selenium:0.7,0,,,48,8,9,16,20
+TRAIN00595,Timothy Ballard,Bachelor,Electrical Engineering,2016,2020,DevOps/Infrastructure,5.5,10,Docker:5.2;Grafana:4.7;Scala:4.7;Bash:4.3;Jenkins:3.5,2,DeepMind,1,51,43,66,57,54
+TRAIN00596,Courtney H. Padilla,Master,Business Administration,2007,2008,Software Development,17.2,13,Node.js:14.4;Go:13.1;Docker:12.2;MySQL:12.0;Bash:12.0,4,Spotify,2,62,84,93,46,71
+TRAIN00597,Terri Garcia,Bachelor,Computer Science,2014,2017,Software Development,7.7,11,MySQL:6.5;Ansible:6.0;Node.js:5.9;C#:5.9;DynamoDB:5.9,3,Salesforce,2,65,67,81,65,70
+TRAIN00598,Susan Charles,Bachelor,Economics,2004,2008,Software Development,16.0,12,gRPC:14.6;Python:12.4;CI/CD:11.4;Angular:11.3;C#:11.3,2,Vantage Point Technologies,3,40,87,92,42,65
+TRAIN00599,Julie Obrien,Bachelor,Economics,2019,2022,Data/AI/ML,3.1,6,Spark:2.7;Kafka:2.6;Git:1.7;SQL:1.5;Power BI:1.5,2,BrightPath Solutions,3,38,36,35,39,37
+TRAIN00600,Richard L. Morgan,High School,,2016,2019,Data Analysis,7.1,9,Python:6.9;Snowflake:6.3;NumPy:6.0;Pandas:5.1;Excel:3.2,1,Ridgeline Analytics,3,45,56,66,34,50
+TRAIN00601,Anthony R. Nelson,Bachelor,Business Administration,1993,1996,QA/Testing,29.5,16,React:29.0;Playwright:28.3;GraphQL:22.3;Cypress:20.3;CI/CD:18.2,5,OpenAI,1,41,100,96,32,67
+TRAIN00602,Courtney Crawford,High School,,2017,2020,Data Analysis,5.5,8,FastAPI:4.7;AWS:4.6;Redshift:3.3;Excel:2.5;dbt:2.3,1,Ironwood Consulting,3,35,44,49,40,42
+TRAIN00603,Howard C. James,Master,Economics,2018,2020,Software Development,6.4,7,Grafana:4.7;Docker:3.7;Python:3.4;PostgreSQL:2.9;Ruby:1.6,3,Amazon,1,62,73,43,61,60
+TRAIN00604,Patrick Kramer,Bachelor,Computer Science,2017,2021,Data/AI/ML,3.9,6,MLflow:3.8;LangChain:3.3;Hugging Face:3.1;GraphQL:1.1;Airflow:0.7,2,Clearwater Systems,3,67,43,49,42,50
+TRAIN00605,Stephen Adkins,Bachelor,Biology,2012,2015,Software Development,10.4,12,Go:10.0;Nginx:9.8;pytest:8.7;Django:8.7;Redis:8.7,3,Oracle,2,39,76,99,48,66
+TRAIN00606,Stacie Reilly,Master,Mathematics,2024,2025,Software Development,1.1,6,pytest:1.0;Django:1.0;Postman:0.9;REST APIs:0.8;Excel:0.7,1,Blue Orbit Labs,3,66,7,15,29,29
+TRAIN00607,Lisa Mcneil,High School,,2019,2023,Product/Design,1.9,6,Figma:1.9;Sketch:1.8;Git:1.8;Looker:1.6;Python:1.6,1,Clearwater Systems,3,33,15,30,38,29
+TRAIN00608,Gary Wood,Bachelor,Physics,2022,2026,Data/AI/ML,0.5,4,SQL:0.5;Spark:0.5;Redshift:0.5;NumPy:0.5,0,,,48,3,8,13,18
+TRAIN00609,Anna Carrillo,Bachelor,Information Systems,2017,2021,DevOps/Infrastructure,4.0,6,Nginx:4.0;GCP:3.8;Scala:2.5;Azure:1.2;CI/CD:0.9,1,Cobalt Applications,3,50,41,40,30,40
+TRAIN00610,Jennifer Simpson,Bachelor,Data Science,2004,2007,DevOps/Infrastructure,18.5,16,Jenkins:17.8;Redshift:17.0;Vue.js:16.8;Looker:16.4;Docker:15.6,5,Ridgeline Analytics,3,63,96,100,38,74
+TRAIN00611,Donald Matthews,Bachelor,Electrical Engineering,2017,2020,Data/AI/ML,4.9,6,Excel:4.7;AWS:3.2;Scikit-learn:2.6;LangChain:2.2;Airflow:1.6,1,Lumen Works,3,55,54,33,42,46
+TRAIN00612,Brittany M. Bell,Bachelor,Communications,2020,2023,DevOps/Infrastructure,2.7,8,Linux:2.5;Scala:2.3;CI/CD:1.8;Terraform:1.6;Kubernetes:1.4,1,Ironwood Consulting,3,33,33,42,30,34
+TRAIN00613,Kayla Garcia,Master,Business Administration,2020,2021,DevOps/Infrastructure,4.8,8,Scikit-learn:4.0;Kafka:3.7;Datadog:3.1;Databricks:2.7;Azure:2.1,2,Meridian Software,3,46,37,54,30,42
+TRAIN00614,Dennis Bell,Bachelor,Physics,2023,2026,Data/AI/ML,0.0,4,Databricks:0.0;Pandas:0.0;Docker:0.0;Kotlin:0.0,0,,,55,0,0,19,18
+TRAIN00615,Brian Gray,Bachelor,Economics,2005,2009,Software Development,15.5,14,C++:15.0;gRPC:14.0;Go:13.6;Scala:11.3;Postman:11.3,4,BrightPath Solutions,3,36,78,89,36,60
+TRAIN00616,Francisco Kelly,Master,Physics,2020,2022,Software Development,3.2,6,GitHub Actions:3.2;C#:2.8;Django:2.4;Swift:2.2;gRPC:1.5,1,Palantir,2,65,42,35,62,51
+TRAIN00617,Calvin Ruiz,Master,Information Systems,2006,2008,Data Analysis,16.9,15,Spark:16.4;dbt:16.1;Spring Boot:14.3;Looker:11.2;NumPy:10.7,3,Amazon,1,71,90,89,89,85
+TRAIN00618,Melanie Bell,Bachelor,Data Science,2020,2024,Software Development,1.0,5,C#:1.0;Bash:1.0;Go:0.8;Next.js:0.6;GitHub Actions:0.5,1,Nova Tech Group,3,57,14,6,41,30
+TRAIN00619,Brandon Kim,Bachelor,Mathematics,1993,1997,Data/AI/ML,27.7,16,Databricks:23.4;Snowflake:22.3;Docker:21.9;Figma:21.6;Spark:20.9,4,Dell,2,57,98,94,64,78
+TRAIN00620,Antonio Keller,High School,,2009,2013,Software Development,12.1,12,Go:10.8;Python:10.6;FastAPI:10.2;Next.js:10.0;gRPC:9.2,4,Stripe,2,37,75,82,41,59
+TRAIN00621,James Cole,PhD,Biology,2020,2023,Data/AI/ML,1.2,6,C++:1.0;Python:0.9;Scikit-learn:0.7;Confluence:0.7;SQL:0.6,1,Ironwood Consulting,3,55,18,16,33,30
+TRAIN00622,Stephen L. Jackson,PhD,Computer Science,2017,2021,Product/Design,4.0,8,Kafka:3.9;Looker:3.4;Prometheus:3.1;React:2.7;Sketch:2.2,1,Fenwick Digital,3,94,36,45,32,52
+TRAIN00623,Elizabeth S. Williams,Bachelor,Physics,2019,2023,Software Development,1.9,5,REST APIs:1.7;C#:1.3;pytest:1.2;Vue.js:0.9;Git:0.7,1,Nova Tech Group,3,56,29,19,29,33
+TRAIN00624,Tonya Sims,Master,Electrical Engineering,2022,2024,Product/Design,0.6,6,SQL:0.6;Looker:0.6;Excel:0.6;React:0.6;Next.js:0.6,0,,,72,1,12,27,28
+TRAIN00625,John Hoffman,High School,,2017,2020,Data/AI/ML,6.1,10,Playwright:5.9;Databricks:4.8;Snowflake:4.7;Docker:4.2;MongoDB:3.4,1,Summit Digital,3,29,52,63,42,46
+TRAIN00626,Thomas Smith,Master,Business Administration,2012,2013,Data/AI/ML,13.7,14,Airflow:13.6;Scikit-learn:11.9;TensorFlow:11.9;Linux:10.8;dbt:10.0,2,Palantir,2,55,77,86,47,66
+TRAIN00627,Thomas Harvey,Bachelor,Economics,2017,2021,Software Development,3.5,8,Java:3.2;Go:2.8;GCP:2.2;Pandas:2.0;REST APIs:1.8,2,Uber,2,39,29,43,53,41
+TRAIN00628,Melissa Zamora,Master,Communications,2002,2004,Software Development,20.6,15,SQL:19.9;MySQL:19.1;React:18.8;GraphQL:18.6;Angular:18.2,5,Blue Orbit Labs,3,49,94,84,51,70
+TRAIN00629,Stephen Brown,Bachelor,Data Science,2019,2022,QA/Testing,3.8,6,Playwright:3.8;Bash:3.7;Spring Boot:1.7;CI/CD:1.1;Python:0.9,2,BrightPath Solutions,3,61,35,33,39,42
+TRAIN00630,Jeffrey Franklin,High School,,1999,2003,Software Development,23.0,16,Kubernetes:20.6;Pandas:18.5;Redis:18.4;Vue.js:17.1;Node.js:14.1,4,Ironwood Consulting,3,22,91,98,46,64
+TRAIN00631,Jeremiah W. Gomez,Master,Computer Science,2015,2017,DevOps/Infrastructure,8.0,11,GCP:7.8;Nginx:7.4;CI/CD:7.4;Go:7.3;AWS:6.5,2,Vantage Point Technologies,3,79,67,78,32,64
+TRAIN00632,John Lee,Master,Information Systems,2023,2024,Product/Design,2.0,5,Tableau:1.6;Sketch:1.1;BigQuery:1.0;Excel:0.7;Hugging Face:0.5,1,Salesforce,2,62,24,21,69,44
+TRAIN00633,Daniel Horton,Bachelor,Information Systems,2015,2019,Data Analysis,6.4,8,DynamoDB:6.3;Snowflake:5.1;PostgreSQL:4.4;Python:2.9;Excel:2.7,2,Nova Tech Group,3,55,51,60,33,50
+TRAIN00634,Amy Johnson,PhD,Communications,2013,2018,Data Analysis,8.4,11,NumPy:7.1;Elasticsearch:6.5;Snowflake:6.4;Terraform:5.9;Pandas:5.7,3,BrightPath Solutions,3,46,67,79,41,58
+TRAIN00635,Tammy Gutierrez,High School,,2020,2024,Data Analysis,0.6,4,dbt:0.6;NumPy:0.6;Python:0.6;Vue.js:0.6,0,,,25,8,7,21,15
+TRAIN00636,Nicole Turner,Master,Mathematics,2020,2022,Data Analysis,2.7,8,Tableau:2.7;React:2.7;Bash:2.6;Snowflake:2.3;dbt:2.0,1,Northbridge IT,3,75,34,46,35,48
+TRAIN00637,Harry Davis,Bachelor,Information Systems,2020,2023,Product/Design,2.6,8,Jira:2.5;Looker:2.5;Go:2.4;TypeScript:1.7;Confluence:1.5,1,Northbridge IT,3,53,26,40,34,38
+TRAIN00638,Aaron M. Garrison,High School,,2017,2020,Product/Design,5.7,9,React:5.4;GitHub Actions:5.3;Looker:4.3;pytest:3.8;Tableau:3.4,1,DeepMind,1,34,46,76,100,64
+TRAIN00639,Anthony Hubbard,Master,Economics,2005,2007,Data Analysis,18.6,14,Spark:17.5;Redshift:16.2;PostgreSQL:15.9;Looker:13.0;Kubernetes:12.2,4,Netflix,1,54,93,96,71,78
+TRAIN00640,Julie Dunn,PhD,Business Administration,2018,2022,QA/Testing,4.3,8,MySQL:4.2;TypeScript:3.4;Docker:2.8;CI/CD:2.1;Postman:1.4,1,Silverline Data,3,64,35,38,29,42
+TRAIN00641,Jessica Schmidt,High School,,2013,2016,Data/AI/ML,8.0,9,Hugging Face:7.9;Next.js:7.5;NumPy:7.0;CI/CD:4.4;C#:4.2,2,Adobe,2,37,56,65,44,50
+TRAIN00642,Anthony Harper,Master,Data Science,2016,2017,Data Analysis,7.9,9,Excel:5.9;Spark:5.4;Python:5.3;PostgreSQL:5.1;Scala:4.3,3,Blue Orbit Labs,3,78,54,73,36,60
+TRAIN00643,John Jensen,Bachelor,Computer Science,2017,2021,Product/Design,4.0,6,FastAPI:3.8;Scikit-learn:3.0;Git:2.4;Excel:1.8;Confluence:1.7,1,Fenwick Digital,3,61,40,33,32,42
+TRAIN00644,David Williams,Bachelor,Physics,2019,2023,Data/AI/ML,1.1,5,GraphQL:1.1;Docker:0.7;GitHub Actions:0.7;Airflow:0.6;Python:0.5,1,Cisco,2,44,10,12,54,30
+TRAIN00645,Richard Peters,Master,Communications,2006,2008,QA/Testing,16.8,16,DynamoDB:14.8;Java:14.2;Python:12.6;Figma:12.4;Jira:9.7,2,Stripe,2,46,88,92,53,70
+TRAIN00646,Christina Cervantes,Master,Biology,2023,2025,QA/Testing,1.6,5,TypeScript:1.3;Docker:0.8;Cypress:0.8;Python:0.6;TensorFlow:0.6,1,Northbridge IT,3,42,7,16,38,26
+TRAIN00647,Jonathan Hess,Bachelor,Physics,1998,2001,Software Development,24.7,16,Scala:24.5;Django:24.2;FastAPI:21.7;pytest:21.5;MySQL:19.0,4,Dell,2,51,95,93,71,78
+TRAIN00648,Katelyn Davis,High School,,2010,2014,Product/Design,10.0,11,Looker:9.3;FastAPI:7.6;Excel:5.6;pytest:5.6;Figma:4.7,4,Vantage Point Technologies,3,31,70,63,43,52
+TRAIN00649,Christopher Patterson,Bachelor,Mathematics,2017,2020,Product/Design,4.5,6,Power BI:3.6;Kubernetes:3.6;TypeScript:2.1;Jira:1.6;Confluence:0.6,1,Silverline Data,3,44,36,31,28,35
+TRAIN00650,Ian E. Thompson,PhD,Business Administration,2001,2006,QA/Testing,18.1,14,Grafana:17.2;Playwright:16.8;Git:16.6;TypeScript:15.4;Postman:10.9,4,Lumen Works,3,76,88,94,32,72
+TRAIN00651,Julie Lewis,Bachelor,Software Engineering,2020,2024,Product/Design,1.7,6,Jira:1.7;Power BI:1.5;Databricks:1.5;Figma:1.3;Rust:0.8,1,Fenwick Digital,3,68,10,8,43,32
+TRAIN00652,Julie Griffin,Bachelor,Business Administration,2016,2020,DevOps/Infrastructure,4.3,8,Jenkins:4.2;pytest:3.2;GitHub Actions:2.3;Looker:2.0;Kafka:1.9,1,Northbridge IT,3,42,47,47,35,43
+TRAIN00653,Timothy Rogers,Bachelor,Information Systems,2013,2016,QA/Testing,9.6,11,Playwright:8.9;GitHub Actions:8.0;LangChain:6.3;Postman:5.3;Java:4.1,4,OpenAI,1,53,72,81,76,70
+TRAIN00654,John Little,Bachelor,Electrical Engineering,2003,2006,Data Analysis,18.0,16,Power BI:17.7;Kubernetes:14.1;dbt:12.1;Kafka:11.5;REST APIs:10.7,3,Amazon,1,59,87,95,92,83
+TRAIN00655,Donna Wood,Master,Information Systems,2004,2005,DevOps/Infrastructure,19.8,15,Linux:19.5;CI/CD:19.2;Tableau:18.9;MongoDB:18.4;GCP:15.3,5,DeepMind,1,65,89,97,73,81
+TRAIN00656,Jasmine Wise,Bachelor,Information Systems,2021,2024,Data Analysis,0.9,6,Datadog:0.9;SQL:0.7;Python:0.6;Spark:0.6;Tableau:0.6,0,,,47,5,12,19,21
+TRAIN00657,Shane Rush,Bachelor,Mathematics,2013,2016,QA/Testing,9.3,10,Postman:9.1;Cypress:8.6;Jira:8.1;Selenium:7.0;JavaScript:4.6,2,Northbridge IT,3,54,64,75,47,60
+TRAIN00658,Sean White,Master,Economics,2014,2015,DevOps/Infrastructure,9.0,12,Redshift:7.8;Prometheus:7.5;SQL:7.0;Python:6.1;Azure:5.9,4,Vantage Point Technologies,3,56,72,80,40,62
+TRAIN00659,Tyler Lloyd,Bachelor,Physics,2019,2023,Product/Design,1.5,5,Jira:1.4;C++:1.2;Git:0.8;Go:0.8;TypeScript:0.5,1,BrightPath Solutions,3,51,15,14,39,30
+TRAIN00660,Charles Austin,High School,,2021,2025,Data Analysis,1.2,4,C#:0.8;Snowflake:0.7;Excel:0.5;Airflow:0.5,1,Fenwick Digital,3,34,9,6,32,20
+TRAIN00661,Robert Payne,Bachelor,Electrical Engineering,2017,2021,DevOps/Infrastructure,3.3,8,Go:3.2;Terraform:3.0;Docker:2.7;Bash:1.9;Node.js:1.9,1,BrightPath Solutions,3,56,34,44,37,43
+TRAIN00662,Vanessa Fox,Bachelor,Economics,2020,2024,QA/Testing,2.1,8,Postman:2.1;Jira:1.6;Cypress:1.5;MLflow:1.5;Python:1.3,1,Fenwick Digital,3,38,30,25,37,32
+TRAIN00663,Lindsay Nelson,High School,,2009,2013,DevOps/Infrastructure,11.6,11,Grafana:11.2;AWS:10.4;BigQuery:9.1;Python:8.5;Go:7.8,2,Google,1,35,80,80,86,70
+TRAIN00664,Darlene Harper,High School,,2017,2021,QA/Testing,4.6,9,Docker:4.1;Selenium:3.9;Postman:3.9;Spark:3.8;MySQL:3.5,2,Ironwood Consulting,3,32,41,65,47,46
+TRAIN00665,Randy Shaw,High School,,1992,1995,DevOps/Infrastructure,29.6,16,LangChain:28.4;GitHub Actions:27.5;Docker:27.0;Ansible:26.1;Azure:24.6,4,Nova Tech Group,3,39,98,96,28,65
+TRAIN00666,Scott Reeves,Bachelor,Physics,2017,2021,Data Analysis,5.0,9,dbt:4.1;Pandas:4.1;Python:3.2;C++:3.1;Looker:2.6,1,Meridian Software,3,40,41,48,42,43
+TRAIN00667,Mike Williams,High School,,2018,2021,Data Analysis,3.0,8,Python:2.1;Kafka:1.8;TensorFlow:1.6;LangChain:1.5;Looker:1.4,1,Blue Orbit Labs,3,34,23,35,36,32
+TRAIN00668,Mariah Miller,High School,,2019,2022,QA/Testing,3.6,8,JavaScript:3.3;TypeScript:3.2;pytest:2.5;GitHub Actions:1.6;Cypress:1.3,2,Cisco,2,37,32,47,60,44
+TRAIN00669,Shane B. Gates,High School,,2012,2015,Software Development,10.2,11,Git:10.1;Go:9.9;Hugging Face:9.6;Vue.js:8.4;MySQL:7.8,2,Intel,2,33,74,79,53,60
+TRAIN00670,Janet C. Gregory,PhD,Economics,2018,2022,Software Development,3.9,6,Redis:3.5;Spark:3.1;Jenkins:3.1;Java:2.6;Next.js:1.5,1,Palantir,2,66,35,41,63,51
+TRAIN00671,Nathan James,Bachelor,Economics,2020,2024,Data Analysis,1.9,6,Python:1.7;TypeScript:1.1;SQL:0.8;Tableau:0.8;PostgreSQL:0.8,1,Ironwood Consulting,3,43,20,10,32,26
+TRAIN00672,Darren Young,Bachelor,Physics,2019,2022,Data Analysis,2.3,7,Snowflake:2.3;Python:2.0;Tableau:1.6;Azure:1.0;Sketch:1.0,1,Vantage Point Technologies,3,52,23,27,36,34
+TRAIN00673,Steven Holmes,High School,,2020,2024,DevOps/Infrastructure,0.7,4,Prometheus:0.7;C#:0.7;Ansible:0.7;Go:0.5,0,,,35,12,2,26,19
+TRAIN00674,Ryan Larsen,Bachelor,Data Science,2017,2020,Software Development,6.2,9,React:5.4;C#:4.7;PostgreSQL:3.9;Redis:3.1;Scikit-learn:2.4,2,Spotify,2,62,52,58,57,57
+TRAIN00675,Matthew Welch,Master,Data Science,2022,2023,QA/Testing,1.7,7,Java:1.5;Excel:1.5;GitHub Actions:1.3;Jira:1.0;JavaScript:1.0,1,Ridgeline Analytics,3,76,22,15,33,36
+TRAIN00676,Tonya Williams,Bachelor,Information Systems,2020,2023,Data Analysis,2.4,8,BigQuery:2.1;Airflow:2.1;Figma:1.4;Prometheus:1.1;PostgreSQL:0.9,1,Dell,2,50,27,28,65,42
+TRAIN00677,Emily Decker,Bachelor,Physics,2015,2018,DevOps/Infrastructure,7.0,8,CI/CD:6.8;Power BI:5.8;GCP:4.5;Azure:4.2;MongoDB:3.3,2,Meta,1,52,54,64,86,64
+TRAIN00678,Edward Bennett,Master,Computer Science,2017,2018,Software Development,7.5,9,Rust:6.9;Python:6.4;MLflow:5.4;Vue.js:5.3;Go:3.6,1,Clearwater Systems,3,76,52,67,39,58
+TRAIN00679,Lori Davis,Bachelor,Data Science,2013,2017,DevOps/Infrastructure,7.8,8,Prometheus:6.7;Git:6.4;Bash:6.3;GCP:6.2;Java:4.9,2,Ridgeline Analytics,3,60,62,64,53,60
+TRAIN00680,Jamie Jennings,Master,Computer Science,2022,2024,Product/Design,2.2,5,Kafka:2.1;Figma:1.7;React:1.4;Cypress:1.4;Confluence:0.6,1,Salesforce,2,79,29,16,68,48
+TRAIN00681,Lisa Adams,Master,Physics,2007,2009,Data/AI/ML,15.1,13,BigQuery:15.1;Databricks:14.6;Kafka:14.6;Looker:12.6;Snowflake:9.1,3,Amber Creek Software,3,77,88,85,38,72
+TRAIN00682,Jennifer Evans,High School,,2020,2024,Product/Design,1.9,6,React:1.5;SQL:1.5;Tableau:1.1;Excel:0.6;Power BI:0.6,1,Silverline Data,3,36,24,7,31,24
+TRAIN00683,Joseph Clark,Bachelor,Communications,2008,2012,Product/Design,13.3,14,Figma:12.6;Terraform:12.2;TensorFlow:10.8;Go:9.7;Hugging Face:9.5,2,Meridian Software,3,38,72,86,38,58
+TRAIN00684,Willie Hicks,Master,Computer Science,2023,2025,Software Development,1.3,6,React:1.2;Go:1.1;REST APIs:1.0;Java:0.8;pytest:0.7,1,Summit Digital,3,75,12,16,36,35
+TRAIN00685,Timothy Warren,Bachelor,Biology,2013,2016,Product/Design,8.6,11,C++:8.4;Linux:7.8;Tableau:7.5;Power BI:7.4;SQL:5.2,3,SAP,2,36,64,80,57,59
+TRAIN00686,Marcus Wright,High School,,2006,2010,Data/AI/ML,15.7,12,Python:13.9;gRPC:13.6;Spark:13.2;PyTorch:13.1;Pandas:10.7,3,Cobalt Applications,3,33,81,87,32,58
+TRAIN00687,Douglas Huang,Master,Electrical Engineering,2019,2021,Product/Design,3.1,7,Looker:2.7;TypeScript:2.6;Datadog:2.5;Git:2.1;Power BI:1.9,2,Lumen Works,3,70,26,38,51,46
+TRAIN00688,Christine Rogers,Bachelor,Mathematics,2015,2019,Data Analysis,5.4,7,Kubernetes:1.8;MongoDB:1.7;NumPy:1.6;BigQuery:1.5;Jira:1.3,2,Amazon,1,55,51,26,88,55
+TRAIN00689,Rachel Horne,Master,Information Systems,2019,2020,Data Analysis,4.3,8,Spark:4.1;Databricks:3.8;Tableau:3.6;AWS:3.3;Power BI:3.1,1,BrightPath Solutions,3,71,43,59,33,52
+TRAIN00690,Ronald Abbott,Bachelor,Mathematics,2022,2025,Data/AI/ML,0.0,7,PyTorch:0.0;Kafka:0.0;Hugging Face:0.0;SQL:0.0;Kotlin:0.0,0,,,49,4,0,15,17
+TRAIN00691,Sandra Cook,Master,Data Science,2021,2022,Product/Design,3.9,6,Spark:3.7;Power BI:2.7;Sketch:2.0;Looker:1.8;SQL:1.3,1,Lumen Works,3,77,39,34,38,47
+TRAIN00692,Nathaniel Hatfield,High School,,2014,2018,Data/AI/ML,6.8,8,Selenium:6.4;SQL:6.3;Kafka:6.2;Elasticsearch:5.7;Pandas:4.4,1,Oracle,2,28,57,69,70,56
+TRAIN00693,Crystal Perez,Bachelor,Software Engineering,2007,2011,DevOps/Infrastructure,14.4,13,Databricks:10.6;Nginx:9.0;GCP:8.8;JavaScript:6.8;Datadog:6.7,4,Summit Digital,3,56,79,80,50,66
+TRAIN00694,Jon Owens,Bachelor,Physics,2018,2021,Product/Design,4.9,8,Tableau:4.9;Excel:4.8;Redis:4.5;Prometheus:3.2;Jira:2.8,2,Ironwood Consulting,3,57,47,54,35,48
+TRAIN00695,Tina Santos,Bachelor,Physics,2020,2023,Data Analysis,3.4,6,React:3.3;Snowflake:2.9;Excel:2.2;NumPy:1.7;gRPC:1.6,2,Ironwood Consulting,3,48,27,32,37,36
+TRAIN00696,Michael Cooper,High School,,2018,2021,Product/Design,4.4,8,Azure:4.2;Scikit-learn:3.3;SQL:2.9;Git:2.1;Sketch:1.3,2,Cisco,2,43,40,48,52,46
+TRAIN00697,Tammy Smith,Bachelor,Physics,2014,2018,Data Analysis,7.2,8,Tableau:7.0;Redshift:6.8;BigQuery:4.9;SQL:4.3;Excel:4.2,3,Silverline Data,3,48,63,60,32,51
+TRAIN00698,Eric S. Lewis,Bachelor,Biology,2003,2007,DevOps/Infrastructure,17.7,15,Go:15.1;Jenkins:14.4;GCP:13.8;GitHub Actions:13.1;Bash:12.6,5,Apple,1,41,86,88,66,70
+TRAIN00699,William Taylor,PhD,Economics,1998,2001,Product/Design,24.4,16,Rust:23.9;Airflow:22.9;Looker:21.6;Git:20.8;React:17.8,4,Summit Digital,3,64,95,97,54,78
+TRAIN00700,Tara Wolfe,Master,Biology,2017,2018,Data Analysis,7.7,11,Airflow:7.7;Datadog:7.7;Swift:7.1;Spark:5.7;Redshift:5.5,3,Blue Orbit Labs,3,48,65,77,37,57
+TRAIN00701,Kevin Patton,Bachelor,Electrical Engineering,2020,2023,Data/AI/ML,2.9,7,Snowflake:2.4;Hugging Face:2.4;Spark:2.2;PyTorch:2.2;Vue.js:1.6,1,Lumen Works,3,60,34,35,35,41
+TRAIN00702,Richard Bass,High School,,2015,2019,Data Analysis,5.6,7,dbt:5.0;Bash:4.9;Airflow:4.3;Redshift:3.8;NumPy:1.8,1,Silverline Data,3,37,45,47,41,42
+TRAIN00703,Christina King,High School,,2019,2023,DevOps/Infrastructure,2.1,6,Kafka:2.1;Jenkins:1.9;Redis:1.7;Ansible:1.0;Prometheus:0.9,1,Fenwick Digital,3,31,23,28,40,30
+TRAIN00704,Alisha Martinez,High School,,2018,2021,DevOps/Infrastructure,3.1,8,gRPC:2.8;Nginx:2.4;Kubernetes:2.3;GitHub Actions:2.1;Datadog:1.9,2,Blue Orbit Labs,3,34,34,44,48,40
+TRAIN00705,Jeffery Schneider,Master,Communications,2000,2001,QA/Testing,24.2,16,Datadog:20.4;Python:19.9;Cypress:18.9;Postman:17.7;JavaScript:17.2,4,Fenwick Digital,3,43,93,92,41,67
+TRAIN00706,Rebecca Smith,Bachelor,Software Engineering,2001,2004,Product/Design,20.8,16,Spring Boot:20.5;Figma:18.7;Git:18.1;Looker:16.7;Excel:16.1,4,Clearwater Systems,3,58,88,92,48,72
+TRAIN00707,Christine Allen,Bachelor,Data Science,2016,2020,DevOps/Infrastructure,6.3,7,Grafana:5.8;Playwright:4.5;Go:3.7;GCP:3.3;Bash:2.9,1,Fenwick Digital,3,67,52,62,38,55
+TRAIN00708,James D. Rhodes,Master,Mathematics,2016,2018,Data/AI/ML,7.8,8,Playwright:7.7;Ruby:6.1;Scikit-learn:4.7;Docker:4.1;Looker:3.2,3,Cisco,2,67,63,63,55,62
+TRAIN00709,Haley Roach,Bachelor,Biology,2017,2020,Product/Design,5.3,7,GCP:4.7;TypeScript:4.6;Figma:3.3;SQL:2.7;C#:2.5,1,Meridian Software,3,39,43,52,39,43
+TRAIN00710,Michelle Rivera,PhD,Data Science,2016,2020,QA/Testing,4.1,6,Java:4.0;pytest:3.1;GitHub Actions:1.7;Excel:1.6;Looker:1.4,1,Ironwood Consulting,3,100,46,35,35,54
+TRAIN00711,Daniel Harris,Bachelor,Information Systems,2021,2024,Data Analysis,1.9,8,PostgreSQL:1.8;Tableau:1.6;Linux:1.6;Looker:1.5;Angular:1.0,1,Vantage Point Technologies,3,50,16,28,30,31
+TRAIN00712,Allen Noble,Master,Electrical Engineering,2022,2024,Data Analysis,0.7,7,Airflow:0.7;Snowflake:0.7;Spark:0.7;PostgreSQL:0.7;MongoDB:0.7,0,,,68,0,22,25,29
+TRAIN00713,Brian Warren,High School,,2012,2016,QA/Testing,8.8,11,pytest:7.8;PostgreSQL:7.8;Azure:7.2;Datadog:7.2;Nginx:5.4,2,Vantage Point Technologies,3,35,72,83,47,59
+TRAIN00714,Patrick Spencer,Bachelor,Data Science,2010,2014,Product/Design,10.4,9,C++:8.7;Jira:8.3;MLflow:8.1;TypeScript:6.9;SQL:5.0,4,Fenwick Digital,3,63,81,78,34,64
+TRAIN00715,Michelle Wilson,Bachelor,Physics,2019,2023,Product/Design,1.3,7,Excel:1.0;TypeScript:0.7;Prometheus:0.7;MongoDB:0.7;Confluence:0.6,1,Oracle,2,52,12,0,65,32
+TRAIN00716,Daniel Jones,Master,Economics,2017,2018,Product/Design,7.6,8,React:6.0;Jira:4.9;Confluence:4.6;Git:4.4;Sketch:3.9,1,Dell,2,54,64,62,71,63
+TRAIN00717,Laura Pierce,Bachelor,Economics,1999,2003,Data Analysis,22.8,16,PostgreSQL:21.5;Snowflake:20.0;SQL:18.0;Tableau:17.6;Power BI:15.0,5,Google,1,41,95,97,70,76
+TRAIN00718,Erin Mosley,Bachelor,Computer Science,2017,2021,Product/Design,3.5,5,Elasticsearch:2.9;Playwright:1.6;SQL:1.1;React:0.8;Power BI:0.6,2,LinkedIn,2,60,34,24,66,46
+TRAIN00719,Bruce P. Mendoza,PhD,Business Administration,2010,2015,Data/AI/ML,9.3,9,SQL:7.5;Spark:6.2;Python:6.0;Sketch:4.7;Docker:4.6,2,Lumen Works,3,68,74,75,34,63
+TRAIN00720,Sarah Brown,Bachelor,Software Engineering,2010,2014,Data Analysis,11.8,12,NumPy:11.6;Docker:11.2;dbt:10.9;C#:10.9;DynamoDB:9.6,1,Summit Digital,3,70,79,81,39,67
+TRAIN00721,David Miller,High School,,2018,2021,QA/Testing,3.7,7,Playwright:3.3;Elasticsearch:2.5;Docker:2.4;MLflow:2.4;React:1.5,1,Spotify,2,35,34,37,62,42
+TRAIN00722,Francisco Ewing,Bachelor,Biology,2003,2006,Data/AI/ML,19.5,15,Spark:18.1;Git:17.7;Airflow:16.8;Kafka:16.2;Terraform:12.9,4,Blue Orbit Labs,3,31,87,91,38,62
+TRAIN00723,Brian E. Bailey,Bachelor,Business Administration,2003,2006,Data Analysis,18.0,16,Tableau:17.2;Redshift:16.1;BigQuery:15.9;Power BI:15.0;dbt:14.3,3,OpenAI,1,46,85,100,63,74
+TRAIN00724,William Sullivan,Bachelor,Computer Science,2018,2022,Data Analysis,4.1,9,BigQuery:3.5;CI/CD:2.8;Playwright:1.9;FastAPI:1.3;NumPy:1.0,2,Lumen Works,3,63,46,40,29,44
+TRAIN00725,Valerie Boyd,Master,Biology,2011,2012,Software Development,12.7,14,Prometheus:12.6;gRPC:10.2;Angular:9.6;Java:9.4;Kafka:9.0,3,Clearwater Systems,3,55,84,94,35,67
+TRAIN00726,Stephen Jackson,Bachelor,Biology,2013,2016,QA/Testing,8.6,10,GitHub Actions:8.3;Node.js:7.9;Jira:6.9;Python:5.6;TypeScript:5.4,3,LinkedIn,2,33,67,79,49,57
+TRAIN00727,Samantha Hooper,Bachelor,Software Engineering,2020,2023,Data/AI/ML,1.7,4,MLflow:1.6;Go:1.5;PyTorch:1.3;Elasticsearch:0.8,1,Ironwood Consulting,3,55,19,22,34,32
+TRAIN00728,Joel Green,Bachelor,Biology,2014,2017,QA/Testing,8.1,8,TypeScript:7.0;Cypress:4.7;Python:2.4;Playwright:1.9;Jenkins:1.8,3,Nova Tech Group,3,36,68,50,35,47
+TRAIN00729,Garrett Wallace,Master,Data Science,2013,2015,DevOps/Infrastructure,9.5,12,AWS:9.4;Docker:9.0;Prometheus:8.7;Linux:8.4;Excel:6.8,1,Blue Orbit Labs,3,78,70,87,34,67
+TRAIN00730,Maria Prince,Master,Data Science,2022,2024,Data/AI/ML,1.9,6,Confluence:1.7;Docker:1.6;PyTorch:1.4;Hugging Face:1.2;Airflow:1.1,1,Fenwick Digital,3,72,23,27,28,38
+TRAIN00731,Gregory W. Brooks,High School,,2022,2025,DevOps/Infrastructure,1.6,5,Spring Boot:1.5;Ansible:1.3;Kubernetes:1.2;Databricks:0.8;Jenkins:0.5,1,Cisco,2,32,12,18,62,31
+TRAIN00732,David Phillips,PhD,Communications,2018,2023,Product/Design,1.7,7,TypeScript:1.7;Grafana:1.5;Sketch:1.3;React:1.3;Ansible:1.3,1,Lumen Works,3,53,27,23,35,34
+TRAIN00733,Mario Smith,PhD,Business Administration,2019,2024,Data/AI/ML,1.9,8,MLflow:1.9;Elasticsearch:1.9;Power BI:1.7;SQL:1.5;Scikit-learn:1.3,1,Vantage Point Technologies,3,71,15,37,29,38
+TRAIN00734,Steven Moore,High School,,2019,2022,Product/Design,2.0,5,C#:1.3;Kafka:1.1;Excel:0.9;TypeScript:0.7;Jira:0.7,1,Fenwick Digital,3,34,22,16,30,26
+TRAIN00735,Melissa Flynn,Bachelor,Biology,2004,2008,Data Analysis,17.1,13,BigQuery:16.8;Looker:16.2;Jira:14.9;Python:13.7;Terraform:12.8,2,Vantage Point Technologies,3,37,83,96,32,62
+TRAIN00736,Craig Rivera,High School,,2012,2016,Data Analysis,8.9,9,Spark:8.9;Terraform:8.3;BigQuery:7.7;Snowflake:6.3;SQL:6.2,3,Nova Tech Group,3,35,67,76,52,58
+TRAIN00737,Emily Nelson,High School,,2021,2024,Data/AI/ML,1.1,4,PyTorch:0.9;Nginx:0.8;MySQL:0.7;Docker:0.5,1,Vantage Point Technologies,3,36,7,5,36,21
+TRAIN00738,Douglas Huffman,High School,,2017,2021,Software Development,4.8,7,CI/CD:4.7;Node.js:3.8;Postman:3.0;pytest:1.7;Jira:1.7,2,Ridgeline Analytics,3,41,45,45,49,45
+TRAIN00739,James H. Martinez,Bachelor,Communications,2021,2024,QA/Testing,1.5,4,Ansible:1.5;Git:1.1;CI/CD:0.9;Docker:0.8,1,Fenwick Digital,3,39,15,16,35,26
+TRAIN00740,Lawrence Brown,Master,Physics,2018,2019,Product/Design,6.5,8,Git:5.4;Excel:4.4;SQL:4.2;Figma:2.1;MySQL:1.9,3,Fenwick Digital,3,62,57,47,52,54
+TRAIN00741,Hailey P. Delacruz,Master,Data Science,2011,2012,QA/Testing,12.8,11,Docker:11.8;Postman:11.6;JavaScript:10.2;Figma:10.1;Selenium:8.6,5,Northbridge IT,3,76,73,82,39,68
+TRAIN00742,Benjamin Reeves,Master,Information Systems,2021,2022,QA/Testing,2.6,5,JavaScript:1.9;Kubernetes:1.6;Jira:1.1;Python:0.9;MySQL:0.6,1,LinkedIn,2,68,35,17,62,46
+TRAIN00743,Claire W. Garza,Master,Software Engineering,2005,2007,Data Analysis,17.1,14,GitHub Actions:14.8;CI/CD:14.3;Ansible:11.2;NumPy:10.6;dbt:7.2,3,BrightPath Solutions,3,77,89,89,50,76
+TRAIN00744,Anna Wheeler,High School,,1994,1997,Product/Design,28.4,16,Tableau:28.1;Angular:20.8;AWS:20.3;SQL:19.6;Figma:17.3,4,Summit Digital,3,37,97,91,37,66
+TRAIN00745,Robert A. Woodward,PhD,Data Science,2013,2017,DevOps/Infrastructure,8.2,8,Go:6.3;Azure:6.3;Spring Boot:6.3;Prometheus:6.1;Kubernetes:3.5,1,Apple,1,89,69,71,100,82
+TRAIN00746,Thomas Kim,High School,,2011,2015,Data Analysis,9.7,9,Tableau:8.4;Snowflake:8.3;Next.js:7.9;Ansible:7.9;Redshift:5.3,4,Silverline Data,3,30,65,70,37,50
+TRAIN00747,Angela D. Williams,Bachelor,Business Administration,2012,2015,Data Analysis,10.0,9,Power BI:9.8;PostgreSQL:8.6;BigQuery:7.9;Snowflake:4.4;Airflow:3.4,2,Northbridge IT,3,42,67,71,32,53
+TRAIN00748,Emily Walker,Master,Data Science,2008,2009,Product/Design,16.3,13,SQL:12.4;Jira:12.0;Confluence:10.4;Jenkins:9.9;Scala:8.7,4,Nova Tech Group,3,85,87,73,46,73
+TRAIN00749,Daniel S. Johnson,Bachelor,Business Administration,2013,2016,Software Development,8.9,11,Vue.js:8.3;GitHub Actions:8.0;gRPC:7.4;JavaScript:6.6;Angular:6.1,3,Vantage Point Technologies,3,44,65,78,39,56
+TRAIN00750,Kimberly Gomez,Bachelor,Physics,2009,2012,DevOps/Infrastructure,13.6,11,Linux:13.3;AWS:8.5;Redis:6.5;MLflow:6.2;MySQL:5.6,5,Summit Digital,3,49,80,78,40,62
+TRAIN00751,Katie Moore,Master,Software Engineering,1996,1997,QA/Testing,27.6,16,Playwright:25.1;pytest:23.7;Spring Boot:18.8;React:16.7;Docker:15.8,5,BrightPath Solutions,3,75,100,91,29,74
+TRAIN00752,Richard Lewis,Bachelor,Biology,2017,2020,Product/Design,5.9,7,Excel:5.3;TypeScript:4.2;Spring Boot:3.1;Looker:2.5;Confluence:2.2,2,Spotify,2,36,54,47,49,46
+TRAIN00753,Amanda Smith,Bachelor,Computer Science,1991,1995,Data Analysis,29.9,16,Pandas:27.6;SQL:26.4;Spark:25.2;dbt:20.9;NumPy:14.5,5,Oracle,2,61,92,93,62,77
+TRAIN00754,Greg Moore,Master,Software Engineering,2016,2017,Software Development,9.1,12,GraphQL:8.2;Angular:7.3;Figma:6.9;gRPC:5.0;TypeScript:4.6,3,BrightPath Solutions,3,77,63,77,34,63
+TRAIN00755,Kelly Brown,Master,Communications,2011,2012,Data Analysis,13.5,14,Pandas:13.4;NumPy:12.8;Redshift:11.6;Node.js:10.9;CI/CD:9.4,5,Oracle,2,46,90,83,62,70
+TRAIN00756,James Morrison,PhD,Physics,2013,2016,Data Analysis,8.4,11,PyTorch:6.2;TypeScript:5.6;Spark:4.4;dbt:3.9;Terraform:3.5,2,Ironwood Consulting,3,81,58,73,42,64
+TRAIN00757,Pamela Navarro,Master,Biology,2021,2022,Product/Design,3.9,9,Power BI:3.7;Tableau:3.6;Jira:3.3;SQL:3.1;Nginx:2.4,1,Oracle,2,48,42,51,71,53
+TRAIN00758,Eric Smith,Master,Electrical Engineering,2011,2012,Software Development,12.5,11,Python:11.0;Go:10.9;Vue.js:8.9;PostgreSQL:7.4;Next.js:7.1,5,Oracle,2,79,69,83,58,72
+TRAIN00759,Michael Brown,Bachelor,Information Systems,2021,2025,Data/AI/ML,1.7,7,GraphQL:1.4;LangChain:1.2;BigQuery:1.1;NumPy:1.0;Databricks:0.9,1,Meridian Software,3,55,20,15,31,30
+TRAIN00760,Angela Anderson,Master,Business Administration,2020,2021,Data/AI/ML,4.1,7,GraphQL:3.5;AWS:2.5;Python:2.2;LangChain:1.9;Hugging Face:1.5,2,Cobalt Applications,3,53,51,40,54,50
+TRAIN00761,Jack Hart,Bachelor,Data Science,2014,2017,QA/Testing,8.9,10,Playwright:8.8;Redshift:8.3;Spark:6.9;CI/CD:6.8;Rust:6.8,2,BrightPath Solutions,3,55,67,82,41,61
+TRAIN00762,Eugene Jones,Master,Communications,2010,2011,Data Analysis,13.8,12,PostgreSQL:12.0;Datadog:11.1;Python:10.0;NumPy:9.5;JavaScript:9.4,4,Ironwood Consulting,3,39,85,87,44,64
+TRAIN00763,Miranda Guerra,Bachelor,Mathematics,2021,2025,Data Analysis,0.5,6,PostgreSQL:0.5;Power BI:0.5;Python:0.5;Spark:0.5;Kafka:0.5,0,,,50,9,0,20,20
+TRAIN00764,Glenn Brown,PhD,Biology,1999,2002,Product/Design,23.6,16,React:23.4;Tableau:23.0;Power BI:22.0;SQL:18.4;Sketch:16.9,4,BrightPath Solutions,3,65,100,95,31,73
+TRAIN00765,Emma Dixon,Bachelor,Information Systems,2014,2018,Software Development,7.4,8,pytest:5.8;Angular:5.6;CI/CD:5.5;Tableau:5.1;BigQuery:3.7,1,Shopify,2,47,60,63,71,60
+TRAIN00766,Tina M. Finley,PhD,Computer Science,2015,2018,DevOps/Infrastructure,7.3,10,Jenkins:7.2;Bash:6.6;Go:3.4;Grafana:3.4;Linux:2.7,1,Blue Orbit Labs,3,86,57,68,34,61
+TRAIN00767,Scott Rojas,Master,Economics,2006,2008,Data Analysis,17.6,16,Pandas:15.9;Sketch:15.7;NumPy:13.6;Tableau:12.7;MLflow:10.3,2,Meta,1,56,85,94,61,74
+TRAIN00768,Aaron Kelly,Master,Biology,2014,2016,Data Analysis,9.2,12,TensorFlow:7.6;Snowflake:5.4;Python:5.1;Django:4.2;PostgreSQL:4.1,4,Dell,2,53,64,76,55,62
+TRAIN00769,Brian Fitzgerald,Bachelor,Economics,2023,2026,Software Development,0.4,4,FastAPI:0.4;GraphQL:0.4;C#:0.4;BigQuery:0.4,0,,,38,11,0,14,16
+TRAIN00770,Nicholas M. Gallagher,Master,Physics,2022,2024,Product/Design,1.1,7,Redshift:1.1;Sketch:1.0;Tableau:1.0;Confluence:0.9;JavaScript:0.9,1,Amber Creek Software,3,58,19,21,43,35
+TRAIN00771,Bradley Gonzalez,Bachelor,Data Science,2020,2024,Product/Design,1.8,6,Looker:1.8;Ansible:1.7;Git:1.6;Excel:1.3;TypeScript:0.9,1,Ironwood Consulting,3,67,25,22,31,36
+TRAIN00772,Scott Martinez,High School,,2015,2018,DevOps/Infrastructure,7.2,9,Docker:6.9;Azure:6.5;Redis:6.3;Nginx:5.9;Redshift:5.4,3,Clearwater Systems,3,40,57,80,34,53
+TRAIN00773,David Patel,Bachelor,Mathematics,2000,2003,Data Analysis,22.5,16,BigQuery:20.9;Python:19.0;Redshift:17.8;NumPy:14.7;PostgreSQL:14.7,4,Cobalt Applications,3,59,94,100,34,72
+TRAIN00774,Luis H. Acosta,Bachelor,Business Administration,2007,2011,Data Analysis,15.3,15,Grafana:14.8;Scala:12.9;SQL:12.8;Linux:12.8;Snowflake:12.2,3,Cobalt Applications,3,40,85,98,60,71
+TRAIN00775,Cameron Sanders,Bachelor,Economics,2020,2024,Product/Design,0.1,6,Jira:0.1;Looker:0.1;Tableau:0.1;Confluence:0.1;Angular:0.1,0,,,41,1,1,24,17
+TRAIN00776,Bradley Hall,Bachelor,Communications,2022,2025,Product/Design,1.3,6,Looker:1.2;Figma:1.1;Tableau:0.8;NumPy:0.8;DynamoDB:0.7,1,Vantage Point Technologies,3,36,12,18,36,26
+TRAIN00777,Audrey Aguirre,Bachelor,Data Science,2020,2024,Software Development,1.8,7,PostgreSQL:1.7;LangChain:1.5;REST APIs:1.3;Excel:1.3;TypeScript:1.2,1,Salesforce,2,61,18,21,64,41
+TRAIN00778,Alex Harris,Master,Mathematics,2009,2011,QA/Testing,14.1,13,Snowflake:13.7;Playwright:13.5;MySQL:13.1;Power BI:9.4;Docker:9.3,4,Amber Creek Software,3,64,79,96,40,70
+TRAIN00779,Debra Thompson,Bachelor,Data Science,2015,2019,Data Analysis,6.9,7,NumPy:4.2;React:3.3;Ruby:2.5;SQL:1.8;Pandas:1.6,2,Spotify,2,62,52,35,51,50
+TRAIN00780,Roy Woods,Bachelor,Business Administration,2013,2016,DevOps/Infrastructure,8.4,9,Java:8.0;Jenkins:5.7;Python:5.4;Prometheus:4.1;Grafana:2.4,1,Cobalt Applications,3,47,57,61,29,48
+TRAIN00781,Lauren Dougherty,Bachelor,Communications,2004,2008,Product/Design,16.2,16,Jira:15.4;Next.js:14.7;MLflow:11.2;Ruby:10.9;TypeScript:8.4,3,Northbridge IT,3,28,89,94,35,62
+TRAIN00782,Aaron Johnson,Bachelor,Information Systems,2019,2023,QA/Testing,2.0,5,GitHub Actions:1.7;Playwright:1.6;Excel:1.6;Postman:1.2;Java:0.9,1,Stripe,2,56,19,17,64,39
+TRAIN00783,Steven Wilson,Bachelor,Communications,2012,2015,DevOps/Infrastructure,9.7,11,GitHub Actions:9.6;Azure:9.1;Kotlin:8.9;Linux:8.6;Tableau:8.1,2,Fenwick Digital,3,42,79,85,40,62
+TRAIN00784,Carrie Hunt,Master,Communications,2024,2025,Data Analysis,1.4,4,Python:1.4;SQL:1.3;pytest:0.8;Scikit-learn:0.7,1,Blue Orbit Labs,3,46,13,14,34,27
+TRAIN00785,John Kelley,Bachelor,Software Engineering,2006,2009,QA/Testing,16.4,15,Selenium:16.1;pytest:15.2;Go:14.3;Docker:9.3;Git:6.3,3,Northbridge IT,3,61,90,85,32,67
+TRAIN00786,Stephen Sanchez,Bachelor,Computer Science,1993,1997,Data Analysis,27.6,16,Power BI:26.2;JavaScript:25.8;Airflow:25.1;Redshift:20.8;Pandas:18.7,4,Airbnb,2,54,92,92,47,71
+TRAIN00787,Anthony Sullivan,Master,Communications,2014,2015,Data/AI/ML,9.6,12,Hugging Face:9.3;Scikit-learn:8.8;Kafka:8.5;MySQL:7.5;MLflow:7.3,3,SAP,2,45,67,92,62,66
+TRAIN00788,Laurie Taylor,PhD,Computer Science,2010,2014,Product/Design,11.8,11,Looker:10.2;Sketch:8.7;MySQL:7.8;TypeScript:6.0;SQL:2.6,4,Amber Creek Software,3,93,78,74,30,69
+TRAIN00789,Danielle White,High School,,2012,2016,DevOps/Infrastructure,9.4,12,Linux:9.4;Kubernetes:7.9;Prometheus:7.7;Jenkins:7.4;C++:7.0,1,Blue Orbit Labs,3,31,68,84,26,52
+TRAIN00790,Brenda Carson,High School,,1998,2002,QA/Testing,22.4,16,Snowflake:22.1;Kubernetes:21.3;AWS:21.2;Python:19.0;Selenium:18.0,5,Northbridge IT,3,35,87,91,48,65
+TRAIN00791,Eddie Matthews,Master,Computer Science,2022,2023,Data/AI/ML,2.0,5,Airflow:1.9;Vue.js:1.8;Grafana:1.2;SQL:0.8;Hugging Face:0.8,1,Amber Creek Software,3,80,20,20,39,40
+TRAIN00792,Samantha Prince,Master,Communications,2020,2022,Software Development,3.7,7,Playwright:3.6;Go:3.2;Vue.js:2.3;CI/CD:2.0;REST APIs:1.5,2,BrightPath Solutions,3,50,34,37,36,39
+TRAIN00793,Maxwell Anderson,Bachelor,Data Science,1993,1997,Data/AI/ML,27.4,16,Spark:25.5;Rust:25.3;MLflow:24.9;Angular:24.8;Python:24.5,5,Lumen Works,3,62,93,96,34,71
+TRAIN00794,Karen Flores,High School,,2021,2024,Product/Design,1.2,7,Git:1.1;Jira:1.1;Datadog:1.1;GitHub Actions:1.1;Nginx:0.9,1,Spotify,2,36,14,24,68,36
+TRAIN00795,Amanda Oconnell,Master,Economics,2022,2024,Data Analysis,1.8,8,Excel:1.8;Vue.js:1.6;Snowflake:1.5;Postman:1.4;Looker:1.2,1,Ridgeline Analytics,3,57,15,28,24,31
+TRAIN00796,Matthew Chambers,High School,,2023,2026,Software Development,0.3,4,REST APIs:0.3;GraphQL:0.3;SQL:0.3;Jira:0.3,0,,,42,0,0,20,16
+TRAIN00797,Paula D. Wright,Bachelor,Physics,2021,2025,DevOps/Infrastructure,1.2,6,Python:0.9;Ansible:0.9;Jenkins:0.9;Go:0.8;GraphQL:0.6,1,Oracle,2,58,11,4,78,38
+TRAIN00798,Tiffany Gonzalez,Bachelor,Economics,2012,2015,Data/AI/ML,10.6,12,PyTorch:10.5;Docker:9.3;TypeScript:7.7;Hugging Face:7.1;Pandas:6.5,1,Fenwick Digital,3,42,72,76,43,58
+TRAIN00799,Jeffrey Clark,Bachelor,Communications,2015,2019,QA/Testing,5.7,10,GitHub Actions:5.7;Spark:5.4;Ruby:5.4;Docker:5.3;Git:4.8,2,Lumen Works,3,26,49,74,38,47
+TRAIN00800,Jessica Carlson,Bachelor,Biology,2005,2008,Product/Design,16.2,16,Figma:16.0;Looker:15.5;React:14.9;PyTorch:14.1;SQL:13.9,5,Summit Digital,3,42,94,93,41,68

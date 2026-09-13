@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ATS_AI Pipeline Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+<style>
+  :root {
+    --ground: #F4F6F8;
+    --surface: #FFFFFF;
+    --ink: #131821;
+    --muted: #67717E;
+    --line: #D7DCE3;
+    --line-soft: #E7EBF0;
+    --cheap: #0B7161;
+    --costly: #A8650B;
+    --planned: #8A93A0;
+    --sans: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #0E1218;
+      --surface: #161C25;
+      --ink: #E6EAF1;
+      --muted: #98A2B0;
+      --line: #29323E;
+      --line-soft: #1F2631;
+      --cheap: #46C4AC;
+      --costly: #E2A23C;
+      --planned: #707A88;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #0E1218;
+    --surface: #161C25;
+    --ink: #E6EAF1;
+    --muted: #98A2B0;
+    --line: #29323E;
+    --line-soft: #1F2631;
+    --cheap: #46C4AC;
+    --costly: #E2A23C;
+    --planned: #707A88;
+  }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.55;
+    padding-inline: 20px;
+    padding-block: 44px 64px;
+  }
+  .wrap { max-width: 960px; margin: 0 auto; display: flex; flex-direction: column; gap: 44px; }
+
+  header { display: flex; flex-direction: column; gap: 12px; }
+  .eyebrow {
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  h1 { font-size: clamp(28px, 5vw, 40px); font-weight: 700; margin: 0; text-wrap: balance; letter-spacing: -0.02em; }
+  .standfirst { font-size: 17px; color: var(--muted); max-width: 62ch; margin: 0; }
+
+  .status { display: flex; flex-wrap: wrap; gap: 10px; }
+  .chip {
+    font-family: var(--mono); font-size: 12px; padding: 6px 11px; border-radius: 4px;
+    border: 1px solid var(--line); background: var(--surface); color: var(--muted);
+    display: flex; align-items: center; gap: 7px;
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+  .dot.built { background: var(--cheap); }
+  .dot.next { background: var(--costly); }
+  .dot.no { background: var(--planned); }
+
+  figure { margin: 0; display: flex; flex-direction: column; gap: 14px; }
+  .figframe {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 8px;
+    padding: 20px 16px; overflow-x: auto;
+  }
+  svg { display: block; margin: 0 auto; max-width: 100%; height: auto; color: var(--ink); }
+  figcaption { font-size: 14px; color: var(--muted); max-width: 68ch; }
+  figcaption b { color: var(--ink); font-weight: 600; }
+
+  h2 { font-size: 13px; font-family: var(--mono); font-weight: 500; letter-spacing: 0.12em;
+       text-transform: uppercase; color: var(--muted); margin: 0 0 14px; }
+
+  .legend { display: flex; flex-wrap: wrap; gap: 18px; font-family: var(--mono); font-size: 12px; color: var(--muted); }
+  .legend span { display: flex; align-items: center; gap: 8px; }
+  .swatch { display: inline-block; width: 26px; height: 0; border-top-width: 2px; border-top-style: solid; }
+
+  table { border-collapse: collapse; width: 100%; font-size: 14px; }
+  .tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+  th, td { padding: 11px 14px; text-align: right; border-bottom: 1px solid var(--line-soft); white-space: nowrap; }
+  th:first-child, td:first-child { text-align: left; }
+  thead th { font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: 0.06em;
+             text-transform: uppercase; color: var(--muted); }
+  tbody tr:last-child td { border-bottom: none; }
+  td { font-variant-numeric: tabular-nums; }
+  td.num { font-family: var(--mono); }
+  .scanrow td { color: var(--costly); font-weight: 600; }
+
+  .files { font-family: var(--mono); font-size: 13px; color: var(--muted); display: flex;
+           flex-direction: column; gap: 5px; }
+  .files b { color: var(--ink); font-weight: 500; }
+  footer { border-top: 1px solid var(--line); padding-top: 20px; font-size: 13px; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">ATS_AI</div>
+    <h1>Pipeline Map</h1>
+    <p class="standfirst">How a stack of CVs and one job posting turn into a ranked top 20 — and which parts of that path actually exist today.</p>
+    <div class="status">
+      <div class="chip"><span class="dot built"></span>Built — 1,000 labelled CVs + PDF corpus</div>
+      <div class="chip"><span class="dot next"></span>Next — job postings, then Layer 2</div>
+      <div class="chip"><span class="dot no"></span>Not built — extraction, scoring, ranking</div>
+    </div>
+  </header>
+
+  <figure>
+    <h2>Figure 1 — Runtime path</h2>
+    <div class="figframe">
+      <svg viewBox="0 0 900 1010" role="img" aria-label="Runtime pipeline: a candidate CV goes through a rule-based ATS parser, falling back to an LLM extractor when confidence is low, producing canonical CV JSON; a company tier resolver and a feature and matching layer combine it with the job posting, feeding a multi-task neural network with four scoring heads whose weighted combination ranks the top 20 candidates." width="900" height="1010">
+        <defs>
+          <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"></path>
+          </marker>
+          <marker id="arC" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--cheap)"></path>
+          </marker>
+          <marker id="arX" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--costly)"></path>
+          </marker>
+        </defs>
+
+        <!-- inputs -->
+        <rect x="290" y="24" width="320" height="56" rx="6" fill="none" stroke="currentColor" stroke-width="1.5"></rect>
+        <text x="450" y="48" text-anchor="middle" font-family="IBM Plex Sans" font-size="14" font-weight="600" fill="currentColor">Candidate CV</text>
+        <text x="450" y="66" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="var(--muted)">PDF · any layout · sometimes scanned</text>
+
+        <rect x="20" y="24" width="190" height="56" rx="6" fill="none" stroke="currentColor" stroke-width="1.5"></rect>
+        <text x="115" y="48" text-anchor="middle" font-family="IBM Plex Sans" font-size="14" font-weight="600" fill="currentColor">Job posting</text>
+        <text x="115" y="66" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="var(--muted)">the role being filled</text>
+
+        <!-- job rail down the left -->
+        <polyline points="115,80 115,578 240,578" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="1 0" marker-end="url(#ar)"></polyline>
+        <text x="126" y="106" font-family="IBM Plex Mono" font-size="11" fill="var(--muted)">required stack ·</text>
+        <text x="126" y="121" font-family="IBM Plex Mono" font-size="11" fill="var(--muted)">years · weights</text>
+
+        <line x1="450" y1="80" x2="450" y2="112" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar)"></line>
+
+        <!-- ATS parser -->
+        <rect x="250" y="118" width="400" height="72" rx="6" fill="none" stroke="var(--cheap)" stroke-width="2"></rect>
+        <text x="450" y="146" text-anchor="middle" font-family="IBM Plex Sans" font-size="14" font-weight="600" fill="currentColor">Layer 1a · ATS parser</text>
+        <text x="450" y="166" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="var(--muted)">regex · section headers · column + photo detection</text>
+        <text x="450" y="182" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="var(--cheap)">runs on every CV · no API cost</text>
+
+        <!-- confident path -->
+        <line x1="380" y1="190" x2="380" y2="324" stroke="var(--cheap)" stroke-width="2" marker-end="url(#arC)"></line>
+        <text x="370" y="250" text-anchor="end" font-family="IBM Plex Mono" font-size="11" fill="var(--cheap)">confidence OK</text>
+
+        <!-- fallback path -->
+        <polyline points="650,154 700,154 700,222" fill="none" stroke="var(--costly)" stroke-width="2" marker-end="url(#arX)"></polyline>
+        <text x="712" y="150" font-family="IBM Plex Mono" font-size="11" fill="var(--costly)">low confidence ·</text>
+        <text x="712" y="165" font-family="IBM Plex Mono" font-size="11" fill="var(--costly)">2-column · scanned</text>
+
+        <rect x="520" y="228" width="360" height="64" rx="6" fill="none" stroke="var(--costly)" stroke-width="2"></rect>
+        <text x="700" y="254" text-anchor="middle" font-family="IBM Plex Sans" font-size="14" font-weight="600" fill="currentColor">Layer 1b · LLM extractor</text>
+        <text x="700" y="274" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="var(--muted)">vision + JSON schema · costs a call</text>
+
+        <polyline points="700,292 700,310 560,310 560,324" fill="none" stroke="var(--costly)" stroke-width="2" marker-end="url(#arX)"></polyline>
+
+        <!-- canonical json -->
+        <rect x="250" y="330" width="400" height="64" rx="6" fill="none" stroke="currentColor" stroke-width="1.5"></rect>
+        <text x="450" y="356" text-anchor="middle" font-family="IBM Plex Sans" font-size="14" font-weight="600" fill="currentColor">Canonical CV JSON</text>
+        <text x="450" y="376" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="var(--muted)">name · education[] · skills[] · companies[]</text>
+
+        <line x1="450" y1="394" x2="450" y2="426" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar)"></line>
+        <text x="460" y="415" font-family="IBM Plex Mono" font-size="11" fill="var(--muted)">employer names</text>
+
+        <!-- tier resolver -->
+        <rect x="250" y="432" width="400" height="72" rx="6" fill="none" stroke="currentColor" stroke-width="1.5"></rect>
+        <text x="450" y="459" text-anchor="middle" font-family="IBM Plex Sans" font-size="14" font-weight="600" fill="currentColor">Company tier resolver</text>
+        <text x="450" y="478" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="var(--muted)">curated list + fuzzy match → tier 1 / 2 / 3</text>
+        <text x="450" y="494" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="var(--costly)">optional LLM lookup for unknown names only</text>
+
+        <line x1="450" y1="504" x2="450" y2="536" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar)"></line>
+
+        <!-- feature layer -->
+        <rect x="250" y="542" width="400" height="72" rx="6" fill="none" stroke="currentColor" stroke-width="1.5"></rect>
+        <text x="450" y="569" text-anchor="middle" font-family="IBM Plex Sans" font-size="14" font-weight="600" fill="currentColor">Feature &amp; matching layer</text>
+        <text x="450" y="589" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="var(--muted)">skill overlap · experience gap vs. required</text>
+        <text x="450" y="605" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="var(--muted)">education match · tenure-weighted tier</text>
+
+        <line x1="450" y1="614" x2="450" y2="646" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar)"></line>
+        <text x="460" y="636" font-family="IBM Plex Mono" font-size="11" fill="var(--muted)">feature vector</text>
+
+        <!-- NN trunk -->
+        <rect x="250" y="652" width="400" height="60" rx="6" fill="none" stroke="currentColor" stroke-width="1.5"></rect>
+        <text x="450" y="677" text-anchor="middle" font-family="IBM Plex Sans" font-size="14" font-weight="600" fill="currentColor">Layer 2 · multi-task neural net</text>
+        <text x="450" y="697" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="var(--muted)">shared trunk, four regression heads</text>
+
+        <line x1="296" y1="712" x2="296" y2="744" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar)"></line>
+        <line x1="398" y1="712" x2="398" y2="744" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar)"></line>
+        <line x1="500" y1="712" x2="500" y2="744" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar)"></line>
+        <line x1="602" y1="712" x2="602" y2="744" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar)"></line>
+
+        <rect x="250" y="750" width="92" height="42" rx="5" fill="none" stroke="currentColor" stroke-width="1.5"></rect>
+        <text x="296" y="770" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="currentColor">Education</text>
+        <text x="296" y="784" text-anchor="middle" font-family="IBM Plex Mono" font-size="10" fill="var(--muted)">0–100</text>
+        <rect x="352" y="750" width="92" height="42" rx="5" fill="none" stroke="currentColor" stroke-width="1.5"></rect>
+        <text x="398" y="770" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="currentColor">Experience</text>
+        <text x="398" y="784" text-anchor="middle" font-family="IBM Plex Mono" font-size="10" fill="var(--muted)">0–100</text>
+        <rect x="454" y="750" width="92" height="42" rx="5" fill="none" stroke="currentColor" stroke-width="1.5"></rect>
+        <text x="500" y="770" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="currentColor">Stack</text>
+        <text x="500" y="784" text-anchor="middle" font-family="IBM Plex Mono" font-size="10" fill="var(--muted)">0–100</text>
+        <rect x="556" y="750" width="92" height="42" rx="5" fill="none" stroke="currentColor" stroke-width="1.5"></rect>
+        <text x="602" y="770" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="currentColor">Company</text>
+        <text x="602" y="784" text-anchor="middle" font-family="IBM Plex Mono" font-size="10" fill="var(--muted)">0–100</text>
+
+        <line x1="296" y1="792" x2="296" y2="824" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar)"></line>
+        <line x1="398" y1="792" x2="398" y2="824" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar)"></line>
+        <line x1="500" y1="792" x2="500" y2="824" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar)"></line>
+        <line x1="602" y1="792" x2="602" y2="824" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar)"></line>
+
+        <rect x="250" y="830" width="400" height="52" rx="6" fill="none" stroke="currentColor" stroke-width="1.5"></rect>
+        <text x="450" y="852" text-anchor="middle" font-family="IBM Plex Sans" font-size="14" font-weight="600" fill="currentColor">Weighted combine</text>
+        <text x="450" y="870" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="var(--muted)">plain formula, not a 5th head — stays explainable</text>
+
+        <line x1="450" y1="882" x2="450" y2="914" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar)"></line>
+
+        <rect x="290" y="920" width="320" height="56" rx="6" fill="none" stroke="currentColor" stroke-width="2.5"></rect>
+        <text x="450" y="944" text-anchor="middle" font-family="IBM Plex Sans" font-size="15" font-weight="700" fill="currentColor">Top 20 candidates</text>
+        <text x="450" y="963" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="var(--muted)">ranked, with the four sub-scores shown</text>
+      </svg>
+    </div>
+    <figcaption>The branch at Layer 1 is the cost decision: <b>every CV goes through the free rule-based parser first</b>, and only the ones it can't read confidently — two-column layouts, sidebars, scanned pages — fall through to the LLM. Company tier is never printed on a CV, so it has to be resolved from the employer name. <b>None of this path is built yet</b>; it's what the dataset below exists to train and test.</figcaption>
+  </figure>
+
+  <figure>
+    <h2>Figure 2 — What exists today</h2>
+    <div class="figframe">
+      <svg viewBox="0 0 900 300" role="img" aria-label="Offline data pipeline: generate_mock_data.py produces labels as train and test JSONL files, render_cvs.py produces a corpus of 1000 PDFs across ten layouts, the two are aligned by row order, and together they feed the planned Layer 2 training and Layer 1 tuning steps." width="900" height="300">
+        <defs>
+          <marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"></path>
+          </marker>
+        </defs>
+        <!-- scripts -->
+        <rect x="12" y="30" width="176" height="58" rx="6" fill="none" stroke="currentColor" stroke-width="1.5"></rect>
+        <text x="100" y="55" text-anchor="middle" font-family="IBM Plex Mono" font-size="11.5" fill="currentColor">generate_mock_data</text>
+        <text x="100" y="73" text-anchor="middle" font-family="IBM Plex Mono" font-size="10.5" fill="var(--muted)">profiles + scoring formula</text>
+
+        <rect x="12" y="186" width="176" height="58" rx="6" fill="none" stroke="currentColor" stroke-width="1.5"></rect>
+        <text x="100" y="211" text-anchor="middle" font-family="IBM Plex Mono" font-size="11.5" fill="currentColor">render_cvs</text>
+        <text x="100" y="229" text-anchor="middle" font-family="IBM Plex Mono" font-size="10.5" fill="var(--muted)">10 layouts + scan degrade</text>
+
+        <line x1="188" y1="59" x2="248" y2="59" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar2)"></line>
+        <line x1="188" y1="215" x2="248" y2="215" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar2)"></line>
+
+        <!-- artefacts -->
+        <rect x="254" y="22" width="244" height="74" rx="6" fill="none" stroke="var(--cheap)" stroke-width="2"></rect>
+        <text x="376" y="46" text-anchor="middle" font-family="IBM Plex Sans" font-size="13.5" font-weight="600" fill="currentColor">Labels</text>
+        <text x="376" y="65" text-anchor="middle" font-family="IBM Plex Mono" font-size="10.5" fill="var(--muted)">train.jsonl 800 · test.jsonl 200</text>
+        <text x="376" y="81" text-anchor="middle" font-family="IBM Plex Mono" font-size="10.5" fill="var(--muted)">4 section scores per candidate</text>
+
+        <rect x="254" y="178" width="244" height="74" rx="6" fill="none" stroke="var(--cheap)" stroke-width="2"></rect>
+        <text x="376" y="202" text-anchor="middle" font-family="IBM Plex Sans" font-size="13.5" font-weight="600" fill="currentColor">CV corpus</text>
+        <text x="376" y="221" text-anchor="middle" font-family="IBM Plex Mono" font-size="10.5" fill="var(--muted)">1,000 PDFs · 10 layouts</text>
+        <text x="376" y="237" text-anchor="middle" font-family="IBM Plex Mono" font-size="10.5" fill="var(--muted)">easy / medium / hard / scanned</text>
+
+        <!-- alignment tie -->
+        <line x1="376" y1="96" x2="376" y2="178" stroke="var(--cheap)" stroke-width="1.5" stroke-dasharray="4 4"></line>
+        <text x="386" y="132" font-family="IBM Plex Mono" font-size="10.5" fill="var(--cheap)">same row order —</text>
+        <text x="386" y="147" font-family="IBM Plex Mono" font-size="10.5" fill="var(--cheap)">line 1 ↔ TRAIN00001.pdf</text>
+
+        <!-- planned consumers -->
+        <line x1="498" y1="45" x2="612" y2="45" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar2)"></line>
+        <text x="555" y="37" text-anchor="middle" font-family="IBM Plex Mono" font-size="10.5" fill="var(--muted)">section scores</text>
+
+        <polyline points="498,80 556,80 556,206 612,206" fill="none" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar2)"></polyline>
+        <text x="564" y="150" font-family="IBM Plex Mono" font-size="10.5" fill="var(--muted)">expected</text>
+        <text x="564" y="164" font-family="IBM Plex Mono" font-size="10.5" fill="var(--muted)">fields</text>
+
+        <line x1="498" y1="222" x2="612" y2="222" stroke="currentColor" stroke-width="1.5" marker-end="url(#ar2)"></line>
+        <text x="555" y="214" text-anchor="middle" font-family="IBM Plex Mono" font-size="10.5" fill="var(--muted)">documents</text>
+
+        <rect x="618" y="18" width="268" height="62" rx="6" fill="none" stroke="var(--planned)" stroke-width="1.5" stroke-dasharray="6 4"></rect>
+        <text x="752" y="43" text-anchor="middle" font-family="IBM Plex Sans" font-size="13.5" font-weight="600" fill="var(--planned)">Train Layer 2</text>
+        <text x="752" y="62" text-anchor="middle" font-family="IBM Plex Mono" font-size="10.5" fill="var(--planned)">needs job postings first</text>
+
+        <rect x="618" y="182" width="268" height="62" rx="6" fill="none" stroke="var(--planned)" stroke-width="1.5" stroke-dasharray="6 4"></rect>
+        <text x="752" y="207" text-anchor="middle" font-family="IBM Plex Sans" font-size="13.5" font-weight="600" fill="var(--planned)">Tune Layer 1</text>
+        <text x="752" y="226" text-anchor="middle" font-family="IBM Plex Mono" font-size="10.5" fill="var(--planned)">thresholds + prompts, no backprop</text>
+      </svg>
+    </div>
+    <div class="legend">
+      <span><i class="swatch" style="border-top-color: var(--cheap)"></i>built today</span>
+      <span><i class="swatch" style="border-top-color: var(--planned); border-top-style: dashed"></i>planned</span>
+      <span><i class="swatch" style="border-top-color: var(--costly)"></i>costs an API call</span>
+    </div>
+    <figcaption>Both layers train against their own ground truth, which is why they stay decoupled: the labels carry the exact structured fields <em>and</em> the section scores, so Layer 1 is scored on extraction accuracy and Layer 2 on score error — independently.</figcaption>
+  </figure>
+
+  <section>
+    <h2>Corpus difficulty — measured, not assumed</h2>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr><th>Tier</th><th>CVs</th><th>Chars recovered</th><th>Name found</th><th>All employers</th><th>Job year</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>easy — plain, linear</td><td class="num">296</td><td class="num">974</td><td class="num">86%</td><td class="num">100%</td><td class="num">80%</td></tr>
+          <tr><td>medium — styled, reordered</td><td class="num">281</td><td class="num">1,166</td><td class="num">56%</td><td class="num">100%</td><td class="num">83%</td></tr>
+          <tr><td>hard — sidebars, columns, grids</td><td class="num">377</td><td class="num">990</td><td class="num">76%</td><td class="num">100%</td><td class="num">90%</td></tr>
+          <tr class="scanrow"><td>scanned — image only</td><td class="num">46</td><td class="num">0</td><td class="num">0%</td><td class="num">0%</td><td class="num">0%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="standfirst" style="margin-top:14px; font-size:14px;">Run with <code style="font-family:var(--mono)">pdfplumber</code> over 30 CVs per tier. Scanned CVs return literally nothing — they exist to force the vision path. The sub-100% name rates elsewhere are deliberate too: uppercase names and <code style="font-family:var(--mono)">Mar '19</code> two-digit years are things a parser has to handle, not bugs.</p>
+  </section>
+
+  <footer>
+    <div class="files">
+      <div><b>data/train.jsonl · test.jsonl</b> — labels, one candidate per line</div>
+      <div><b>data/cvs_pdf/{train,test}/</b> — the rendered CVs, joined by id</div>
+      <div><b>data/cvs_pdf/manifest.csv</b> — template, difficulty, skill mode per CV</div>
+      <div><b>data/cvs_pdf/_layout_samples.pdf</b> — all ten layouts on one sheet</div>
+    </div>
+  </footer>
+</div>
+
+</body>
+</html>
