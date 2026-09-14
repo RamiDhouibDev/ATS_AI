@@ -117,7 +117,7 @@
     <h1>Pipeline Map</h1>
     <p class="standfirst">How a stack of CVs and one job posting turn into a ranked top 20 — and which parts of that path actually exist today.</p>
     <div class="status">
-      <div class="chip"><span class="dot built"></span>Built — 1,000 labelled CVs + PDF corpus</div>
+      <div class="chip"><span class="dot built"></span>Built — 1,000 labelled CVs across 10 layouts</div>
       <div class="chip"><span class="dot next"></span>Next — job postings, then Layer 2</div>
       <div class="chip"><span class="dot no"></span>Not built — extraction, scoring, ranking</div>
     </div>
@@ -272,7 +272,7 @@
 
         <rect x="254" y="178" width="244" height="74" rx="6" fill="none" stroke="var(--cheap)" stroke-width="2"></rect>
         <text x="376" y="202" text-anchor="middle" font-family="IBM Plex Sans" font-size="13.5" font-weight="600" fill="currentColor">CV corpus</text>
-        <text x="376" y="221" text-anchor="middle" font-family="IBM Plex Mono" font-size="10.5" fill="var(--muted)">1,000 PDFs · 10 layouts</text>
+        <text x="376" y="221" text-anchor="middle" font-family="IBM Plex Mono" font-size="10.5" fill="var(--muted)">1,000 PDFs · 10 layouts · 841 1pp / 159 2pp</text>
         <text x="376" y="237" text-anchor="middle" font-family="IBM Plex Mono" font-size="10.5" fill="var(--muted)">easy / medium / hard / scanned</text>
 
         <!-- alignment tie -->
@@ -316,14 +316,31 @@
           <tr><th>Tier</th><th>CVs</th><th>Chars recovered</th><th>Name found</th><th>All employers</th><th>Job year</th></tr>
         </thead>
         <tbody>
-          <tr><td>easy — plain, linear</td><td class="num">296</td><td class="num">974</td><td class="num">86%</td><td class="num">100%</td><td class="num">80%</td></tr>
-          <tr><td>medium — styled, reordered</td><td class="num">281</td><td class="num">1,166</td><td class="num">56%</td><td class="num">100%</td><td class="num">83%</td></tr>
-          <tr><td>hard — sidebars, columns, grids</td><td class="num">377</td><td class="num">990</td><td class="num">76%</td><td class="num">100%</td><td class="num">90%</td></tr>
-          <tr class="scanrow"><td>scanned — image only</td><td class="num">46</td><td class="num">0</td><td class="num">0%</td><td class="num">0%</td><td class="num">0%</td></tr>
+          <tr><td>easy — plain, linear</td><td class="num">301</td><td class="num">1,654</td><td class="num">83%</td><td class="num">100%</td><td class="num">90%</td></tr>
+          <tr><td>medium — styled, reordered</td><td class="num">287</td><td class="num">1,589</td><td class="num">60%</td><td class="num">100%</td><td class="num">93%</td></tr>
+          <tr><td>hard — sidebars, columns, grids</td><td class="num">373</td><td class="num">1,414</td><td class="num">96%</td><td class="num">100%</td><td class="num">93%</td></tr>
+          <tr class="scanrow"><td>scanned — image only</td><td class="num">39</td><td class="num">0</td><td class="num">0%</td><td class="num">6%</td><td class="num">6%</td></tr>
         </tbody>
       </table>
     </div>
-    <p class="standfirst" style="margin-top:14px; font-size:14px;">Run with <code style="font-family:var(--mono)">pdfplumber</code> over 30 CVs per tier. Scanned CVs return literally nothing — they exist to force the vision path. The sub-100% name rates elsewhere are deliberate too: uppercase names and <code style="font-family:var(--mono)">Mar '19</code> two-digit years are things a parser has to handle, not bugs.</p>
+    <p class="standfirst" style="margin-top:14px; font-size:14px;">Run with <code style="font-family:var(--mono)">pdfplumber</code> over 30 CVs per tier. Scanned CVs return literally nothing — they exist to force the vision path. The tiers rank <em>reading-order</em> difficulty, not character recovery, which is why "hard" can yield more recoverable text than "easy": a sidebar CV gives you plenty of words, just in an order that makes fields hard to associate. Sub-100% name rates come from uppercase names, and the year gaps from <code style="font-family:var(--mono)">Mar '19</code> two-digit formats — both deliberate.</p>
+  </section>
+
+  <section>
+    <h2>What makes a document hard</h2>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Trap</th><th>Count</th><th>Why it defeats a parser</th></tr></thead>
+        <tbody>
+          <tr><td>Sidebar / two-column / grid</td><td class="num">373</td><td style="text-align:left">Text serialises across columns, so job titles interleave with skills</td></tr>
+          <tr><td>Contact in page header only</td><td class="num">117</td><td style="text-align:left">Most ATS parsers never read headers or footers</td></tr>
+          <tr><td>Skills as a bordered table</td><td class="num">118</td><td style="text-align:left">Cells flatten into one jumbled run, or vanish</td></tr>
+          <tr><td>Skill years never stated</td><td class="num">796</td><td style="text-align:left">Per-skill experience has to be inferred from job history</td></tr>
+          <tr class="scanrow"><td>Image-only scan</td><td class="num">39</td><td style="text-align:left">No text layer at all — vision or nothing</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="standfirst" style="margin-top:14px; font-size:14px;">Documents carry the depth real CVs do: 3–5 quantified bullets on the most recent role tapering to 1–2 on older ones, thesis titles and coursework for recent graduates, publications for PhDs, certifications with issuer and year, and projects that juniors lean on and seniors mostly drop. Length follows seniority — 841 one-page CVs, 159 two-page, with the long ones concentrated at 8+ years.</p>
   </section>
 
   <footer>
@@ -335,6 +352,5 @@
     </div>
   </footer>
 </div>
-
 </body>
 </html>

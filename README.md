@@ -148,16 +148,16 @@ The documents are what Layer 1 has to survive, so they vary the way real resumes
 - **Filler sections** a parser must *not* mistake for the real fields — certifications, languages, interests, awards, volunteering, "References available upon request".
 - **Page headers and footers** — 117 CVs put contact details *only* in a page header, which most ATS parsers ignore entirely; flagged as `contact_in_header_only` in the manifest.
 
-Length follows seniority the way real CVs do: **840 one-page** and **159 two-page** documents, with the two-pagers concentrated among candidates with 8+ years.
+Length follows seniority the way real CVs do: **841 one-page** and **159 two-page** documents, with the two-pagers concentrated among candidates with 8+ years.
 
-Difficulty tiers in the manifest: **easy** (301) plain linear layouts · **medium** (286) styled but linear · **hard** (373) sidebars, true multi-column, and table grids that scramble naive reading order · **scanned** (39) rasterised, skewed and noised into image-only PDFs.
+Difficulty tiers in the manifest: **easy** (301) plain linear layouts · **medium** (287) styled but linear · **hard** (373) sidebars, true multi-column, and table grids that scramble naive reading order · **scanned** (39) rasterised, skewed and noised into image-only PDFs.
 
 Measured with `pdfplumber` on 30 CVs per tier — characters recovered and how often ground-truth fields appear in the extracted text:
 
 | difficulty | chars extracted | name found | all employers found | job year found |
 |---|---|---|---|---|
-| easy | 1,653 | 83% | 100% | 90% |
-| medium | 1,686 | 63% | 100% | 93% |
+| easy | 1,654 | 83% | 100% | 90% |
+| medium | 1,589 | 60% | 100% | 93% |
 | hard | 1,414 | 96% | 100% | 93% |
 | **scanned** | **0** | **0%** | **6%** | **6%** |
 

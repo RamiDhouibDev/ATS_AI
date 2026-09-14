@@ -804,6 +804,7 @@ TEST00002,test,two_column_balanced,hard,A4,table,False,False,False,1,,cvs_pdf\te
 TEST00003,test,table_grid,hard,letter,bullets,False,False,False,2,,cvs_pdf\test\TEST00003.pdf
 TEST00004,test,two_column_balanced,hard,letter,categorised,False,False,False,1,,cvs_pdf\test\TEST00004.pdf
 TEST00005,test,two_column_balanced,hard,letter,years,True,False,False,1,,cvs_pdf\test\TEST00005.pdf
+TEST00006,test,minimal_centered,medium,A4,levels,False,False,False,1,,cvs_pdf\test\TEST00006.pdf
 TEST00007,test,table_grid,scanned,A4,plain,False,True,False,1,,cvs_pdf\test\TEST00007.pdf
 TEST00008,test,europass_style,hard,letter,years,True,False,False,1,,cvs_pdf\test\TEST00008.pdf
 TEST00009,test,right_sidebar_light,hard,A4,years,True,False,False,1,,cvs_pdf\test\TEST00009.pdf

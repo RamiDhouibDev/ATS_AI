@@ -81,6 +81,9 @@ def build_pdf(record, ctx, template_fn, fake, out_path: Path):
         str(out_path), pagesize=ctx["pagesize"],
         topMargin=top_margin, bottomMargin=margin, leftMargin=margin, rightMargin=margin,
         title=f"{record['name']} - CV", author=record["name"],
+        # Suppress the embedded creation timestamp so a re-run with the same seed
+        # produces byte-identical files instead of churning all 1,000 in git.
+        invariant=1,
     )
     painter = page_furniture(ctx, record, ctx["header_contact_text"], margin)
     story = template_fn(record, ctx, fake)
@@ -167,7 +170,7 @@ def render_record(record: dict, out_path: Path, seed: int, scanned_frac: float, 
 
 def build_contact_sheet(samples: list, out_path: Path, cols: int = 3):
     """One page thumbnail grid so the layout variety can be eyeballed at a glance."""
-    c = pdfcanvas.Canvas(str(out_path), pagesize=(11 * inch, 8.5 * inch))
+    c = pdfcanvas.Canvas(str(out_path), pagesize=(11 * inch, 8.5 * inch), invariant=1)
     cell_w, cell_h = 3.3 * inch, 3.6 * inch
     margin_x, margin_y = 0.4 * inch, 0.35 * inch
     per_page = cols * 2
