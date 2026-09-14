@@ -1,4 +1,12 @@
+# Data generation
 faker>=24.0
 reportlab>=4.1
 pymupdf>=1.24
 pillow>=10.0
+
+# Layer 1 extraction
+pdfplumber>=0.11
+rapidfuzz>=3.6
+
+# Tests
+pytest>=8.0

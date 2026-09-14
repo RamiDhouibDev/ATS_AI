@@ -7,9 +7,9 @@ flowchart TD
     CV[Candidate CV<br/>PDF, any layout]
     JD[Job posting<br/>required stack, years, weights]
 
-    subgraph L1["LAYER 1 - Extraction (not built yet)"]
-        ATS[ATS parser<br/>regex + layout signals<br/>free, runs on every CV]
-        LLM[LLM extractor<br/>vision + JSON schema<br/>costs an API call]
+    subgraph L1["LAYER 1 - Extraction"]
+        ATS[ATS parser - BUILT<br/>regex + layout signals<br/>free, runs on every CV]
+        LLM[LLM extractor - not built<br/>vision + JSON schema<br/>costs an API call]
         JSON[Canonical CV JSON<br/>name, education, skills, companies]
         TIER[Company tier resolver<br/>curated list + optional LLM]
     end
@@ -58,7 +58,50 @@ Also published at https://claude.ai/code/artifact/2a86c156-7aa3-4040-9ab0-f63a2b
 - Mock CV dataset generation (`data_gen/generate_mock_data.py` → `data/train.jsonl`, `data/test.jsonl`, `data/train.csv`, `data/test.csv`).
 - Visual CV rendering (`data_gen/render_cvs.py` + `cv_templates.py` + `cv_text.py` → `data/cvs_pdf/`) — every candidate also has a real PDF resume drawn from one of **ten distinct layouts**, graded by how hard it is to parse, including image-only "scanned" CVs with no text layer at all.
 
-**Not yet built:** the ATS rule-based parser, the LLM extraction fallback, the scoring model, the job-posting generator, training/eval code, and the end-to-end pipeline. This document is the design + roadmap for those phases.
+- **Layer 1 extraction** (`extraction/`) — the rule-based ATS parser, its confidence/escalation model, a field-level evaluation harness, and 37 unit tests.
+
+**Not yet built:** the LLM extraction fallback, the scoring model (Layer 2), the job-posting generator, and the end-to-end pipeline.
+
+---
+
+## Layer 1 results (held-out test split)
+
+```
+python -m extraction.tune --target 0.90     # fit escalation threshold on TRAIN
+python -m extraction.evaluate --split test  # score on held-out TEST
+pytest tests/ -q                            # 37 unit tests
+```
+
+| group | n | name | degree | skills F1 | jobs F1 | start date | yrs MAE | escalated |
+|---|---|---|---|---|---|---|---|---|
+| **all** | 200 | 93.5% | 94.0% | 90.1% | 85.1% | 97.7% | 0.94 | 6.0% |
+| easy | 60 | 100% | 100% | 91.6% | 89.2% | 97.3% | 1.34 | 0% |
+| medium | 50 | 100% | 100% | 94.0% | 90.7% | 98.6% | 0.54 | 0% |
+| hard | 78 | 98.7% | 100% | 94.2% | 85.9% | 97.5% | 0.86 | 0% |
+| scanned | 12 | 0% | 0% | 0% | 0% | 0% | — | 100% |
+
+Skills run at **99.9% precision / 82% recall** and employers at **95.9% / 76.5%** — the parser under-reads rather than inventing, which is the right failure direction when a downstream model consumes its output.
+
+Every scanned CV is escalated and nothing else is, so the 6% escalation rate is exactly the documents with no text layer. The remaining weak spots are sidebar and two-column employer extraction (~72% F1), which is what the LLM fallback is for.
+
+### What "training" means here
+
+There is no gradient training — the parser is regex, section-header detection and a vocabulary lookup. The one fitted parameter is the **confidence threshold** for escalating a CV to the LLM extractor, chosen on the train split by `extraction/tune.py` and written to `extraction/config.json`. It is a cost/quality trade-off, not an accuracy maximiser:
+
+| threshold | quality of kept parses | escalated |
+|---|---|---|
+| 0.00 | 86.3% | 0% |
+| **0.50** | **90.0%** | **5.5%** |
+| 0.80 | 94.9% | 35.5% |
+
+Escalating everything would maximise quality and cost the most. The fitted threshold is the cheapest one that still clears the target quality on train.
+
+### How it handles the hard layouts
+
+- **Reading order** — `pdfplumber`'s text walk interleaves sidebars into job history. `pdf_text.py` detects the gutter and emits whole columns in order. The test is done on *line* extents, not words: a wrapped prose line is a run of short tokens, and a space landing in the candidate band would otherwise split an ordinary single-column CV.
+- **Page furniture** — headers and footers are separated from the body, so contact details parked in a header (117 CVs) are still read rather than ignored, and page numbers don't pollute the sections.
+- **Employer identification** — tier-3 employers are invented names, so lookup is useless. A job header is split on its separators and the part *without* a job-title keyword is taken as the employer, which works across "Title, Employer", "Employer — Title", and grid layouts that put dates in their own column above the title.
+- **Broken glyphs** — symbol fonts without a Unicode map surface as `(cid:127)`; these are normalised to bullets so bullet lines aren't mistaken for job entries.
 
 ---
 
@@ -266,7 +309,7 @@ pipeline.py    end-to-end: CVs + job posting -> top 20 (CLI entry point)        
 2. ~~Render CVs to PDF (ten layouts, graded difficulty, scanned subset)~~ ✅
 3. Job posting generator + role-conditioned labeling formula → Layer 2 training pairs
 4. Layer 2 model, training, evaluation
-5. ATS rule-based parser + confidence/layout signals (Layer 1 resource-saving mode), evaluated against `data/cvs_pdf/`
+5. ~~ATS rule-based parser + confidence/layout signals, evaluated against `data/cvs_pdf/`~~ ✅
 6. LLM extraction fallback + LLM company-tier enrichment
 7. `pipeline.py` end-to-end CLI
 8. Iterate on metrics and tune thresholds/weights
