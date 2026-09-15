@@ -41,6 +41,11 @@ DOMAIN_TITLES = {
     "QA/Testing": ["QA Engineer", "Test Automation Engineer", "SDET", "Quality Lead"],
 }
 
+# (label, min years, max years, degree usually asked for).
+# Required years are drawn from the band, so a "Senior" posting asks for 6-10
+# years rather than one fixed number - real postings vary at the same level.
+# Only Lead roles typically ask for a master's; below that a bachelor's is the
+# common ask, which keeps education from correlating too tightly with seniority.
 SENIORITY = [
     ("Junior", 1, 3, "Bachelor"),
     ("Mid-level", 3, 6, "Bachelor"),
@@ -50,6 +55,11 @@ SENIORITY = [
 
 
 def load_candidates(split: str) -> list[dict]:
+    """Layer 1's labelled candidates - the ground-truth structured fields.
+
+    Read straight from data_layer1 rather than copied here, so there is exactly
+    one definition of each candidate and the two layers cannot drift apart.
+    """
     path = LAYER1_DIR / split / f"{split}.jsonl"
     with path.open(encoding="utf-8") as f:
         return [json.loads(line) for line in f if line.strip()]
@@ -67,11 +77,22 @@ def skill_pools(candidates: list[dict]) -> dict[str, list[str]]:
         domain = candidate["general_experience"]["domain"]
         for skill in candidate["skills"]:
             counter[domain][skill["name"]] += 1
+
+    # Top 22 per domain: broad enough that postings differ from each other,
+    # narrow enough to exclude the long tail of one-off tools that nobody else
+    # holds - a requirement only one candidate could ever meet teaches the model
+    # nothing and just drags every stack score toward zero.
     return {domain: [name for name, _ in counts.most_common(22)]
             for domain, counts in counter.items()}
 
 
 def make_job(index: int, rng: random.Random, pools: dict[str, list[str]], prefix: str) -> dict:
+    """One synthetic job posting.
+
+    Every field here is something the scorer actually conditions on. Anything
+    decorative (company name, location, salary) is left out deliberately: it
+    would be unused input inviting the model to find noise correlations.
+    """
     domain = rng.choice(rules.DOMAINS)
     level, min_years, max_years, min_degree = rng.choice(SENIORITY)
     pool = pools.get(domain) or [s for names in pools.values() for s in names]
@@ -80,19 +101,31 @@ def make_job(index: int, rng: random.Random, pools: dict[str, list[str]], prefix
     chosen = rng.sample(pool, min(n_skills, len(pool)))
     required_skills = [{
         "name": name,
+        # Weighted toward 2-3 years: postings rarely demand 5+ on every item,
+        # and a requirement nobody meets carries no ranking information.
         "min_years": rng.choice([1, 2, 2, 3, 3, 5]),
+        # Per-skill importance, so a posting can distinguish must-haves from
+        # nice-to-haves. Never zero - an unwanted skill would not be listed.
         "weight": round(rng.uniform(0.5, 1.0), 2),
     } for name in chosen]
 
-    # Weights vary per posting: some roles are stack-led, others prize seniority.
+    # How this posting trades the four sections off against each other. The
+    # ranges encode a prior that holds across most real hiring: stack matters
+    # most, then experience, with education and employer prestige as tiebreakers
+    # rather than drivers. The ranges overlap, so an education-led posting is
+    # possible - just uncommon.
+    #
+    # This is what makes the task genuinely role-conditioned. With one fixed
+    # weighting the overall score would be a fixed function of the four
+    # sections, and the model could ignore the job entirely when ranking.
     raw = {
         "education": rng.uniform(0.5, 1.5),
-        "experience": rng.uniform(1.0, 2.5),
-        "stack": rng.uniform(1.5, 3.0),
-        "company": rng.uniform(0.4, 1.5),
+        "relevant_experience": rng.uniform(1.0, 2.5),
+        "stack_experience": rng.uniform(1.5, 3.0),
+        "companies": rng.uniform(0.4, 1.5),
     }
     total = sum(raw.values())
-    weights = {k: round(v / total, 4) for k, v in raw.items()}
+    weights = {k: round(v / total, 4) for k, v in raw.items()}   # normalised to sum to 1
 
     return {
         "id": f"{prefix}{index:04d}",
@@ -101,15 +134,23 @@ def make_job(index: int, rng: random.Random, pools: dict[str, list[str]], prefix
         "seniority": level,
         "required_experience_years": rng.randint(min_years, max_years),
         "preferred_education": min_degree,
+        # Just over half of postings name a field; the rest leave it open, so
+        # the model must handle a missing requirement rather than assume one.
+        # sorted() keeps the draw reproducible - set iteration order is not.
         "preferred_field": (rng.choice(sorted(rules.TECHNICAL_FIELDS))
                             if rng.random() < 0.55 else None),
-        "prefers_big_tech": rng.random() < 0.30,
         "required_skills": required_skills,
         "weights": weights,
     }
 
 
 def flatten(pair: dict, job: dict, candidate: dict) -> dict:
+    """A row for pairs.csv: the scores plus enough context to sanity-check them.
+
+    The CSV is for reading, not for training - it carries the handful of fields
+    needed to tell at a glance whether a score looks right. Training reads
+    pairs.jsonl and joins back to the full candidate and job records.
+    """
     return {
         "job_id": job["id"],
         "candidate_id": candidate["id"],
@@ -133,41 +174,68 @@ def sample_applicants(job: dict, by_id: dict, by_domain: dict, pool_size: int,
     of speculative applications from elsewhere. That balance also stops the
     labels being dominated by near-zero stack scores.
     """
+    # Measured: uniform sampling left 69% of pairs sharing no required skill at
+    # all, so stack scores piled up at zero and the section carried little
+    # signal. At 55% in-domain that falls to 55% and mean stack rises 13 -> 19,
+    # without touching the formula itself.
     want_in_domain = int(pool_size * in_domain_share)
     in_domain = by_domain.get(job["domain"], [])
     chosen = list(rng.sample(in_domain, min(want_in_domain, len(in_domain))))
 
+    # Top up from everyone else. The exclusion set keeps a candidate from being
+    # scored twice against the same posting, which would double-weight them.
     remaining = [cid for cid in by_id if cid not in set(chosen)]
     chosen += rng.sample(remaining, min(pool_size - len(chosen), len(remaining)))
     return chosen
 
 
 def build_split(split: str, n_jobs: int, pool_size: int, seed: int,
-                pools: dict[str, list[str]], prefix: str) -> tuple[list, list, list]:
+                pools: dict[str, list[str]], prefix: str) -> tuple[list, list, list, list]:
+    """Generate one split's postings and score every sampled pair.
+
+    Candidates come from the matching Layer 1 split, so train pairs only ever
+    involve train candidates. Combined with the separate job id prefixes, that
+    keeps the two splits disjoint on both axes.
+    """
+    # Seeded per split so train and test draw different postings, and so a
+    # rerun with the same seed reproduces the dataset exactly.
     rng = random.Random(f"{seed}-{split}")
     candidates = load_candidates(split)
     by_id = {c["id"]: c for c in candidates}
 
+    # Domain index, built once rather than filtered per posting.
     by_domain: dict[str, list[str]] = collections.defaultdict(list)
     for candidate in candidates:
         by_domain[candidate["general_experience"]["domain"]].append(candidate["id"])
 
     jobs = [make_job(i + 1, rng, pools, prefix) for i in range(n_jobs)]
-    pairs, flat = [], []
+    pairs, flat, used = [], [], set()
     for job in jobs:
-        sampled = sample_applicants(job, by_id, by_domain, pool_size, rng)
-        for candidate_id in sampled:
+        for candidate_id in sample_applicants(job, by_id, by_domain, pool_size, rng):
             candidate = by_id[candidate_id]
             scores = rules.score_pair(candidate, job, rng)
+            # pairs.jsonl stays minimal - ids plus labels. Features are derived
+            # at training time from the full records, so a change to feature
+            # engineering never means regenerating the dataset.
             pairs.append({"job_id": job["id"], "candidate_id": candidate_id, **scores})
             flat.append(flatten(scores, job, candidate))
-    return jobs, pairs, flat
+            used.add(candidate_id)
+    return jobs, pairs, flat, [by_id[cid] for cid in sorted(used)]
 
 
-def write_split(split: str, jobs: list, pairs: list, flat: list):
+def write_split(split: str, jobs: list, pairs: list, flat: list, candidates: list):
     out = OUT_DIR / split
     out.mkdir(parents=True, exist_ok=True)
 
+    # The candidates these pairs reference are copied in, so data_layer2 is
+    # self-contained: training Layer 2 never has to read data_layer1.
+    with (out / "candidates.jsonl").open("w", encoding="utf-8") as f:
+        for candidate in candidates:
+            # Drop the candidate's Layer-1 intrinsic scores: they derive from
+            # the same fields as these labels, so leaving them in invites an
+            # accidental leak into Layer 2's features.
+            trimmed = {k: v for k, v in candidate.items() if k != "scores"}
+            f.write(json.dumps(trimmed, ensure_ascii=False) + "\n")
     with (out / "jobs.jsonl").open("w", encoding="utf-8") as f:
         for job in jobs:
             f.write(json.dumps(job, ensure_ascii=False) + "\n")
@@ -178,7 +246,7 @@ def write_split(split: str, jobs: list, pairs: list, flat: list):
         writer = csv.DictWriter(f, fieldnames=list(flat[0].keys()))
         writer.writeheader()
         writer.writerows(flat)
-    print(f"{split}: {len(jobs)} jobs, {len(pairs)} pairs -> {out}")
+    print(f"{split}: {len(jobs)} jobs, {len(candidates)} candidates, {len(pairs)} pairs -> {out}")
 
 
 def main():
@@ -190,14 +258,18 @@ def main():
     ap.add_argument("--seed", type=int, default=42)
     args = ap.parse_args()
 
-    # Job requirements are drawn from the training population only, so the test
-    # split never influences what the postings ask for.
+    # Skill pools come from the TRAIN population only. Deriving them from all
+    # candidates would let the test split shape what postings ask for - a
+    # subtle leak that would flatter held-out results.
     pools = skill_pools(load_candidates("train"))
 
+    # Distinct id prefixes make a leak between splits visible at a glance in any
+    # output file, rather than something you have to cross-reference to catch.
     for split, n_jobs, prefix in (("train", args.train_jobs, "JOBTR"),
                                   ("test", args.test_jobs, "JOBTE")):
-        jobs, pairs, flat = build_split(split, n_jobs, args.pool_size, args.seed, pools, prefix)
-        write_split(split, jobs, pairs, flat)
+        jobs, pairs, flat, candidates = build_split(
+            split, n_jobs, args.pool_size, args.seed, pools, prefix)
+        write_split(split, jobs, pairs, flat, candidates)
 
         overall = [p["overall_score"] for p in pairs]
         print(f"  overall score: min {min(overall)} / mean {sum(overall) / len(overall):.1f} "

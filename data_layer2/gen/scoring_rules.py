@@ -142,7 +142,7 @@ def education_score(candidate: dict, job: dict) -> float:
     return clip(score)
 
 
-def experience_score(candidate: dict, job: dict) -> float:
+def relevant_experience_score(candidate: dict, job: dict) -> float:
     """Years of experience, discounted when it comes from another domain.
 
     The discount is what makes this role-conditioned. Without it the score would
@@ -169,7 +169,7 @@ def experience_score(candidate: dict, job: dict) -> float:
     return clip(85 * ratio ** 0.85)
 
 
-def stack_score(candidate: dict, job: dict) -> float:
+def stack_experience_score(candidate: dict, job: dict) -> float:
     """Weighted coverage of the stack this job actually asks for.
 
     Only the job's required skills count. A candidate with thirty unrelated
@@ -205,8 +205,13 @@ def stack_score(candidate: dict, job: dict) -> float:
     return clip(100 * earned / total_weight)
 
 
-def company_score(candidate: dict, job: dict) -> float:
-    """Tenure-weighted employer prestige, sharpened when the job wants big tech.
+def companies_score(candidate: dict, job: dict) -> float:
+    """Tenure-weighted employer prestige.
+
+    Big-tech experience is always a plus, never a per-posting preference: it is
+    one of the four sections being scored, so a job cannot switch it off. What a
+    job *can* do is weight this section more or less heavily against the other
+    three, which is handled by `weights["companies"]`.
 
     Weighted by tenure rather than counted per employer, so six years at a
     tier-1 firm outranks three one-year stints that happen to include one.
@@ -216,15 +221,8 @@ def company_score(candidate: dict, job: dict) -> float:
         return 18.0     # no employment history - graduates land here
 
     tenure = sum(c["years"] for c in companies) or 1.0
-    base = sum(TIER_POINTS.get(c["tier"], 35) * c["years"] for c in companies) / tenure
-
-    # Roughly a third of postings explicitly prefer a big-tech background. For
-    # those, having *ever* reached tier 1 matters more than the tenure-weighted
-    # average, so the best tier reached is rewarded and its absence penalised.
-    if job.get("prefers_big_tech"):
-        best_tier = min(c["tier"] for c in companies)   # 1 is the best tier
-        base += {1: 12, 2: 0, 3: -12}.get(best_tier, 0)
-    return clip(base)
+    return clip(sum(TIER_POINTS.get(c["tier"], 35) * c["years"]
+                    for c in companies) / tenure)
 
 
 def score_pair(candidate: dict, job: dict, rng: random.Random,
@@ -239,9 +237,9 @@ def score_pair(candidate: dict, job: dict, rng: random.Random,
     """
     sections = {
         "education_score": education_score(candidate, job),
-        "experience_score": experience_score(candidate, job),
-        "stack_score": stack_score(candidate, job),
-        "company_score": company_score(candidate, job),
+        "relevant_experience_score": relevant_experience_score(candidate, job),
+        "stack_experience_score": stack_experience_score(candidate, job),
+        "companies_score": companies_score(candidate, job),
     }
 
     # Gaussian jitter so the formula is not perfectly recoverable: the model
@@ -254,8 +252,8 @@ def score_pair(candidate: dict, job: dict, rng: random.Random,
     # from being one fixed formula across jobs.
     weights = job["weights"]
     overall = (noisy["education_score"] * weights["education"]
-               + noisy["experience_score"] * weights["experience"]
-               + noisy["stack_score"] * weights["stack"]
-               + noisy["company_score"] * weights["company"])
+               + noisy["relevant_experience_score"] * weights["relevant_experience"]
+               + noisy["stack_experience_score"] * weights["stack_experience"]
+               + noisy["companies_score"] * weights["companies"])
     noisy["overall_score"] = round(clip(overall))
     return noisy

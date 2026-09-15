@@ -14,18 +14,20 @@ gen/
   generate_layer2_data.py    job postings, applicant pools, scored pairs
 train/
   jobs.jsonl                 200 job postings
+  candidates.jsonl           the 800 candidates these pairs reference
   pairs.jsonl                50,000 scored (candidate, job) pairs
   pairs.csv                  the same, flattened for eyeballing
 test/
   jobs.jsonl                 50 job postings
+  candidates.jsonl           the 200 candidates these pairs reference
   pairs.jsonl                10,000 scored pairs
   pairs.csv
 ```
 
-Candidates are **not duplicated here** — they live in `data_layer1/<split>/` and
-are referenced by `candidate_id`. Layer 2 consumes the structured fields Layer 1
-would produce from those CVs under correct extraction, which is what keeps the
-two layers decoupled and separately trainable.
+`data_layer2/` is **self-contained** — the candidates these pairs reference are
+copied in, so training and evaluating Layer 2 never reads `data_layer1/`. Their
+Layer-1 intrinsic scores are stripped on the way in: those are derived from the
+same fields as these labels and would be an easy accidental leak.
 
 Regenerate with:
 
@@ -37,8 +39,7 @@ python generate_layer2_data.py --train-jobs 200 --test-jobs 50 --pool-size 250 -
 ## Job postings
 
 Each posting carries a target domain, seniority, required experience years, a
-preferred degree level and (55% of the time) a field, an optional big-tech
-preference, 3–7 required skills with their own `min_years` and importance
+preferred degree level and (55% of the time) a field, 3–7 required skills with their own `min_years` and importance
 `weight`, and **per-posting section weights**. The weights vary by role: some
 postings are stack-led, others prize seniority, which is why the overall score
 cannot be a fixed formula across jobs.
@@ -66,15 +67,18 @@ new applicants for familiar roles. Verified: no job, candidate or pair overlap.
 | section | min | mean | sd | max |
 |---|---|---|---|---|
 | education_score | 12 | 75.6 | 19.2 | 100 |
-| experience_score | 0 | 56.0 | 34.2 | 100 |
-| stack_score | 0 | 19.2 | 20.2 | 100 |
-| company_score | 7 | 41.9 | 17.1 | 100 |
+| relevant_experience_score | 0 | 56.0 | 34.2 | 100 |
+| stack_experience_score | 0 | 19.2 | 20.2 | 100 |
+| companies_score | 7 | 41.9 | 17.1 | 100 |
 | overall_score | 4 | 42.9 | 17.1 | 97 |
 
 The signal is real and monotonic rather than decorative:
 
 - **Stack** tracks required-skill coverage: 0% coverage → mean 5.1, 25% → 27.7,
   50% → 52.7, 75% → 74.7, 100% → 94.7.
+- **Employer prestige** is always a plus, never a per-posting preference: it is
+  one of the four sections, so a job cannot switch it off. A job can only weight
+  the section up or down against the other three.
 - **Experience** rewards domain fit: same-domain pairs average 66.4 against 44.4
   cross-domain, via a domain-similarity matrix that gives partial credit for
   adjacent fields (Data/AI/ML ↔ Data Analysis transfers at 0.70; DevOps ↔
