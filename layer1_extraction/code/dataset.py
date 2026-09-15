@@ -14,7 +14,7 @@ from pathlib import Path
 
 from .schema import CVRecord, from_ground_truth
 
-DATA_DIR = Path(__file__).resolve().parent.parent / "data"
+DATA_DIR = Path(__file__).resolve().parents[2] / "data_layer1"
 
 
 @dataclass
@@ -31,19 +31,22 @@ class Sample:
     pages: int
 
 
-def _load_manifest(data_dir: Path) -> dict[str, dict]:
-    path = data_dir / "cvs_pdf" / "manifest.csv"
-    with path.open(encoding="utf-8") as f:
+def _load_manifest(split_dir: Path) -> dict[str, dict]:
+    with (split_dir / "manifest.csv").open(encoding="utf-8") as f:
         return {row["id"]: row for row in csv.DictReader(f)}
 
 
 def load_split(split: str, data_dir: Path | None = None, limit: int | None = None) -> list[Sample]:
-    """Load one split, skipping any label whose PDF is missing."""
-    data_dir = data_dir or DATA_DIR
-    manifest = _load_manifest(data_dir)
+    """Load one split, skipping any label whose PDF is missing.
+
+    Each split owns its labels, manifest and documents under
+    data_layer1/<split>/.
+    """
+    split_dir = (data_dir or DATA_DIR) / split
+    manifest = _load_manifest(split_dir)
 
     samples: list[Sample] = []
-    with (data_dir / f"{split}.jsonl").open(encoding="utf-8") as f:
+    with (split_dir / f"{split}.jsonl").open(encoding="utf-8") as f:
         for line in f:
             if not line.strip():
                 continue
@@ -51,7 +54,7 @@ def load_split(split: str, data_dir: Path | None = None, limit: int | None = Non
             meta = manifest.get(record["id"])
             if meta is None:
                 continue
-            pdf_path = data_dir / meta["pdf_path"].replace("\\", "/")
+            pdf_path = split_dir / meta["pdf_path"].replace("\\", "/")
             if not pdf_path.exists():
                 continue
             samples.append(Sample(

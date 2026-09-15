@@ -97,6 +97,15 @@ def _name_like(line: str) -> str | None:
         return None
     if vocab.heading_for(stripped) or vocab.canonical_skill(stripped):
         return None
+
+    # Form layouts put the label on the same line as the value: "Personal
+    # Information John Caldwell". Only the contact label is stripped - doing it
+    # for every heading turns "Education And Training" into a "name".
+    heading, remainder = vocab.split_heading_prefix(stripped, require_upper=False)
+    if heading == "contact" and remainder and remainder != stripped:
+        stripped = remainder
+        if not stripped:
+            return None
     if NAME_LINE.match(stripped):
         return stripped.title() if stripped.isupper() else stripped
     # Templates that upper-case the name lose their capitalisation pattern.
@@ -106,6 +115,12 @@ def _name_like(line: str) -> str | None:
 
 
 def parse_name(document: Document, sections: dict[str, list[str]]) -> str | None:
+    # The name is set in the largest type on the page. That beats position,
+    # which a sidebar reorders so that contact details come first.
+    from_title = _name_like(document.title_line)
+    if from_title:
+        return from_title
+
     # A header holds "Name | email | phone" when contact details live up there.
     for line in document.header_text.splitlines():
         candidate = _name_like(SEPARATORS.split(line.strip())[0])
@@ -165,9 +180,58 @@ def _degree_rank(level: str | None) -> int:
     return order.index(level) if level in order else -1
 
 
-def parse_skills(lines: list[str]) -> list[Skill]:
-    """Canonicalise every recognisable skill token in the skills section."""
+STANDALONE_YEARS = re.compile(r"^\s*(\d+(?:\.\d+)?)\s*(?:yrs?|years?)\s*$", re.I)
+
+
+def canonical_skill_in(text: str) -> str | None:
+    """Canonicalise a token, tolerating a leading bullet glyph.
+
+    Symbol fonts map their bullet to an arbitrary letter, so a list entry can
+    arrive as "n Vue.js". Dropping the first token is safe because it only
+    counts when the remainder is itself a known skill - no two-word skill has a
+    recognised skill as its second word.
+    """
+    direct = vocab.canonical_skill(text)
+    if direct:
+        return direct
+    parts = text.strip().split(None, 1)
+    return vocab.canonical_skill(parts[1]) if len(parts) == 2 else None
+
+
+def recover_tabulated_skills(all_lines: list[str]) -> dict[str, float | None]:
+    """Recover skills from rows a table or rating-bar layout split across lines.
+
+    Those layouts emit "Kubernetes" and "20 yrs" as separate lines, which the
+    page's reading order can strand far from the skills heading. A line that is
+    *exactly* a known skill is a list entry, never prose, so this stays precise.
+    """
     found: dict[str, float | None] = {}
+    for index, line in enumerate(all_lines):
+        stripped = line.strip().lstrip("•»–—▪*- ").strip()
+        name = canonical_skill_in(stripped)
+        if not name:
+            continue
+        years = None
+        if index + 1 < len(all_lines):
+            following = STANDALONE_YEARS.match(all_lines[index + 1])
+            if following:
+                years = float(following.group(1))
+        if name not in found or found[name] is None:
+            found[name] = years
+    return found
+
+
+def parse_skills(lines: list[str], all_lines: list[str] | None = None) -> list[Skill]:
+    """Canonicalise every recognisable skill token in the skills section.
+
+    The section is read line by line and again as one joined string: narrow
+    columns wrap entries mid-token ("GCP (2" / "years)"), which only reassemble
+    once the lines are rejoined.
+    """
+    found: dict[str, float | None] = {}
+    lines = list(lines)
+    if len(lines) > 1:
+        lines = lines + [" ".join(lines)]
     for line in lines:
         if vocab.NOISE_MARKERS.search(line):
             continue
@@ -185,9 +249,13 @@ def parse_skills(lines: list[str]) -> list[Skill]:
             if years_match:
                 years = float(years_match.group(1) or years_match.group(2))
                 chunk = chunk[:years_match.start()].strip()
-            name = vocab.canonical_skill(chunk)
+            name = canonical_skill_in(chunk)
             if name and (name not in found or found[name] is None):
                 found[name] = years
+
+    for name, years in recover_tabulated_skills(all_lines or []).items():
+        if name not in found or found[name] is None:
+            found[name] = years
     return [Skill(name=n, years=y) for n, y in found.items()]
 
 
@@ -198,14 +266,24 @@ def _is_date_only(line: str) -> bool:
 
 
 def _employer_like(line: str) -> str | None:
-    """A standalone employer line: short, no job title, no dates."""
+    """The employer from a line such as "Adobe | Feb 2024 to Now | Berlin".
+
+    The employer commonly shares its line with dates and a location, so the
+    line is split first and only the leading field judged. Rejecting any line
+    that contains a date would drop those jobs entirely.
+    """
     stripped = line.strip()
-    if (not stripped or BULLET_START.match(stripped) or TITLE_KEYWORDS.search(stripped)
-            or DATE_RANGE.search(stripped) or vocab.heading_for(stripped)
-            or vocab.NOISE_MARKERS.search(stripped) or len(stripped) > 60
-            or EMAIL.search(stripped)):
+    if (not stripped or BULLET_START.match(stripped) or vocab.heading_for(stripped)
+            or vocab.NOISE_MARKERS.search(stripped) or EMAIL.search(stripped)
+            or len(stripped) > 90):
         return None
-    return SEPARATORS.split(stripped)[0].strip() or None
+
+    head = SEPARATORS.split(stripped)[0].strip()
+    if (not head or len(head) > 60 or TITLE_KEYWORDS.search(head)
+            or DATE_RANGE.search(head) or _is_date_only(head)
+            or vocab.canonical_skill(head) or not any(c.isalpha() for c in head)):
+        return None
+    return head
 
 
 def parse_companies(lines: list[str]) -> list[Company]:
@@ -340,11 +418,30 @@ def parse(document: Document, threshold: float = 0.0) -> ExtractionResult:
         experience_lines = sections.get("_preamble", []) + sum(
             (v for k, v in sections.items() if k not in vocab.SECTION_SYNONYMS), [])
 
+    # A sidebar is emitted before the main column, so main-column jobs can
+    # inherit the sidebar's last heading. Sweep the sections that plausibly
+    # carry spillover, but never education/projects/certifications - those
+    # produce job-shaped lines and sweeping them cost 22 points of precision.
+    spillover = [line for key in ("skills", "summary", "contact", "_preamble", "highlights")
+                 for line in sections.get(key, [])]
     companies = parse_companies(experience_lines)
+    if spillover:
+        seen = {c.name.lower() for c in companies}
+        for company in parse_companies(spillover):
+            if company.name.lower() not in seen and company.start_date:
+                seen.add(company.name.lower())
+                companies.append(company)
+    skills = parse_skills(skills_lines, lines)
+    if "skills" not in sections:
+        # No skills section on the page at all: add what the prose names.
+        known = {s.name for s in skills}
+        skills += [Skill(name=n) for n in vocab.skills_mentioned_in(document.body_text)
+                   if n not in known]
+
     record = CVRecord(
         name=parse_name(document, sections),
         education=parse_education(education_lines or lines),
-        skills=parse_skills(skills_lines),
+        skills=skills,
         companies=companies,
         total_years=total_years_from(companies),
     )

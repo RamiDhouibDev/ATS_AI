@@ -7,7 +7,7 @@ section order, how skills are presented, which filler sections appear. A small
 slice is degraded into image-only "scanned" PDFs with no text layer at all,
 which no text parser can read; those exist to force the vision/LLM fallback.
 
-Ground truth stays in data/{train,test}.jsonl, joined by candidate id. The
+Ground truth stays in data_layer1/<split>/<split>.jsonl, joined by id. The
 manifest records how hard each document should be to parse.
 
 Usage:
@@ -203,7 +203,7 @@ def main():
     parser.add_argument("--scanned-frac", type=float, default=0.04,
                         help="Fraction degraded into image-only scans")
     parser.add_argument("--seed", type=int, default=42)
-    parser.add_argument("--data-dir", type=str, default="../data")
+    parser.add_argument("--data-dir", type=str, default="..")
     parser.add_argument("--limit", type=int, default=None, help="Render only the first N per split")
     args = parser.parse_args()
 
@@ -213,10 +213,11 @@ def main():
 
     manifest, seen_templates, blocked = [], {}, []
     for split in ("train", "test"):
-        records = load_jsonl(data_dir / f"{split}.jsonl")
+        split_dir = data_dir / split
+        records = load_jsonl(split_dir / f"{split}.jsonl")
         if args.limit:
             records = records[:args.limit]
-        out_dir = data_dir / "cvs_pdf" / split
+        out_dir = split_dir / "cvs_pdf"
         out_dir.mkdir(parents=True, exist_ok=True)
 
         for record in records:
@@ -227,24 +228,25 @@ def main():
                 blocked.append(str(out_path))
                 continue
             manifest.append({"id": record["id"], "split": split,
-                             "pdf_path": str(out_path.relative_to(data_dir)), **meta})
+                             "pdf_path": f"cvs_pdf/{record['id']}.pdf", **meta})
             key = (meta["template"], meta["scanned"])
             if key not in seen_templates:
                 seen_templates[key] = out_path
         print(f"{split}: rendered {len(records)} CVs -> {out_dir}")
 
-    manifest_path = data_dir / "cvs_pdf" / "manifest.csv"
-    with manifest_path.open("w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=["id", "split", "template", "difficulty", "pagesize",
-                                                "skill_mode", "skill_years_stated", "scanned",
-                                                "contact_in_header_only", "pages",
-                                                "fallback", "pdf_path"])
-        writer.writeheader()
-        writer.writerows(manifest)
+    # One manifest per split, written beside that split's documents.
+    for split in ("train", "test"):
+        split_manifest = [row for row in manifest if row["split"] == split]
+        if not split_manifest:
+            continue
+        with (data_dir / split / "manifest.csv").open("w", encoding="utf-8", newline="") as f:
+            w = csv.DictWriter(f, fieldnames=list(split_manifest[0].keys()))
+            w.writeheader()
+            w.writerows(split_manifest)
 
     samples = [(f"{tpl}{' (scanned)' if sc else ''}", path)
                for (tpl, sc), path in sorted(seen_templates.items())]
-    sheet = data_dir / "cvs_pdf" / "_layout_samples.pdf"
+    sheet = data_dir / "_layout_samples.pdf"
     build_contact_sheet(samples, sheet)
 
     if blocked:
@@ -260,7 +262,7 @@ def main():
     for row in manifest:
         by_difficulty[row["difficulty"]] = by_difficulty.get(row["difficulty"], 0) + 1
     print(f"\nTotal {len(manifest)} CVs. Difficulty mix: {by_difficulty}")
-    print(f"Manifest: {manifest_path}")
+    print(f"Manifests: {data_dir / '<split>' / 'manifest.csv'}")
     print(f"Layout sample sheet: {sheet}")
 
 

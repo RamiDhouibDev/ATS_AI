@@ -111,6 +111,26 @@ _SKILL_LOOKUP = {s.lower(): s for s in CANONICAL_SKILLS}
 _SKILL_LOOKUP.update(SKILL_ALIASES)
 
 
+# Phrase matcher for skills named in prose. Longest first so "Spring Boot"
+# wins over "Spring"; lookarounds rather than \b because "C++" and "C#" end in
+# non-word characters.
+_SKILL_PHRASES = sorted(
+    set(CANONICAL_SKILLS) | {a for a in SKILL_ALIASES if len(a) > 3},
+    key=len, reverse=True)
+SKILL_PHRASE_RE = re.compile(
+    r"(?<!\w)(" + "|".join(re.escape(s) for s in _SKILL_PHRASES) + r")(?!\w)", re.I)
+
+
+def skills_mentioned_in(text: str) -> set[str]:
+    """Canonical skills named anywhere in free text.
+
+    Used only when a CV carries no skills section at all - real applicant
+    tracking systems read the experience prose in that case, and a tool named
+    in an achievement is a genuine claim to it.
+    """
+    return {canonical_skill(m.group(1)) or "" for m in SKILL_PHRASE_RE.finditer(text)} - {""}
+
+
 def canonical_skill(token: str) -> str | None:
     """Map a raw token to a canonical skill name, or None if unrecognised."""
     cleaned = token.strip().strip(".,;:|•-–—»▪()").strip()
@@ -142,7 +162,7 @@ def heading_for(line: str) -> str | None:
 _PREFIX_HEADINGS = sorted(HEADING_LOOKUP, key=len, reverse=True)
 
 
-def split_heading_prefix(line: str) -> tuple[str | None, str]:
+def split_heading_prefix(line: str, require_upper: bool = True) -> tuple[str | None, str]:
     """Split "WORK EXPERIENCE Mobile Engineer" into its heading and content.
 
     Form-style layouts put the section label in a left-hand column that lands on
@@ -158,10 +178,12 @@ def split_heading_prefix(line: str) -> tuple[str | None, str]:
         rest = stripped[len(synonym):]
         if not rest[:1] in (" ", ":"):
             continue
-        # Upper-case only. A categorised skills line ("Languages: Python, SQL")
-        # starts with a heading word too, and must not be read as a heading.
+        # Section splitting requires an upper-case label: a categorised skills
+        # line ("Languages: Python, SQL") starts with a heading word too and
+        # must not be read as a heading. Name extraction relaxes this, since it
+        # validates the remainder looks like a name anyway.
         prefix = stripped[:len(synonym)]
-        if not prefix.isupper():
+        if require_upper and not prefix.isupper():
             continue
         return HEADING_LOOKUP[synonym], rest.lstrip(" :").strip()
     return None, stripped

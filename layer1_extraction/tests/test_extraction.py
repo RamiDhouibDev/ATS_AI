@@ -1,18 +1,18 @@
 """Unit tests for the extraction layer.
 
 These cover the parsing rules directly. End-to-end accuracy against the corpus
-is measured by `python -m extraction.evaluate`, not here - this suite is meant
+is measured by `python -m layer1_extraction.code.evaluate`, not here - this suite is meant
 to stay fast and to pin the behaviours that were expensive to get right.
 """
 
 import pytest
 
-from extraction import vocab
-from extraction.ats_parser import (
-    find_date_range, parse_companies, parse_education, parse_skills,
+from layer1_extraction.code import vocab
+from layer1_extraction.code.ats_parser import (
+    canonical_skill_in, find_date_range, parse_companies, parse_education, parse_skills,
     score_confidence, split_sections, total_years_from,
 )
-from extraction.schema import CVRecord, Company, LayoutSignals
+from layer1_extraction.code.schema import CVRecord, Company, LayoutSignals
 
 
 class TestDateParsing:
@@ -121,6 +121,45 @@ class TestCompanies:
     def test_unknown_employer_defaults_to_tier_three(self):
         companies = parse_companies(["Engineer, Blue Orbit Labs", "2020 - 2022"])
         assert companies[0].tier == 3
+
+
+class TestAwkwardLayouts:
+    """Behaviours that cost real accuracy and are easy to regress."""
+
+    def test_employer_line_carrying_dates_and_location(self):
+        """"Adobe | February 2024 to Now | Berlin" - rejecting dated lines lost the job."""
+        companies = parse_companies(["Platform Engineer",
+                                     "Adobe | February 2024 to Now | North Jorge"])
+        assert len(companies) == 1
+        assert companies[0].name == "Adobe"
+        assert companies[0].start_date == "2024-02"
+
+    def test_skill_rows_split_across_lines_are_paired(self):
+        """Skills tables and rating bars emit the name and years as separate lines."""
+        skills = parse_skills([], ["Datadog", "15 yrs", "Grafana", "18 yrs"])
+        assert {s.name: s.years for s in skills} == {"Datadog": 15.0, "Grafana": 18.0}
+
+    def test_bullet_glyph_rendered_as_a_letter(self):
+        """Symbol fonts map their bullet to an arbitrary letter, e.g. "n Vue.js"."""
+        assert canonical_skill_in("n Vue.js") == "Vue.js"
+        assert canonical_skill_in("Vue.js") == "Vue.js"
+
+    def test_dropping_a_leading_token_cannot_invent_a_skill(self):
+        assert canonical_skill_in("Senior Engineer") is None
+        assert canonical_skill_in("Spring Boot") == "Spring Boot"
+
+    def test_wrapped_skills_line_is_rejoined(self):
+        """Narrow columns wrap mid-entry: "GCP (2" / "years)"."""
+        skills = parse_skills(["Java (6 years), GCP (2", "years)"])
+        assert {s.name for s in skills} >= {"Java", "GCP"}
+
+    def test_prose_mining_only_names_known_skills(self):
+        found = vocab.skills_mentioned_in(
+            "Migrated 10 services to Kubernetes, cutting spend by 45%.")
+        assert found == {"Kubernetes"}
+
+    def test_prose_mining_respects_word_boundaries(self):
+        assert vocab.skills_mentioned_in("Wrote Gopher tooling and Rustic scripts") == set()
 
 
 class TestEducation:

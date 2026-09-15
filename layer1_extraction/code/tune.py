@@ -10,7 +10,7 @@ CV would maximise quality and cost the most; escalating none is free and loses
 the hard documents. We pick the threshold that keeps the parse quality of the
 documents we *keep* above a target, while escalating as few as possible.
 
-    python -m extraction.tune --target 0.85
+    python -m layer1_extraction.code.tune --target 0.85
 """
 
 from __future__ import annotations
@@ -25,7 +25,7 @@ warnings.filterwarnings("ignore")
 from .ats_parser import parse
 from .dataset import load_split
 from .metrics import Report
-from .pdf_text import read_document
+from .pdf_text import read_document_cached as read_document
 
 CONFIG_PATH = Path(__file__).resolve().parent / "config.json"
 

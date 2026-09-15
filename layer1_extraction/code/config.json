@@ -1,0 +1,7 @@
+{
+  "escalation_threshold": 0.05,
+  "target_quality": 0.95,
+  "train_kept_quality": 0.9743,
+  "train_escalation_rate": 0.0338,
+  "train_size": 800
+}

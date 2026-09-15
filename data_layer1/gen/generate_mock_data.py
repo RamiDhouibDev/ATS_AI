@@ -424,7 +424,7 @@ def main():
     parser.add_argument("--n", type=int, default=1000, help="Total number of candidates")
     parser.add_argument("--train-frac", type=float, default=0.8, help="Fraction assigned to train")
     parser.add_argument("--seed", type=int, default=42, help="Random seed for reproducibility")
-    parser.add_argument("--out-dir", type=str, default="../data", help="Output directory (relative to this script)")
+    parser.add_argument("--out-dir", type=str, default="..", help="Output directory (relative to this script)")
     args = parser.parse_args()
 
     random.seed(args.seed)
@@ -447,10 +447,12 @@ def main():
     out_dir = (Path(__file__).parent / args.out_dir).resolve()
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    write_jsonl(train_records, out_dir / "train.jsonl")
-    write_jsonl(test_records, out_dir / "test.jsonl")
-    write_csv(train_records, out_dir / "train.csv")
-    write_csv(test_records, out_dir / "test.csv")
+    # Each split owns its own folder under train_test_data/.
+    for split, records_for_split in (("train", train_records), ("test", test_records)):
+        split_dir = out_dir / split
+        split_dir.mkdir(parents=True, exist_ok=True)
+        write_jsonl(records_for_split, split_dir / f"{split}.jsonl")
+        write_csv(records_for_split, split_dir / f"{split}.csv")
 
     print(f"Wrote {len(train_records)} train / {len(test_records)} test records to {out_dir}")
 

@@ -1,6 +1,6 @@
 """Scores Layer 1 against held-out labels.
 
-    python -m extraction.evaluate --split test
+    python -m layer1_extraction.code.evaluate --split test
 
 Reports field-level accuracy overall and broken down by difficulty tier,
 template and the specific traps the corpus builds in, using the escalation
@@ -20,7 +20,7 @@ warnings.filterwarnings("ignore")
 from .ats_parser import parse
 from .dataset import load_split
 from .metrics import HEADER, Report
-from .pdf_text import read_document
+from .pdf_text import read_document_cached as read_document
 from .tune import CONFIG_PATH
 
 
@@ -45,6 +45,7 @@ def main():
           f"at escalation threshold {threshold:.2f}\n")
 
     overall = Report()
+    text_only = Report()   # excludes scanned CVs, which carry no text at all
     by_difficulty: dict[str, Report] = defaultdict(Report)
     by_template: dict[str, Report] = defaultdict(Report)
     by_trap: dict[str, Report] = defaultdict(Report)
@@ -56,6 +57,8 @@ def main():
 
         for report in (overall, by_difficulty[sample.difficulty], by_template[sample.template]):
             report.add(result.record, sample.gold, escalated)
+        if not sample.scanned:
+            text_only.add(result.record, sample.gold, escalated)
         by_trap["skill years stated" if sample.skill_years_stated
                 else "skill years implicit"].add(result.record, sample.gold, escalated)
         if sample.contact_in_header_only:
@@ -68,6 +71,7 @@ def main():
     print(f"\n{HEADER}")
     print("-" * len(HEADER))
     print(overall.as_row("ALL"))
+    print(text_only.as_row("ALL (text CVs)"))
 
     print("\nby difficulty")
     for key in ("easy", "medium", "hard", "scanned"):
