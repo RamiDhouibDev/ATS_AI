@@ -45,7 +45,7 @@ def parse_quality(predicted, gold) -> float:
 
 def evaluate_threshold(scored: list[tuple[float, float]], threshold: float) -> tuple[float, float]:
     """Returns (mean quality of kept parses, escalation rate)."""
-    kept = [q for conf, q in scored if conf >= threshold]
+    kept = [quality for confidence, quality in scored if confidence >= threshold]
     escalated = len(scored) - len(kept)
     mean_quality = sum(kept) / len(kept) if kept else 1.0
     return mean_quality, escalated / len(scored)
@@ -63,12 +63,12 @@ def main():
     print(f"Fitting on {len(samples)} training CVs...")
 
     scored: list[tuple[float, float]] = []
-    for i, sample in enumerate(samples, 1):
+    for index, sample in enumerate(samples, 1):
         document = read_document(sample.pdf_path)
         result = parse(document)
         scored.append((result.confidence, parse_quality(result.record, sample.gold)))
-        if i % 100 == 0:
-            print(f"  {i}/{len(samples)}")
+        if index % 100 == 0:
+            print(f"  {index}/{len(samples)}")
 
     print(f"\n{'threshold':>9s} {'kept quality':>13s} {'escalated':>10s}")
     best = None

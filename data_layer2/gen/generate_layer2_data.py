@@ -61,8 +61,8 @@ def load_candidates(split: str) -> list[dict]:
     one definition of each candidate and the two layers cannot drift apart.
     """
     path = LAYER1_DIR / split / f"{split}.jsonl"
-    with path.open(encoding="utf-8") as f:
-        return [json.loads(line) for line in f if line.strip()]
+    with path.open(encoding="utf-8") as handle:
+        return [json.loads(line) for line in handle if line.strip()]
 
 
 def skill_pools(candidates: list[dict]) -> dict[str, list[str]]:
@@ -95,7 +95,7 @@ def make_job(index: int, rng: random.Random, pools: dict[str, list[str]], prefix
     """
     domain = rng.choice(rules.DOMAINS)
     level, min_years, max_years, min_degree = rng.choice(SENIORITY)
-    pool = pools.get(domain) or [s for names in pools.values() for s in names]
+    pool = pools.get(domain) or [name for names in pools.values() for name in names]
 
     n_skills = rng.randint(3, 7)
     chosen = rng.sample(pool, min(n_skills, len(pool)))
@@ -125,7 +125,8 @@ def make_job(index: int, rng: random.Random, pools: dict[str, list[str]], prefix
         "companies": rng.uniform(0.4, 1.5),
     }
     total = sum(raw.values())
-    weights = {k: round(v / total, 4) for k, v in raw.items()}   # normalised to sum to 1
+    weights = {section: round(weight / total, 4)                 # normalised to sum to 1
+               for section, weight in raw.items()}
 
     return {
         "id": f"{prefix}{index:04d}",
@@ -234,7 +235,8 @@ def write_split(split: str, jobs: list, pairs: list, flat: list, candidates: lis
             # Drop the candidate's Layer-1 intrinsic scores: they derive from
             # the same fields as these labels, so leaving them in invites an
             # accidental leak into Layer 2's features.
-            trimmed = {k: v for k, v in candidate.items() if k != "scores"}
+            trimmed = {field: value for field, value in candidate.items()
+                       if field != "scores"}
             f.write(json.dumps(trimmed, ensure_ascii=False) + "\n")
     with (out / "jobs.jsonl").open("w", encoding="utf-8") as f:
         for job in jobs:
@@ -271,7 +273,7 @@ def main():
             split, n_jobs, args.pool_size, args.seed, pools, prefix)
         write_split(split, jobs, pairs, flat, candidates)
 
-        overall = [p["overall_score"] for p in pairs]
+        overall = [pair["overall_score"] for pair in pairs]
         print(f"  overall score: min {min(overall)} / mean {sum(overall) / len(overall):.1f} "
               f"/ max {max(overall)}")
 

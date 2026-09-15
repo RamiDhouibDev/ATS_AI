@@ -48,10 +48,10 @@ class CVRecord:
         return self.education[0] if self.education else None
 
     def skill_names(self) -> set[str]:
-        return {s.name for s in self.skills}
+        return {skill.name for skill in self.skills}
 
     def company_names(self) -> set[str]:
-        return {c.name for c in self.companies}
+        return {company.name for company in self.companies}
 
     def to_dict(self) -> dict:
         return asdict(self)
@@ -69,15 +69,15 @@ def from_ground_truth(record: dict) -> CVRecord:
     """Load a labelled record from data/{train,test}.jsonl into a CVRecord."""
     education = [
         Education(
-            level=e.get("level"),
-            field_of_study=e.get("field"),
-            institution=e.get("institution"),
-            start_year=e.get("start_year"),
-            end_year=e.get("end_year"),
+            level=entry.get("level"),
+            field_of_study=entry.get("field"),
+            institution=entry.get("institution"),
+            start_year=entry.get("start_year"),
+            end_year=entry.get("end_year"),
         )
-        for e in record.get("education", [])
+        for entry in record.get("education", [])
     ]
-    education.sort(key=lambda e: degree_rank(e.level), reverse=True)
+    education.sort(key=lambda entry: degree_rank(entry.level), reverse=True)
 
     general = record.get("general_experience", {})
     return CVRecord(
@@ -85,16 +85,17 @@ def from_ground_truth(record: dict) -> CVRecord:
         education=education,
         domain=general.get("domain"),
         total_years=general.get("total_years"),
-        skills=[Skill(name=s["name"], years=s.get("years")) for s in record.get("skills", [])],
+        skills=[Skill(name=skill["name"], years=skill.get("years"))
+                for skill in record.get("skills", [])],
         companies=[
             Company(
-                name=c["name"],
-                title=c.get("title"),
-                start_date=c.get("start_date"),
-                end_date=c.get("end_date"),
-                tier=c.get("tier"),
+                name=company["name"],
+                title=company.get("title"),
+                start_date=company.get("start_date"),
+                end_date=company.get("end_date"),
+                tier=company.get("tier"),
             )
-            for c in record.get("companies", [])
+            for company in record.get("companies", [])
         ],
     )
 

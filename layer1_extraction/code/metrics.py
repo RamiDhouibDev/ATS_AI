@@ -18,14 +18,15 @@ def _norm(text: str | None) -> str:
 
 def _match_sets(predicted: set[str], gold: set[str], fuzzy: bool = False) -> tuple[int, int, int]:
     """Returns (true positives, predicted count, gold count)."""
-    remaining = {_norm(g) for g in gold}
+    remaining = {_norm(name) for name in gold}
     hits = 0
-    for item in {_norm(p) for p in predicted}:
+    for item in {_norm(name) for name in predicted}:
         if item in remaining:
             remaining.discard(item)
             hits += 1
         elif fuzzy:
-            near = next((g for g in remaining if fuzz.ratio(item, g) >= FUZZY_MATCH), None)
+            near = next((candidate for candidate in remaining
+                         if fuzz.ratio(item, candidate) >= FUZZY_MATCH), None)
             if near:
                 remaining.discard(near)
                 hits += 1
@@ -54,8 +55,9 @@ class Tally:
 
     @property
     def f1(self) -> float:
-        p, r = self.precision, self.recall
-        return 2 * p * r / (p + r) if p + r else 0.0
+        precision, recall = self.precision, self.recall
+        return (2 * precision * recall / (precision + recall)
+                if precision + recall else 0.0)
 
 
 @dataclass
@@ -89,7 +91,8 @@ class Report:
         self.skills.add(*_match_sets(predicted.skill_names(), gold.skill_names()))
         self.companies.add(*_match_sets(predicted.company_names(), gold.company_names(), fuzzy=True))
 
-        gold_starts = {_norm(c.name): c.start_date for c in gold.companies}
+        gold_starts = {_norm(company.name): company.start_date
+                       for company in gold.companies}
         for company in predicted.companies:
             key = _norm(company.name)
             if key in gold_starts and gold_starts[key]:
@@ -105,7 +108,9 @@ class Report:
         return self.years_abs_error / self.years_scored if self.years_scored else float("nan")
 
     def as_row(self, label: str) -> str:
-        pct = lambda x: f"{x * 100:5.1f}%"
+        def pct(value):
+            return f"{value * 100:5.1f}%"
+
         return (f"{label:<22s} {self.n:>5d} "
                 f"{pct(self.name_correct / self.n if self.n else 0)} "
                 f"{pct(self.degree_correct / self.n if self.n else 0)} "

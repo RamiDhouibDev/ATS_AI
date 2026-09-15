@@ -43,7 +43,7 @@ class JobPosting:
     weights: dict[str, float] = field(default_factory=dict)
 
     def required_skill_names(self) -> set[str]:
-        return {s.name for s in self.required_skills}
+        return {requirement.name for requirement in self.required_skills}
 
 
 @dataclass
@@ -62,11 +62,11 @@ class Candidate:
         return self.education[0]["level"] if self.education else None
 
     def skill_years(self) -> dict[str, float]:
-        return {s["name"]: s["years"] for s in self.skills}
+        return {skill["name"]: skill["years"] for skill in self.skills}
 
     def best_tier(self) -> int | None:
         """Best employer tier reached; 1 is the strongest, None if never employed."""
-        return min((c["tier"] for c in self.companies), default=None)
+        return min((employer["tier"] for employer in self.companies), default=None)
 
 
 @dataclass
@@ -86,8 +86,8 @@ class Example:
 
 
 def _read_jsonl(path: Path) -> list[dict]:
-    with path.open(encoding="utf-8") as f:
-        return [json.loads(line) for line in f if line.strip()]
+    with path.open(encoding="utf-8") as handle:
+        return [json.loads(line) for line in handle if line.strip()]
 
 
 def load_jobs(split: str, data_dir: Path | None = None) -> dict[str, JobPosting]:
@@ -102,7 +102,8 @@ def load_jobs(split: str, data_dir: Path | None = None) -> dict[str, JobPosting]
             required_experience_years=raw["required_experience_years"],
             preferred_education=raw["preferred_education"],
             preferred_field=raw.get("preferred_field"),
-            required_skills=[SkillRequirement(**s) for s in raw.get("required_skills", [])],
+            required_skills=[SkillRequirement(**requirement)
+                             for requirement in raw.get("required_skills", [])],
             weights=raw.get("weights", {}),
         )
     return jobs
@@ -141,7 +142,8 @@ def load_examples(split: str, limit: int | None = None,
         if job is None or candidate is None:
             orphans += 1
             continue
-        labels = {k: v for k, v in pair.items() if k.endswith("_score")}
+        labels = {field: score for field, score in pair.items()
+                  if field.endswith("_score")}
         examples.append(Example(candidate=candidate, job=job, labels=labels))
         if limit and len(examples) >= limit:
             break
@@ -170,12 +172,12 @@ def load_ranking_pools(split: str, limit_jobs: int | None = None
 def describe(split: str) -> dict:
     """Shape of a split - a sanity check before training on it."""
     pools = load_ranking_pools(split)
-    examples = [e for _, pool in pools for e in pool]
-    overall = [e.overall for e in examples]
+    examples = [example for _, pool in pools for example in pool]
+    overall = [example.overall for example in examples]
     return {
         "split": split,
         "jobs": len(pools),
-        "candidates": len({e.candidate.id for e in examples}),
+        "candidates": len({example.candidate.id for example in examples}),
         "pairs": len(examples),
         "pool_size": len(examples) // max(1, len(pools)),
         "overall_min": min(overall),

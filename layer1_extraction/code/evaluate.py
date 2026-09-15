@@ -50,7 +50,7 @@ def main():
     by_template: dict[str, Report] = defaultdict(Report)
     by_trap: dict[str, Report] = defaultdict(Report)
 
-    for i, sample in enumerate(samples, 1):
+    for index, sample in enumerate(samples, 1):
         document = read_document(sample.pdf_path)
         result = parse(document, threshold=threshold)
         escalated = result.needs_llm
@@ -65,8 +65,8 @@ def main():
             by_trap["contact in header only"].add(result.record, sample.gold, escalated)
         if sample.pages > 1:
             by_trap["multi-page"].add(result.record, sample.gold, escalated)
-        if i % 100 == 0:
-            print(f"  {i}/{len(samples)}")
+        if index % 100 == 0:
+            print(f"  {index}/{len(samples)}")
 
     print(f"\n{HEADER}")
     print("-" * len(HEADER))
@@ -79,7 +79,7 @@ def main():
             print(by_difficulty[key].as_row(f"  {key}"))
 
     print("\nby template")
-    for key in sorted(by_template, key=lambda k: -by_template[k].n):
+    for key in sorted(by_template, key=lambda name: -by_template[name].n):
         print(by_template[key].as_row(f"  {key}"))
 
     print("\nby trap")

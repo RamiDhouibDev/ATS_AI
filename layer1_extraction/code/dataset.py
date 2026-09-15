@@ -32,8 +32,8 @@ class Sample:
 
 
 def _load_manifest(split_dir: Path) -> dict[str, dict]:
-    with (split_dir / "manifest.csv").open(encoding="utf-8") as f:
-        return {row["id"]: row for row in csv.DictReader(f)}
+    with (split_dir / "manifest.csv").open(encoding="utf-8") as handle:
+        return {row["id"]: row for row in csv.DictReader(handle)}
 
 
 def load_split(split: str, data_dir: Path | None = None, limit: int | None = None) -> list[Sample]:
@@ -46,8 +46,8 @@ def load_split(split: str, data_dir: Path | None = None, limit: int | None = Non
     manifest = _load_manifest(split_dir)
 
     samples: list[Sample] = []
-    with (split_dir / f"{split}.jsonl").open(encoding="utf-8") as f:
-        for line in f:
+    with (split_dir / f"{split}.jsonl").open(encoding="utf-8") as handle:
+        for line in handle:
             if not line.strip():
                 continue
             record = json.loads(line)

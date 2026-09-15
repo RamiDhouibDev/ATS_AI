@@ -180,7 +180,7 @@ def stack_experience_score(candidate: dict, job: dict) -> float:
     if not required:
         return 50.0     # no stated stack; neutral rather than punishing
 
-    held = {s["name"]: s["years"] for s in candidate["skills"]}
+    held = {skill["name"]: skill["years"] for skill in candidate["skills"]}
     total_weight = sum(r["weight"] for r in required)
 
     earned = 0.0
@@ -220,9 +220,9 @@ def companies_score(candidate: dict, job: dict) -> float:
     if not companies:
         return 18.0     # no employment history - graduates land here
 
-    tenure = sum(c["years"] for c in companies) or 1.0
-    return clip(sum(TIER_POINTS.get(c["tier"], 35) * c["years"]
-                    for c in companies) / tenure)
+    tenure = sum(employer["years"] for employer in companies) or 1.0
+    return clip(sum(TIER_POINTS.get(employer["tier"], 35) * employer["years"]
+                    for employer in companies) / tenure)
 
 
 def score_pair(candidate: dict, job: dict, rng: random.Random,
@@ -245,7 +245,8 @@ def score_pair(candidate: dict, job: dict, rng: random.Random,
     # Gaussian jitter so the formula is not perfectly recoverable: the model
     # should learn the shape of the relationship, not reproduce arithmetic.
     # sigma=3 on a 0-100 scale is small enough to preserve ranking within a job.
-    noisy = {k: round(clip(v + rng.gauss(0, noise_sigma))) for k, v in sections.items()}
+    noisy = {section: round(clip(score + rng.gauss(0, noise_sigma)))
+             for section, score in sections.items()}
 
     # Per-posting weights: a stack-led role and a seniority-led role combine the
     # same four sections differently, which is exactly what stops the overall

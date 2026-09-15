@@ -107,7 +107,7 @@ EDUCATION_FIELDS = [
 NOISE_MARKERS = re.compile(
     r"references available|available upon request|page \d+\s*$", re.I)
 
-_SKILL_LOOKUP = {s.lower(): s for s in CANONICAL_SKILLS}
+_SKILL_LOOKUP = {name.lower(): name for name in CANONICAL_SKILLS}
 _SKILL_LOOKUP.update(SKILL_ALIASES)
 
 
@@ -115,10 +115,11 @@ _SKILL_LOOKUP.update(SKILL_ALIASES)
 # wins over "Spring"; lookarounds rather than \b because "C++" and "C#" end in
 # non-word characters.
 _SKILL_PHRASES = sorted(
-    set(CANONICAL_SKILLS) | {a for a in SKILL_ALIASES if len(a) > 3},
+    set(CANONICAL_SKILLS) | {alias for alias in SKILL_ALIASES if len(alias) > 3},
     key=len, reverse=True)
 SKILL_PHRASE_RE = re.compile(
-    r"(?<!\w)(" + "|".join(re.escape(s) for s in _SKILL_PHRASES) + r")(?!\w)", re.I)
+    r"(?<!\w)(" + "|".join(re.escape(phrase) for phrase in _SKILL_PHRASES) + r")(?!\w)",
+    re.I)
 
 
 def skills_mentioned_in(text: str) -> set[str]:
@@ -128,7 +129,8 @@ def skills_mentioned_in(text: str) -> set[str]:
     tracking systems read the experience prose in that case, and a tool named
     in an achievement is a genuine claim to it.
     """
-    return {canonical_skill(m.group(1)) or "" for m in SKILL_PHRASE_RE.finditer(text)} - {""}
+    return {canonical_skill(match.group(1)) or ""
+            for match in SKILL_PHRASE_RE.finditer(text)} - {""}
 
 
 def canonical_skill(token: str) -> str | None:
