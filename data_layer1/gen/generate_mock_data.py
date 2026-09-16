@@ -1,7 +1,10 @@
 """
 Generates a mock CV dataset: realistic-looking candidate profiles with a
 preset 0-100 score per section (education, general experience, stack,
-company/big-tech) plus an overall score.
+company/big-tech).
+
+Four scores per candidate, never a fifth: any total is a weighted sum of the
+four, and the weighting belongs to whoever is ranking, not to the data.
 
 Scores are role-agnostic (v1) - they reflect intrinsic CV strength, not
 fit against a specific job posting. Role-conditioned scoring (candidate x
@@ -71,7 +74,7 @@ DOMAIN_TITLES = {
                    "SDET", "Quality Engineer"],
 }
 
-# skill_name -> demand weight (0.5 - 1.0, how strongly it counts toward stack_score)
+# skill_name -> demand weight (0.5 - 1.0, how strongly it counts toward stack_experience_score)
 SKILLS = {
     # languages
     "Python": 1.00, "JavaScript": 0.90, "TypeScript": 0.92, "Java": 0.85,
@@ -339,19 +342,18 @@ def gen_candidate(fake: Faker) -> dict:
     # --- scores (deterministic formula + noise) ---
     education_score = noisy(level_base * field_weight)
 
-    general_experience_score = noisy(100 * (1 - math.exp(-total_years / 8)))
+    relevant_experience_score = noisy(100 * (1 - math.exp(-total_years / 8)))
 
     raw_stack = sum((min(sk["years"], 6) / 6) * SKILLS[sk["name"]] for sk in skills)
-    stack_score = noisy(100 * (1 - math.exp(-raw_stack / 4)))
+    stack_experience_score = noisy(100 * (1 - math.exp(-raw_stack / 4)))
 
     if companies:
         tenure_sum = sum(company["years"] for company in companies)
         company_raw = sum(TIER_POINTS[company["tier"]] * company["years"] for company in companies) / tenure_sum
-        company_score = noisy(company_raw)
+        companies_score = noisy(company_raw)
     else:
-        company_score = noisy(20)
+        companies_score = noisy(20)
 
-    overall_score = round(clip((education_score + general_experience_score + stack_score + company_score) / 4))
 
     # fake.name() attaches titles/suffixes ("Miss", "MD") that muddy the name label.
     name = f"{fake.first_name()} {fake.last_name()}"
@@ -367,10 +369,9 @@ def gen_candidate(fake: Faker) -> dict:
         "companies": companies,
         "scores": {
             "education_score": education_score,
-            "general_experience_score": general_experience_score,
-            "stack_score": stack_score,
-            "company_score": company_score,
-            "overall_score": overall_score,
+            "relevant_experience_score": relevant_experience_score,
+            "stack_experience_score": stack_experience_score,
+            "companies_score": companies_score,
         },
     }
 

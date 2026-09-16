@@ -23,3 +23,10 @@ needed, call it `index`.
 
 The one allowed single character is `_`, and only where the value is deliberately
 discarded (`for _ in range(n)`, `first, _ = pair`). It is a placeholder, not a name.
+
+## Answering
+
+**Answer short and clear, for someone new to this.** Lead with the direct
+answer in a sentence or two, then only what is needed to act on it. Explain a
+term the first time it appears. No walls of text, no restating the question, no
+listing everything that might matter — cut to what the reader actually asked.

@@ -68,19 +68,19 @@ from __future__ import annotations
 import torch
 import torch.nn as nn
 
-from ..data.torch_data import Encoder
+from ..data.torch_data import Vocabulary
 
 
 class SectionScorer(nn.Module):
     """PLACEHOLDER - shared trunk plus four section heads."""
 
-    def __init__(self, encoder: Encoder):
+    def __init__(self, vocabulary: Vocabulary):
         super().__init__()
-        # The encoder carries the vocabulary sizes any embedding table needs:
+        # The vocabulary carries the vocabulary sizes any embedding table needs:
         # n_skills, n_fields, n_domains, n_seniorities, n_degrees, n_tiers.
         # Index 0 is reserved in every one of them for padding, missing, and
         # unseen-at-test, so every table needs padding_idx=0.
-        self.encoder = encoder
+        self.vocabulary = vocabulary
 
         # TODO: embedding tables, the branches that pool them, the shared trunk,
         # and four heads.
@@ -104,10 +104,10 @@ if __name__ == "__main__":
     # thing `forward` has to consume.
     from ..data.torch_data import make_loaders
 
-    train_loader, _, _, encoder = make_loaders(batch_size=4)
-    print(f"vocabularies   {encoder.n_skills} skills | {encoder.n_fields} fields | "
-          f"{encoder.n_domains} domains | {encoder.n_seniorities} seniorities | "
-          f"{encoder.n_degrees} degrees | {encoder.n_tiers} tiers")
+    train_loader, _, _, vocabulary = make_loaders(batch_size=4)
+    print(f"vocabularies   {vocabulary.n_skills} skills | {vocabulary.n_fields} fields | "
+          f"{vocabulary.n_domains} domains | {vocabulary.n_seniorities} seniorities | "
+          f"{vocabulary.n_degrees} degrees | {vocabulary.n_tiers} tiers")
     print("one batch:")
     for key, value in next(iter(train_loader)).items():
         shape = tuple(value.shape) if torch.is_tensor(value) else f"list[{len(value)}]"

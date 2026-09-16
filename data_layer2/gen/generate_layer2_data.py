@@ -292,9 +292,10 @@ def main():
             split, n_jobs, args.pool_size, args.seed, pools, prefix)
         write_split(split, jobs, pairs, flat, candidates)
 
-        overall = [pair["overall_score"] for pair in pairs]
-        print(f"  overall score: min {min(overall)} / mean {sum(overall) / len(overall):.1f} "
-              f"/ max {max(overall)}")
+        for section in ("education_score", "relevant_experience_score",
+                        "stack_experience_score", "companies_score"):
+            values = [pair[section] for pair in pairs]
+            print(f"  {section:28s} mean {sum(values) / len(values):5.1f}")
 
 
 if __name__ == "__main__":

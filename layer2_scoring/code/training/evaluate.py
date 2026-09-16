@@ -7,7 +7,7 @@ WHY POOLS AND NOT PLAIN BATCHES
     The product does not return scores, it returns twenty people. Candidates are
     only ever compared against other applicants to the *same* posting, never
     across postings, so every ranking metric is computed within one pool.
-    `pool_batches(split, encoder)` yields exactly that: (job_id, batch).
+    `pool_batches(split, vocabulary)` yields exactly that: (job_id, batch).
 
 WHY PER-SECTION MAE IS NOT ENOUGH ON ITS OWN
     It is the number to watch while building, but alone it flatters.
@@ -61,10 +61,10 @@ def ndcg_at_k(predicted, actual, top_k: int = TOP_K) -> float:
 def evaluate(checkpoint_path: Path, split: str = "test", top_k: int = TOP_K):
     """PLACEHOLDER - score every posting in `split`, report error and ranking."""
     # TODO: payload = torch.load(checkpoint_path, weights_only=False)
-    #       encoder = payload["encoder"]        # the fitted one, never a fresh fit
-    #       model = SectionScorer(encoder); model.load_state_dict(payload["state"])
+    #       vocabulary = payload["vocabulary"]        # the fitted one, never a fresh fit
+    #       model = SectionScorer(vocabulary); model.load_state_dict(payload["state"])
     #
-    # for job_id, batch in pool_batches(split, encoder):
+    # for job_id, batch in pool_batches(split, vocabulary):
     #     ...                                   # predict, accumulate MAE
     #     ...                                   # rank the pool both ways, score it
     raise NotImplementedError("evaluation is not built yet")
@@ -83,12 +83,12 @@ def main():
 
 if __name__ == "__main__":
     # Nothing to evaluate yet. This only shows the pools the metrics will read:
-    # the encoder normally comes from the checkpoint, so this refits one purely
+    # the vocabulary normally comes from the checkpoint, so this refits one purely
     # to demonstrate the shape.
     from ..data.torch_data import make_loaders
 
-    _, _, _, encoder = make_loaders(batch_size=256)
-    sizes = [batch["target"].shape[0] for _, batch in pool_batches("test", encoder)]
+    _, _, _, vocabulary = make_loaders(batch_size=256)
+    sizes = [batch["target"].shape[0] for _, batch in pool_batches("test", vocabulary)]
     print(f"test: {len(sizes)} postings | {sum(sizes):,} pairs | "
           f"pools {min(sizes)}-{max(sizes)} candidates")
     print(f"sections  {SECTIONS}  (labels 0-1, x{TARGET_SCALE:.0f} to report)")

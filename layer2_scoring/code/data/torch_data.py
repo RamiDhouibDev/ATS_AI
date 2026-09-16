@@ -21,7 +21,7 @@ SHARED ID SPACES
     means "what they have" and "what is wanted" land in the same space and can
     simply be compared.
 
-    train_loader, val_loader, test_loader, encoder = make_loaders()
+    train_loader, val_loader, test_loader, vocabulary = make_loaders()
 """
 
 from __future__ import annotations
@@ -56,8 +56,19 @@ RAGGED = {
 
 
 @dataclass
-class Encoder:
-    """Id maps and scalar statistics, fitted on the training rows only."""
+class Vocabulary:
+    """String-to-id maps and scalar statistics, fitted on training rows only.
+
+    Not a network - no weights and no forward pass. It is the lookup that turns
+    "Kubernetes" into the integer an embedding table is indexed by, plus the
+    mean and standard deviation the two scalar columns are standardised with.
+    Closer to sklearn's LabelEncoder than to anything in torch.nn, which is why
+    it is not called an encoder.
+
+    It has to be saved with the weights: row 44 of an embedding table means a
+    particular skill only under the vocabulary that assigned it 44. Refit on
+    other rows and the weights point at the wrong skills, with no error.
+    """
     skills: dict[str, int] = field(default_factory=dict)
     domains: dict[str, int] = field(default_factory=dict)
     seniorities: dict[str, int] = field(default_factory=dict)
@@ -98,7 +109,7 @@ class Encoder:
         return 4        # tiers 1-3 plus padding
 
 
-def fit_encoder(frame) -> Encoder:
+def fit_vocabulary(frame) -> Vocabulary:
     """Build the id maps and scalar statistics from training rows."""
     skills, domains, seniorities, fields = set(), set(), set(), set()
     for row in frame.itertuples():
@@ -117,15 +128,15 @@ def fit_encoder(frame) -> Encoder:
     def index(values) -> dict[str, int]:
         return {name: number for number, name in enumerate(sorted(values), start=1)}
 
-    encoder = Encoder(skills=index(skills), domains=index(domains),
+    vocabulary = Vocabulary(skills=index(skills), domains=index(domains),
                       seniorities=index(seniorities), fields=index(fields))
 
     raw = torch.tensor([[float(row.candidate_general_experience["total_years"]),
                          float(row.job_required_experience_years)]
                         for row in frame.itertuples()])
-    encoder.scalar_mean = raw.mean(dim=0)
-    encoder.scalar_std = raw.std(dim=0).clamp(min=1e-6)
-    return encoder
+    vocabulary.scalar_mean = raw.mean(dim=0)
+    vocabulary.scalar_std = raw.std(dim=0).clamp(min=1e-6)
+    return vocabulary
 
 
 class PairDataset(Dataset):
@@ -136,11 +147,11 @@ class PairDataset(Dataset):
     tensors 50,000 times per pass.
     """
 
-    def __init__(self, frame, encoder: Encoder):
-        self.items = [self._encode(row, encoder) for row in frame.itertuples()]
+    def __init__(self, frame, vocabulary: Vocabulary):
+        self.items = [self._encode(row, vocabulary) for row in frame.itertuples()]
 
     @staticmethod
-    def _encode(row, encoder: Encoder) -> dict:
+    def _encode(row, vocabulary: Vocabulary) -> dict:
         general = row.candidate_general_experience
         education = row.candidate_education
         held_years = {skill["name"]: skill["years"] for skill in row.candidate_skills}
@@ -157,12 +168,12 @@ class PairDataset(Dataset):
                                 float(row.job_required_experience_years)])
 
         return {
-            "candidate_skill_ids": ids([encoder.skill_id(skill["name"])
+            "candidate_skill_ids": ids([vocabulary.skill_id(skill["name"])
                                         for skill in row.candidate_skills]),
             "candidate_skill_years": floats([float(skill["years"])
                                              for skill in row.candidate_skills]),
 
-            "required_skill_ids": ids([encoder.skill_id(item["name"]) for item in required]),
+            "required_skill_ids": ids([vocabulary.skill_id(item["name"]) for item in required]),
             "required_min_years": floats([float(item["min_years"]) for item in required]),
             "required_weights": floats([float(item["weight"]) for item in required]),
             "required_skill_candidate_years": floats(
@@ -173,15 +184,15 @@ class PairDataset(Dataset):
                                      for company in row.candidate_companies]),
 
             "categorical": torch.tensor([
-                encoder.domains.get(general["domain"], 0),
-                encoder.domains.get(row.job_domain, 0),
-                encoder.seniorities.get(row.job_seniority, 0),
+                vocabulary.domains.get(general["domain"], 0),
+                vocabulary.domains.get(row.job_domain, 0),
+                vocabulary.seniorities.get(row.job_seniority, 0),
                 DEGREE_IDS.get(text_or_none(top_degree.get("level")), 0),
                 DEGREE_IDS.get(text_or_none(row.job_preferred_education), 0),
-                encoder.field_id(top_degree.get("field")),      # 0 when no degree field
-                encoder.field_id(row.job_preferred_field),      # 0 when the job states none
+                vocabulary.field_id(top_degree.get("field")),      # 0 when no degree field
+                vocabulary.field_id(row.job_preferred_field),      # 0 when the job states none
             ]),
-            "scalars": (scalars - encoder.scalar_mean) / encoder.scalar_std,
+            "scalars": (scalars - vocabulary.scalar_mean) / vocabulary.scalar_std,
             # Carried so the four heads can be combined into the overall score
             # that ranking is done on.
             "job_weights": torch.tensor([float(row.job_weights[key]) for key in WEIGHT_KEYS]),
@@ -229,10 +240,10 @@ def collate(items: list[dict]) -> dict:
 
 def make_loaders(batch_size: int = 256, val_jobs: int = 60,
                  val_candidate_share: float = 0.25, seed: int = 0,
-                 num_workers: int = 0) -> tuple[DataLoader, DataLoader, DataLoader, Encoder]:
+                 num_workers: int = 0) -> tuple[DataLoader, DataLoader, DataLoader, Vocabulary]:
     """Train, validation and test loaders.
 
-    Validation is carved out of train on **both** axes - postings and candidates
+    Validation is carved out of train on **both** axes , postings and candidates
     - because that is how test is separated, and a validation set built any
     other way measures something test will not repeat.
 
@@ -246,7 +257,7 @@ def make_loaders(batch_size: int = 256, val_jobs: int = 60,
     Pairs that straddle the two sides (a held-out posting with a training
     candidate, or the reverse) belong to neither and are dropped. That costs
     training rows, which is the price of a validation number that means
-    something. The encoder is fitted on the training portion alone.
+    something. The vocabulary is fitted on the training portion alone.
     """
     train_frame, test_frame = load("train"), load("test")
 
@@ -261,32 +272,32 @@ def make_loaders(batch_size: int = 256, val_jobs: int = 60,
     val_frame = train_frame[is_held_job & is_held_candidate]
     fit_frame = train_frame[~is_held_job & ~is_held_candidate]
 
-    encoder = fit_encoder(fit_frame)
+    vocabulary = fit_vocabulary(fit_frame)
     generator = torch.Generator().manual_seed(seed)      # reproducible shuffling
 
     def loader(frame, shuffle: bool) -> DataLoader:
-        return DataLoader(PairDataset(frame, encoder), batch_size=batch_size, shuffle=shuffle,
+        return DataLoader(PairDataset(frame, vocabulary), batch_size=batch_size, shuffle=shuffle,
                           collate_fn=collate, num_workers=num_workers,
                           generator=generator if shuffle else None)
 
-    return loader(fit_frame, True), loader(val_frame, False), loader(test_frame, False), encoder
+    return loader(fit_frame, True), loader(val_frame, False), loader(test_frame, False), vocabulary
 
 
-def pool_batches(split: str, encoder: Encoder):
-    """One batch per job posting - the shape ranking metrics need."""
+def pool_batches(split: str, vocabulary: Vocabulary):
+    """One batch per job posting , the shape ranking metrics need."""
     frame = load(split)
     for job_id, pool in frame.groupby("job_id", sort=True):
-        dataset = PairDataset(pool, encoder)
+        dataset = PairDataset(pool, vocabulary)
         yield job_id, collate([dataset[index] for index in range(len(dataset))])
 
 
 if __name__ == "__main__":
-    train_loader, val_loader, test_loader, encoder = make_loaders(batch_size=4)
+    train_loader, val_loader, test_loader, vocabulary = make_loaders(batch_size=4)
     print(f"rows      train {len(train_loader.dataset)} | val {len(val_loader.dataset)} "
           f"| test {len(test_loader.dataset)}")
-    print(f"vocab     {encoder.n_skills} skills | {encoder.n_domains} domains | "
-          f"{encoder.n_fields} fields | {encoder.n_seniorities} seniorities | "
-          f"{encoder.n_degrees} degrees | {encoder.n_tiers} tiers")
+    print(f"vocab     {vocabulary.n_skills} skills | {vocabulary.n_domains} domains | "
+          f"{vocabulary.n_fields} fields | {vocabulary.n_seniorities} seniorities | "
+          f"{vocabulary.n_degrees} degrees | {vocabulary.n_tiers} tiers")
     for key, value in next(iter(train_loader)).items():
         shape = tuple(value.shape) if torch.is_tensor(value) else f"list[{len(value)}]"
         print(f"  {key:32s} {shape}")

@@ -10,8 +10,9 @@ import pandas as pd
 
 DATA_DIR = Path(__file__).resolve().parents[3] / "data_layer2"
 
-# Model targets. `overall_score` is excluded - it is a weighted combination of
-# these four, not a fifth thing to predict.
+# The model's four targets, and all of them. There is no overall score in the
+# data: it is a weighted sum of these four, combined at ranking time with
+# whatever weights the posting or the UI supplies - arithmetic, not a label.
 SECTIONS = ["education_score", "relevant_experience_score",
             "stack_experience_score", "companies_score"]
 

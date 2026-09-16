@@ -25,8 +25,8 @@ NOTES WORTH KEEPING WHEN THIS IS BUILT
       section curves saturate at both ends, so a few pairs sit far from anything
       predictable and squared error would let them steer the update.
     - Keep the best epoch by validation, not the last one.
-    - Save the encoder alongside the weights. Its id maps are fitted on the
-      training rows, so weights loaded against a refitted encoder look up
+    - Save the vocabulary alongside the weights. Its id maps are fitted on the
+      training rows, so weights loaded against a refitted vocabulary look up
       different embedding rows - a bug that produces plausible nonsense rather
       than an error.
     - Targets are 0-1. Multiply by TARGET_SCALE only to print.
@@ -47,14 +47,14 @@ def train(epochs: int = 30, batch_size: int = 256, learning_rate: float = 1e-3,
           seed: int = 0, checkpoint: Path | None = None):
     """PLACEHOLDER - fit the scorer and keep the epoch that validated best."""
     # --- real: the data ------------------------------------------------------
-    train_loader, val_loader, test_loader, encoder = make_loaders(
+    train_loader, val_loader, test_loader, vocabulary = make_loaders(
         batch_size=batch_size, seed=seed)
     print(f"rows   train {len(train_loader.dataset):,} | "
           f"val {len(val_loader.dataset):,} | test {len(test_loader.dataset):,} (untouched)")
     print(f"batches per epoch: {len(train_loader)}")
 
     # --- placeholder: everything else ---------------------------------------
-    # TODO: model = SectionScorer(encoder)
+    # TODO: model = SectionScorer(vocabulary)
     # TODO: optimiser, loss function
     #
     # for epoch in range(1, epochs + 1):
@@ -62,7 +62,7 @@ def train(epochs: int = 30, batch_size: int = 256, learning_rate: float = 1e-3,
     #         ...                               # forward, loss, backward, step
     #     ...                                   # validation pass, keep best epoch
     #
-    # TODO: save {"state": ..., "encoder": encoder, "sections": SECTIONS}
+    # TODO: save {"state": ..., "vocabulary": vocabulary, "sections": SECTIONS}
     #       to `checkpoint or CHECKPOINT_DIR / "scorer.pt"`
     raise NotImplementedError("training loop is not built yet")
 
@@ -92,7 +92,7 @@ def main():
 
 if __name__ == "__main__":
     # Nothing to train yet, so this only shows what the loop will be handed.
-    train_loader, val_loader, test_loader, encoder = make_loaders(batch_size=256)
+    train_loader, val_loader, test_loader, vocabulary = make_loaders(batch_size=256)
     print(f"train {len(train_loader.dataset):,} rows in {len(train_loader)} batches")
     print(f"val   {len(val_loader.dataset):,} rows in {len(val_loader)} batches")
     print(f"test  {len(test_loader.dataset):,} rows - not read during training")

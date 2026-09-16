@@ -8,6 +8,9 @@ import pytest
 
 from layer2_scoring.code.data.dataset import SECTIONS, load, pools, targets
 
+WEIGHT_KEYS = ["education", "relevant_experience",
+               "stack_experience", "companies"]
+
 
 @pytest.fixture(scope="module")
 def splits():
@@ -39,14 +42,15 @@ def test_scores_are_in_range(splits):
         assert section_scores.max().max() <= 100
 
 
-def test_overall_is_consistent_with_its_parts(splits):
-    """The overall must stay explainable from the four sections it combines."""
-    train, _ = splits
-    for row in train.head(500).itertuples():
-        expected = sum(getattr(row, f"{key}_score") * row.job_weights[key]
-                       for key in ("education", "relevant_experience",
-                                   "stack_experience", "companies"))
-        assert abs(expected - row.overall_score) <= 1      # rounding only
+def test_no_overall_score_is_stored(splits):
+    """There are four labels, not five.
+
+    An overall score is a weighted sum of the four, and the weights are picked
+    at ranking time - by the posting, or by whoever moves the sliders. Storing
+    one would freeze a particular weighting into the ground truth.
+    """
+    for frame in splits:
+        assert "overall_score" not in frame.columns
 
 
 def test_pools_are_large_enough_to_rank(splits):
@@ -54,7 +58,11 @@ def test_pools_are_large_enough_to_rank(splits):
     for job_id, pool in pools(test):
         assert len(pool) >= 20
         assert pool.candidate_id.is_unique
-        assert pool.overall_score.max() - pool.overall_score.min() > 20
+        # Combined the way ranking will combine it: the four, times this
+        # posting's weights. Computed here, never read from a column.
+        combined = sum(pool[f"{key}_score"] * pool.job_weights.map(lambda block: block[key])
+                       for key in WEIGHT_KEYS)
+        assert combined.max() - combined.min() > 20
 
 
 def test_sections_are_the_four_targets():

@@ -232,13 +232,13 @@ def companies_score(candidate: dict, job: dict) -> float:
 
 def score_pair(candidate: dict, job: dict, rng: random.Random,
                noise_sigma: float = 3.0) -> dict:
-    """The four section scores plus the job-weighted overall.
+    """The four section scores. There is no fifth.
 
-    Noise is applied to the sections *before* the overall is computed, so the
-    overall stays exactly consistent with the four numbers stored alongside it.
-    Adding independent noise to the overall too would make it unexplainable
-    from its own parts - and explainability is the whole reason the overall is a
-    transparent weighted sum rather than a fifth learned head.
+    An overall score is not stored, because it is not a label. It is a weighted
+    sum of these four, and the weights are chosen at ranking time - by the
+    posting, or by whoever is moving the sliders in the UI. Storing one would
+    freeze somebody's weighting into the ground truth and invite a model to
+    learn arithmetic it can simply be given.
     """
     sections = {
         "education_score": education_score(candidate, job),
@@ -259,16 +259,5 @@ def score_pair(candidate: dict, job: dict, rng: random.Random,
               for section in sections if section != "companies_score"}
     jitter["companies_score"] = random.Random(candidate["id"]).gauss(0, noise_sigma)
 
-    noisy = {section: round(clip(score + jitter[section]))
-             for section, score in sections.items()}
-
-    # Per-posting weights: a stack-led role and a seniority-led role combine the
-    # same four sections differently, which is exactly what stops the overall
-    # from being one fixed formula across jobs.
-    weights = job["weights"]
-    overall = (noisy["education_score"] * weights["education"]
-               + noisy["relevant_experience_score"] * weights["relevant_experience"]
-               + noisy["stack_experience_score"] * weights["stack_experience"]
-               + noisy["companies_score"] * weights["companies"])
-    noisy["overall_score"] = round(clip(overall))
-    return noisy
+    return {section: round(clip(score + jitter[section]))
+            for section, score in sections.items()}

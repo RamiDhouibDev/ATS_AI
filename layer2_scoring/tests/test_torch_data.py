@@ -14,10 +14,10 @@ from layer2_scoring.code.data.torch_data import (
     DEGREE_IDS,
     RAGGED,
     TARGET_SCALE,
-    Encoder,
+    Vocabulary,
     PairDataset,
     collate,
-    fit_encoder,
+    fit_vocabulary,
     make_loaders,
     pool_batches,
     text_or_none,
@@ -30,7 +30,7 @@ def loaders():
 
 
 @pytest.fixture(scope="module")
-def encoder(loaders):
+def vocabulary(loaders):
     return loaders[3]
 
 
@@ -74,13 +74,13 @@ def test_split_sizes(loaders):
     assert len(test_loader.dataset) == len(load("test"))
 
 
-def test_encoder_is_fitted_on_training_rows_only(loaders):
+def test_vocabulary_is_fitted_on_training_rows_only(loaders):
     """Refitting on the held-out rows must not be able to grow the vocabulary."""
     _, val_loader, _, fitted = loaders
     train_frame = load("train")
     val_jobs = {job for batch in val_loader for job in batch["job_id"]}
     val_candidates = {item["candidate_id"] for item in val_loader.dataset.items}
-    refitted = fit_encoder(train_frame[train_frame.job_id.isin(val_jobs)
+    refitted = fit_vocabulary(train_frame[train_frame.job_id.isin(val_jobs)
                                        & train_frame.candidate_id.isin(val_candidates)])
 
     assert set(refitted.skills) <= set(fitted.skills)
@@ -88,7 +88,7 @@ def test_encoder_is_fitted_on_training_rows_only(loaders):
 
 
 def test_unknown_names_fall_back_to_the_padding_row():
-    empty = Encoder()
+    empty = Vocabulary()
     assert empty.skill_id("Fortran") == 0
     assert empty.field_id("Basket Weaving") == 0
     assert empty.field_id(float("nan")) == 0
@@ -126,9 +126,9 @@ def test_masks_agree_with_the_padding(loaders):
                 assert (batch[value_key][~mask] == 0).all()
 
 
-def test_targets_are_normalised_and_recover_the_labels(encoder):
+def test_targets_are_normalised_and_recover_the_labels(vocabulary):
     test_frame = load("test").head(200)
-    dataset = PairDataset(test_frame, encoder)
+    dataset = PairDataset(test_frame, vocabulary)
     batch = collate([dataset[index] for index in range(len(dataset))])
 
     assert batch["target"].min() >= 0 and batch["target"].max() <= 1
@@ -137,10 +137,10 @@ def test_targets_are_normalised_and_recover_the_labels(encoder):
     assert torch.allclose(recovered, expected, atol=1e-4)
 
 
-def test_required_skill_years_is_a_lookup_not_a_score(encoder):
+def test_required_skill_years_is_a_lookup_not_a_score(vocabulary):
     """Aligned to the requirement list: the candidate's years, or 0 if not held."""
     frame = load("test").head(100)
-    dataset = PairDataset(frame, encoder)
+    dataset = PairDataset(frame, vocabulary)
 
     for position, row in enumerate(frame.itertuples()):
         held = {skill["name"]: skill["years"] for skill in row.candidate_skills}
@@ -155,12 +155,12 @@ def test_degree_ids_are_ordered_by_level():
     assert 0 not in DEGREE_IDS.values()      # 0 is reserved for "no degree stated"
 
 
-def test_pool_batches_yield_one_posting_each(encoder):
+def test_pool_batches_yield_one_posting_each(vocabulary):
     test_frame = load("test")
     sizes = test_frame.groupby("job_id").size()
 
     seen = []
-    for job_id, batch in pool_batches("test", encoder):
+    for job_id, batch in pool_batches("test", vocabulary):
         seen.append(job_id)
         assert len(batch["job_id"]) == sizes[job_id]
         assert set(batch["job_id"]) == {job_id}

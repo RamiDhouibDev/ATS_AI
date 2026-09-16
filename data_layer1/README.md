@@ -22,9 +22,9 @@ Other coherence rules: jobs run reverse-chronologically from today with occasion
 
 **Score formulas** (`data_layer1/gen/generate_mock_data.py`):
 - `education_score` — degree level base score × field desirability weight.
-- `general_experience_score` — diminishing-returns curve on years in domain (`100·(1−e^(−years/8))`).
-- `stack_score` — sum of per-skill contribution (years, capped at 6, × skill demand weight), passed through a diminishing-returns curve.
-- `company_score` — tenure-weighted average of company tier (Tier 1=100, Tier 2=65, Tier 3=35).
+- `relevant_experience_score` — diminishing-returns curve on years in domain (`100·(1−e^(−years/8))`).
+- `stack_experience_score` — sum of per-skill contribution (years, capped at 6, × skill demand weight), passed through a diminishing-returns curve.
+- `companies_score` — tenure-weighted average of company tier (Tier 1=100, Tier 2=65, Tier 3=35).
 - `overall_score` — equal-weighted average of the four (weights become configurable once Layer 2/job postings exist).
 
 **Files:**

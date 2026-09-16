@@ -87,7 +87,10 @@ new applicants for familiar roles. Verified: no job, candidate or pair overlap.
 | relevant_experience_score | 0 | 57.1 | 34.3 | 100 |
 | stack_experience_score | 0 | 19.7 | 20.8 | 100 |
 | companies_score | 11 | 43.4 | 15.2 | 100 |
-| overall_score | 5 | 43.9 | 17.1 | 97 |
+
+Four labels, and no fifth. An overall score is a weighted sum of these, combined
+at ranking time with whatever weights the posting or the UI supplies — plain
+arithmetic, so there is nothing there for a model to learn.
 
 The signal is real and monotonic rather than decorative:
 
@@ -100,8 +103,9 @@ The signal is real and monotonic rather than decorative:
   cross-domain, via a domain-similarity matrix that gives partial credit for
   adjacent fields (Data/AI/ML ↔ Data Analysis transfers at 0.70; DevOps ↔
   Product/Design at 0.20).
-- **Within a job**, overall scores span 71 points on average, so a top 20 is a
-  meaningful selection rather than a coin flip.
+- **Within a job**, combining the four with that posting's weights spreads
+  candidates over 71 points on average, so a top 20 is a meaningful selection
+  rather than a coin flip.
 
 ## Label noise
 
