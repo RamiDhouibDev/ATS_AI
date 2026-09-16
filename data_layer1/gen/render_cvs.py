@@ -22,6 +22,7 @@ import random
 import time
 from pathlib import Path
 
+import numpy
 import pymupdf as fitz
 from faker import Faker
 from PIL import Image, ImageEnhance, ImageFilter
@@ -32,14 +33,14 @@ from reportlab.platypus import SimpleDocTemplate
 
 import cv_templates as TPL
 
-TEMPLATE_NAMES = [t[0] for t in TPL.TEMPLATES]
-TEMPLATE_WEIGHTS = [t[3] for t in TPL.TEMPLATES]
-TEMPLATE_BY_NAME = {t[0]: t for t in TPL.TEMPLATES}
+TEMPLATE_NAMES = [template[0] for template in TPL.TEMPLATES]
+TEMPLATE_WEIGHTS = [template[3] for template in TPL.TEMPLATES]
+TEMPLATE_BY_NAME = {template[0]: template for template in TPL.TEMPLATES}
 
 
 def load_jsonl(path: Path) -> list:
-    with path.open(encoding="utf-8") as f:
-        return [json.loads(line) for line in f if line.strip()]
+    with path.open(encoding="utf-8") as stream:
+        return [json.loads(line) for line in stream if line.strip()]
 
 
 def page_furniture(ctx: dict, record: dict, header_text: str, margin: float):
@@ -90,6 +91,18 @@ def build_pdf(record, ctx, template_fn, fake, out_path: Path):
     write_with_retry(lambda: doc.build(story, onFirstPage=painter, onLaterPages=painter), out_path)
 
 
+def scan_grain(size: tuple, sigma: float, rng: random.Random) -> Image.Image:
+    """Gaussian sensor grain, drawn from the caller's seeded generator.
+
+    Image.effect_noise would be the obvious call, but it draws from an internal
+    generator with no seed hook, so it alone made every rerun produce different
+    bytes for the same CV.
+    """
+    width, height = size
+    grain = numpy.random.default_rng(rng.getrandbits(64)).normal(128.0, sigma, (height, width))
+    return Image.fromarray(grain.clip(0, 255).astype(numpy.uint8))
+
+
 def scan_degrade(pdf_path: Path, rng: random.Random):
     """Rasterise to images, skew/blur/noise them, and write back an image-only PDF."""
     doc = fitz.open(str(pdf_path))
@@ -101,19 +114,22 @@ def scan_degrade(pdf_path: Path, rng: random.Random):
                          expand=False, fillcolor=245)
         img = img.filter(ImageFilter.GaussianBlur(rng.uniform(0.3, 0.7)))
         img = ImageEnhance.Contrast(img).enhance(rng.uniform(0.85, 1.15))
-        noise = Image.effect_noise(img.size, rng.uniform(6, 14)).convert("L")
-        img = Image.blend(img, noise, rng.uniform(0.04, 0.09))
+        img = Image.blend(img, scan_grain(img.size, rng.uniform(6, 14), rng),
+                          rng.uniform(0.04, 0.09))
         pages.append(img.convert("RGB"))
     doc.close()
-    pages[0].save(str(pdf_path), save_all=True, append_images=pages[1:], resolution=110.0)
+    # Pillow stamps the current time into the PDF unless both dates are given;
+    # passing None drops them, which is what makes a rerun byte-identical.
+    pages[0].save(str(pdf_path), save_all=True, append_images=pages[1:], resolution=110.0,
+                  creationDate=None, modDate=None)
     return len(pages)
 
 
 def page_count(pdf_path: Path) -> int:
     doc = fitz.open(str(pdf_path))
-    n = doc.page_count
+    count = doc.page_count
     doc.close()
-    return n
+    return count
 
 
 def render_record(record: dict, out_path: Path, seed: int, scanned_frac: float, fake: Faker) -> dict:
@@ -131,7 +147,7 @@ def render_record(record: dict, out_path: Path, seed: int, scanned_frac: float, 
         ctx["contact"] = contact
         ctx["contact_multiline"] = TPL.contact_string(record, ctx, fake, multiline=True)
     ctx["job_locations"] = [
-        f"{fake.city()}" + (f" ({rng.choice(TPL.T.WORK_MODES)})" if rng.random() < 0.45 else "")
+        f"{fake.city()}" + (f" ({rng.choice(TPL.cv_text.WORK_MODES)})" if rng.random() < 0.45 else "")
         for _ in record["companies"]
     ]
 
@@ -170,17 +186,17 @@ def render_record(record: dict, out_path: Path, seed: int, scanned_frac: float, 
 
 def build_contact_sheet(samples: list, out_path: Path, cols: int = 3):
     """One page thumbnail grid so the layout variety can be eyeballed at a glance."""
-    c = pdfcanvas.Canvas(str(out_path), pagesize=(11 * inch, 8.5 * inch), invariant=1)
+    pdf_canvas = pdfcanvas.Canvas(str(out_path), pagesize=(11 * inch, 8.5 * inch), invariant=1)
     cell_w, cell_h = 3.3 * inch, 3.6 * inch
     margin_x, margin_y = 0.4 * inch, 0.35 * inch
     per_page = cols * 2
-    for i, (label, pdf_path) in enumerate(samples):
-        if i and i % per_page == 0:
-            c.showPage()
-        slot = i % per_page
+    for index, (label, pdf_path) in enumerate(samples):
+        if index and index % per_page == 0:
+            pdf_canvas.showPage()
+        slot = index % per_page
         col, row = slot % cols, slot // cols
-        x = margin_x + col * (cell_w + 0.2 * inch)
-        y = 8.5 * inch - margin_y - (row + 1) * (cell_h + 0.3 * inch)
+        left = margin_x + col * (cell_w + 0.2 * inch)
+        bottom = 8.5 * inch - margin_y - (row + 1) * (cell_h + 0.3 * inch)
 
         doc = fitz.open(str(pdf_path))
         pix = doc[0].get_pixmap(dpi=72)
@@ -192,10 +208,10 @@ def build_contact_sheet(samples: list, out_path: Path, cols: int = 3):
 
         scale = min(cell_w / img.width, cell_h / img.height)
         from reportlab.lib.utils import ImageReader
-        c.drawImage(ImageReader(buf), x, y, width=img.width * scale, height=img.height * scale)
-        c.setFont("Helvetica", 8)
-        c.drawString(x, y - 11, label)
-    c.save()
+        pdf_canvas.drawImage(ImageReader(buf), left, bottom, width=img.width * scale, height=img.height * scale)
+        pdf_canvas.setFont("Helvetica", 8)
+        pdf_canvas.drawString(left, bottom - 11, label)
+    pdf_canvas.save()
 
 
 def main():
@@ -239,10 +255,10 @@ def main():
         split_manifest = [row for row in manifest if row["split"] == split]
         if not split_manifest:
             continue
-        with (data_dir / split / "manifest.csv").open("w", encoding="utf-8", newline="") as f:
-            w = csv.DictWriter(f, fieldnames=list(split_manifest[0].keys()))
-            w.writeheader()
-            w.writerows(split_manifest)
+        with (data_dir / split / "manifest.csv").open("w", encoding="utf-8", newline="") as stream:
+            writer = csv.DictWriter(stream, fieldnames=list(split_manifest[0].keys()))
+            writer.writeheader()
+            writer.writerows(split_manifest)
 
     samples = [(f"{tpl}{' (scanned)' if sc else ''}", path)
                for (tpl, sc), path in sorted(seen_templates.items())]
@@ -253,7 +269,7 @@ def main():
         print(f"\nERROR: {len(blocked)} file(s) locked by another program and NOT "
               f"regenerated (close any open PDF viewer): {blocked[:3]}")
 
-    degraded = [r for r in manifest if r["fallback"]]
+    degraded = [row for row in manifest if row["fallback"]]
     if degraded:
         print(f"\nWARNING: {len(degraded)} CVs fell back to a simpler layout, e.g. "
               f"{degraded[0]['id']} ({degraded[0]['fallback']})")

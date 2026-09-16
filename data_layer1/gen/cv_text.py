@@ -386,18 +386,18 @@ def format_date_range(rng: random.Random, start_ym: str, end_ym, style: int) -> 
     else:
         ey, em = int(end_ym[:4]), int(end_ym[5:7])
 
-    def fmt(y, m):
+    def fmt(year, month):
         if style == 0:
-            return f"{MONTHS_SHORT[m - 1]} {y}"
+            return f"{MONTHS_SHORT[month - 1]} {year}"
         if style == 1:
-            return f"{m:02d}/{y}"
+            return f"{month:02d}/{year}"
         if style == 2:
-            return str(y)
+            return str(year)
         if style == 3:
-            return f"{MONTHS_LONG[m - 1]} {y}"
+            return f"{MONTHS_LONG[month - 1]} {year}"
         if style == 4:
-            return f"{MONTHS_SHORT[m - 1]} '{str(y)[2:]}"
-        return f"{y}-{m:02d}"
+            return f"{MONTHS_SHORT[month - 1]} '{str(year)[2:]}"
+        return f"{year}-{month:02d}"
 
     sep = {0: " – ", 1: " - ", 2: "–", 3: " to ", 4: " – ", 5: " — "}[style]
     end_txt = present_word if ey is None else fmt(ey, em)
@@ -436,13 +436,13 @@ def make_bullets(rng: random.Random, domain: str, skills: list, count: int,
     long careers top up from the domain-neutral pool rather than repeating.
     """
     used = used if used is not None else set()
-    skill_names = [s["name"] for s in skills]
+    skill_names = [skill["name"] for skill in skills]
 
-    pool = [a for a in ACHIEVEMENTS.get(domain, ACHIEVEMENTS["Software Development"])
-            if a[0] not in used]
+    pool = [entry for entry in ACHIEVEMENTS.get(domain, ACHIEVEMENTS["Software Development"])
+            if entry[0] not in used]
     rng.shuffle(pool)
     if len(pool) < count:
-        top_up = [a for a in GENERIC_ACHIEVEMENTS if a[0] not in used]
+        top_up = [entry for entry in GENERIC_ACHIEVEMENTS if entry[0] not in used]
         rng.shuffle(top_up)
         pool += top_up
 
@@ -452,7 +452,7 @@ def make_bullets(rng: random.Random, domain: str, skills: list, count: int,
         if kind == "any":
             subject = GENERIC_SUBJECT["any"]
         else:
-            matching = [n for n in skill_names if n in SKILL_KINDS[kind]]
+            matching = [name for name in skill_names if name in SKILL_KINDS[kind]]
             subject = rng.choice(matching) if matching else GENERIC_SUBJECT[kind]
         out.append(_fill(rng, template, subject))
     return out
@@ -460,7 +460,7 @@ def make_bullets(rng: random.Random, domain: str, skills: list, count: int,
 
 def make_summary(rng: random.Random, record: dict) -> str:
     """Summary tone follows seniority, the way real profiles do."""
-    skills = [s["name"] for s in record["skills"]] or ["software"]
+    skills = [skill["name"] for skill in record["skills"]] or ["software"]
     while len(skills) < 3:
         skills.append(skills[0])
     years = record["general_experience"]["total_years"]
@@ -483,7 +483,7 @@ def make_summary(rng: random.Random, record: dict) -> str:
 
 def make_projects(rng: random.Random, record: dict, count: int) -> list:
     """Returns (name, description) pairs referencing the candidate's real stack."""
-    skills = [s["name"] for s in record["skills"]] or ["Python"]
+    skills = [skill["name"] for skill in record["skills"]] or ["Python"]
     chosen = rng.sample(PROJECTS, min(count, len(PROJECTS)))
     out = []
     for name_tpl, desc_tpl in chosen:
@@ -494,7 +494,7 @@ def make_projects(rng: random.Random, record: dict, count: int) -> list:
 
 
 def make_volunteering(rng: random.Random, record: dict) -> str:
-    skills = [s["name"] for s in record["skills"]] or ["Python"]
+    skills = [skill["name"] for skill in record["skills"]] or ["Python"]
     return rng.choice(VOLUNTEERING).format(
         org=rng.choice(VOLUNTEER_ORGS), n=rng.choice([8, 12, 15, 20, 25]),
         skill=rng.choice(skills), domain=record["general_experience"]["domain"].split("/")[0],
@@ -510,7 +510,7 @@ def categorise_skills(skills: list) -> list:
     """Group skills into (category, [names]) pairs, dropping empty categories."""
     grouped = []
     for category, members in SKILL_CATEGORIES.items():
-        names = [s["name"] for s in skills if s["name"] in members]
+        names = [skill["name"] for skill in skills if skill["name"] in members]
         if names:
             grouped.append((category, names))
     return grouped

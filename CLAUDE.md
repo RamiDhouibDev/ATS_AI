@@ -20,3 +20,6 @@ with path.open() as handle: ...
 
 Prefer iterating objects directly over indexing. Where an index is genuinely
 needed, call it `index`.
+
+The one allowed single character is `_`, and only where the value is deliberately
+discarded (`for _ in range(n)`, `first, _ = pair`). It is a placeholder, not a name.

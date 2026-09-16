@@ -3,10 +3,15 @@ faker>=24.0
 reportlab>=4.1
 pymupdf>=1.24
 pillow>=10.0
+numpy>=1.26
 
 # Layer 1 extraction
 pdfplumber>=0.11
 rapidfuzz>=3.6
+
+# Layer 2 scoring
+pandas>=2.2
+torch>=2.2
 
 # Tests
 pytest>=8.0

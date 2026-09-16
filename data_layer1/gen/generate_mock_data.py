@@ -152,8 +152,8 @@ DOMAIN_SKILLS = {
 }
 
 COMPANY_NAMES = list(COMPANIES.keys())
-COMPANY_WEIGHTS = [0.06 if COMPANIES[c] == 1 else 0.28 if COMPANIES[c] == 2 else 0.66
-                   for c in COMPANY_NAMES]
+COMPANY_WEIGHTS = [0.06 if COMPANIES[company] == 1 else 0.28 if COMPANIES[company] == 2 else 0.66
+                   for company in COMPANY_NAMES]
 
 TIER_POINTS = {1: 100, 2: 65, 3: 35}
 CURRENT_YEAR = 2026
@@ -173,8 +173,8 @@ EXPERIENCE_BANDS = [
 DEGREE_YEARS = {"High School": (3, 4), "Bachelor": (3, 4), "Master": (1, 2), "PhD": (3, 5)}
 
 
-def clip(x, lo=0, hi=100):
-    return max(lo, min(hi, x))
+def clip(value, lo=0, hi=100):
+    return max(lo, min(hi, value))
 
 
 def noisy(value, sigma=4.5):
@@ -194,8 +194,8 @@ def months_to_ym(total_months: int) -> str:
 
 def gen_total_years() -> float:
     """Career length, drawn per band so juniors and veterans are both well represented."""
-    (low, high), = random.choices([b[0] for b in EXPERIENCE_BANDS],
-                                  weights=[b[1] for b in EXPERIENCE_BANDS], k=1)
+    (low, high), = random.choices([band[0] for band in EXPERIENCE_BANDS],
+                                  weights=[band[1] for band in EXPERIENCE_BANDS], k=1)
     return round(random.uniform(low, high), 1)
 
 
@@ -253,10 +253,10 @@ def gen_companies(total_years: float, domain: str) -> list:
     ceiling = max(floor, min(5, int(total_years // 3) + 1))
     n_companies = random.randint(floor, ceiling)
     tenures, remaining = [], total_years
-    for i in range(n_companies):
+    for index in range(n_companies):
         if remaining <= 0.2:
             break
-        max_tenure = remaining if i == n_companies - 1 else remaining * random.uniform(0.3, 0.8)
+        max_tenure = remaining if index == n_companies - 1 else remaining * random.uniform(0.3, 0.8)
         tenure = round(max(0.3, min(remaining, max_tenure)), 1)
         tenures.append(tenure)
         remaining = round(remaining - tenure, 1)
@@ -268,7 +268,7 @@ def gen_companies(total_years: float, domain: str) -> list:
 
     companies, used_names = [], []
     experience_after = 0.0  # years of experience accumulated after this job started
-    for i, tenure in enumerate(tenures):
+    for index, tenure in enumerate(tenures):
         months = max(4, round(tenure * 12))
         end_months = cursor
         start_months = end_months - months
@@ -295,7 +295,7 @@ def gen_companies(total_years: float, domain: str) -> list:
             "title": title.strip(),
             "years": tenure,
             "start_date": months_to_ym(start_months),
-            "end_date": None if i == 0 and end_months >= CURRENT_YEAR * 12 + 8 else months_to_ym(end_months),
+            "end_date": None if index == 0 and end_months >= CURRENT_YEAR * 12 + 8 else months_to_ym(end_months),
             "tier": COMPANIES[name],
         })
     return companies
@@ -315,14 +315,14 @@ def gen_candidate(fake: Faker) -> dict:
     core_pool = DOMAIN_SKILLS[domain]
     n_core = min(len(core_pool), max(2, int(n_skills * 0.7)))
     skill_names = random.sample(core_pool, n_core)
-    adjacent = [s for s in SKILLS if s not in skill_names]
+    adjacent = [name for name in SKILLS if name not in skill_names]
     # Core domain skills stay first: CVs lead with their headline stack, and the
     # summary quotes the first few.
     skill_names += random.sample(adjacent, min(n_skills - n_core, len(adjacent)))
     skills = []
-    for s in skill_names:
+    for name in skill_names:
         years = round(min(total_years, random.uniform(0.5, max(1.0, total_years))), 1)
-        skills.append({"name": s, "years": years})
+        skills.append({"name": name, "years": years})
 
     companies = gen_companies(total_years, domain)
 
@@ -345,8 +345,8 @@ def gen_candidate(fake: Faker) -> dict:
     stack_score = noisy(100 * (1 - math.exp(-raw_stack / 4)))
 
     if companies:
-        tenure_sum = sum(c["years"] for c in companies)
-        company_raw = sum(TIER_POINTS[c["tier"]] * c["years"] for c in companies) / tenure_sum
+        tenure_sum = sum(company["years"] for company in companies)
+        company_raw = sum(TIER_POINTS[company["tier"]] * company["years"] for company in companies) / tenure_sum
         company_score = noisy(company_raw)
     else:
         company_score = noisy(20)
@@ -376,10 +376,10 @@ def gen_candidate(fake: Faker) -> dict:
 
 
 def flatten(record: dict) -> dict:
-    top_skills = sorted(record["skills"], key=lambda s: s["years"], reverse=True)[:5]
-    top_skills_str = ";".join(f"{s['name']}:{s['years']}" for s in top_skills)
+    top_skills = sorted(record["skills"], key=lambda skill: skill["years"], reverse=True)[:5]
+    top_skills_str = ";".join(f"{skill['name']}:{skill['years']}" for skill in top_skills)
     if record["companies"]:
-        best_company = max(record["companies"], key=lambda c: (c["tier"] == 1, c["years"]))
+        best_company = max(record["companies"], key=lambda company: (company["tier"] == 1, company["years"]))
         best_company_name = best_company["name"]
         best_company_tier = best_company["tier"]
     else:
@@ -405,16 +405,16 @@ def flatten(record: dict) -> dict:
 
 
 def write_jsonl(records: list, path: Path):
-    with path.open("w", encoding="utf-8") as f:
-        for r in records:
-            f.write(json.dumps(r, ensure_ascii=False) + "\n")
+    with path.open("w", encoding="utf-8") as stream:
+        for record in records:
+            stream.write(json.dumps(record, ensure_ascii=False) + "\n")
 
 
 def write_csv(records: list, path: Path):
-    flat = [flatten(r) for r in records]
+    flat = [flatten(record) for record in records]
     fieldnames = list(flat[0].keys())
-    with path.open("w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
+    with path.open("w", encoding="utf-8", newline="") as stream:
+        writer = csv.DictWriter(stream, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(flat)
 
@@ -441,8 +441,8 @@ def main():
     # PDF filename order all agree: train.jsonl line 1 == train.csv row 1 ==
     # cvs_pdf/train/TRAIN00001.pdf, and likewise for test.
     for prefix, subset in (("TRAIN", train_records), ("TEST", test_records)):
-        for i, record in enumerate(subset, 1):
-            record["id"] = f"{prefix}{i:05d}"
+        for index, record in enumerate(subset, 1):
+            record["id"] = f"{prefix}{index:05d}"
 
     out_dir = (Path(__file__).parent / args.out_dir).resolve()
     out_dir.mkdir(parents=True, exist_ok=True)

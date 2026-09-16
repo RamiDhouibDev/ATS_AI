@@ -60,27 +60,27 @@ class TestSections:
 
 class TestSkills:
     def test_comma_separated(self):
-        names = {s.name for s in parse_skills(["Python, JavaScript, AWS"])}
+        names = {skill.name for skill in parse_skills(["Python, JavaScript, AWS"])}
         assert names == {"Python", "JavaScript", "AWS"}
 
     def test_years_are_read_when_stated(self):
         skills = parse_skills(["Python (7 yrs), AWS (3 years)"])
-        assert {s.name: s.years for s in skills} == {"Python": 7.0, "AWS": 3.0}
+        assert {skill.name: skill.years for skill in skills} == {"Python": 7.0, "AWS": 3.0}
 
     def test_proficiency_words_are_stripped(self):
-        names = {s.name for s in parse_skills(["Python - Expert", "AWS - Intermediate"])}
+        names = {skill.name for skill in parse_skills(["Python - Expert", "AWS - Intermediate"])}
         assert names == {"Python", "AWS"}
 
     def test_category_prefix_is_ignored(self):
-        names = {s.name for s in parse_skills(["Languages: Python, SQL"])}
+        names = {skill.name for skill in parse_skills(["Languages: Python, SQL"])}
         assert names == {"Python", "SQL"}
 
     def test_aliases_canonicalise(self):
-        names = {s.name for s in parse_skills(["JS, K8s, Postgres, sklearn"])}
+        names = {skill.name for skill in parse_skills(["JS, K8s, Postgres, sklearn"])}
         assert names == {"JavaScript", "Kubernetes", "PostgreSQL", "Scikit-learn"}
 
     def test_hyphenated_names_survive(self):
-        assert {s.name for s in parse_skills(["Scikit-learn"])} == {"Scikit-learn"}
+        assert {skill.name for skill in parse_skills(["Scikit-learn"])} == {"Scikit-learn"}
 
     def test_unknown_tokens_are_dropped(self):
         assert parse_skills(["Underwater basket weaving"]) == []
@@ -137,7 +137,7 @@ class TestAwkwardLayouts:
     def test_skill_rows_split_across_lines_are_paired(self):
         """Skills tables and rating bars emit the name and years as separate lines."""
         skills = parse_skills([], ["Datadog", "15 yrs", "Grafana", "18 yrs"])
-        assert {s.name: s.years for s in skills} == {"Datadog": 15.0, "Grafana": 18.0}
+        assert {skill.name: skill.years for skill in skills} == {"Datadog": 15.0, "Grafana": 18.0}
 
     def test_bullet_glyph_rendered_as_a_letter(self):
         """Symbol fonts map their bullet to an arbitrary letter, e.g. "n Vue.js"."""
@@ -151,7 +151,7 @@ class TestAwkwardLayouts:
     def test_wrapped_skills_line_is_rejoined(self):
         """Narrow columns wrap mid-entry: "GCP (2" / "years)"."""
         skills = parse_skills(["Java (6 years), GCP (2", "years)"])
-        assert {s.name for s in skills} >= {"Java", "GCP"}
+        assert {skill.name for skill in skills} >= {"Java", "GCP"}
 
     def test_prose_mining_only_names_known_skills(self):
         found = vocab.skills_mentioned_in(

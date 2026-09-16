@@ -13,7 +13,7 @@ from . import vocab
 from .pdf_text import Document
 from .schema import Company, CVRecord, Education, ExtractionResult, Skill
 
-MONTHS = {m: i + 1 for i, m in enumerate(
+MONTHS = {name: number + 1 for number, name in enumerate(
     ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"])}
 
 TITLE_KEYWORDS = re.compile(
@@ -40,20 +40,20 @@ def _parse_date_token(token: str) -> str | None:
     token = token.strip()
     if re.fullmatch(YEAR, token):
         return f"{token}-01"
-    m = re.fullmatch(rf"({YEAR})-(\d{{2}})", token)
-    if m:
-        return f"{m.group(1)}-{m.group(2)}"
-    m = re.fullmatch(rf"(\d{{1,2}})/({YEAR})", token)
-    if m:
-        return f"{m.group(2)}-{int(m.group(1)):02d}"
-    m = re.fullmatch(rf"({MONTH_NAME})\s+'(\d{{2}})", token)
-    if m:
-        month = MONTHS.get(m.group(1)[:3].lower())
-        return f"20{m.group(2)}-{month:02d}" if month else None
-    m = re.fullmatch(rf"({MONTH_NAME})\s+({YEAR})", token)
-    if m:
-        month = MONTHS.get(m.group(1)[:3].lower())
-        return f"{m.group(2)}-{month:02d}" if month else None
+    match = re.fullmatch(rf"({YEAR})-(\d{{2}})", token)
+    if match:
+        return f"{match.group(1)}-{match.group(2)}"
+    match = re.fullmatch(rf"(\d{{1,2}})/({YEAR})", token)
+    if match:
+        return f"{match.group(2)}-{int(match.group(1)):02d}"
+    match = re.fullmatch(rf"({MONTH_NAME})\s+'(\d{{2}})", token)
+    if match:
+        month = MONTHS.get(match.group(1)[:3].lower())
+        return f"20{match.group(2)}-{month:02d}" if month else None
+    match = re.fullmatch(rf"({MONTH_NAME})\s+({YEAR})", token)
+    if match:
+        month = MONTHS.get(match.group(1)[:3].lower())
+        return f"{match.group(2)}-{month:02d}" if month else None
     return None
 
 
@@ -154,7 +154,8 @@ def parse_education(lines: list[str]) -> list[Education]:
         if not level:
             continue
 
-        field_of_study = next((f for f in vocab.EDUCATION_FIELDS if f.lower() in line.lower()), None)
+        field_of_study = next((name for name in vocab.EDUCATION_FIELDS
+                               if name.lower() in line.lower()), None)
         entry = Education(level=level, field_of_study=field_of_study)
 
         # Institution and dates usually sit on the degree line or the one below.
@@ -171,7 +172,7 @@ def parse_education(lines: list[str]) -> list[Education]:
                 entry.institution = SEPARATORS.split(candidate.strip())[0].strip()
         entries.append(entry)
 
-    entries.sort(key=lambda e: vocab.DEGREE_PATTERNS and _degree_rank(e.level), reverse=True)
+    entries.sort(key=lambda entry: vocab.DEGREE_PATTERNS and _degree_rank(entry.level), reverse=True)
     return entries
 
 
@@ -256,7 +257,7 @@ def parse_skills(lines: list[str], all_lines: list[str] | None = None) -> list[S
     for name, years in recover_tabulated_skills(all_lines or []).items():
         if name not in found or found[name] is None:
             found[name] = years
-    return [Skill(name=n, years=y) for n, y in found.items()]
+    return [Skill(name=name, years=years) for name, years in found.items()]
 
 
 def _is_date_only(line: str) -> bool:
@@ -281,7 +282,7 @@ def _employer_like(line: str) -> str | None:
     head = SEPARATORS.split(stripped)[0].strip()
     if (not head or len(head) > 60 or TITLE_KEYWORDS.search(head)
             or DATE_RANGE.search(head) or _is_date_only(head)
-            or vocab.canonical_skill(head) or not any(c.isalpha() for c in head)):
+            or vocab.canonical_skill(head) or not any(letter.isalpha() for letter in head)):
         return None
     return head
 
@@ -309,14 +310,14 @@ def parse_companies(lines: list[str]) -> list[Company]:
         if len(stripped) > 110 or not TITLE_KEYWORDS.search(stripped):
             continue
 
-        parts = [p.strip() for p in SEPARATORS.split(stripped) if p.strip()]
-        parts = [p for p in parts if not DATE_RANGE.fullmatch(p)]
-        title = next((p for p in parts if TITLE_KEYWORDS.search(p)), None)
+        parts = [part.strip() for part in SEPARATORS.split(stripped) if part.strip()]
+        parts = [part for part in parts if not DATE_RANGE.fullmatch(part)]
+        title = next((part for part in parts if TITLE_KEYWORDS.search(part)), None)
         if title is None:
             continue
-        employer = next((p for p in parts
-                         if p != title and not TITLE_KEYWORDS.search(p)
-                         and not DATE_RANGE.search(p) and 1 < len(p) < 60), None)
+        employer = next((part for part in parts
+                         if part != title and not TITLE_KEYWORDS.search(part)
+                         and not DATE_RANGE.search(part) and 1 < len(part) < 60), None)
 
         dates = find_date_range(stripped)
 
@@ -394,7 +395,7 @@ def score_confidence(record: CVRecord, signals, sections: dict,
     score += weights["skills"] * min(1.0, len(record.skills) / 3)
     score += weights["companies"] * min(1.0, len(record.companies) / 2)
 
-    dated = [c for c in record.companies if c.start_date]
+    dated = [company for company in record.companies if company.start_date]
     if record.companies:
         score *= 0.75 + 0.25 * (len(dated) / len(record.companies))
     if signals.is_multi_column:
@@ -416,7 +417,8 @@ def parse(document: Document, threshold: float = 0.0) -> ExtractionResult:
     # Sections we could not label still carry content on messy layouts.
     if not experience_lines:
         experience_lines = sections.get("_preamble", []) + sum(
-            (v for k, v in sections.items() if k not in vocab.SECTION_SYNONYMS), [])
+            (lines for key, lines in sections.items()
+             if key not in vocab.SECTION_SYNONYMS), [])
 
     # A sidebar is emitted before the main column, so main-column jobs can
     # inherit the sidebar's last heading. Sweep the sections that plausibly
@@ -426,7 +428,7 @@ def parse(document: Document, threshold: float = 0.0) -> ExtractionResult:
                  for line in sections.get(key, [])]
     companies = parse_companies(experience_lines)
     if spillover:
-        seen = {c.name.lower() for c in companies}
+        seen = {company.name.lower() for company in companies}
         for company in parse_companies(spillover):
             if company.name.lower() not in seen and company.start_date:
                 seen.add(company.name.lower())
@@ -434,9 +436,9 @@ def parse(document: Document, threshold: float = 0.0) -> ExtractionResult:
     skills = parse_skills(skills_lines, lines)
     if "skills" not in sections:
         # No skills section on the page at all: add what the prose names.
-        known = {s.name for s in skills}
-        skills += [Skill(name=n) for n in vocab.skills_mentioned_in(document.body_text)
-                   if n not in known]
+        known = {skill.name for skill in skills}
+        skills += [Skill(name=name) for name in vocab.skills_mentioned_in(document.body_text)
+                   if name not in known]
 
     record = CVRecord(
         name=parse_name(document, sections),
@@ -452,5 +454,5 @@ def parse(document: Document, threshold: float = 0.0) -> ExtractionResult:
         confidence=confidence,
         mode="ats",
         needs_llm=confidence < threshold,
-        sections_found=sorted(k for k in sections if k != "_preamble"),
+        sections_found=sorted(key for key in sections if key != "_preamble"),
     )

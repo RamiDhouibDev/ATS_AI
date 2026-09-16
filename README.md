@@ -47,7 +47,7 @@ flowchart TD
 |---|---|---|
 | CV corpus — 1,000 PDFs, 10 layouts | ✅ | [`data_layer1/`](data_layer1/README.md) |
 | Layer 1 parser + eval, 44 tests | ✅ | [`layer1_extraction/`](layer1_extraction/README.md) |
-| Scoring data — 250 jobs, 60k pairs | ✅ | [`data_layer2/`](data_layer2/README.md) |
+| Scoring data — 570 jobs, 105k pairs | ✅ | [`data_layer2/`](data_layer2/README.md) |
 | Layer 2 loader, 18 tests | ✅ | `layer2_scoring/code/dataset.py` |
 | LLM extraction fallback | ⏳ | |
 | Layer 2 multi-task net | ⏳ | |
@@ -97,7 +97,7 @@ flowchart LR
     C -->|tunes + evaluates| P["Layer 1 parser ✅"]
     C --> G2[data_layer2/gen]
     JD2[job postings<br/>+ scoring rules] --> G2
-    G2 --> PAIRS[(60,000 scored<br/>candidate × job pairs)]
+    G2 --> PAIRS[(105,000 scored<br/>candidate × job pairs)]
     PAIRS -->|trains| NN2["Layer 2 net ⏳"]
 ```
 
@@ -109,7 +109,7 @@ flowchart LR
 data_layer1/        gen/ · train/ · test/          CV documents + extraction labels
 data_layer2/        gen/ · train/ · test/          job postings + scored pairs
 layer1_extraction/  code/ · tests/                 the parser
-layer2_scoring/     code/ · tests/                 the scorer
+layer2_scoring/     code/data/ · code/training/ · tests/   the scorer
 docs/               pipeline_map.html
 ```
 
@@ -127,10 +127,16 @@ cd data_layer2/gen && python generate_layer2_data.py --seed 42
 python -m layer1_extraction.code.tune --target 0.95      # fit on TRAIN
 python -m layer1_extraction.code.evaluate --split test   # score on TEST
 
-# layer 2
-python -m layer2_scoring.code.dataset                    # inspect splits
+# layer 2 - loading (built)
+python -m layer2_scoring.code.data.dataset               # inspect splits
+python -m layer2_scoring.code.data.torch_data            # inspect a tensor batch
 
-pytest layer1_extraction/tests layer2_scoring/tests -q   # 62 tests
+# layer 2 - model and loops (placeholders, not implemented)
+python -m layer2_scoring.code.training.model             # what a batch looks like
+python -m layer2_scoring.code.training.train             # what the loop gets
+python -m layer2_scoring.code.training.evaluate          # what the pools look like
+
+pytest -q                                                # 70 tests
 ```
 
 ---

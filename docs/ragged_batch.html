@@ -1,0 +1,1045 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ragged Batch, Dense Layer</title>
+<style>
+  html { color-scheme: light dark; }
+  body { margin: 0; }
+  img { max-width: 100%; }
+  [hidden] { display: none !important; }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400;1,6..72,600&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+
+<style>
+  :root {
+    --paper: #F7F8FA;
+    --surface: #FFFFFF;
+    --sunken: #EDEFF4;
+    --ink: #131720;
+    --muted: #5C6472;
+    --faint: #878E9C;
+    --rule: #DCE0E8;
+    --rule-strong: #C3C9D4;
+    --wrong: #C0234B;
+    --wrong-wash: #FCEEF2;
+    --right: #0E7C6B;
+    --right-wash: #E9F5F2;
+    --accent: #3B4CCA;
+    --accent-wash: #EDEFFC;
+
+    --display: "Newsreader", Georgia, "Times New Roman", serif;
+    --body: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #0E1117;
+      --surface: #161A22;
+      --sunken: #1D222C;
+      --ink: #E7EAF0;
+      --muted: #9AA3B2;
+      --faint: #737C8B;
+      --rule: #272D39;
+      --rule-strong: #3A4150;
+      --wrong: #FF7A9C;
+      --wrong-wash: #2A1620;
+      --right: #4ECDB6;
+      --right-wash: #10241F;
+      --accent: #92A0FF;
+      --accent-wash: #191D33;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper: #0E1117;
+    --surface: #161A22;
+    --sunken: #1D222C;
+    --ink: #E7EAF0;
+    --muted: #9AA3B2;
+    --faint: #737C8B;
+    --rule: #272D39;
+    --rule-strong: #3A4150;
+    --wrong: #FF7A9C;
+    --wrong-wash: #2A1620;
+    --right: #4ECDB6;
+    --right-wash: #10241F;
+    --accent: #92A0FF;
+    --accent-wash: #191D33;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 1020px;
+    margin: 0 auto;
+    padding-inline: 20px;
+    padding-block: 0 88px;
+  }
+
+  .column { max-width: 660px; }
+
+  /* ---- type ------------------------------------------------------------ */
+
+  h1, h2, h3 { font-family: var(--display); font-weight: 600; text-wrap: balance; margin: 0; }
+
+  h1 {
+    font-size: clamp(2.5rem, 7vw, 4.1rem);
+    line-height: 1.02;
+    letter-spacing: -0.021em;
+  }
+
+  h2 {
+    font-size: clamp(1.5rem, 3.6vw, 2rem);
+    line-height: 1.15;
+    letter-spacing: -0.014em;
+  }
+
+  h3 {
+    font-size: 1.12rem;
+    line-height: 1.3;
+    letter-spacing: -0.004em;
+  }
+
+  p { margin: 0; }
+  strong { font-weight: 600; }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--faint);
+  }
+
+  .standfirst {
+    font-family: var(--display);
+    font-size: clamp(1.1rem, 2.4vw, 1.32rem);
+    line-height: 1.5;
+    color: var(--muted);
+  }
+
+  code, .shape { font-family: var(--mono); font-size: 0.855em; }
+  code { color: var(--accent); }
+
+  .math {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 1.06em;
+    white-space: nowrap;
+  }
+  .math sub, .math sup { font-style: normal; font-size: 0.62em; }
+
+  /* ---- structural blocks ----------------------------------------------- */
+
+  header.masthead {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    padding-block: 72px 44px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  section { padding-block: 52px; border-bottom: 1px solid var(--rule); }
+  section:last-of-type { border-bottom: none; }
+
+  .stack { display: flex; flex-direction: column; gap: 20px; }
+  .stack-tight { display: flex; flex-direction: column; gap: 12px; }
+
+  .rule-head { display: flex; gap: 18px; align-items: baseline; }
+
+  .rule-number {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--wrong);
+    padding-top: 4px;
+    flex: none;
+  }
+
+  /* ---- the verdict callout --------------------------------------------- */
+
+  .verdict {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin-block: 4px;
+  }
+  @media (min-width: 620px) { .verdict { grid-template-columns: 1fr 1fr; } }
+
+  .verdict > div { background: var(--surface); padding: 20px 22px; }
+  .verdict-label {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .verdict .no .verdict-label { color: var(--wrong); }
+  .verdict .yes .verdict-label { color: var(--right); }
+
+  /* ---- tables ----------------------------------------------------------- */
+
+  .scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 0.875rem;
+    font-variant-numeric: tabular-nums;
+  }
+  th, td { text-align: left; padding: 9px 16px 9px 0; border-bottom: 1px solid var(--rule); }
+  th {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--faint);
+    border-bottom-color: var(--rule-strong);
+    white-space: nowrap;
+  }
+  td.shape, td.mono { font-family: var(--mono); font-size: 0.8rem; white-space: nowrap; }
+  tr.group-start td, tr.group-start th { border-top: 1px solid var(--rule-strong); }
+  .tag {
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+  .tag.in { background: var(--right-wash); color: var(--right); }
+  .tag.out { background: var(--wrong-wash); color: var(--wrong); }
+
+  /* ---- figures ---------------------------------------------------------- */
+
+  figure { margin: 0; display: flex; flex-direction: column; gap: 14px; }
+  figure svg { max-width: 100%; height: auto; display: block; }
+  .figframe {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    padding: 24px 20px;
+    overflow-x: auto;
+  }
+  figcaption { font-size: 0.855rem; color: var(--muted); line-height: 1.55; }
+  figcaption b { color: var(--ink); font-weight: 600; }
+
+  /* ---- derivation panels ------------------------------------------------ */
+
+  .derivation {
+    background: var(--sunken);
+    border-left: 2px solid var(--rule-strong);
+    padding: 18px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    overflow-x: auto;
+  }
+  .derivation .line { display: flex; gap: 14px; align-items: baseline; font-size: 0.97rem; }
+  .derivation .why { font-size: 0.8rem; color: var(--faint); font-family: var(--body); }
+  .derivation.bad { border-left-color: var(--wrong); }
+  .derivation.good { border-left-color: var(--right); }
+
+  .readout {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    line-height: 1.85;
+    background: var(--sunken);
+    padding: 16px 20px;
+    overflow-x: auto;
+    white-space: pre;
+    color: var(--muted);
+  }
+  .readout b { color: var(--ink); font-weight: 600; }
+  .readout .hit { color: var(--right); font-weight: 600; }
+
+  .note {
+    font-size: 0.875rem;
+    color: var(--muted);
+    border-left: 2px solid var(--accent);
+    padding-left: 16px;
+  }
+
+  .measured {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-wash);
+    padding: 3px 9px;
+  }
+
+  ul { margin: 0; padding-left: 20px; }
+  li { margin-block: 6px; }
+
+  a { color: var(--accent); }
+  a:focus-visible, th:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="masthead">
+    <p class="eyebrow">ATS_AI · Layer 2 · torch_data</p>
+    <h1>Ragged Batch,<br>Dense Layer</h1>
+    <p class="standfirst column">
+      <code>make_loaders()</code> hands you a dict of seventeen tensors. No neural
+      network takes it unchanged — and the reason is not the <code>Linear</code>
+      layer. Here is what comes out, the five rules that stand between it and a
+      trunk, and the arithmetic behind each one.
+    </p>
+  </header>
+
+  <section>
+    <div class="stack">
+      <h2 class="column">What actually comes out</h2>
+      <p class="column">
+        Not a tensor. A dict, from <code>collate()</code>, holding three
+        <em>ragged</em> groups padded to the longest row in that batch, four
+        fixed-width tensors, and two lists of strings. Shapes below are one real
+        batch at <code>batch_size=256</code>.
+      </p>
+
+      <div class="scroll">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Key</th>
+              <th scope="col">Shape</th>
+              <th scope="col">Dtype</th>
+              <th scope="col">What it is</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="group-start">
+              <td class="mono">candidate_skill_ids</td><td class="shape">(256, S)</td>
+              <td class="mono">int64</td><td>Index into 76 skills</td>
+            </tr>
+            <tr>
+              <td class="mono">candidate_skill_mask</td><td class="shape">(256, S)</td>
+              <td class="mono">bool</td><td>Which slots are real</td>
+            </tr>
+            <tr>
+              <td class="mono">candidate_skill_years</td><td class="shape">(256, S)</td>
+              <td class="mono">float32</td><td>Years per skill</td>
+            </tr>
+            <tr class="group-start">
+              <td class="mono">required_skill_ids</td><td class="shape">(256, R)</td>
+              <td class="mono">int64</td><td>What the posting asks for</td>
+            </tr>
+            <tr>
+              <td class="mono">required_skill_mask</td><td class="shape">(256, R)</td>
+              <td class="mono">bool</td><td>Which slots are real</td>
+            </tr>
+            <tr>
+              <td class="mono">required_min_years</td><td class="shape">(256, R)</td>
+              <td class="mono">float32</td><td>Years demanded, per skill</td>
+            </tr>
+            <tr>
+              <td class="mono">required_weights</td><td class="shape">(256, R)</td>
+              <td class="mono">float32</td><td>Must-have vs nice-to-have</td>
+            </tr>
+            <tr>
+              <td class="mono">required_skill_candidate_years</td><td class="shape">(256, R)</td>
+              <td class="mono">float32</td><td>Years held in <em>each required</em> skill</td>
+            </tr>
+            <tr class="group-start">
+              <td class="mono">company_tiers</td><td class="shape">(256, E)</td>
+              <td class="mono">int64</td><td>Employer prestige, 1–3</td>
+            </tr>
+            <tr>
+              <td class="mono">company_mask</td><td class="shape">(256, E)</td>
+              <td class="mono">bool</td><td>Which slots are real</td>
+            </tr>
+            <tr>
+              <td class="mono">company_years</td><td class="shape">(256, E)</td>
+              <td class="mono">float32</td><td>Tenure per employer</td>
+            </tr>
+            <tr class="group-start">
+              <td class="mono">categorical</td><td class="shape">(256, 7)</td>
+              <td class="mono">int64</td><td>Seven single-valued ids</td>
+            </tr>
+            <tr>
+              <td class="mono">scalars</td><td class="shape">(256, 2)</td>
+              <td class="mono">float32</td><td>Standardised years</td>
+            </tr>
+            <tr>
+              <td class="mono">job_weights</td><td class="shape">(256, 4)</td>
+              <td class="mono">float32</td><td>Section weights for the overall</td>
+            </tr>
+            <tr>
+              <td class="mono">target</td><td class="shape">(256, 4)</td>
+              <td class="mono">float32</td><td>Labels, 0–1</td>
+            </tr>
+            <tr class="group-start">
+              <td class="mono">job_id, candidate_id</td><td class="shape">list[256]</td>
+              <td class="mono">str</td><td>Identifiers</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="column">
+        <strong>S, R and E are not constants.</strong> Each is the longest row in
+        <em>that batch</em>. Across the training split the true lengths run: skills
+        4–16 (mean 9.1), requirements 3–7 (mean 4.9), employers 0–5 (mean 2.0). At
+        batch 256 you almost always hit the ceiling and see <span class="shape">(16, 7, 5)</span>
+        every time; at batch 8, S swings between 11 and 16 from one batch to the next.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack">
+      <h2 class="column">So can I feed it to my network?</h2>
+
+      <div class="verdict">
+        <div class="no">
+          <p class="verdict-label">No — not its contents</p>
+          <p>Nothing in the dict can go into a layer as it stands. Two of the three
+          groups are integer indices, and all three have an axis whose width changes
+          between batches.</p>
+        </div>
+        <div class="yes">
+          <p class="verdict-label">Yes — the dict itself</p>
+          <p><code>forward(batch)</code> takes the whole dict. The conversions happen
+          <em>inside</em> it: embed the ids, pool the ragged axes under their masks,
+          concatenate.</p>
+        </div>
+      </div>
+
+      <figure>
+        <div class="figframe">
+          <svg viewBox="0 0 760 250" role="img" aria-label="A dict of ragged integer tensors on the left, a dense float matrix of fixed width on the right, with a gap between them labelled embed, pool and concatenate.">
+            <defs>
+              <marker id="tip" viewBox="0 0 10 10" refX="9" refY="5"
+                      markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <polygon points="0,0 10,5 0,10" fill="currentColor"></polygon>
+              </marker>
+            </defs>
+
+            <text x="20" y="26" font-family="IBM Plex Mono, monospace" font-size="11"
+                  letter-spacing="1.4" fill="currentColor" opacity="0.55">WHAT COLLATE RETURNS</text>
+            <text x="560" y="26" font-family="IBM Plex Mono, monospace" font-size="11"
+                  letter-spacing="1.4" fill="currentColor" opacity="0.55">WHAT A LAYER TAKES</text>
+
+            <!-- ragged rows -->
+            <g fill="none" stroke="currentColor" stroke-width="1.1">
+              <rect x="20" y="44" width="150" height="20"></rect>
+              <rect x="20" y="70" width="96" height="20"></rect>
+              <rect x="20" y="96" width="176" height="20"></rect>
+              <rect x="20" y="122" width="70" height="20"></rect>
+            </g>
+            <g font-family="IBM Plex Mono, monospace" font-size="11" fill="currentColor">
+              <text x="27" y="58">12 · 4 · 31 · 9 · 55 · 2</text>
+              <text x="27" y="84">7 · 44 · 19</text>
+              <text x="27" y="110">3 · 61 · 8 · 27 · 14 · 5 · 40</text>
+              <text x="27" y="136">22 · 6</text>
+            </g>
+            <text x="20" y="162" font-family="IBM Plex Sans, sans-serif" font-size="12"
+                  fill="currentColor" opacity="0.62">int64 · every row a different length</text>
+
+            <g fill="none" stroke="currentColor" stroke-width="1.1" stroke-dasharray="3 3" opacity="0.4">
+              <rect x="20" y="186" width="176" height="20"></rect>
+            </g>
+            <text x="27" y="200" font-family="IBM Plex Mono, monospace" font-size="11"
+                  fill="currentColor" opacity="0.45">padded to S = 7 this batch</text>
+
+            <!-- the three conversions -->
+            <g stroke="currentColor" stroke-width="1.2" marker-end="url(#tip)" opacity="0.85">
+              <line x1="240" y1="120" x2="520" y2="120"></line>
+            </g>
+            <g font-family="IBM Plex Mono, monospace" font-size="11" fill="currentColor">
+              <text x="248" y="104" letter-spacing="0.6">1. EMBED</text>
+              <text x="348" y="104" letter-spacing="0.6">2. POOL</text>
+              <text x="440" y="104" letter-spacing="0.6">3. CONCAT</text>
+            </g>
+            <g font-family="IBM Plex Sans, sans-serif" font-size="11" fill="currentColor" opacity="0.6">
+              <text x="248" y="142">id → vector</text>
+              <text x="348" y="142">S → gone</text>
+              <text x="440" y="142">→ one matrix</text>
+            </g>
+
+            <!-- dense block -->
+            <g fill="none" stroke="currentColor" stroke-width="1.1">
+              <rect x="560" y="44" width="180" height="20"></rect>
+              <rect x="560" y="70" width="180" height="20"></rect>
+              <rect x="560" y="96" width="180" height="20"></rect>
+              <rect x="560" y="122" width="180" height="20"></rect>
+            </g>
+            <g font-family="IBM Plex Mono, monospace" font-size="10.5" fill="currentColor" opacity="0.75">
+              <text x="567" y="58">0.42 −1.08 0.31 …</text>
+              <text x="567" y="84">−0.17 0.94 0.05 …</text>
+              <text x="567" y="110">1.26 0.33 −0.71 …</text>
+              <text x="567" y="136">0.08 −0.42 0.60 …</text>
+            </g>
+            <text x="560" y="162" font-family="IBM Plex Sans, sans-serif" font-size="12"
+                  fill="currentColor" opacity="0.62">float32 · every row 152 wide</text>
+          </svg>
+        </div>
+        <figcaption>
+          <b>The gap the model has to close.</b> The left side is indices of varying
+          count; the right side is what any dense layer multiplies. Three conversions
+          sit between them, and every architecture needs the first and the third.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack">
+      <p class="eyebrow">The five rules</p>
+      <h2 class="column">Why the batch is shaped the way it is</h2>
+      <p class="column">
+        Each rule is a constraint the data imposes, the arithmetic that makes it a
+        constraint, and what satisfying it costs.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack">
+      <div class="rule-head column">
+        <span class="rule-number">RULE 1</span>
+        <h3>An id is not a quantity</h3>
+      </div>
+      <p class="column">
+        A dense layer computes <span class="math">z = Wx + b</span>. It is affine in
+        every component of <span class="math">x</span>. Put a skill id in one of
+        those components and you have asserted something false about skills.
+      </p>
+
+      <div class="derivation bad column">
+        <div class="line"><span class="math">z(s) = w·s + b</span>
+          <span class="why">a skill id fed as a number</span></div>
+        <div class="line"><span class="math">∂z/∂s = w</span>
+          <span class="why">constant — one slope for all 76 skills</span></div>
+        <div class="line"><span class="math">z(44) − z(43) = z(2) − z(1)</span>
+          <span class="why">adjacent ids must differ by the same amount</span></div>
+        <div class="line"><span class="math">z(44) = 2·z(22) − b</span>
+          <span class="why">the 44th skill is "twice" the 22nd</span></div>
+      </div>
+
+      <p class="column">
+        The ids are alphabetical. <code>AWS</code> is 1 and <code>Airflow</code> is 2
+        because of how <code>sorted()</code> ordered them, so the model would be
+        fitting a slope through an accident of the alphabet. An embedding replaces
+        the slope with a lookup:
+      </p>
+
+      <div class="derivation good column">
+        <div class="line"><span class="math">e<sub>s</sub> = E<sup>⊤</sup> onehot(s)</span>
+          <span class="why">row s of the table, E ∈ ℝ<sup>77×d</sup></span></div>
+        <div class="line"><span class="math">∂e<sub>s</sub>/∂E<sub>s</sub> = I</span>
+          <span class="why">every skill gets d free parameters</span></div>
+      </div>
+
+      <p class="column">
+        That is <span class="math">d</span> numbers per skill with no imposed order,
+        instead of one shared slope. Row 0 is reserved in every vocabulary for
+        padding, missing and unseen-at-test, so every table is built with
+        <code>padding_idx=0</code> — which also makes row 0 the zero vector, and that
+        matters in Rule&nbsp;4.
+      </p>
+
+      <div class="scroll">
+        <table>
+          <caption class="eyebrow" style="text-align:left; padding-bottom:10px;">Embedding tables — rows include index 0 for padding, missing and unseen</caption>
+          <thead>
+            <tr><th scope="col">Table</th><th scope="col">Rows</th><th scope="col">Table</th><th scope="col">Rows</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>skills</td><td class="mono">77</td><td>seniorities</td><td class="mono">5</td></tr>
+            <tr><td>fields of study</td><td class="mono">12</td><td>degrees</td><td class="mono">5</td></tr>
+            <tr><td>domains</td><td class="mono">7</td><td>employer tiers</td><td class="mono">4</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack">
+      <div class="rule-head column">
+        <span class="rule-number">RULE 2</span>
+        <h3>A layer has a fixed fan-in; the data does not</h3>
+      </div>
+      <p class="column">
+        <span class="math">W ∈ ℝ<sup>out×in</sup></span> is allocated once. The
+        product <span class="math">Wx</span> is defined only for
+        <span class="math">x ∈ ℝ<sup>in</sup></span>. Our S changes between batches,
+        so there is no <span class="math">in</span> to allocate.
+      </p>
+      <div class="readout">batch 0: S=13   batch 3: S=15
+batch 1: S=16   batch 4: S=12
+batch 2: S=11   batch 5: S=16</div>
+      <p class="column">
+        Padding to a global maximum would fix the shape and break Rule&nbsp;4 instead.
+        The axis has to be <em>reduced away</em>, not filled in.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack">
+      <div class="rule-head column">
+        <span class="rule-number">RULE 3</span>
+        <h3>Skills are a set, so the reduction must be order-blind</h3>
+      </div>
+      <p class="column">
+        Nothing in a CV makes Python come before AWS. The order in the tensor is
+        whatever order the JSON happened to list. So for any permutation
+        <span class="math">π</span> the model must satisfy:
+      </p>
+      <div class="derivation good column">
+        <div class="line"><span class="math">f(x<sub>1</sub>, …, x<sub>n</sub>) = f(x<sub>π(1)</sub>, …, x<sub>π(n)</sub>)</span>
+          <span class="why">permutation invariance</span></div>
+        <div class="line"><span class="math">f(X) = ρ( Σ<sub>i</sub> φ(x<sub>i</sub>) )</span>
+          <span class="why">Deep Sets: every such f has this form</span></div>
+      </div>
+      <p class="column">
+        Sum, mean and max satisfy it. An RNN does not — it would learn that the
+        first-listed skill matters more, which is an artefact of serialisation. A
+        Transformer satisfies it only with positional encoding removed.
+        <span class="math">φ</span> is the embedding; <span class="math">ρ</span> is
+        the trunk.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack">
+      <div class="rule-head column">
+        <span class="rule-number">RULE 4</span>
+        <h3>An unmasked mean makes the batch a feature</h3>
+      </div>
+      <p class="column">
+        This is the one that does not raise an error. Let
+        <span class="math">n<sub>i</sub></span> be row <span class="math">i</span>'s
+        true length and <span class="math">L = max<sub>k</sub> n<sub>k</sub></span>
+        the padded width of the batch. Because <code>padding_idx=0</code> makes the
+        padded vectors exactly zero, the <em>sum</em> is already correct — only the
+        divisor is wrong.
+      </p>
+
+      <div class="derivation bad column">
+        <div class="line"><span class="math">m̃<sub>i</sub> = (1/L) Σ<sub>j=1</sub><sup>L</sup> v<sub>ij</sub></span>
+          <span class="why">the naive mean, dividing by the padded width</span></div>
+        <div class="line"><span class="math">= (1/L) Σ<sub>j=1</sub><sup>n<sub>i</sub></sup> v<sub>ij</sub></span>
+          <span class="why">padded terms are zero, so they drop out</span></div>
+        <div class="line"><span class="math">= (n<sub>i</sub>/L) · m<sub>i</sub></span>
+          <span class="why">the true mean, scaled by a factor it did not choose</span></div>
+      </div>
+
+      <p class="column">
+        And <span class="math">L</span> is a maximum over the batch — over
+        <em>other people's</em> CVs. So the representation of one candidate depends
+        on who else was sampled alongside them. Verified on a real batch, where
+        <span class="math">n<sub>i</sub>/L</span> matches the ratio of the two means
+        to four decimals:
+      </p>
+
+      <div class="readout">row 0:  n= 7  L=13   n/L = <b>0.5385</b>   naive/masked = <b>0.5385</b>
+row 1:  n=11  L=13   n/L = <b>0.8462</b>   naive/masked = <b>0.8462</b>
+row 2:  n= 5  L=13   n/L = <b>0.3846</b>   naive/masked = <b>0.3846</b>
+row 3:  n= 6  L=13   n/L = <b>0.4615</b>   naive/masked = <b>0.4615</b></div>
+
+      <figure>
+        <div class="figframe">
+          <svg viewBox="0 0 700 218" role="img" aria-label="The same candidate row placed in three batches with different padded widths produces three different naive pooled vectors, while the masked mean produces the same vector each time.">
+            <text x="16" y="20" font-family="IBM Plex Mono, monospace" font-size="11"
+                  letter-spacing="1.3" fill="currentColor" opacity="0.55">ONE CANDIDATE · SEVEN REAL SKILLS · THREE DIFFERENT BATCHES</text>
+
+            <g font-family="IBM Plex Mono, monospace" font-size="10.5" fill="currentColor">
+              <text x="16" y="56">L = 7</text>
+              <text x="16" y="106">L = 12</text>
+              <text x="16" y="156">L = 18</text>
+            </g>
+
+            <!-- real cells, identical every time -->
+            <g fill="none" stroke="currentColor" stroke-width="1">
+              <rect x="70" y="42" width="133" height="18"></rect>
+              <rect x="70" y="92" width="133" height="18"></rect>
+              <rect x="70" y="142" width="133" height="18"></rect>
+            </g>
+            <g font-family="IBM Plex Mono, monospace" font-size="10" fill="currentColor" opacity="0.8">
+              <text x="77" y="55">7 real skills</text>
+              <text x="77" y="105">7 real skills</text>
+              <text x="77" y="155">7 real skills</text>
+            </g>
+
+            <!-- padding, growing -->
+            <g fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3" opacity="0.38">
+              <rect x="203" y="92" width="95" height="18"></rect>
+              <rect x="203" y="142" width="209" height="18"></rect>
+            </g>
+            <g font-family="IBM Plex Mono, monospace" font-size="10" fill="currentColor" opacity="0.42">
+              <text x="210" y="105">+5 padding</text>
+              <text x="210" y="155">+11 padding</text>
+            </g>
+
+            <!-- naive results -->
+            <text x="460" y="20" font-family="IBM Plex Mono, monospace" font-size="11"
+                  letter-spacing="1.3" fill="#C0234B">NAIVE .mean(1)</text>
+            <g font-family="IBM Plex Mono, monospace" font-size="11.5" fill="#C0234B">
+              <text x="460" y="55">+0.04769</text>
+              <text x="460" y="105">+0.02782</text>
+              <text x="460" y="155">+0.01855</text>
+            </g>
+            <text x="460" y="180" font-family="IBM Plex Sans, sans-serif" font-size="11"
+                  fill="#C0234B">one candidate, three answers</text>
+
+            <!-- masked -->
+            <line x1="16" y1="196" x2="684" y2="196" stroke="currentColor" stroke-width="1" opacity="0.18"></line>
+            <text x="16" y="212" font-family="IBM Plex Sans, sans-serif" font-size="11.5"
+                  fill="#0E7C6B">masked mean · +0.04769 every time · divides by n = 7, not L</text>
+          </svg>
+        </div>
+        <figcaption>
+          <b>The row never changed — only its neighbours did.</b> A model is supposed
+          to be a function of its input. Under an unmasked mean it is a function of
+          its input <em>and the batch it landed in</em>, which makes training noisy
+          and evaluation depend on shuffling.
+        </figcaption>
+      </figure>
+
+      <div class="derivation good column">
+        <div class="line"><span class="math">m<sub>i</sub> = ( Σ<sub>j</sub> mask<sub>ij</sub> · v<sub>ij</sub> ) / ( Σ<sub>j</sub> mask<sub>ij</sub> )</span>
+          <span class="why">divide by the true length; clamp ≥ 1 for an empty row</span></div>
+      </div>
+      <p class="note column">
+        Employers can legitimately be empty — 7,244 of the 94,848 training pairs
+        involve a candidate with no employment history at all. That row's mask sums
+        to zero, so the clamp is load-bearing, not defensive.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack">
+      <div class="rule-head column">
+        <span class="rule-number">RULE 5</span>
+        <h3>Pooling destroys the one thing the stack score needs</h3>
+      </div>
+      <p class="column">
+        Mean pooling is not injective. Different sets collapse to the same vector,
+        so <span class="math">|held ∩ wanted|</span> — the whole question the stack
+        section asks — cannot in general be recovered from the two pooled vectors:
+      </p>
+      <div class="derivation bad column">
+        <div class="line"><span class="math">mean(e<sub>1</sub>, e<sub>2</sub>) = (0.5, 0.5)</span>
+          <span class="why">two skills the candidate holds</span></div>
+        <div class="line"><span class="math">mean(e<sub>3</sub>, e<sub>4</sub>) = (0.5, 0.5)</span>
+          <span class="why">two entirely different skills</span></div>
+        <div class="line"><span class="math">|{1,2} ∩ {1,2}| = 2,&nbsp; |{1,2} ∩ {3,4}| = 0</span>
+          <span class="why">same input to the trunk, opposite truth</span></div>
+      </div>
+      <p class="column">
+        This is why <code>required_skill_candidate_years</code> exists. It is the
+        years the candidate holds in each <em>required</em> skill, aligned index by
+        index to the requirement list — a lookup, not a score, and the only field in
+        the batch that looks derived. Column <span class="math">j</span> means the
+        same requirement across <code>ids</code>, <code>min_years</code>,
+        <code>weights</code> and that lookup, so
+        <span class="math">years<sub>j</sub> − min_years<sub>j</sub></span> is a
+        signed surplus per requirement.
+      </p>
+      <p class="column">
+        <span class="measured">Measured</span> &nbsp;Without it, the stack head sat at
+        <strong>9.50 MAE</strong>. With it, <strong>3.84</strong>. Nothing else changed.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack">
+      <h2 class="column">It is not the <code>Linear</code> layer's fault</h2>
+      <p class="column">
+        Swapping the architecture does not remove the work. Rule 1 and Rule 2 bind
+        every family — an attention block still needs float vectors per token, and
+        still has to produce one fixed-size output for four regression heads.
+      </p>
+      <div class="scroll">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Architecture</th>
+              <th scope="col">Takes raw ids?</th>
+              <th scope="col">Takes a ragged axis?</th>
+              <th scope="col">Still needs a reduction?</th>
+              <th scope="col">Order-blind?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="mono">nn.Linear</td>
+              <td><span class="tag out">No</span></td>
+              <td><span class="tag out">No</span></td>
+              <td><span class="tag out">Yes</span></td>
+              <td>n/a</td>
+            </tr>
+            <tr>
+              <td class="mono">nn.Conv1d</td>
+              <td><span class="tag out">No</span></td>
+              <td><span class="tag in">Yes</span></td>
+              <td><span class="tag out">Yes</span></td>
+              <td><span class="tag out">No</span></td>
+            </tr>
+            <tr>
+              <td class="mono">nn.LSTM / GRU</td>
+              <td><span class="tag out">No</span></td>
+              <td><span class="tag in">Yes</span></td>
+              <td><span class="tag out">Yes</span></td>
+              <td><span class="tag out">No</span></td>
+            </tr>
+            <tr>
+              <td class="mono">Transformer</td>
+              <td><span class="tag out">No</span></td>
+              <td><span class="tag in">Yes</span></td>
+              <td><span class="tag out">Yes</span></td>
+              <td><span class="tag in">If unpositioned</span></td>
+            </tr>
+            <tr>
+              <td class="mono">Deep Sets / pooling</td>
+              <td><span class="tag out">No</span></td>
+              <td><span class="tag in">Yes</span></td>
+              <td><span class="tag in">Is the reduction</span></td>
+              <td><span class="tag in">Yes</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="column">
+        Every row needs an embedding table, and every row needs the ragged axis gone
+        before the heads. What changes is only the middle step — mean pooling is the
+        cheap reduction; attention over the requirement list is the one worth trying,
+        because it keeps a single unmet must-have visible instead of averaging it away.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack">
+      <h2 class="column">What is an input, and what is not</h2>
+      <p class="column">
+        Four keys ride in the batch without ever reaching a layer. Two of them would
+        be leakage.
+      </p>
+      <div class="scroll">
+        <table>
+          <thead>
+            <tr><th scope="col">Key</th><th scope="col">Role</th><th scope="col">Why</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="mono">scalars</td><td><span class="tag in">Input</span></td>
+              <td>Already standardised — the only key that is model-ready as it stands</td>
+            </tr>
+            <tr>
+              <td class="mono">*_ids, categorical</td><td><span class="tag in">Input</span></td>
+              <td>After an embedding lookup</td>
+            </tr>
+            <tr>
+              <td class="mono">*_years, weights, min_years</td><td><span class="tag in">Input</span></td>
+              <td>As multiplicative weights on the embeddings</td>
+            </tr>
+            <tr>
+              <td class="mono">*_mask</td><td><span class="tag out">Not an input</span></td>
+              <td>An instruction to the pooling, not a feature</td>
+            </tr>
+            <tr>
+              <td class="mono">job_weights</td><td><span class="tag out">Not an input</span></td>
+              <td>Combines the four outputs <em>after</em> the model</td>
+            </tr>
+            <tr>
+              <td class="mono">target</td><td><span class="tag out">Not an input</span></td>
+              <td>The label</td>
+            </tr>
+            <tr>
+              <td class="mono">job_id, candidate_id</td><td><span class="tag out">Not an input</span></td>
+              <td>Strings, for grouping a pool. Feeding them is memorisation</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note column">
+        One more rule that is not about shape: no feature may be computed from
+        <code>scoring_rules.py</code>. Coverage ratios and domain-similarity
+        coefficients are the answer the labels were generated from, not the input.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack">
+      <h2 class="column">The whole path</h2>
+      <figure>
+        <div class="figframe">
+          <svg viewBox="0 0 760 340" role="img" aria-label="End to end flow: the batch dict splits into four branches which are embedded and pooled, concatenated into a 152-wide matrix, passed through a shared trunk to four heads, then combined with the posting's weights into one ranking score.">
+            <defs>
+              <marker id="tip2" viewBox="0 0 10 10" refX="9" refY="5"
+                      markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <polygon points="0,0 10,5 0,10" fill="currentColor"></polygon>
+              </marker>
+            </defs>
+
+            <g font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="1.2"
+               fill="currentColor" opacity="0.5">
+              <text x="16" y="18">BATCH DICT</text>
+              <text x="212" y="18">EMBED + POOL</text>
+              <text x="430" y="18">CONCAT</text>
+              <text x="556" y="18">TRUNK</text>
+              <text x="664" y="18">HEADS</text>
+            </g>
+
+            <!-- branches -->
+            <g fill="none" stroke="currentColor" stroke-width="1.1">
+              <rect x="16" y="36" width="160" height="42"></rect>
+              <rect x="16" y="90" width="160" height="42"></rect>
+              <rect x="16" y="144" width="160" height="42"></rect>
+              <rect x="16" y="198" width="160" height="42"></rect>
+              <rect x="16" y="252" width="160" height="30"></rect>
+            </g>
+            <g font-family="IBM Plex Mono, monospace" font-size="10" fill="currentColor">
+              <text x="24" y="52">candidate_skill_*</text>
+              <text x="24" y="70" opacity="0.55">(B, S) int64 + mask</text>
+              <text x="24" y="106">required_skill_*</text>
+              <text x="24" y="124" opacity="0.55">(B, R) int64 + mask</text>
+              <text x="24" y="160">company_*</text>
+              <text x="24" y="178" opacity="0.55">(B, E) int64 + mask</text>
+              <text x="24" y="214">categorical</text>
+              <text x="24" y="232" opacity="0.55">(B, 7) int64</text>
+              <text x="24" y="272">scalars (B, 2)</text>
+            </g>
+
+            <!-- arrows into pooled -->
+            <g stroke="currentColor" stroke-width="1" marker-end="url(#tip2)" opacity="0.7">
+              <line x1="176" y1="57" x2="210" y2="57"></line>
+              <line x1="176" y1="111" x2="210" y2="111"></line>
+              <line x1="176" y1="165" x2="210" y2="165"></line>
+              <line x1="176" y1="219" x2="210" y2="219"></line>
+            </g>
+
+            <!-- pooled blocks -->
+            <g fill="none" stroke="currentColor" stroke-width="1.1">
+              <rect x="212" y="42" width="186" height="30"></rect>
+              <rect x="212" y="96" width="186" height="30"></rect>
+              <rect x="212" y="150" width="186" height="30"></rect>
+              <rect x="212" y="204" width="186" height="30"></rect>
+            </g>
+            <g font-family="IBM Plex Mono, monospace" font-size="10" fill="currentColor">
+              <text x="220" y="61">masked mean → (B, 96)</text>
+              <text x="220" y="115">+ per-req gap → (B, 2)</text>
+              <text x="220" y="169">tenure-weighted → (B, 8)</text>
+              <text x="220" y="223">7 lookups → (B, 44)</text>
+            </g>
+
+            <!-- concat -->
+            <g stroke="currentColor" stroke-width="1" marker-end="url(#tip2)" opacity="0.7">
+              <line x1="398" y1="57" x2="428" y2="140"></line>
+              <line x1="398" y1="111" x2="428" y2="150"></line>
+              <line x1="398" y1="165" x2="428" y2="160"></line>
+              <line x1="398" y1="219" x2="428" y2="170"></line>
+              <line x1="176" y1="267" x2="428" y2="180"></line>
+            </g>
+            <g fill="none" stroke="currentColor" stroke-width="1.4">
+              <rect x="432" y="128" width="96" height="64"></rect>
+            </g>
+            <text x="480" y="155" text-anchor="middle" font-family="IBM Plex Mono, monospace"
+                  font-size="11" fill="currentColor">(B, 152)</text>
+            <text x="480" y="172" text-anchor="middle" font-family="IBM Plex Sans, sans-serif"
+                  font-size="10" fill="currentColor" opacity="0.6">float32</text>
+
+            <!-- trunk -->
+            <g stroke="currentColor" stroke-width="1" marker-end="url(#tip2)" opacity="0.7">
+              <line x1="528" y1="160" x2="554" y2="160"></line>
+            </g>
+            <g fill="none" stroke="currentColor" stroke-width="1.1">
+              <rect x="556" y="128" width="84" height="64"></rect>
+            </g>
+            <text x="598" y="155" text-anchor="middle" font-family="IBM Plex Mono, monospace"
+                  font-size="10" fill="currentColor">128 → 64</text>
+            <text x="598" y="172" text-anchor="middle" font-family="IBM Plex Sans, sans-serif"
+                  font-size="10" fill="currentColor" opacity="0.6">shared</text>
+
+            <!-- heads -->
+            <g stroke="currentColor" stroke-width="1" marker-end="url(#tip2)" opacity="0.7">
+              <line x1="640" y1="140" x2="662" y2="112"></line>
+              <line x1="640" y1="152" x2="662" y2="146"></line>
+              <line x1="640" y1="168" x2="662" y2="180"></line>
+              <line x1="640" y1="180" x2="662" y2="214"></line>
+            </g>
+            <g fill="none" stroke="currentColor" stroke-width="1">
+              <rect x="664" y="100" width="80" height="24"></rect>
+              <rect x="664" y="134" width="80" height="24"></rect>
+              <rect x="664" y="168" width="80" height="24"></rect>
+              <rect x="664" y="202" width="80" height="24"></rect>
+            </g>
+            <g font-family="IBM Plex Mono, monospace" font-size="9.5" fill="currentColor">
+              <text x="671" y="116">education</text>
+              <text x="671" y="150">experience</text>
+              <text x="671" y="184">stack</text>
+              <text x="671" y="218">companies</text>
+            </g>
+
+            <!-- overall -->
+            <line x1="16" y1="300" x2="744" y2="300" stroke="currentColor"
+                  stroke-width="1" opacity="0.18"></line>
+            <text x="16" y="322" font-family="IBM Plex Sans, sans-serif" font-size="11.5"
+                  fill="#0E7C6B">overall = Σ section · job_weights — a dot product, never a fifth head, so a ranking is always explainable by the four numbers beside it</text>
+          </svg>
+        </div>
+        <figcaption>
+          <b>Four branches in, four scores out.</b> The ragged axes disappear at the
+          pooling step; everything downstream is fixed-width. The final combine uses
+          the posting's own weights, which is why two jobs can rank the same two
+          candidates differently.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <div class="stack">
+      <h2 class="column">Where this stands</h2>
+      <p class="column">
+        The loader is built and tested. <code>make_loaders()</code> returns
+        <strong>60,389</strong> training rows, <strong>3,587</strong> validation and
+        <strong>10,158</strong> test, split on both postings and candidates. The
+        model and the two loops are placeholders — every function raises
+        <code>NotImplementedError</code>, and the numbered rules above are what they
+        have to satisfy when they are filled in.
+      </p>
+      <div class="readout">python -m layer2_scoring.code.data.torch_data       <span class="hit"># a real batch, with shapes</span>
+python -m layer2_scoring.code.training.model       <span class="hit"># what forward() will receive</span></div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

@@ -62,7 +62,7 @@ class Tally:
 
 @dataclass
 class Report:
-    n: int = 0
+    total: int = 0
     name_correct: int = 0
     degree_correct: int = 0
     field_correct: int = 0
@@ -75,7 +75,7 @@ class Report:
     escalated: int = 0
 
     def add(self, predicted: CVRecord, gold: CVRecord, escalated: bool = False):
-        self.n += 1
+        self.total += 1
         self.escalated += bool(escalated)
 
         self.name_correct += _norm(predicted.name) == _norm(gold.name)
@@ -111,15 +111,15 @@ class Report:
         def pct(value):
             return f"{value * 100:5.1f}%"
 
-        return (f"{label:<22s} {self.n:>5d} "
-                f"{pct(self.name_correct / self.n if self.n else 0)} "
-                f"{pct(self.degree_correct / self.n if self.n else 0)} "
+        return (f"{label:<22s} {self.total:>5d} "
+                f"{pct(self.name_correct / self.total if self.total else 0)} "
+                f"{pct(self.degree_correct / self.total if self.total else 0)} "
                 f"{pct(self.skills.f1)} "
                 f"{pct(self.companies.f1)} "
                 f"{pct(self.start_date_correct / self.start_date_total if self.start_date_total else 0)} "
                 f"{self.years_mae:>6.2f} "
-                f"{pct(self.escalated / self.n if self.n else 0)}")
+                f"{pct(self.escalated / self.total if self.total else 0)}")
 
 
-HEADER = (f"{'group':<22s} {'n':>5s} {'name':>6s} {'degree':>6s} {'skillF1':>6s} "
+HEADER = (f"{'group':<22s} {'count':>5s} {'name':>6s} {'degree':>6s} {'skillF1':>6s} "
           f"{'compF1':>6s} {'start':>6s} {'yrsMAE':>6s} {'esc':>6s}")

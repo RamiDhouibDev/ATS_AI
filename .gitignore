@@ -11,3 +11,7 @@ Thumbs.db
 # Cached PDF text, regenerated on demand
 .cache/
 .pytest_cache/
+
+# Trained weights, reproducible from train.py
+layer2_scoring/checkpoints/
+*.pt

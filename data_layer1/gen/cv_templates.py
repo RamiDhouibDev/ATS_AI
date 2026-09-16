@@ -26,7 +26,7 @@ from reportlab.platypus import (
     HRFlowable, KeepTogether, ListFlowable, ListItem, Paragraph, Spacer, Table, TableStyle,
 )
 
-import cv_text as T
+import cv_text
 
 ACCENTS = ["#1a3c6e", "#2c5f2d", "#6b2737", "#37474f", "#0f4c5c", "#4a148c",
            "#8d5524", "#1b5e20", "#263238", "#7b1fa2"]
@@ -76,10 +76,10 @@ def build_context(record: dict, rng: random.Random) -> dict:
         "font_italic": italic,
         "accent": colors.HexColor(rng.choice(ACCENTS)),
         "date_style": rng.randint(0, 5),
-        "bullet_char": rng.choice(T.BULLET_CHARS),
+        "bullet_char": rng.choice(cv_text.BULLET_CHARS),
         "skill_mode": rng.choices(SKILL_MODES, weights=SKILL_MODE_WEIGHTS, k=1)[0],
         "pagesize": A4 if rng.random() < 0.4 else letter,
-        "headings": {k: T.heading(rng, k) for k in T.SECTION_HEADINGS},
+        "headings": {key: cv_text.heading(rng, key) for key in cv_text.SECTION_HEADINGS},
         "bullets_recent": bullets_recent,
         "education_first": rng.random() < p_edu_first,
         "show_summary": rng.random() < 0.80,
@@ -134,7 +134,7 @@ def make_styles(ctx: dict, on_dark: bool = False) -> dict:
     }
 
 
-def h(ctx: dict, key: str) -> str:
+def heading_for(ctx: dict, key: str) -> str:
     text = ctx["headings"][key]
     return text.upper() if ctx["uppercase_headings"] else text
 
@@ -179,27 +179,28 @@ def job_flowables(record: dict, ctx: dict, st: dict, compact: bool = False,
     # of its own there and blows up during wrap.
     rng = ctx["rng"]
     out = []
-    for i, c in enumerate(record["companies"]):
-        dates = T.format_date_range(rng, c["start_date"], c["end_date"], ctx["date_style"])
+    for index, company in enumerate(record["companies"]):
+        dates = cv_text.format_date_range(rng, company["start_date"], company["end_date"],
+                                          ctx["date_style"])
         location = ""
-        if ctx["show_job_location"] and i < len(ctx["job_locations"]):
-            location = ctx["job_locations"][i]
+        if ctx["show_job_location"] and index < len(ctx["job_locations"]):
+            location = ctx["job_locations"][index]
 
         layout = rng.random()
         if layout < 0.45:
-            head = f"<b>{c['title']}</b>, {c['name']}"
+            head = f"<b>{company['title']}</b>, {company['name']}"
             sub = f"{dates}  |  {location}" if location else dates
         elif layout < 0.75:
-            head = f"<b>{c['name']}</b> — {c['title']}"
+            head = f"<b>{company['name']}</b> — {company['title']}"
             sub = f"{dates}  |  {location}" if location else dates
         else:
-            head = f"<b>{c['title']}</b>"
-            sub = f"{c['name']}  |  {dates}" + (f"  |  {location}" if location else "")
+            head = f"<b>{company['title']}</b>"
+            sub = f"{company['name']}  |  {dates}" + (f"  |  {location}" if location else "")
 
         block = [Paragraph(head, st["body"]), Paragraph(sub, st["small"])]
         if not compact:
-            lines = T.make_bullets(rng, record["general_experience"]["domain"],
-                                   record["skills"], bullet_count(ctx, i), ctx["used_bullets"])
+            lines = cv_text.make_bullets(rng, record["general_experience"]["domain"],
+                                   record["skills"], bullet_count(ctx, index), ctx["used_bullets"])
             if lines:
                 block.append(bullet_list(lines, ctx, st))
         block.append(Spacer(1, 5))
@@ -213,21 +214,21 @@ def job_flowables(record: dict, ctx: dict, st: dict, compact: bool = False,
 
 def education_flowables(record: dict, ctx: dict, st: dict) -> list:
     rng, out = ctx["rng"], []
-    for i, e in enumerate(record["education"]):
-        degree = e["level"] if e["field"] is None else f"{e['level']}, {e['field']}"
-        dates = T.format_year_range(rng, e["start_year"], e["end_year"], ctx["date_style"])
+    for index, entry in enumerate(record["education"]):
+        degree = entry["level"] if entry["field"] is None else f"{entry['level']}, {entry['field']}"
+        dates = cv_text.format_year_range(rng, entry["start_year"], entry["end_year"], ctx["date_style"])
         out.append(Paragraph(f"<b>{degree}</b>", st["body"]))
-        out.append(Paragraph(f"{e['institution']}  |  {dates}", st["small"]))
+        out.append(Paragraph(f"{entry['institution']}  |  {dates}", st["small"]))
 
-        if i == 0 and e["field"]:
+        if index == 0 and entry["field"]:
             if ctx["show_honours"]:
-                out.append(Paragraph(rng.choice(T.HONOURS), st["small"]))
-            if ctx["show_thesis"] and e["level"] in ("Master", "PhD"):
-                topic = rng.choice(T.THESIS_TOPICS.get(e["field"],
-                                                       T.THESIS_TOPICS["Computer Science"]))
+                out.append(Paragraph(rng.choice(cv_text.HONOURS), st["small"]))
+            if ctx["show_thesis"] and entry["level"] in ("Master", "PhD"):
+                topic = rng.choice(cv_text.THESIS_TOPICS.get(entry["field"],
+                                                       cv_text.THESIS_TOPICS["Computer Science"]))
                 out.append(Paragraph(f"Thesis: “{topic}”", st["small"]))
             if ctx["show_coursework"]:
-                courses = T.COURSEWORK.get(e["field"], T.COURSEWORK["Computer Science"])
+                courses = cv_text.COURSEWORK.get(entry["field"], cv_text.COURSEWORK["Computer Science"])
                 picked = rng.sample(courses, min(4, len(courses)))
                 out.append(Paragraph(f"Relevant coursework: {', '.join(picked)}", st["small"]))
         out.append(Spacer(1, 3))
@@ -239,11 +240,11 @@ def rating_bar(level: int, ctx: dict, on_dark: bool = False) -> Table:
     filled = ctx["accent"] if not on_dark else colors.white
     empty = colors.Color(0.82, 0.82, 0.82)
     style = [("TOPPADDING", (0, 0), (-1, -1), 0), ("BOTTOMPADDING", (0, 0), (-1, -1), 0)]
-    for i in range(5):
-        style.append(("BACKGROUND", (i, 0), (i, 0), filled if i < level else empty))
-    t = Table([[""] * 5], colWidths=[9] * 5, rowHeights=[6])
-    t.setStyle(TableStyle(style))
-    return t
+    for index in range(5):
+        style.append(("BACKGROUND", (index, 0), (index, 0), filled if index < level else empty))
+    table = Table([[""] * 5], colWidths=[9] * 5, rowHeights=[6])
+    table.setStyle(TableStyle(style))
+    return table
 
 
 def years_label(raw_years: float, unit: str = "yrs") -> str:
@@ -261,62 +262,62 @@ def skills_flowables(record: dict, ctx: dict, st: dict, on_dark: bool = False) -
 
     if mode == "years":
         unit = rng.choice(["yrs", "years", "yr exp"])
-        return [Paragraph(", ".join(f"{s['name']} ({years_label(s['years'], unit)})"
-                                    for s in skills), st["body"])]
+        return [Paragraph(", ".join(f"{skill['name']} ({years_label(skill['years'], unit)})"
+                                    for skill in skills), st["body"])]
     if mode == "plain":
-        return [Paragraph(rng.choice([", ", " • ", " | "]).join(s["name"] for s in skills),
+        return [Paragraph(rng.choice([", ", " • ", " | "]).join(skill["name"] for skill in skills),
                           st["body"])]
     if mode == "categorised":
         return [Paragraph(f"<b>{cat}:</b> {', '.join(names)}", st["body"])
-                for cat, names in T.categorise_skills(skills)]
+                for cat, names in cv_text.categorise_skills(skills)]
     if mode == "bullets":
-        return [bullet_list([s["name"] for s in skills], ctx, st)]
+        return [bullet_list([skill["name"] for skill in skills], ctx, st)]
     if mode == "levels":
         return [Paragraph(
-            f"{s['name']} — "
-            f"{T.SKILL_LEVEL_WORDS[min(4, max(0, 4 - int(s['years'] // 2)))]}", st["body"])
-            for s in skills]
+            f"{skill['name']} — "
+            f"{cv_text.SKILL_LEVEL_WORDS[min(4, max(0, 4 - int(skill['years'] // 2)))]}", st["body"])
+            for skill in skills]
     if mode == "table":
         # A bordered "Skill | Years" grid - one of the classic ATS parser killers.
         rows = [[Paragraph("<b>Skill</b>", st["small"]), Paragraph("<b>Experience</b>", st["small"])]]
-        for s in skills:
-            rows.append([Paragraph(s["name"], st["body"]),
-                         Paragraph(years_label(s["years"]), st["body"])])
-        t = Table(rows, colWidths=[None, 70], splitByRow=1)
-        t.setStyle(TableStyle([
+        for skill in skills:
+            rows.append([Paragraph(skill["name"], st["body"]),
+                         Paragraph(years_label(skill["years"]), st["body"])])
+        table = Table(rows, colWidths=[None, 70], splitByRow=1)
+        table.setStyle(TableStyle([
             ("GRID", (0, 0), (-1, -1), 0.4, colors.Color(0.78, 0.78, 0.78)),
             ("BACKGROUND", (0, 0), (-1, 0), colors.Color(0.94, 0.94, 0.94)),
             ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
             ("TOPPADDING", (0, 0), (-1, -1), 3), ("BOTTOMPADDING", (0, 0), (-1, -1), 3),
             ("LEFTPADDING", (0, 0), (-1, -1), 5),
         ]))
-        return [t]
+        return [table]
 
     # bars
     rows = []
-    for s in skills:
-        level = max(1, min(5, int(round(s["years"] / 2.5)) + 1))
-        rows.append([Paragraph(s["name"], st["body"]), rating_bar(level, ctx, on_dark)])
-    t = Table(rows, colWidths=[None, 50], splitByRow=1)
-    t.setStyle(TableStyle([("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+    for skill in skills:
+        level = max(1, min(5, int(round(skill["years"] / 2.5)) + 1))
+        rows.append([Paragraph(skill["name"], st["body"]), rating_bar(level, ctx, on_dark)])
+    table = Table(rows, colWidths=[None, 50], splitByRow=1)
+    table.setStyle(TableStyle([("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
                            ("LEFTPADDING", (0, 0), (-1, -1), 0),
                            ("TOPPADDING", (0, 0), (-1, -1), 1),
                            ("BOTTOMPADDING", (0, 0), (-1, -1), 1)]))
-    return [t]
+    return [table]
 
 
 def projects_flowables(record: dict, ctx: dict, st: dict) -> list:
     rng = ctx["rng"]
     count = 3 if ctx["tier"] == "junior" else rng.randint(1, 2)
     out = []
-    for name, desc in T.make_projects(rng, record, count):
+    for name, desc in cv_text.make_projects(rng, record, count):
         out.append(Paragraph(f"<b>{name}</b>", st["body"]))
         out.append(Paragraph(desc, st["small"]))
     return out
 
 
 def highlights_flowables(record: dict, ctx: dict, st: dict) -> list:
-    lines = T.make_bullets(ctx["rng"], record["general_experience"]["domain"],
+    lines = cv_text.make_bullets(ctx["rng"], record["general_experience"]["domain"],
                            record["skills"], 3, ctx["used_bullets"])
     return [bullet_list(lines, ctx, st)] if lines else []
 
@@ -328,41 +329,42 @@ def extra_section_flowables(record: dict, ctx: dict, st: dict, keys=None) -> lis
                     "languages", "interests"]
 
     if "certifications" in keys and ctx["show_certifications"]:
-        out.append(Paragraph(h(ctx, "certifications"), st["section"]))
-        for cert, issuer in rng.sample(T.CERTIFICATIONS, rng.randint(1, 3)):
-            year = rng.randint(T.MIN_CERT_YEAR, T.MAX_CERT_YEAR)
+        out.append(Paragraph(heading_for(ctx, "certifications"), st["section"]))
+        for cert, issuer in rng.sample(cv_text.CERTIFICATIONS, rng.randint(1, 3)):
+            year = rng.randint(cv_text.MIN_CERT_YEAR, cv_text.MAX_CERT_YEAR)
             out.append(Paragraph(f"{cert} — {issuer}, {year}", st["body"]))
 
     if "publications" in keys and ctx["show_publications"]:
-        out.append(Paragraph(h(ctx, "publications"), st["section"]))
+        out.append(Paragraph(heading_for(ctx, "publications"), st["section"]))
         field = record["education"][0]["field"] or "Computer Science"
         for _ in range(rng.randint(1, 2)):
             year = record["education"][0]["end_year"] + rng.randint(0, 2)
-            out.append(Paragraph(T.make_publication(rng, field, year), st["small"]))
+            out.append(Paragraph(cv_text.make_publication(rng, field, year), st["small"]))
 
     if "awards" in keys and ctx["show_awards"]:
-        out.append(Paragraph(h(ctx, "awards"), st["section"]))
-        for award in rng.sample(T.AWARDS, rng.randint(1, 2)):
-            out.append(Paragraph(f"{award}, {rng.randint(T.MIN_CERT_YEAR, T.MAX_CERT_YEAR)}",
+        out.append(Paragraph(heading_for(ctx, "awards"), st["section"]))
+        for award in rng.sample(cv_text.AWARDS, rng.randint(1, 2)):
+            out.append(Paragraph(f"{award}, {rng.randint(cv_text.MIN_CERT_YEAR, cv_text.MAX_CERT_YEAR)}",
                                  st["body"]))
 
     if "volunteering" in keys and ctx["show_volunteering"]:
-        out.append(Paragraph(h(ctx, "volunteering"), st["section"]))
-        out.append(Paragraph(T.make_volunteering(rng, record), st["body"]))
+        out.append(Paragraph(heading_for(ctx, "volunteering"), st["section"]))
+        out.append(Paragraph(cv_text.make_volunteering(rng, record), st["body"]))
 
     if "languages" in keys and ctx["show_languages"]:
-        out.append(Paragraph(h(ctx, "languages"), st["section"]))
+        out.append(Paragraph(heading_for(ctx, "languages"), st["section"]))
         # The CV itself is in English, so English is always listed and always strong.
         out.append(Paragraph(f"English – {rng.choice(['Native', 'Fluent', 'Bilingual', 'C2'])}",
                              st["body"]))
-        others = [l for l in T.LANGUAGE_NAMES if l != "English"]
+        others = [name for name in cv_text.LANGUAGE_NAMES if name != "English"]
         for lang in rng.sample(others, rng.randint(0, 2)):
-            level = rng.choice([l for l in T.LANGUAGE_LEVELS if l not in ("Native", "Bilingual")])
+            level = rng.choice([name for name in cv_text.LANGUAGE_LEVELS
+                                if name not in ("Native", "Bilingual")])
             out.append(Paragraph(f"{lang} – {level}", st["body"]))
 
     if "interests" in keys and ctx["show_interests"]:
-        out.append(Paragraph(h(ctx, "interests"), st["section"]))
-        out.append(Paragraph(", ".join(rng.sample(T.INTERESTS, rng.randint(2, 4))), st["body"]))
+        out.append(Paragraph(heading_for(ctx, "interests"), st["section"]))
+        out.append(Paragraph(", ".join(rng.sample(cv_text.INTERESTS, rng.randint(2, 4))), st["body"]))
 
     if ctx["show_references_line"] and "interests" in keys:
         out.append(Spacer(1, 6))
@@ -377,7 +379,7 @@ def display_name(record: dict, ctx: dict) -> str:
 def titled(ctx: dict, st: dict, key: str, content: list, rule: bool = False) -> list:
     if not content:
         return []
-    block = [Paragraph(h(ctx, key), st["section"])]
+    block = [Paragraph(heading_for(ctx, key), st["section"])]
     if rule:
         block.append(HRFlowable(width="100%", thickness=0.6, color=ctx["accent"], spaceAfter=4))
     return block + content
@@ -401,7 +403,8 @@ def tpl_classic_ats(record, ctx, fake):
     story = [Paragraph(display_name(record, ctx), st["name"]),
              Paragraph(ctx["contact"], st["contact"])]
     if ctx["show_summary"]:
-        story += titled(ctx, st, "summary", [Paragraph(T.make_summary(ctx["rng"], record), st["body"])])
+        story += titled(ctx, st, "summary",
+                        [Paragraph(cv_text.make_summary(ctx["rng"], record), st["body"])])
     if ctx["show_highlights"]:
         story += titled(ctx, st, "highlights", highlights_flowables(record, ctx, st))
     story += main_sections(record, ctx, st)
@@ -428,7 +431,8 @@ def tpl_modern_banner(record, ctx, fake):
                                 ("BOTTOMPADDING", (0, 0), (-1, -1), 12)]))
     story = [banner, Spacer(1, 10)]
     if ctx["show_summary"]:
-        story += titled(ctx, st, "summary", [Paragraph(T.make_summary(ctx["rng"], record), st["body"])])
+        story += titled(ctx, st, "summary",
+                        [Paragraph(cv_text.make_summary(ctx["rng"], record), st["body"])])
     if ctx["show_highlights"]:
         story += titled(ctx, st, "highlights", highlights_flowables(record, ctx, st))
     story += main_sections(record, ctx, st, rule=True)
@@ -468,7 +472,7 @@ def _sidebar_layout(record, ctx, fake, dark: bool, side: str):
         main_content.append(Paragraph(record["companies"][0]["title"], st["title_line"]))
     if ctx["show_summary"]:
         main_content += titled(ctx, st, "summary",
-                               [Paragraph(T.make_summary(rng, record), st["body"])])
+                               [Paragraph(cv_text.make_summary(rng, record), st["body"])])
     main_content += main_sections(record, ctx, st, keep=False)
     if ctx["show_projects"]:
         main_content += titled(ctx, st, "projects", projects_flowables(record, ctx, st))
@@ -512,7 +516,7 @@ def tpl_two_column_balanced(record, ctx, fake):
     left = [Paragraph(display_name(record, ctx), st["name"]),
             Paragraph(ctx["contact_multiline"], st["contact"])]
     if ctx["show_summary"]:
-        left += titled(ctx, st, "summary", [Paragraph(T.make_summary(rng, record), st["body"])])
+        left += titled(ctx, st, "summary", [Paragraph(cv_text.make_summary(rng, record), st["body"])])
     left += titled(ctx, st, "education", education_flowables(record, ctx, st))
     left += titled(ctx, st, "skills", skills_flowables(record, ctx, st))
 
@@ -538,15 +542,16 @@ def tpl_table_grid(record, ctx, fake):
     story = [Paragraph(display_name(record, ctx), st["name"]),
              Paragraph(ctx["contact"], st["contact"])]
     if ctx["show_summary"]:
-        story += titled(ctx, st, "summary", [Paragraph(T.make_summary(rng, record), st["body"])])
-    story.append(Paragraph(h(ctx, "experience"), st["section"]))
+        story += titled(ctx, st, "summary", [Paragraph(cv_text.make_summary(rng, record), st["body"])])
+    story.append(Paragraph(heading_for(ctx, "experience"), st["section"]))
 
     rows = []
-    for i, c in enumerate(record["companies"]):
-        dates = T.format_date_range(rng, c["start_date"], c["end_date"], ctx["date_style"])
-        cell = [Paragraph(f"<b>{c['title']}</b>", st["body"]), Paragraph(c["name"], st["small"])]
-        lines = T.make_bullets(rng, record["general_experience"]["domain"],
-                               record["skills"], bullet_count(ctx, i), ctx["used_bullets"])
+    for index, company in enumerate(record["companies"]):
+        dates = cv_text.format_date_range(rng, company["start_date"], company["end_date"],
+                                          ctx["date_style"])
+        cell = [Paragraph(f"<b>{company['title']}</b>", st["body"]), Paragraph(company["name"], st["small"])]
+        lines = cv_text.make_bullets(rng, record["general_experience"]["domain"],
+                               record["skills"], bullet_count(ctx, index), ctx["used_bullets"])
         if lines:
             cell.append(bullet_list(lines, ctx, st))
         rows.append([Paragraph(dates, st["small"]), cell])
@@ -585,12 +590,12 @@ def tpl_minimal_centered(record, ctx, fake):
                         hAlign="CENTER")]
     if ctx["show_summary"]:
         just = ParagraphStyle("ju", parent=st["body"], alignment=TA_JUSTIFY)
-        story += [Paragraph(T.make_summary(ctx["rng"], record), just), Spacer(1, 8)]
+        story += [Paragraph(cv_text.make_summary(ctx["rng"], record), just), Spacer(1, 8)]
 
     def block(key, content):
         if not content:
             return []
-        return [Paragraph(h(ctx, key).upper(), centered_section),
+        return [Paragraph(heading_for(ctx, key).upper(), centered_section),
                 HRFlowable(width="100%", thickness=0.3, color=colors.Color(0.85, 0.85, 0.85),
                            spaceAfter=6)] + content
 
@@ -617,7 +622,7 @@ def tpl_academic_dense(record, ctx, fake):
              Paragraph(ctx["contact"], st["contact"])]
     if ctx["show_summary"]:
         story += titled(ctx, st, "summary",
-                        [Paragraph(T.make_summary(ctx["rng"], record), st["body"])])
+                        [Paragraph(cv_text.make_summary(ctx["rng"], record), st["body"])])
     story += titled(ctx, st, "education", education_flowables(record, ctx, st))
     story += titled(ctx, st, "experience", job_flowables(record, ctx, st))
     story += titled(ctx, st, "skills", skills_flowables(record, ctx, st))
@@ -638,23 +643,24 @@ def tpl_europass_style(record, ctx, fake):
 
     if ctx["show_summary"]:
         rows.append([Paragraph("PROFILE", label),
-                     [Paragraph(T.make_summary(rng, record), st["body"])]])
+                     [Paragraph(cv_text.make_summary(rng, record), st["body"])]])
 
-    for i, c in enumerate(record["companies"]):
-        dates = T.format_date_range(rng, c["start_date"], c["end_date"], ctx["date_style"])
-        cell = [Paragraph(f"<b>{c['title']}</b> — {c['name']}", st["body"]),
+    for index, company in enumerate(record["companies"]):
+        dates = cv_text.format_date_range(rng, company["start_date"], company["end_date"],
+                                          ctx["date_style"])
+        cell = [Paragraph(f"<b>{company['title']}</b> — {company['name']}", st["body"]),
                 Paragraph(dates, st["small"])]
-        lines = T.make_bullets(rng, record["general_experience"]["domain"],
-                               record["skills"], bullet_count(ctx, i), ctx["used_bullets"])
+        lines = cv_text.make_bullets(rng, record["general_experience"]["domain"],
+                               record["skills"], bullet_count(ctx, index), ctx["used_bullets"])
         cell += [Paragraph(f"{ctx['bullet_char']} {line}", st["bullet"]) for line in lines]
-        rows.append([Paragraph("WORK EXPERIENCE" if i == 0 else "", label), cell])
+        rows.append([Paragraph("WORK EXPERIENCE" if index == 0 else "", label), cell])
 
-    for i, e in enumerate(record["education"]):
-        degree = e["level"] if e["field"] is None else f"{e['level']}, {e['field']}"
-        dates = T.format_year_range(rng, e["start_year"], e["end_year"], ctx["date_style"])
-        rows.append([Paragraph("EDUCATION AND TRAINING" if i == 0 else "", label),
+    for index, entry in enumerate(record["education"]):
+        degree = entry["level"] if entry["field"] is None else f"{entry['level']}, {entry['field']}"
+        dates = cv_text.format_year_range(rng, entry["start_year"], entry["end_year"], ctx["date_style"])
+        rows.append([Paragraph("EDUCATION AND TRAINING" if index == 0 else "", label),
                      [Paragraph(f"<b>{degree}</b>", st["body"]),
-                      Paragraph(f"{e['institution']}  |  {dates}", st["small"])]])
+                      Paragraph(f"{entry['institution']}  |  {dates}", st["small"])]])
 
     skills = skills_flowables(record, ctx, st)
     if skills:
@@ -682,20 +688,20 @@ def tpl_compact_boxed(record, ctx, fake):
     def panel(key, content, shaded=True):
         if not content:
             return []
-        inner = [Paragraph(h(ctx, key), st["section"])] + content
-        t = Table([[inner]], colWidths=[ctx["pagesize"][0] - 1.0 * inch],
+        inner = [Paragraph(heading_for(ctx, key), st["section"])] + content
+        table = Table([[inner]], colWidths=[ctx["pagesize"][0] - 1.0 * inch],
                   splitByRow=1, splitInRow=1)
         style = [("LEFTPADDING", (0, 0), (-1, -1), 10), ("RIGHTPADDING", (0, 0), (-1, -1), 10),
                  ("TOPPADDING", (0, 0), (-1, -1), 4), ("BOTTOMPADDING", (0, 0), (-1, -1), 8)]
         if shaded:
             style.append(("BACKGROUND", (0, 0), (-1, -1), colors.Color(0.955, 0.955, 0.955)))
-        t.setStyle(TableStyle(style))
-        return [t, Spacer(1, 7)]
+        table.setStyle(TableStyle(style))
+        return [table, Spacer(1, 7)]
 
     story = [Paragraph(display_name(record, ctx), st["name"]),
              Paragraph(ctx["contact"], st["contact"])]
     if ctx["show_summary"]:
-        story += panel("summary", [Paragraph(T.make_summary(ctx["rng"], record), st["body"])])
+        story += panel("summary", [Paragraph(cv_text.make_summary(ctx["rng"], record), st["body"])])
     story += panel("experience", job_flowables(record, ctx, st, keep=False), shaded=False)
     story += panel("education", education_flowables(record, ctx, st))
     story += panel("skills", skills_flowables(record, ctx, st))

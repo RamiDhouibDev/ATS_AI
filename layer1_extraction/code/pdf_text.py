@@ -46,7 +46,7 @@ class Document:
 
     @property
     def all_text(self) -> str:
-        return "\n".join(t for t in (self.header_text, self.body_text, self.footer_text) if t)
+        return "\n".join(part for part in (self.header_text, self.body_text, self.footer_text) if part)
 
 
 @dataclass
@@ -64,17 +64,17 @@ def _group_lines(words: list[dict]) -> list[_Line]:
     if not words:
         return []
     buckets: list[list[dict]] = []
-    for word in sorted(words, key=lambda w: (round(w["top"], 1), w["x0"])):
+    for word in sorted(words, key=lambda word: (round(word["top"], 1), word["x0"])):
         if buckets and abs(word["top"] - buckets[-1][0]["top"]) <= LINE_TOLERANCE:
             buckets[-1].append(word)
         else:
             buckets.append([word])
     lines = []
-    for ws in buckets:
+    for bucket in buckets:
         # Split on wide horizontal gaps: text from two columns can share a
         # baseline, and merging it would produce a phantom full-width line.
         segment = []
-        for word in sorted(ws, key=lambda w: w["x0"]):
+        for word in sorted(bucket, key=lambda word: word["x0"]):
             if segment and word["x0"] - segment[-1]["x1"] > COLUMN_GAP:
                 lines.append(_line_from(segment))
                 segment = []
@@ -87,13 +87,13 @@ def _group_lines(words: list[dict]) -> list[_Line]:
 def _line_from(words: list[dict]) -> _Line:
     # Symbol fonts without a ToUnicode map surface as "(cid:NNN)"; in practice
     # these are the bullet glyphs, and leaving them in breaks bullet detection.
-    text = CID_GLYPH.sub("•", " ".join(w["text"] for w in words))
-    sizes = [w["size"] for w in words if w.get("size")]
+    text = CID_GLYPH.sub("•", " ".join(word["text"] for word in words))
+    sizes = [word["size"] for word in words if word.get("size")]
     return _Line(
-        top=min(w["top"] for w in words),
-        bottom=max(w["bottom"] for w in words),
-        x0=min(w["x0"] for w in words),
-        x1=max(w["x1"] for w in words),
+        top=min(word["top"] for word in words),
+        bottom=max(word["bottom"] for word in words),
+        x0=min(word["x0"] for word in words),
+        x1=max(word["x1"] for word in words),
         text=text.strip(),
         size=round(sum(sizes) / len(sizes), 2) if sizes else 0.0,
     )
@@ -116,25 +116,25 @@ def _word_gutter(words: list[dict], page_width: float) -> float | None:
     for word in words:
         start = max(0, int(word["x0"] / resolution))
         end = min(n_bins - 1, int(word["x1"] / resolution))
-        for b in range(start, end + 1):
-            covered[b] = True
+        for bin_index in range(start, end + 1):
+            covered[bin_index] = True
 
     low, high = int(page_width * 0.22 / resolution), int(page_width * 0.78 / resolution)
     best, best_score = None, 0.0
-    b = low
-    while b <= high:
-        if covered[b]:
-            b += 1
+    bin_index = low
+    while bin_index <= high:
+        if covered[bin_index]:
+            bin_index += 1
             continue
-        run_start = b
-        while b <= high and not covered[b]:
-            b += 1
-        if (b - run_start) * resolution < MIN_GUTTER_WIDTH:
+        run_start = bin_index
+        while bin_index <= high and not covered[bin_index]:
+            bin_index += 1
+        if (bin_index - run_start) * resolution < MIN_GUTTER_WIDTH:
             continue
 
-        left_edge, right_edge = run_start * resolution, b * resolution
-        left = [w for w in words if w["x1"] <= left_edge]
-        right = [w for w in words if w["x0"] >= right_edge]
+        left_edge, right_edge = run_start * resolution, bin_index * resolution
+        left = [word for word in words if word["x1"] <= left_edge]
+        right = [word for word in words if word["x0"] >= right_edge]
         if not left or not right:
             continue
         share = min(len(left), len(right)) / len(words)
@@ -143,8 +143,8 @@ def _word_gutter(words: list[dict], page_width: float) -> float | None:
         if len(_group_lines(left)) < MIN_COLUMN_LINES or len(_group_lines(right)) < MIN_COLUMN_LINES:
             continue
 
-        left_top, left_bottom = min(w["top"] for w in left), max(w["bottom"] for w in left)
-        right_top, right_bottom = min(w["top"] for w in right), max(w["bottom"] for w in right)
+        left_top, left_bottom = min(word["top"] for word in left), max(word["bottom"] for word in left)
+        right_top, right_bottom = min(word["top"] for word in right), max(word["bottom"] for word in right)
         overlap = min(left_bottom, right_bottom) - max(left_top, right_top)
         shorter = min(left_bottom - left_top, right_bottom - right_top)
         if shorter > 0 and overlap / shorter >= MIN_VERTICAL_OVERLAP and share > best_score:
@@ -161,13 +161,13 @@ def _page_lines(page) -> tuple[list[str], list[_Line], list[str], int]:
 
     height = page.height
     header_words, footer_words, body_words = [], [], []
-    for w in words:
-        if w["top"] < HEADER_BAND:
-            header_words.append(w)
-        elif w["bottom"] > height - FOOTER_BAND:
-            footer_words.append(w)
+    for word in words:
+        if word["top"] < HEADER_BAND:
+            header_words.append(word)
+        elif word["bottom"] > height - FOOTER_BAND:
+            footer_words.append(word)
         else:
-            body_words.append(w)
+            body_words.append(word)
 
     # Only treat a top band as furniture when it actually looks like furniture;
     # otherwise it is just the candidate's name sitting high on the page.
@@ -187,9 +187,9 @@ def _page_lines(page) -> tuple[list[str], list[_Line], list[str], int]:
 
     # Group each column separately so text sharing a baseline across the gutter
     # never merges, and emit whole columns in reading order.
-    spanning = [w for w in body_words if w["x0"] < gutter < w["x1"]]
-    left = [w for w in body_words if w["x1"] <= gutter and w not in spanning]
-    right = [w for w in body_words if w["x0"] >= gutter and w not in spanning]
+    spanning = [word for word in body_words if word["x0"] < gutter < word["x1"]]
+    left = [word for word in body_words if word["x1"] <= gutter and word not in spanning]
+    right = [word for word in body_words if word["x0"] >= gutter and word not in spanning]
     ordered = (_group_lines(spanning) + _group_lines(left) + _group_lines(right))
     return header_lines, ordered, footer_lines, 2
 

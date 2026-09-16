@@ -75,11 +75,11 @@ def main():
 
     print("\nby difficulty")
     for key in ("easy", "medium", "hard", "scanned"):
-        if by_difficulty[key].n:
+        if by_difficulty[key].total:
             print(by_difficulty[key].as_row(f"  {key}"))
 
     print("\nby template")
-    for key in sorted(by_template, key=lambda name: -by_template[name].n):
+    for key in sorted(by_template, key=lambda name: -by_template[name].total):
         print(by_template[key].as_row(f"  {key}"))
 
     print("\nby trap")
@@ -88,8 +88,8 @@ def main():
 
     print(f"\nskills  P={overall.skills.precision:.1%} R={overall.skills.recall:.1%}")
     print(f"jobs    P={overall.companies.precision:.1%} R={overall.companies.recall:.1%}")
-    print(f"escalated to LLM: {overall.escalated}/{overall.n} "
-          f"({overall.escalated / overall.n:.1%})" if overall.n else "")
+    print(f"escalated to LLM: {overall.escalated}/{overall.total} "
+          f"({overall.escalated / overall.total:.1%})" if overall.total else "")
 
 
 if __name__ == "__main__":

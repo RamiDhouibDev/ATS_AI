@@ -2,11 +2,16 @@
 
 WHAT THIS IS
     The ground truth Layer 2 learns from. Layer 1 asks "what does this CV say?";
-    Layer 2 asks "how well does this CV fit *this* job?", so every score here is
-    a function of a (candidate, job) pair, never of the candidate alone. A
-    ten-year Django specialist is a strong hire for a backend role and a weak
-    one for a data science role, and the labels must reflect that or the model
-    has nothing to learn beyond "rank people by seniority".
+    Layer 2 asks "how well does this CV fit *this* job?". A ten-year Django
+    specialist is a strong hire for a backend role and a weak one for a data
+    science role, and the labels must reflect that or the model has nothing to
+    learn beyond "rank people by seniority".
+
+    Three of the four sections are therefore functions of the (candidate, job)
+    pair. `companies_score` is deliberately not: employer prestige is always a
+    plus and no posting can switch it off, so it reads the candidate alone. What
+    a posting varies is how heavily it *weights* that section. This is a design
+    decision, not an oversight - see the note on its own docstring.
 
 WHY A FORMULA AND NOT HUMAN LABELS
     Hand-scoring 60,000 pairs is not possible, and a formula gives an exactly
@@ -181,7 +186,7 @@ def stack_experience_score(candidate: dict, job: dict) -> float:
         return 50.0     # no stated stack; neutral rather than punishing
 
     held = {skill["name"]: skill["years"] for skill in candidate["skills"]}
-    total_weight = sum(r["weight"] for r in required)
+    total_weight = sum(requirement["weight"] for requirement in required)
 
     earned = 0.0
     for requirement in required:
@@ -242,10 +247,19 @@ def score_pair(candidate: dict, job: dict, rng: random.Random,
         "companies_score": companies_score(candidate, job),
     }
 
-    # Gaussian jitter so the formula is not perfectly recoverable: the model
-    # should learn the shape of the relationship, not reproduce arithmetic.
-    # sigma=3 on a 0-100 scale is small enough to preserve ranking within a job.
-    noisy = {section: round(clip(score + rng.gauss(0, noise_sigma)))
+    # Gaussian jitter, standing in for the inconsistency of a human rater.
+    #
+    # Drawn per pair for the three sections that depend on the posting. NOT for
+    # `companies_score`: it reads only the candidate, so a fresh draw per posting
+    # would show one employment history scored 58 for one job and 71 for the
+    # next with nothing whatsoever having changed - variation no model can
+    # predict and no reader can explain. Keyed on the candidate id instead, so
+    # the section is jittered once and then stays put across every posting.
+    jitter = {section: rng.gauss(0, noise_sigma)
+              for section in sections if section != "companies_score"}
+    jitter["companies_score"] = random.Random(candidate["id"]).gauss(0, noise_sigma)
+
+    noisy = {section: round(clip(score + jitter[section]))
              for section, score in sections.items()}
 
     # Per-posting weights: a stack-led role and a seniority-led role combine the

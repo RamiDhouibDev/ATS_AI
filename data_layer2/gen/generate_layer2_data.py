@@ -179,8 +179,20 @@ def sample_applicants(job: dict, by_id: dict, by_domain: dict, pool_size: int,
     # all, so stack scores piled up at zero and the section carried little
     # signal. At 55% in-domain that falls to 55% and mean stack rises 13 -> 19,
     # without touching the formula itself.
-    want_in_domain = int(pool_size * in_domain_share)
     in_domain = by_domain.get(job["domain"], [])
+
+    # The share is a guarantee, not a request. Asking for a pool bigger than the
+    # in-domain population can fill does not raise an error - it quietly fills
+    # the remainder from everyone else and hands back a pool with the wrong
+    # composition. That is how the test split ended up 17% in-domain against
+    # train's 53%: 250 was larger than the whole 200-candidate split, so every
+    # pool was simply everybody. Shrinking the pool to what the share can
+    # actually support keeps both splits on the same distribution, which is the
+    # one thing a held-out set has to get right.
+    if in_domain:
+        pool_size = min(pool_size, int(len(in_domain) / in_domain_share))
+
+    want_in_domain = int(pool_size * in_domain_share)
     chosen = list(rng.sample(in_domain, min(want_in_domain, len(in_domain))))
 
     # Top up from everyone else. The exclusion set keeps a candidate from being
@@ -202,14 +214,14 @@ def build_split(split: str, n_jobs: int, pool_size: int, seed: int,
     # rerun with the same seed reproduces the dataset exactly.
     rng = random.Random(f"{seed}-{split}")
     candidates = load_candidates(split)
-    by_id = {c["id"]: c for c in candidates}
+    by_id = {candidate["id"]: candidate for candidate in candidates}
 
     # Domain index, built once rather than filtered per posting.
     by_domain: dict[str, list[str]] = collections.defaultdict(list)
     for candidate in candidates:
         by_domain[candidate["general_experience"]["domain"]].append(candidate["id"])
 
-    jobs = [make_job(i + 1, rng, pools, prefix) for i in range(n_jobs)]
+    jobs = [make_job(number, rng, pools, prefix) for number in range(1, n_jobs + 1)]
     pairs, flat, used = [], [], set()
     for job in jobs:
         for candidate_id in sample_applicants(job, by_id, by_domain, pool_size, rng):
@@ -230,22 +242,22 @@ def write_split(split: str, jobs: list, pairs: list, flat: list, candidates: lis
 
     # The candidates these pairs reference are copied in, so data_layer2 is
     # self-contained: training Layer 2 never has to read data_layer1.
-    with (out / "candidates.jsonl").open("w", encoding="utf-8") as f:
+    with (out / "candidates.jsonl").open("w", encoding="utf-8") as stream:
         for candidate in candidates:
             # Drop the candidate's Layer-1 intrinsic scores: they derive from
             # the same fields as these labels, so leaving them in invites an
             # accidental leak into Layer 2's features.
             trimmed = {field: value for field, value in candidate.items()
                        if field != "scores"}
-            f.write(json.dumps(trimmed, ensure_ascii=False) + "\n")
-    with (out / "jobs.jsonl").open("w", encoding="utf-8") as f:
+            stream.write(json.dumps(trimmed, ensure_ascii=False) + "\n")
+    with (out / "jobs.jsonl").open("w", encoding="utf-8") as stream:
         for job in jobs:
-            f.write(json.dumps(job, ensure_ascii=False) + "\n")
-    with (out / "pairs.jsonl").open("w", encoding="utf-8") as f:
+            stream.write(json.dumps(job, ensure_ascii=False) + "\n")
+    with (out / "pairs.jsonl").open("w", encoding="utf-8") as stream:
         for pair in pairs:
-            f.write(json.dumps(pair, ensure_ascii=False) + "\n")
-    with (out / "pairs.csv").open("w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=list(flat[0].keys()))
+            stream.write(json.dumps(pair, ensure_ascii=False) + "\n")
+    with (out / "pairs.csv").open("w", encoding="utf-8", newline="") as stream:
+        writer = csv.DictWriter(stream, fieldnames=list(flat[0].keys()))
         writer.writeheader()
         writer.writerows(flat)
     print(f"{split}: {len(jobs)} jobs, {len(candidates)} candidates, {len(pairs)} pairs -> {out}")
@@ -253,10 +265,17 @@ def write_split(split: str, jobs: list, pairs: list, flat: list, candidates: lis
 
 def main():
     ap = argparse.ArgumentParser(description="Generate Layer 2 job postings and scored pairs.")
-    ap.add_argument("--train-jobs", type=int, default=200)
-    ap.add_argument("--test-jobs", type=int, default=50)
+    # Postings are the scarce axis for a role-conditioned model, and they are
+    # free to generate - unlike candidates, who are capped by the rendered CV
+    # corpus. Pool depth is capped too: holding the in-domain share means a pool
+    # can be no larger than the in-domain population supports (~60 on test,
+    # which has ~33 candidates per domain). So pair count is bought with more
+    # postings rather than deeper pools.
+    ap.add_argument("--train-jobs", type=int, default=400)
+    ap.add_argument("--test-jobs", type=int, default=170)
     ap.add_argument("--pool-size", type=int, default=250,
-                    help="Candidates scored per job posting")
+                    help="Upper bound on candidates scored per posting; the "
+                         "in-domain share may reduce it (see sample_applicants)")
     ap.add_argument("--seed", type=int, default=42)
     args = ap.parse_args()
 
