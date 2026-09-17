@@ -32,10 +32,11 @@ WHAT forward() RECEIVES
                                                     skill, aligned to the list
     company_tiers              (batch, employers)   + company_mask
     company_years              (batch, employers)
-    categorical                (batch, 7)           candidate domain, job domain,
+    categorical                (batch, 8)           candidate domain, job domain,
                                                     seniority, candidate degree,
                                                     job degree, candidate field,
-                                                    job preferred field
+                                                    job preferred field,
+                                                    university tier (1-3)
     scalars                    (batch, 2)           standardised: candidate total
                                                     years, years the posting asks
     job_weights                (batch, 4)           for the overall, not an input

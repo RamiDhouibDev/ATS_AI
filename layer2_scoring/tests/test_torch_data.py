@@ -103,7 +103,7 @@ def test_ids_stay_inside_their_embedding_tables(loaders):
     ]
     limits = torch.tensor([fitted.n_domains, fitted.n_domains, fitted.n_seniorities,
                            fitted.n_degrees, fitted.n_degrees,
-                           fitted.n_fields, fitted.n_fields])
+                           fitted.n_fields, fitted.n_fields, fitted.n_tiers])
 
     for loader in (train_loader, val_loader, test_loader):
         for batch in batches(loader):

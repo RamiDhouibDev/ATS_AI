@@ -91,6 +91,10 @@ TECHNICAL_FIELDS = {
 TIER_POINTS = {3: 100, 2: 65, 1: 35}
 UNKNOWN_TIER = 1
 
+# What the university is worth in `education_score`, kept deliberately small
+# next to the 70 points that degree level moves - see that function.
+INSTITUTION_BONUS = {3: 6.0, 2: 2.0, 1: 0.0}
+
 
 def domain_similarity(candidate_domain: str, job_domain: str) -> float:
     """Transfer coefficient between two domains, 1.0 for an exact match."""
@@ -108,12 +112,18 @@ def clip(value: float) -> float:
 
 
 def education_score(candidate: dict, job: dict) -> float:
-    """Degree level against the job's requirement, adjusted for field fit.
+    """Degree level against the job's requirement, then field, then institution.
 
-    Deliberately blunt: education is the weakest of the four signals for most
-    engineering roles, so it is scored on level and field alone. Institution
-    prestige is ignored entirely - the corpus invents university names, and
-    ranking them would be inventing signal that isn't there.
+    The three parts are deliberately unequal, and in that order:
+
+        level        70 points of swing   (30 for two levels short, 100 for two over)
+        field        18 points            (-8 unrelated, +10 exact match)
+        institution   6 points            (0 unknown, +6 world class)
+
+    What you studied to, and in what, outweighs where by an order of magnitude.
+    A world-class university cannot lift a candidate over someone a whole degree
+    level above them, and it is never the reason one applicant beats another on
+    its own - it only separates otherwise equal ones.
     """
     education = candidate["education"]
     if not education:
@@ -145,6 +155,11 @@ def education_score(candidate: dict, job: dict) -> float:
             score += 4      # adjacent technical degree: most of the credit
         else:
             score -= 8      # unrelated field, e.g. communications for an ML role
+
+    # Institution, last and smallest. Tier 1 is both "unknown" and "below
+    # average", so it earns nothing rather than losing anything - not having
+    # heard of somewhere is not evidence against the candidate.
+    score += INSTITUTION_BONUS.get(top.get("tier"), 0.0)
     return clip(score)
 
 

@@ -189,8 +189,12 @@ class PairDataset(Dataset):
                 vocabulary.seniorities.get(row.job_seniority, 0),
                 DEGREE_IDS.get(text_or_none(top_degree.get("level")), 0),
                 DEGREE_IDS.get(text_or_none(row.job_preferred_education), 0),
-                vocabulary.field_id(top_degree.get("field")),      # 0 when no degree field
-                vocabulary.field_id(row.job_preferred_field),      # 0 when the job states none
+                vocabulary.field_id(top_degree.get("field")),   # 0 when no degree field
+                vocabulary.field_id(row.job_preferred_field),   # 0 when the job states none
+                # Where they studied, on the same 1-3 scale as employers. Last
+                # because it matters least: the labelling formula gives the
+                # institution 6 points of swing against the degree's 70.
+                int(top_degree.get("tier") or 0),
             ]),
             "scalars": (scalars - vocabulary.scalar_mean) / vocabulary.scalar_std,
             # Carried so the four heads can be combined into the overall score
