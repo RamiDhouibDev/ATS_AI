@@ -48,14 +48,17 @@ SKILL_ALIASES = {
 
 # Employer prestige table. This one IS a shared production resource: the design
 # calls for a curated tier list, with an optional LLM lookup for unknown names.
+# 3 is world class, 2 is good, 1 is unknown or below average - the same scale
+# as data_layer1/gen/tiers.py, which the corpus is generated from.
 COMPANY_TIERS = {
-    "google": 1, "meta": 1, "facebook": 1, "apple": 1, "amazon": 1, "microsoft": 1,
-    "netflix": 1, "nvidia": 1, "openai": 1, "deepmind": 1,
+    "google": 3, "meta": 3, "facebook": 3, "apple": 3, "amazon": 3, "microsoft": 3,
+    "netflix": 3, "nvidia": 3, "openai": 3, "deepmind": 3,
     "uber": 2, "airbnb": 2, "salesforce": 2, "adobe": 2, "ibm": 2, "oracle": 2,
     "sap": 2, "spotify": 2, "stripe": 2, "shopify": 2, "intel": 2, "cisco": 2,
     "linkedin": 2, "palantir": 2, "dell": 2,
+    "atlassian": 2, "datadog": 2, "snowflake": 2, "cloudflare": 2,
 }
-TIER_3_DEFAULT = 3
+UNKNOWN_TIER = 1
 
 # Section heading synonyms -> canonical section key.
 SECTION_SYNONYMS = {
@@ -142,14 +145,14 @@ def canonical_skill(token: str) -> str | None:
 
 
 def company_tier(name: str) -> int:
-    """Tier for an employer name; unknown names fall to tier 3.
+    """Tier for an employer name; unrecognised names fall to tier 1.
 
     The optional LLM lookup described in the README would slot in here, for
     unknown names only.
     """
     key = re.sub(r"\b(inc|llc|ltd|limited|gmbh|corp|corporation|co)\b\.?", "",
                  name.lower()).strip(" .,")
-    return COMPANY_TIERS.get(key, TIER_3_DEFAULT)
+    return COMPANY_TIERS.get(key, UNKNOWN_TIER)
 
 
 def heading_for(line: str) -> str | None:

@@ -84,11 +84,12 @@ TECHNICAL_FIELDS = {
     "Electrical Engineering", "Mathematics", "Physics", "Information Systems",
 }
 
-# Employer prestige, matching the tiers Layer 1 resolves from the company name.
-# The gap between tier 1 and tier 2 (35pts) is deliberately larger than between
-# tier 2 and tier 3 (30pts) but not overwhelming - a long tenure at a tier-2
-# firm should still beat a brief stint at a tier-1 one.
-TIER_POINTS = {1: 100, 2: 65, 3: 35}
+# Prestige tiers, matching data_layer1/gen/tiers.py: 3 is world class, 1 is
+# unknown or below average. The gap between 3 and 2 (35pts) is deliberately
+# larger than between 2 and 1 (30pts) but not overwhelming - a long tenure at a
+# good firm should still beat a brief stint at a famous one.
+TIER_POINTS = {3: 100, 2: 65, 1: 35}
+UNKNOWN_TIER = 1
 
 
 def domain_similarity(candidate_domain: str, job_domain: str) -> float:
@@ -226,7 +227,7 @@ def companies_score(candidate: dict, job: dict) -> float:
         return 18.0     # no employment history - graduates land here
 
     tenure = sum(employer["years"] for employer in companies) or 1.0
-    return clip(sum(TIER_POINTS.get(employer["tier"], 35) * employer["years"]
+    return clip(sum(TIER_POINTS.get(employer["tier"], TIER_POINTS[UNKNOWN_TIER]) * employer["years"]
                     for employer in companies) / tenure)
 
 

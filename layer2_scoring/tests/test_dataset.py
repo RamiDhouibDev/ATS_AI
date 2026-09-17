@@ -19,8 +19,8 @@ def splits():
 
 def test_split_shapes(splits):
     train, test = splits
-    assert (len(train), train.job_id.nunique()) == (94848, 400)
-    assert (len(test), test.job_id.nunique()) == (10158, 170)
+    assert (len(train), train.job_id.nunique()) == (96123, 400)
+    assert (len(test), test.job_id.nunique()) == (10197, 170)
 
 
 def test_join_lost_no_rows(splits):

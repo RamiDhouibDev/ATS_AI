@@ -115,12 +115,14 @@ class TestCompanies:
         assert companies == []
 
     def test_known_employer_gets_its_tier(self):
+        """3 is world class, 1 is unknown - higher is better."""
         companies = parse_companies(["Engineer, Google", "2020 - 2022"])
-        assert companies[0].tier == 1
-
-    def test_unknown_employer_defaults_to_tier_three(self):
-        companies = parse_companies(["Engineer, Blue Orbit Labs", "2020 - 2022"])
         assert companies[0].tier == 3
+
+    def test_unknown_employer_defaults_to_the_bottom_tier(self):
+        """An unrecognised name is not evidence of quality."""
+        companies = parse_companies(["Engineer, Blue Orbit Labs", "2020 - 2022"])
+        assert companies[0].tier == 1
 
 
 class TestAwkwardLayouts:
@@ -218,8 +220,8 @@ class TestConfidence:
 
 class TestVocab:
     def test_company_tier_ignores_legal_suffixes(self):
-        assert vocab.company_tier("Google LLC") == 1
-        assert vocab.company_tier("Google, Inc.") == 1
+        assert vocab.company_tier("Google LLC") == 3
+        assert vocab.company_tier("Google, Inc.") == 3
 
-    def test_unknown_company_is_tier_three(self):
-        assert vocab.company_tier("Nonexistent Holdings") == 3
+    def test_unknown_company_is_the_bottom_tier(self):
+        assert vocab.company_tier("Nonexistent Holdings") == 1

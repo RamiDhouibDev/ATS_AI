@@ -1,201 +1,201 @@
-id,name,education_level,education_field,education_start_year,grad_year,domain,total_years_experience,num_skills,top_skills,num_companies,best_company,best_company_tier,education_score,relevant_experience_score,stack_experience_score,companies_score
-TEST00001,Robert Spencer,High School,,2013,2016,Data/AI/ML,10.6,9,MLflow:10.0;Kafka:9.2;SQL:7.7;Airflow:7.2;LangChain:6.1,1,Northbridge IT,3,35,71,68,35
-TEST00002,Mark Wolfe,Bachelor,Communications,2009,2013,QA/Testing,12.2,11,Redshift:11.8;Prometheus:10.6;Playwright:10.0;Jira:7.8;JavaScript:5.7,2,Blue Orbit Labs,3,32,76,73,33
-TEST00003,Mary Huff,High School,,2009,2012,Software Development,13.8,13,gRPC:13.7;GraphQL:12.2;Django:10.2;Java:7.8;Swift:6.9,3,Cobalt Applications,3,43,86,81,44
-TEST00004,Mary Wright,Bachelor,Data Science,2018,2022,Product/Design,3.7,6,REST APIs:3.2;Looker:3.1;Git:2.3;Vue.js:2.2;TypeScript:1.8,1,Airbnb,2,63,46,34,69
-TEST00005,Evan Ashley,Master,Mathematics,2021,2023,Product/Design,2.1,7,Power BI:2.0;Sketch:1.8;Jira:1.4;Scikit-learn:1.2;Excel:1.0,1,Ironwood Consulting,3,66,25,18,41
-TEST00006,Stacey Walker,Bachelor,Business Administration,2020,2024,Data Analysis,1.8,7,Power BI:1.6;LangChain:1.3;Airflow:1.2;BigQuery:1.2;Tableau:1.1,1,BrightPath Solutions,3,40,24,25,37
-TEST00007,Joyce J. Malone,High School,,2005,2008,Product/Design,16.7,13,Tableau:15.9;Elasticsearch:14.8;TypeScript:11.8;Python:11.4;React:10.4,2,Nvidia,1,38,93,90,72
-TEST00008,Amanda May,Bachelor,Information Systems,2012,2016,Software Development,9.4,10,React:7.8;Jenkins:7.4;FastAPI:6.9;Datadog:5.9;JavaScript:5.4,4,Uber,2,64,72,68,49
-TEST00009,Julie Morgan,High School,,2019,2022,Data/AI/ML,4.1,7,LangChain:3.3;Scikit-learn:3.3;Angular:3.2;MLflow:3.0;MongoDB:0.9,1,Uber,2,37,40,44,69
-TEST00010,Alan Downs,Bachelor,Communications,2020,2024,Software Development,1.1,6,FastAPI:0.9;Spring Boot:0.8;JavaScript:0.7;Cypress:0.7;Selenium:0.7,1,Blue Orbit Labs,3,41,12,6,39
-TEST00011,Linda Dominguez,Bachelor,Physics,2021,2024,DevOps/Infrastructure,1.5,4,Docker:1.4;Redis:0.5;Terraform:0.5;Sketch:0.5,1,Spotify,2,53,10,8,62
-TEST00012,Melanie Barrett,Bachelor,Physics,2020,2023,Product/Design,1.1,6,Bash:1.1;Figma:1.0;SQL:1.0;Tableau:0.9;Git:0.8,1,Ironwood Consulting,3,55,13,21,33
-TEST00013,Gary Edwards,High School,,2004,2008,Data Analysis,17.9,14,PyTorch:15.4;Cypress:15.0;NumPy:13.8;Excel:13.3;BigQuery:13.0,4,Microsoft,1,37,94,92,86
-TEST00014,Stephen D. Allen,Master,Computer Science,2012,2014,Product/Design,11.5,11,MongoDB:10.9;Power BI:9.6;Git:9.0;React:8.1;GitHub Actions:6.9,4,Meridian Software,3,74,74,77,52
-TEST00015,Helen Salazar,Bachelor,Software Engineering,2011,2014,Data/AI/ML,10.8,10,Airflow:10.6;NumPy:10.5;BigQuery:9.1;SQL:6.3;Rust:5.8,2,Oracle,2,75,75,77,51
-TEST00016,Tyler Lynch,High School,,2010,2013,Data Analysis,12.2,11,Go:11.7;Airflow:8.0;Python:7.2;PostgreSQL:6.7;React:6.5,3,Palantir,2,35,78,81,64
-TEST00017,Kyle Nolan,Bachelor,Mathematics,1997,2001,Software Development,24.5,16,Next.js:23.4;Node.js:18.6;TypeScript:17.8;Looker:17.1;DynamoDB:16.2,4,Northbridge IT,3,53,87,97,28
-TEST00018,Juan Walker,High School,,2012,2016,Data Analysis,9.3,11,Hugging Face:9.0;Spark:8.8;Linux:7.9;Tableau:6.7;Snowflake:6.1,2,Cobalt Applications,3,32,56,80,40
-TEST00019,Jacob Nguyen,Master,Communications,2018,2020,Software Development,4.1,6,Angular:3.6;Python:3.4;React:2.8;Next.js:2.6;Jenkins:0.9,1,Blue Orbit Labs,3,46,34,45,44
-TEST00020,Jessica Carter,Bachelor,Computer Science,2006,2009,QA/Testing,16.7,15,Cypress:16.1;Django:15.7;Docker:15.3;Databricks:13.5;Python:11.9,4,Amazon,1,65,80,90,76
-TEST00021,Stephanie Cox,Master,Communications,2021,2023,DevOps/Infrastructure,1.1,5,C#:1.0;Jenkins:0.9;Ansible:0.8;TypeScript:0.7;Kafka:0.5,1,Cobalt Applications,3,45,17,9,31
-TEST00022,Gabriel Tucker,Bachelor,Information Systems,2013,2017,QA/Testing,8.0,8,Jira:7.3;Cypress:7.0;TypeScript:5.9;GitHub Actions:5.4;Bash:4.9,2,Northbridge IT,3,45,69,69,29
-TEST00023,Christina R. Johnson,High School,,1999,2002,DevOps/Infrastructure,23.5,16,C#:22.5;GCP:16.1;CI/CD:15.0;Spring Boot:12.9;Azure:9.9,4,Airbnb,2,29,90,92,68
-TEST00024,David H. Perez,Bachelor,Software Engineering,2019,2023,Data Analysis,1.5,7,Jira:1.5;SQL:1.4;MongoDB:1.2;Airflow:1.1;dbt:1.1,1,Silverline Data,3,54,24,13,31
-TEST00025,Janice Stone,PhD,Computer Science,2019,2023,Product/Design,3.3,7,Sketch:2.6;gRPC:2.0;Excel:1.9;React:1.4;Bash:1.3,1,Dell,2,94,25,26,63
-TEST00026,Ashley Silva,PhD,Communications,2012,2015,Data Analysis,11.2,11,dbt:10.5;Power BI:10.4;Airflow:8.9;NumPy:8.4;Excel:6.5,3,Nova Tech Group,3,58,79,78,43
-TEST00027,Amy Powell,Bachelor,Electrical Engineering,2019,2023,Software Development,1.3,5,Git:1.0;Vue.js:1.0;MySQL:0.6;Power BI:0.6;GraphQL:0.5,1,Amber Creek Software,3,57,13,12,37
-TEST00028,Dana Mullins,High School,,2014,2018,Software Development,7.9,11,Nginx:7.5;Spring Boot:7.4;Confluence:7.1;CI/CD:6.6;Git:5.5,3,Vantage Point Technologies,3,41,60,70,37
-TEST00029,Lisa Horton,High School,,2015,2019,Product/Design,6.7,9,Tableau:5.9;Scikit-learn:5.3;AWS:4.5;SQL:4.1;Sketch:3.2,1,Clearwater Systems,3,33,54,57,39
-TEST00030,Rodney Ayers,High School,,2019,2023,Software Development,1.5,6,Swift:1.4;C#:1.2;GraphQL:1.1;Redis:1.1;Angular:0.9,1,BrightPath Solutions,3,44,15,21,35
-TEST00031,David Zimmerman,PhD,Physics,2007,2010,Data Analysis,14.9,15,Angular:13.3;NumPy:12.2;PostgreSQL:11.9;BigQuery:11.7;Excel:10.1,2,Vantage Point Technologies,3,72,83,95,42
-TEST00032,Angela Peters,Master,Electrical Engineering,2022,2023,Product/Design,1.8,7,Looker:1.7;dbt:1.7;Figma:1.4;Grafana:1.2;Git:0.9,1,Blue Orbit Labs,3,79,19,17,27
-TEST00033,Teresa Cuevas,Bachelor,Electrical Engineering,2014,2017,Software Development,8.9,8,JavaScript:7.7;MySQL:6.9;Angular:6.5;REST APIs:4.5;Figma:4.0,2,Uber,2,57,64,76,68
-TEST00034,Barbara Mcgrath,Master,Computer Science,2007,2008,QA/Testing,16.4,16,GitHub Actions:16.0;JavaScript:16.0;React:15.7;Datadog:14.2;Docker:13.9,5,Nova Tech Group,3,71,91,95,35
-TEST00035,Dustin Haley,Bachelor,Biology,2019,2022,QA/Testing,3.7,6,TensorFlow:3.1;Python:3.0;GitHub Actions:2.7;JavaScript:2.6;pytest:1.5,2,Summit Digital,3,38,33,38,32
-TEST00036,Gregory Valenzuela,High School,,2008,2011,Data Analysis,14.8,14,Linux:13.5;Pandas:13.0;Spark:11.5;NumPy:11.4;Python:11.0,4,Apple,1,32,89,99,63
-TEST00037,Dominique Blanchard,Master,Electrical Engineering,2017,2018,DevOps/Infrastructure,8.5,8,Grafana:5.7;Playwright:5.7;Prometheus:4.7;Kafka:4.3;GCP:3.1,2,Northbridge IT,3,67,69,55,49
-TEST00038,John Smith,Bachelor,Information Systems,2016,2019,Data Analysis,6.0,7,NumPy:5.6;Redshift:5.6;dbt:4.3;Pandas:3.4;Kafka:2.4,3,Vantage Point Technologies,3,54,46,55,47
-TEST00039,Brent Glass,Bachelor,Data Science,2020,2024,QA/Testing,0.3,5,Selenium:0.3;Jira:0.3;CI/CD:0.3;Datadog:0.3;SQL:0.3,0,,,68,0,0,22
-TEST00040,Manuel Garcia,High School,,2013,2016,Product/Design,8.6,8,Go:7.5;Confluence:7.4;SQL:5.8;GitHub Actions:5.8;Figma:3.6,3,Adobe,2,36,65,62,58
-TEST00041,Ryan Olsen,Bachelor,Mathematics,2018,2021,DevOps/Infrastructure,3.0,8,Linux:2.9;AWS:2.8;Redshift:2.7;Kubernetes:2.6;Django:2.6,1,Summit Digital,3,54,37,47,40
-TEST00042,John Grimes,Bachelor,Biology,2001,2004,DevOps/Infrastructure,20.4,15,Redis:20.3;Prometheus:19.8;AWS:19.0;NumPy:18.3;Datadog:17.9,5,LinkedIn,2,42,90,98,47
-TEST00043,Benjamin White,Master,Computer Science,2024,2025,QA/Testing,0.3,5,Playwright:0.3;TypeScript:0.3;Python:0.3;C++:0.3;MLflow:0.3,0,,,75,1,6,25
-TEST00044,Caroline H. Andrade,Master,Business Administration,2021,2023,Product/Design,3.2,8,Confluence:2.7;React:2.6;GCP:2.5;Spring Boot:2.0;Python:1.7,1,Nova Tech Group,3,52,41,36,38
-TEST00045,Sandra Boone,High School,,2013,2016,Software Development,9.0,12,Power BI:8.6;Elasticsearch:8.2;Redis:7.6;Vue.js:6.7;Swift:4.6,4,Clearwater Systems,3,27,69,83,34
-TEST00046,Gloria Bentley,PhD,Economics,2006,2011,DevOps/Infrastructure,14.5,15,TensorFlow:14.1;Terraform:13.8;Docker:13.8;Go:12.5;Azure:11.9,4,Clearwater Systems,3,65,83,91,24
-TEST00047,Brian Davidson,Master,Data Science,2022,2024,Software Development,1.9,5,Datadog:1.8;GraphQL:1.5;C#:1.3;Angular:1.0;Docker:1.0,1,Nova Tech Group,3,79,17,11,31
-TEST00048,Kimberly Smith,Master,Business Administration,2019,2021,Product/Design,4.4,7,Cypress:4.3;Figma:3.7;Jira:3.5;Pandas:3.3;Tableau:2.7,1,Adobe,2,59,39,45,66
-TEST00049,Caitlin Underwood,High School,,2021,2024,Product/Design,1.7,7,Sketch:1.4;Ansible:1.4;Tableau:1.3;SQL:1.1;Spark:1.0,1,Vantage Point Technologies,3,40,26,27,45
-TEST00050,Jill Taylor,Bachelor,Computer Science,2019,2022,Data/AI/ML,2.7,7,Scikit-learn:2.6;SQL:2.5;Airflow:2.1;Spark:1.7;BigQuery:1.6,1,Clearwater Systems,3,61,35,38,27
-TEST00051,Shannon Sullivan,High School,,2003,2006,Product/Design,20.0,15,Spark:18.1;Excel:17.0;Selenium:14.0;Jira:12.2;Node.js:10.6,3,SAP,2,32,93,94,56
-TEST00052,Curtis Greer,PhD,Economics,2017,2021,Software Development,3.5,7,PostgreSQL:3.0;SQL:2.8;GraphQL:2.2;Looker:1.7;Pandas:1.4,1,Amber Creek Software,3,66,30,28,40
-TEST00053,Benjamin A. Miller,Bachelor,Information Systems,2005,2008,QA/Testing,16.9,14,JavaScript:16.7;Cypress:14.0;Jira:12.7;Git:12.6;Java:10.9,2,Cobalt Applications,3,54,84,91,52
-TEST00054,Scott Mcknight,PhD,Communications,2007,2011,QA/Testing,13.1,11,Go:12.2;Cypress:11.8;Jenkins:11.3;JavaScript:9.2;Figma:7.8,4,Fenwick Digital,3,59,81,84,38
-TEST00055,Alexandra Logan,High School,,2010,2014,Software Development,11.1,12,TensorFlow:9.8;Scikit-learn:9.2;CI/CD:9.1;Figma:8.9;Angular:7.4,4,Spotify,2,45,77,82,61
-TEST00056,Lauren Thompson,PhD,Business Administration,2013,2017,QA/Testing,8.6,10,TypeScript:7.6;TensorFlow:6.7;Playwright:6.3;Cypress:4.3;Docker:4.2,1,Ridgeline Analytics,3,67,68,81,36
-TEST00057,Christine Kelley,Bachelor,Communications,2012,2016,Product/Design,9.3,9,Figma:8.6;Cypress:8.2;TypeScript:6.3;SQL:5.1;Jira:3.2,3,Ridgeline Analytics,3,36,61,68,34
-TEST00058,Lisa Gray,High School,,1996,2000,DevOps/Infrastructure,24.1,16,Docker:24.0;Azure:19.2;Redshift:18.6;Datadog:18.5;GCP:18.1,5,Cobalt Applications,3,31,99,93,31
-TEST00059,Michael J. Hartman,Bachelor,Data Science,2016,2020,Data/AI/ML,4.9,7,Airflow:3.8;Kotlin:3.2;Selenium:3.2;Databricks:2.0;BigQuery:1.5,2,Clearwater Systems,3,54,51,39,38
-TEST00060,Jason Parrish,Bachelor,Mathematics,2016,2020,Software Development,6.3,7,React:6.1;FastAPI:5.2;Jenkins:4.6;MySQL:3.9;pytest:1.9,1,Nova Tech Group,3,58,53,53,29
-TEST00061,Charles Hall,Master,Electrical Engineering,2022,2024,Product/Design,1.0,7,Cypress:1.0;Git:0.8;SQL:0.7;Jira:0.7;Power BI:0.6,1,Amazon,1,76,17,15,100
-TEST00062,Tammy Jordan,Bachelor,Economics,2003,2006,Data/AI/ML,19.7,16,Jenkins:18.0;Kafka:17.4;Spark:16.1;Python:14.6;Confluence:13.8,5,Northbridge IT,3,47,89,95,37
-TEST00063,Becky Schroeder,Master,Economics,2013,2015,DevOps/Infrastructure,9.3,9,Kafka:9.3;Kubernetes:9.0;Datadog:8.7;Spring Boot:8.5;Nginx:8.1,2,Ridgeline Analytics,3,53,74,85,46
-TEST00064,Cheryl L. Holt,High School,,2020,2024,Software Development,0.4,7,Node.js:0.4;Python:0.4;Go:0.4;pytest:0.4;Datadog:0.4,0,,,31,5,0,17
-TEST00065,Sandra Norman,High School,,2021,2024,DevOps/Infrastructure,0.3,5,CI/CD:0.3;Prometheus:0.3;Go:0.3;Swift:0.3;dbt:0.3,0,,,35,7,1,14
-TEST00066,Shelby Byrd,Bachelor,Physics,2016,2019,Data Analysis,6.6,10,REST APIs:5.5;Pandas:3.9;Snowflake:3.5;PostgreSQL:3.3;Airflow:2.7,3,Cobalt Applications,3,48,56,50,51
-TEST00067,William Thompson,Bachelor,Information Systems,2021,2025,Software Development,0.4,6,Next.js:0.4;CI/CD:0.4;React:0.4;PostgreSQL:0.4;MLflow:0.4,0,,,48,6,13,25
-TEST00068,Andres Green,Bachelor,Software Engineering,2020,2023,Software Development,2.3,5,Playwright:2.1;MySQL:2.0;Go:1.6;GraphQL:1.5;JavaScript:1.1,1,IBM,2,61,34,30,67
-TEST00069,Maria Scott,Master,Data Science,2019,2021,DevOps/Infrastructure,4.5,9,Docker:4.3;Ansible:3.9;Datadog:3.7;Linux:3.7;GCP:3.4,1,Clearwater Systems,3,73,49,69,31
-TEST00070,Scott Robinson,High School,,2006,2009,Data/AI/ML,16.2,15,Databricks:15.9;MLflow:14.0;PyTorch:12.2;NumPy:11.8;Pandas:9.7,3,Lumen Works,3,39,77,92,31
-TEST00071,Martin Gonzalez,Bachelor,Communications,2020,2024,Data/AI/ML,0.8,6,LangChain:0.8;Pandas:0.8;Next.js:0.8;Snowflake:0.7;Tableau:0.7,0,,,33,4,9,18
-TEST00072,Susan Greene,Master,Economics,2021,2022,Data/AI/ML,3.1,8,Kafka:3.0;Hugging Face:2.9;Pandas:2.6;pytest:2.6;Docker:2.2,1,Salesforce,2,48,33,32,60
-TEST00073,Elizabeth H. Travis,Master,Data Science,2010,2012,Software Development,12.6,14,Hugging Face:12.0;PostgreSQL:11.4;Sketch:11.1;Datadog:10.7;Node.js:9.8,2,Cobalt Applications,3,76,79,97,35
-TEST00074,Kristen Knox,Master,Information Systems,2001,2003,Data Analysis,21.9,16,SQL:21.1;Swift:18.9;JavaScript:18.0;React:17.6;dbt:16.8,4,Google,1,69,93,99,67
-TEST00075,Christopher Smith,Bachelor,Biology,2016,2019,QA/Testing,6.5,7,Cypress:5.4;Pandas:5.1;Playwright:3.9;Kubernetes:3.2;Java:2.9,3,Salesforce,2,36,59,57,48
-TEST00076,John Williams,Bachelor,Physics,2009,2013,Data/AI/ML,11.0,10,Airflow:9.5;Scikit-learn:9.0;TensorFlow:8.5;PyTorch:7.2;Hugging Face:5.3,2,Oracle,2,50,75,82,60
-TEST00077,Jeffrey Doyle,Bachelor,Data Science,2018,2021,Data Analysis,5.1,9,Power BI:4.5;Redshift:4.0;PostgreSQL:2.6;SQL:2.4;Java:2.4,2,Silverline Data,3,67,54,54,37
-TEST00078,Danny C. Reed,PhD,Communications,2021,2024,Data/AI/ML,2.0,7,LangChain:1.7;Hugging Face:1.6;Selenium:1.4;SQL:1.2;PyTorch:1.1,1,BrightPath Solutions,3,53,20,28,30
-TEST00079,Jessica Anderson,Master,Biology,2011,2012,Product/Design,13.4,14,Redshift:13.3;Grafana:13.0;Git:12.8;React:11.3;Looker:10.7,3,Salesforce,2,48,82,89,68
-TEST00080,Lauren Rodriguez,Bachelor,Data Science,1998,2001,Software Development,24.7,16,Go:24.2;Angular:23.0;PostgreSQL:17.6;Node.js:16.4;Nginx:15.7,5,Fenwick Digital,3,61,92,93,30
-TEST00081,Denise Hall,High School,,2022,2025,DevOps/Infrastructure,0.6,7,AWS:0.6;Nginx:0.6;CI/CD:0.6;Prometheus:0.6;Kafka:0.6,0,,,27,4,9,14
-TEST00082,Jamie Taylor,High School,,2019,2023,Data Analysis,1.6,7,Python:1.4;Databricks:1.3;SQL:1.2;Redis:1.2;Grafana:1.0,1,Airbnb,2,34,22,22,69
-TEST00083,Michael Hardin,Master,Physics,2022,2023,Software Development,1.2,4,GraphQL:0.9;Go:0.8;gRPC:0.7;Django:0.6,1,Intel,2,63,16,7,63
-TEST00084,John Reed,Bachelor,Computer Science,2020,2024,QA/Testing,0.6,4,JavaScript:0.6;Jira:0.6;REST APIs:0.6;Figma:0.5,0,,,57,5,4,23
-TEST00085,Rachael P. Ross,Bachelor,Software Engineering,2003,2007,Product/Design,17.1,15,NumPy:16.2;Confluence:15.3;Datadog:14.3;Prometheus:13.3;Git:8.2,5,Meridian Software,3,50,86,81,33
-TEST00086,Steven Henderson,Bachelor,Economics,2010,2014,Product/Design,10.6,12,Confluence:8.6;Sketch:7.0;Excel:6.7;Git:6.3;Tableau:5.9,4,Fenwick Digital,3,36,68,74,44
-TEST00087,Isaac Stark,Bachelor,Mathematics,2021,2024,QA/Testing,1.6,5,TypeScript:1.4;Looker:1.4;pytest:1.2;Jira:0.9;Selenium:0.9,1,Cisco,2,53,22,18,63
-TEST00088,Shawn Johnson,Bachelor,Mathematics,2018,2021,QA/Testing,3.0,6,Selenium:2.9;Git:2.8;Node.js:2.1;SQL:1.7;Cypress:1.1,2,Amazon,1,53,27,30,69
-TEST00089,Peter Baker,Bachelor,Business Administration,2019,2023,Software Development,2.7,6,React:2.3;Python:1.8;Playwright:1.7;PostgreSQL:1.6;Java:0.8,1,Intel,2,41,30,22,61
-TEST00090,Rebekah Hill,High School,,1995,1998,Data Analysis,27.2,16,dbt:23.5;Redshift:23.1;Looker:22.3;Datadog:19.2;NumPy:14.8,4,Northbridge IT,3,33,100,92,43
-TEST00091,Kaylee Meyer,High School,,2019,2023,Data Analysis,2.9,7,React:2.8;Node.js:2.5;dbt:2.4;Redshift:2.2;Pandas:1.8,1,Ridgeline Analytics,3,31,35,37,46
-TEST00092,Joe Park,Master,Biology,2010,2012,QA/Testing,12.5,11,CI/CD:12.4;GitHub Actions:11.8;JavaScript:11.0;Jira:7.3;Cypress:5.2,4,Lumen Works,3,56,79,77,38
-TEST00093,Nathaniel Hughes,Master,Business Administration,2020,2022,Software Development,4.5,7,C++:2.9;C#:2.8;FastAPI:2.4;MongoDB:1.1;BigQuery:1.1,1,Blue Orbit Labs,3,57,38,37,39
-TEST00094,Julie Webster,Bachelor,Data Science,2022,2025,Software Development,1.4,4,Postman:1.2;TypeScript:1.0;Angular:0.6;React:0.6,1,Adobe,2,59,21,11,71
-TEST00095,David Hess,High School,,2017,2021,Data/AI/ML,4.4,7,Ruby:3.9;LangChain:2.1;Airflow:1.6;Spring Boot:1.5;Python:1.3,2,Lumen Works,3,27,47,35,40
-TEST00096,Brittney Rocha,Bachelor,Software Engineering,2021,2024,Software Development,1.1,5,pytest:1.1;GraphQL:0.8;Docker:0.6;TypeScript:0.6;AWS:0.6,1,Silverline Data,3,60,18,16,27
-TEST00097,Gina Bell,Bachelor,Biology,2021,2025,Data/AI/ML,1.7,7,Selenium:1.7;Snowflake:1.4;Pandas:1.4;Kafka:1.0;NumPy:0.9,1,IBM,2,34,11,15,70
-TEST00098,Maurice Barajas,PhD,Economics,2020,2023,DevOps/Infrastructure,2.1,5,Cypress:1.9;CI/CD:1.8;Kubernetes:1.8;Python:1.1;Grafana:1.1,1,Summit Digital,3,61,23,25,37
-TEST00099,Patricia Vargas,Bachelor,Business Administration,2013,2016,Software Development,10.0,12,MySQL:9.7;CI/CD:9.6;Git:9.4;Java:8.4;Python:6.8,1,Silverline Data,3,48,65,82,28
-TEST00100,Leonard Taylor,PhD,Biology,2021,2024,DevOps/Infrastructure,2.2,5,Azure:2.0;React:1.8;Bash:0.7;Java:0.7;Jenkins:0.6,1,BrightPath Solutions,3,63,22,25,37
-TEST00101,Justin Miller,Master,Mathematics,2020,2021,Software Development,4.7,7,Spring Boot:4.6;Spark:4.5;gRPC:4.2;Docker:3.7;Go:3.3,2,Blue Orbit Labs,3,70,37,60,51
-TEST00102,Karina Vaughn,Bachelor,Biology,2023,2026,DevOps/Infrastructure,0.8,5,Kafka:0.8;Prometheus:0.8;Linux:0.8;gRPC:0.8;CI/CD:0.8,0,,,43,6,11,25
-TEST00103,Stacey Robinson,Bachelor,Mathematics,2005,2009,Product/Design,16.9,15,Jira:16.3;Airflow:16.1;Git:15.6;Looker:14.0;Excel:11.8,4,Nvidia,1,54,92,91,90
-TEST00104,Trevor Gray,High School,,2022,2025,DevOps/Infrastructure,1.1,6,Terraform:0.9;GitHub Actions:0.8;CI/CD:0.7;GCP:0.7;Ansible:0.6,1,Cobalt Applications,3,36,13,23,50
-TEST00105,Peggy Hernandez,Bachelor,Physics,2017,2021,DevOps/Infrastructure,4.8,8,Docker:4.6;Cypress:4.5;Kubernetes:4.1;Airflow:3.2;Go:3.0,2,Northbridge IT,3,48,48,63,52
-TEST00106,Katherine Pham,Bachelor,Communications,2017,2020,Data Analysis,4.0,7,Pandas:3.8;Linux:3.6;Figma:3.3;NumPy:3.1;Next.js:2.9,1,Fenwick Digital,3,36,42,53,43
-TEST00107,April P. Ramos,Master,Communications,2019,2020,Product/Design,6.6,8,Sketch:5.2;CI/CD:4.5;Confluence:3.9;Excel:3.6;BigQuery:3.5,1,Meridian Software,3,45,61,46,30
-TEST00108,Jonathan Murphy,Bachelor,Biology,2010,2014,QA/Testing,11.5,11,NumPy:9.2;Spring Boot:9.1;Postman:8.5;Selenium:7.4;Jenkins:7.3,4,Spotify,2,40,73,79,66
-TEST00109,Amy Lopez,Bachelor,Data Science,2017,2021,Product/Design,4.7,9,Grafana:4.5;Excel:4.2;Sketch:3.8;Redis:3.3;Git:2.1,2,Intel,2,63,49,47,70
-TEST00110,Kevin Ruiz,Bachelor,Mathematics,2021,2024,DevOps/Infrastructure,0.3,6,Prometheus:0.3;Datadog:0.3;Terraform:0.3;Docker:0.3;MongoDB:0.3,0,,,60,2,4,21
-TEST00111,Sandra Fry,Bachelor,Communications,2006,2009,Data Analysis,16.4,14,Terraform:15.7;Looker:12.4;Tableau:11.0;Docker:8.8;PostgreSQL:8.2,3,Amazon,1,36,85,86,86
-TEST00112,Felicia Williams,Master,Economics,2021,2023,Product/Design,2.4,5,CI/CD:2.2;Jira:1.4;Excel:1.1;Postman:0.8;Tableau:0.6,1,Apple,1,55,30,15,91
-TEST00113,Savannah Howard,High School,,2022,2026,QA/Testing,0.7,7,Java:0.7;GitHub Actions:0.7;Postman:0.7;Playwright:0.7;TypeScript:0.7,0,,,31,6,6,21
-TEST00114,Sarah K. Johnson,Bachelor,Physics,2011,2015,DevOps/Infrastructure,11.4,12,Bash:11.0;LangChain:10.4;Grafana:10.3;GCP:9.3;GitHub Actions:8.7,2,Salesforce,2,50,71,81,56
-TEST00115,Ricky Novak,Master,Computer Science,2019,2021,QA/Testing,4.4,9,Selenium:3.8;Postman:3.6;CI/CD:2.3;Python:1.8;Figma:1.4,2,LinkedIn,2,70,45,45,56
-TEST00116,Melissa York,Bachelor,Physics,2006,2009,Software Development,16.4,15,Confluence:13.9;C#:12.6;PostgreSQL:12.6;pytest:10.8;JavaScript:10.5,2,BrightPath Solutions,3,59,83,96,50
-TEST00117,Blake W. Stewart,High School,,2012,2016,Product/Design,8.0,11,Spring Boot:6.1;NumPy:4.9;Scikit-learn:4.3;TypeScript:4.0;Excel:3.5,1,BrightPath Solutions,3,35,61,66,33
-TEST00118,Antonio Hernandez,Bachelor,Economics,2023,2026,Data Analysis,0.1,7,Spark:0.1;BigQuery:0.1;Snowflake:0.1;Excel:0.1;MongoDB:0.1,0,,,40,8,7,19
-TEST00119,Stephanie Thomas,Master,Communications,2022,2023,DevOps/Infrastructure,1.4,6,Nginx:1.1;Redshift:1.1;Jenkins:1.0;Terraform:1.0;Redis:0.8,1,Lumen Works,3,46,16,17,33
-TEST00120,Alexander Herrera,PhD,Economics,2021,2024,Product/Design,1.8,5,React:1.2;Tableau:0.9;Grafana:0.9;dbt:0.7;Jira:0.6,1,Shopify,2,69,20,19,58
-TEST00121,Christine Diaz,High School,,2019,2023,Data Analysis,1.8,7,Confluence:1.7;Power BI:1.5;Redshift:1.3;Angular:1.3;pytest:1.3,1,Cobalt Applications,3,38,25,17,39
-TEST00122,Brandon Butler,Master,Mathematics,2015,2016,QA/Testing,9.9,11,Playwright:9.4;Java:8.7;Python:7.6;Git:6.7;C#:6.0,3,Silverline Data,3,71,71,88,36
-TEST00123,David Miller,Bachelor,Mathematics,2019,2023,DevOps/Infrastructure,2.6,8,Kubernetes:2.5;AWS:2.2;Sketch:1.7;Azure:1.2;Datadog:1.1,1,Uber,2,50,22,33,68
-TEST00124,Shannon White,Master,Physics,2021,2023,Product/Design,2.2,8,Jira:2.1;Tableau:1.8;Vue.js:1.8;TypeScript:1.6;Git:1.3,1,Palantir,2,60,26,27,65
-TEST00125,Tiffany Patel,Bachelor,Physics,2018,2022,Data Analysis,2.2,5,Kubernetes:2.0;Snowflake:1.8;Prometheus:1.6;Excel:1.2;Power BI:0.7,1,Uber,2,48,28,22,70
-TEST00126,Heather Hernandez,PhD,Communications,2018,2023,Data/AI/ML,2.7,6,PyTorch:2.7;Databricks:2.1;C++:2.1;AWS:1.1;JavaScript:0.7,1,BrightPath Solutions,3,59,32,25,32
-TEST00127,Jim Hendricks,Master,Business Administration,2013,2015,Data/AI/ML,9.8,12,Kafka:7.3;Hugging Face:6.6;MLflow:5.6;PyTorch:4.9;LangChain:4.8,3,Ironwood Consulting,3,62,68,77,43
-TEST00128,Rodney Bennett,High School,,2016,2019,QA/Testing,5.7,8,Playwright:5.4;JavaScript:5.3;Linux:4.1;Selenium:3.8;CI/CD:3.3,1,Ridgeline Analytics,3,39,50,58,28
-TEST00129,Kara F. Marks,Bachelor,Software Engineering,2021,2024,DevOps/Infrastructure,0.9,5,Ansible:0.9;Vue.js:0.8;Nginx:0.7;MySQL:0.6;GitHub Actions:0.5,0,,,67,7,4,19
-TEST00130,Robert Cole,High School,,1998,2001,Data/AI/ML,24.1,16,LangChain:23.4;Scikit-learn:23.0;Figma:22.3;Python:20.4;MLflow:18.5,4,Intel,2,29,96,94,62
-TEST00131,Lawrence Williams,Master,Biology,2019,2021,QA/Testing,5.3,9,Kafka:5.2;GitHub Actions:4.6;Prometheus:4.6;pytest:4.4;Postman:3.6,1,Ridgeline Analytics,3,48,54,62,38
-TEST00132,Stacy Mccall,High School,,2005,2009,Data/AI/ML,16.7,15,Power BI:16.2;SQL:15.3;Hugging Face:13.7;PostgreSQL:13.4;MLflow:11.9,2,Blue Orbit Labs,3,34,88,98,38
-TEST00133,Bradley Jackson,Bachelor,Business Administration,2021,2024,Product/Design,0.5,5,Tableau:0.5;TypeScript:0.5;Excel:0.5;Cypress:0.5;SQL:0.5,0,,,40,4,1,19
-TEST00134,Brett Crane,PhD,Computer Science,2015,2018,Software Development,7.0,7,Scikit-learn:6.7;pytest:3.8;Next.js:3.5;Vue.js:2.5;Docker:1.2,3,BrightPath Solutions,3,91,52,49,45
-TEST00135,Joshua F. Lamb,Bachelor,Mathematics,2022,2025,Data/AI/ML,1.4,5,Elasticsearch:1.4;SQL:1.0;Databricks:1.0;Bash:0.6;TensorFlow:0.5,1,Amazon,1,50,24,10,98
-TEST00136,Antonio Guzman,Master,Business Administration,1993,1995,Data Analysis,29.3,16,Pandas:23.7;NumPy:23.7;Kotlin:22.5;SQL:19.6;Airflow:18.8,5,Uber,2,59,97,96,60
-TEST00137,Brandon Carter,Bachelor,Communications,2016,2020,DevOps/Infrastructure,6.3,10,Terraform:6.0;Redis:5.5;Jenkins:4.2;Prometheus:3.6;Playwright:3.1,1,BrightPath Solutions,3,37,54,59,34
-TEST00138,Kristine James,Bachelor,Information Systems,2015,2019,Product/Design,6.5,8,Tableau:6.4;Nginx:6.2;React:3.5;Docker:3.5;TypeScript:2.1,2,Fenwick Digital,3,61,50,53,30
-TEST00139,Christine R. Norman,PhD,Physics,2011,2015,QA/Testing,9.5,11,Terraform:8.8;Elasticsearch:8.6;GitHub Actions:6.5;TypeScript:5.2;Python:4.7,4,Netflix,1,80,73,72,61
-TEST00140,Ashlee Sparks,Bachelor,Software Engineering,2007,2011,Data/AI/ML,14.7,14,Scala:13.8;LangChain:13.1;TensorFlow:12.0;PyTorch:11.5;AWS:10.3,2,Northbridge IT,3,65,96,98,34
-TEST00141,Amber Gibson,High School,,2018,2022,QA/Testing,2.7,5,CI/CD:2.6;Postman:2.4;JavaScript:1.9;Redshift:1.2;Python:0.5,1,BrightPath Solutions,3,28,30,23,35
-TEST00142,Jeffrey Maxwell,Master,Computer Science,2024,2025,QA/Testing,1.2,4,C#:0.9;pytest:0.8;Spring Boot:0.7;Cypress:0.6,1,Nova Tech Group,3,78,16,9,36
-TEST00143,Joshua Brown,Bachelor,Electrical Engineering,2013,2016,Product/Design,9.8,12,SQL:9.7;Confluence:9.4;MongoDB:8.8;Figma:6.3;Next.js:5.7,1,Northbridge IT,3,60,61,79,34
-TEST00144,Richard Parks,Master,Physics,2016,2018,Product/Design,8.0,10,TypeScript:7.9;Django:6.4;Figma:6.2;Tableau:4.8;MLflow:3.9,3,Fenwick Digital,3,70,66,68,44
-TEST00145,Jessica Cummings,Bachelor,Information Systems,2013,2016,QA/Testing,8.5,8,Cypress:7.0;Git:6.2;CI/CD:5.1;Kafka:5.1;Jira:2.6,1,Amber Creek Software,3,49,64,57,38
-TEST00146,Ashley Jackson,Bachelor,Software Engineering,2011,2014,Software Development,10.1,11,FastAPI:9.0;CI/CD:7.4;GCP:7.0;Git:6.7;JavaScript:5.8,2,Cobalt Applications,3,60,73,87,30
-TEST00147,Antonio Walker,PhD,Business Administration,2021,2024,Data/AI/ML,1.9,6,GCP:1.9;TensorFlow:1.8;NumPy:1.4;Databricks:1.3;AWS:1.3,1,Amber Creek Software,3,67,23,18,37
-TEST00148,Steven Jackson,Bachelor,Software Engineering,2016,2019,Data Analysis,6.2,10,Spark:4.6;Snowflake:3.0;Kotlin:2.9;Redshift:2.5;DynamoDB:1.6,2,Blue Orbit Labs,3,59,52,51,40
-TEST00149,Matthew Long,Master,Communications,2022,2024,DevOps/Infrastructure,1.2,4,GitHub Actions:1.0;GCP:0.9;pytest:0.9;TensorFlow:0.6,1,Cisco,2,45,13,3,66
-TEST00150,Christina C. West,Master,Business Administration,2023,2024,Data Analysis,1.7,6,dbt:1.5;Snowflake:1.3;Datadog:1.2;Airflow:0.9;Kotlin:0.9,1,Lumen Works,3,56,23,20,41
-TEST00151,Nancy Wolfe,Bachelor,Biology,2016,2020,QA/Testing,6.2,10,Postman:6.1;Jira:5.4;GitHub Actions:4.6;Python:4.5;Docker:3.8,2,Ridgeline Analytics,3,35,55,66,38
-TEST00152,Chad Rodriguez,High School,,2006,2009,Product/Design,15.5,15,TypeScript:14.0;Looker:13.8;Sketch:12.6;Excel:12.1;Databricks:11.3,4,Stripe,2,31,92,87,50
-TEST00153,Angela Greene,Bachelor,Mathematics,2022,2026,QA/Testing,0.7,5,Selenium:0.7;Cypress:0.7;TypeScript:0.7;Node.js:0.7;gRPC:0.7,0,,,55,9,4,24
-TEST00154,Lisa Long,PhD,Business Administration,2019,2024,Data Analysis,1.8,6,Python:1.7;Linux:1.6;Spark:1.4;BigQuery:1.2;Snowflake:1.2,1,Lumen Works,3,71,17,23,35
-TEST00155,Tyler Reyes,High School,,2013,2017,Data/AI/ML,8.6,11,Scikit-learn:8.2;BigQuery:8.1;Terraform:7.8;Airflow:5.4;Rust:3.9,2,Northbridge IT,3,33,70,73,30
-TEST00156,Mark Morales,Master,Mathematics,2016,2017,Product/Design,7.6,11,Looker:7.5;Jira:7.2;TensorFlow:6.9;Sketch:6.0;Tableau:6.0,3,Spotify,2,64,66,81,48
-TEST00157,Diana Mcclure,Master,Information Systems,2018,2020,Product/Design,4.3,6,SQL:3.2;Playwright:2.8;TypeScript:2.5;Tableau:1.6;Kafka:1.5,1,Nova Tech Group,3,70,43,35,39
-TEST00158,Julie Grant,Bachelor,Communications,2018,2021,QA/Testing,3.7,6,Databricks:3.7;Docker:3.4;Linux:1.7;TypeScript:1.4;CI/CD:0.7,2,Uber,2,32,41,34,66
-TEST00159,Eric Parks,Master,Biology,2019,2020,Software Development,4.6,7,Azure:4.5;Spring Boot:3.3;Scala:1.5;GCP:1.4;Go:1.2,2,Vantage Point Technologies,3,50,40,28,27
-TEST00160,Tracy R. Stark,High School,,2011,2015,QA/Testing,10.0,12,TypeScript:9.6;MLflow:9.2;pytest:8.3;Playwright:5.9;Redshift:5.7,1,Cobalt Applications,3,23,74,82,33
-TEST00161,Anthony N. Acosta,Master,Information Systems,2010,2011,Product/Design,13.2,11,Figma:13.0;AWS:10.6;React:10.0;Confluence:7.8;Excel:7.4,2,Meta,1,58,75,69,63
-TEST00162,Sonya Wilkins,Master,Economics,2008,2010,Data/AI/ML,16.3,14,Airflow:13.4;Scikit-learn:10.5;Databricks:9.0;Pandas:8.0;Ansible:6.0,2,Cobalt Applications,3,51,95,94,48
-TEST00163,Angela Burns,Bachelor,Mathematics,2020,2023,Data Analysis,3.4,7,Looker:2.1;Pandas:2.0;REST APIs:2.0;AWS:1.7;React:1.5,2,IBM,2,46,39,35,50
-TEST00164,Adrian Turner,High School,,2018,2021,Data/AI/ML,4.9,8,REST APIs:4.6;NumPy:4.5;Scikit-learn:4.0;MLflow:3.5;TensorFlow:2.2,1,Ironwood Consulting,3,42,40,55,36
-TEST00165,Deanna Jenkins,High School,,2008,2011,QA/Testing,15.0,15,Python:14.7;Datadog:12.3;Spark:10.0;Docker:9.2;Jira:7.2,2,Lumen Works,3,26,80,91,30
-TEST00166,Nicholas Lewis,Bachelor,Mathematics,2005,2009,Data Analysis,16.8,13,SQL:16.6;Vue.js:15.2;Snowflake:15.0;BigQuery:14.5;Playwright:13.6,4,Amber Creek Software,3,55,78,90,30
-TEST00167,Christopher Gonzalez,High School,,2004,2008,Software Development,16.0,12,Django:15.6;PostgreSQL:13.7;Figma:12.9;Python:12.5;JavaScript:11.2,3,Meridian Software,3,32,85,91,37
-TEST00168,Clayton Hall,High School,,2009,2012,QA/Testing,12.9,12,Spring Boot:12.8;Cypress:12.1;GitHub Actions:9.5;pytest:8.5;BigQuery:8.4,4,LinkedIn,2,35,86,89,55
-TEST00169,Troy Khan,High School,,2012,2016,DevOps/Infrastructure,9.3,11,Excel:8.7;Prometheus:6.9;Linux:6.9;Terraform:6.6;CI/CD:5.8,2,Adobe,2,40,70,90,51
-TEST00170,Raymond Ochoa,Bachelor,Information Systems,2018,2021,QA/Testing,3.7,9,Cypress:3.7;Jira:3.3;Python:3.1;Swift:3.1;JavaScript:2.8,1,Cisco,2,55,38,50,72
-TEST00171,Tyrone Robertson,Master,Mathematics,2018,2019,QA/Testing,5.3,9,Selenium:5.0;JavaScript:4.9;TypeScript:4.5;Playwright:2.7;Spark:2.0,1,Shopify,2,75,52,54,74
-TEST00172,James Clay,Bachelor,Economics,2005,2008,QA/Testing,16.4,13,Selenium:14.7;Ruby:14.4;pytest:12.8;Git:11.5;JavaScript:9.1,5,BrightPath Solutions,3,49,86,81,37
-TEST00173,Ricardo Zavala,Master,Business Administration,2016,2018,Data/AI/ML,6.3,7,PyTorch:4.2;Python:3.1;Go:1.8;AWS:1.4;Snowflake:1.3,3,Amazon,1,49,54,32,85
-TEST00174,Morgan Lopez,PhD,Information Systems,2018,2022,DevOps/Infrastructure,2.9,5,Kafka:2.7;Redis:1.3;Grafana:1.1;CI/CD:1.0;Selenium:1.0,1,Ironwood Consulting,3,73,27,23,41
-TEST00175,Lacey Martinez,Master,Electrical Engineering,2015,2016,Product/Design,9.6,9,Spark:9.3;Tableau:9.0;CI/CD:7.4;TypeScript:7.3;Sketch:7.1,4,Nova Tech Group,3,66,72,74,30
-TEST00176,Kim Marshall,Bachelor,Economics,2020,2024,Data/AI/ML,1.5,5,Python:1.4;Tableau:1.3;Databricks:1.1;FastAPI:1.1;Hugging Face:0.5,1,Blue Orbit Labs,3,41,20,18,37
-TEST00177,Carl Gentry,Bachelor,Mathematics,2018,2021,QA/Testing,4.0,9,Jira:3.0;Cypress:2.6;GitHub Actions:2.5;Postman:2.3;Java:2.0,2,Summit Digital,3,49,47,41,31
-TEST00178,Fernando Thomas,Bachelor,Electrical Engineering,2005,2009,Data/AI/ML,16.4,15,Postman:15.5;MongoDB:15.2;Docker:13.0;Pandas:12.2;Databricks:11.2,4,IBM,2,54,85,91,66
-TEST00179,Gabriel Salazar,High School,,2004,2008,Product/Design,16.8,13,TypeScript:15.8;Selenium:14.2;SQL:13.4;Power BI:13.2;Excel:11.9,3,Lumen Works,3,28,85,78,34
-TEST00180,David Dillon,PhD,Computer Science,2017,2021,Product/Design,3.0,8,React:3.0;Linux:2.6;SQL:2.0;TypeScript:1.9;Figma:1.8,1,Cobalt Applications,3,96,28,41,41
-TEST00181,Rebecca G. Calderon,Bachelor,Electrical Engineering,2020,2023,Data Analysis,1.5,5,BigQuery:1.2;Scikit-learn:1.1;Spark:1.0;Airflow:1.0;C#:0.7,1,BrightPath Solutions,3,61,26,18,25
-TEST00182,Daniel Mills,Bachelor,Software Engineering,2017,2020,DevOps/Infrastructure,4.4,9,Python:3.4;GitHub Actions:3.3;LangChain:3.3;CI/CD:2.8;GCP:2.6,1,Northbridge IT,3,65,38,52,40
-TEST00183,Maria Juarez,Master,Mathematics,2024,2025,Product/Design,0.6,6,Git:0.6;React:0.6;TypeScript:0.6;Looker:0.6;MySQL:0.6,0,,,65,15,6,20
-TEST00184,Cheryl Rodriguez,Master,Electrical Engineering,1996,1997,Data/AI/ML,28.8,16,Hugging Face:25.3;SQL:24.7;Python:22.7;MongoDB:20.2;Angular:17.6,4,Nova Tech Group,3,76,91,96,34
-TEST00185,Amy Anderson,Bachelor,Biology,2018,2022,DevOps/Infrastructure,4.2,7,Ruby:4.2;AWS:2.4;Azure:2.4;Jenkins:2.1;Cypress:2.1,2,Cisco,2,43,43,42,65
-TEST00186,Melissa Welch,Master,Biology,2010,2011,Product/Design,14.6,13,Sketch:13.9;dbt:13.1;GCP:13.0;SQL:12.5;NumPy:10.5,5,Fenwick Digital,3,52,79,82,38
-TEST00187,Lauren Hurst,Master,Data Science,2014,2015,Software Development,9.5,12,dbt:9.2;Spring Boot:8.8;TypeScript:8.2;Node.js:7.5;C#:6.8,1,Silverline Data,3,85,63,84,42
-TEST00188,William Marshall,Bachelor,Computer Science,2014,2018,Product/Design,7.5,11,Excel:7.5;React:4.3;TypeScript:3.4;Git:3.1;Nginx:3.1,2,Vantage Point Technologies,3,57,65,63,29
-TEST00189,Earl West,Bachelor,Mathematics,2004,2007,Product/Design,17.6,13,SQL:15.9;TypeScript:14.0;Git:13.3;JavaScript:13.1;Go:12.2,5,Vantage Point Technologies,3,46,82,88,37
-TEST00190,Brenda Hines,High School,,2011,2015,Data Analysis,9.4,9,Nginx:9.3;Databricks:9.2;Power BI:9.1;Kotlin:8.9;Pandas:3.5,2,Meridian Software,3,36,66,77,47
-TEST00191,Dakota Richardson,Master,Mathematics,2013,2014,Data/AI/ML,10.8,11,Python:9.1;TensorFlow:7.5;Prometheus:6.5;Databricks:6.2;GitHub Actions:5.7,3,Uber,2,73,82,78,70
-TEST00192,Jennifer Mccormick,Bachelor,Software Engineering,2014,2017,DevOps/Infrastructure,8.1,8,Go:7.8;Power BI:7.8;Python:7.6;GCP:5.9;Docker:3.1,1,Clearwater Systems,3,59,62,73,39
-TEST00193,Derek Zamora,High School,,2014,2017,Product/Design,7.0,9,Sketch:6.5;Confluence:6.1;JavaScript:5.1;TypeScript:4.3;Figma:3.0,1,Silverline Data,3,35,62,63,41
-TEST00194,Lucas Thomas,Bachelor,Communications,2004,2008,DevOps/Infrastructure,17.5,14,GitHub Actions:13.8;JavaScript:11.6;Linux:10.9;Python:9.8;Terraform:9.1,5,BrightPath Solutions,3,32,88,92,39
-TEST00195,Catherine Robertson,High School,,2007,2010,QA/Testing,15.1,14,Looker:14.6;MLflow:12.9;Git:11.3;CI/CD:10.7;Jira:10.3,4,Ridgeline Analytics,3,34,71,87,39
-TEST00196,Ashley Lee,Bachelor,Electrical Engineering,2003,2007,Data/AI/ML,17.3,15,LangChain:14.1;BigQuery:14.0;Docker:12.8;GitHub Actions:12.0;Airflow:11.5,5,Nova Tech Group,3,51,87,95,35
-TEST00197,Taylor Alexander,Bachelor,Business Administration,2015,2019,Product/Design,5.2,7,React:4.3;Go:3.7;Looker:3.0;Confluence:2.9;SQL:2.7,1,Dell,2,41,44,53,68
-TEST00198,Holly Goodman,Bachelor,Electrical Engineering,2010,2014,DevOps/Infrastructure,11.1,13,Cypress:9.6;MySQL:8.8;Docker:8.7;Python:8.2;Nginx:8.0,3,Cobalt Applications,3,57,70,87,32
-TEST00199,Paul Mosley,Bachelor,Data Science,2016,2020,QA/Testing,5.7,9,Git:4.7;TypeScript:4.7;CI/CD:4.4;Selenium:4.0;JavaScript:3.7,1,Vantage Point Technologies,3,60,51,66,37
-TEST00200,Brenda Rogers,High School,,2005,2008,Software Development,17.4,16,Sketch:16.9;Python:15.4;Go:11.9;Playwright:11.9;Git:11.5,4,Nova Tech Group,3,34,95,90,39
+id,name,education_level,education_tier,education_field,education_start_year,grad_year,domain,total_years_experience,num_skills,top_skills,num_companies,best_company,best_company_tier,education_score,relevant_experience_score,stack_experience_score,companies_score
+TEST00001,Paige Alvarez,Bachelor,1,Biology,2016,2020,Product/Design,4.0,6,Power BI:2.5;Confluence:1.9;TypeScript:1.5;MongoDB:1.4;Figma:1.0,1,Keystone Apps,1,40,41,18,43
+TEST00002,Erika Peters,Master,1,Business Administration,2021,2023,Product/Design,1.4,6,Selenium:1.2;Tableau:1.1;Power BI:0.8;Excel:0.8;MongoDB:0.6,1,Beacon Interactive,1,56,22,14,40
+TEST00003,Amber G. Morris,Master,2,Business Administration,2008,2009,Data Analysis,15.1,14,Spark:13.9;Pandas:13.0;Linux:12.7;pytest:12.1;LangChain:11.4,5,Datadog,2,55,89,91,33
+TEST00004,Diane Cunningham,PhD,2,Electrical Engineering,2021,2025,Data/AI/ML,1.7,6,Scikit-learn:1.4;Pandas:1.2;Sketch:1.2;Snowflake:1.1;Kotlin:1.1,1,Foxglove Media,1,93,18,19,38
+TEST00005,Casey Welch,Master,1,Information Systems,2023,2024,QA/Testing,1.1,7,Figma:1.0;CI/CD:0.8;Java:0.8;Docker:0.7;Jira:0.6,1,Shopify,2,65,20,19,62
+TEST00006,Susan Hall,Bachelor,2,Business Administration,2004,2008,Data/AI/ML,16.8,13,Hugging Face:16.6;Cypress:16.6;PyTorch:14.9;LangChain:11.8;SQL:9.6,5,Spotify,2,39,91,94,52
+TEST00007,Kyle Sanders,High School,1,,2014,2017,DevOps/Infrastructure,8.1,11,Python:7.1;Grafana:6.5;Cypress:6.4;GCP:6.3;Datadog:5.2,2,Foxglove Media,1,31,65,81,38
+TEST00008,Erin Taylor,PhD,2,Physics,2016,2020,DevOps/Infrastructure,4.3,6,gRPC:3.5;CI/CD:2.4;Go:1.6;Kubernetes:1.5;Jenkins:1.0,2,BrightPath Solutions,1,83,43,29,35
+TEST00009,Bailey Haney,PhD,1,Electrical Engineering,2013,2018,QA/Testing,7.5,9,Playwright:7.3;Kotlin:5.4;Redshift:3.4;Node.js:2.9;Git:2.4,2,Nova Tech Group,1,82,67,58,33
+TEST00010,Kathleen Ramsey,Master,3,Information Systems,2019,2021,Data Analysis,4.0,8,Airflow:3.7;Redshift:3.5;Spring Boot:3.5;Django:3.1;React:1.9,2,Vantage Analytics,1,63,40,48,30
+TEST00011,Samuel Holmes,PhD,1,Mathematics,2008,2012,Product/Design,13.2,13,Power BI:13.1;Figma:12.0;Git:11.7;Tableau:11.6;TypeScript:11.6,3,Meta,3,86,80,88,72
+TEST00012,Shannon Ramos,Master,1,Software Engineering,2008,2010,QA/Testing,15.2,12,Playwright:14.3;GCP:14.2;Java:12.9;Rust:12.8;pytest:9.8,2,Lumen Works,1,77,86,85,32
+TEST00013,Marcus Fletcher,PhD,2,Business Administration,2017,2020,Data Analysis,6.6,7,Bash:5.8;Redis:5.8;BigQuery:5.7;PostgreSQL:5.4;JavaScript:2.4,1,Cobalt Systems,1,55,59,63,31
+TEST00014,John Davis,PhD,1,Computer Science,2022,2026,Data/AI/ML,0.9,5,Airflow:0.9;Scikit-learn:0.9;REST APIs:0.9;TensorFlow:0.6;Sketch:0.6,0,,,86,11,12,16
+TEST00015,William Hill,Master,1,Biology,2002,2004,Data/AI/ML,21.8,16,Spark:21.7;TensorFlow:20.2;NumPy:19.1;Redshift:15.3;Kafka:14.5,4,Snowflake,2,49,93,100,44
+TEST00016,Katie Good,Bachelor,1,Physics,2021,2024,Data Analysis,1.1,5,Django:1.0;BigQuery:0.9;Ansible:0.9;Looker:0.6;Tableau:0.6,1,Shopify,2,56,9,20,69
+TEST00017,Danny Ramirez,High School,1,,2015,2018,Data/AI/ML,6.6,10,NumPy:4.5;Sketch:4.3;Snowflake:3.4;Airflow:2.9;Pandas:2.7,1,Keystone Apps,1,42,60,58,31
+TEST00018,Tyrone Moran,High School,1,,1999,2003,Data Analysis,21.7,16,Redshift:21.2;pytest:20.2;Python:19.7;Spring Boot:17.8;Excel:16.5,3,Oracle,2,33,95,100,44
+TEST00019,Melanie Davis,PhD,1,Physics,2022,2025,Product/Design,0.7,4,Sketch:0.7;Tableau:0.7;Postman:0.7;Figma:0.5,0,,,76,11,12,14
+TEST00020,Eric Bryant,Master,1,Mathematics,1995,1996,QA/Testing,29.9,16,MLflow:28.9;GraphQL:28.8;JavaScript:27.9;pytest:27.0;GCP:25.2,4,Atlassian,2,71,86,92,43
+TEST00021,Richard Lopez,Bachelor,1,Computer Science,2009,2013,Data/AI/ML,12.1,11,Kafka:11.4;SQL:8.4;Rust:8.0;Databricks:6.8;Scikit-learn:5.2,4,Shopify,2,63,77,82,52
+TEST00022,Ashley Roberts,Master,1,Information Systems,2007,2008,Software Development,17.2,13,Angular:15.6;Vue.js:14.4;Figma:10.3;GCP:10.2;REST APIs:9.7,2,Adobe,2,63,86,92,52
+TEST00023,Leslie B. Adams,Bachelor,1,Biology,2021,2024,QA/Testing,1.3,6,Playwright:1.2;Postman:1.0;NumPy:1.0;Git:0.8;Pandas:0.6,1,Summit Digital,1,32,20,15,29
+TEST00024,Joseph Schaefer,Bachelor,1,Software Engineering,2007,2011,Data Analysis,14.4,12,Looker:11.5;Angular:11.3;Excel:10.9;PostgreSQL:10.8;Redshift:7.8,3,Meridian Software,1,66,88,75,38
+TEST00025,Joshua Madden,PhD,1,Biology,2017,2020,Product/Design,4.0,8,Kafka:3.8;TypeScript:3.1;Playwright:2.8;Jira:2.1;Figma:1.6,1,Redwood Data,1,52,35,36,37
+TEST00026,Andrea Roberts,High School,1,,2007,2010,DevOps/Infrastructure,14.3,13,AWS:14.1;Azure:13.1;Tableau:12.3;Prometheus:11.4;Scikit-learn:9.8,3,Foxglove Media,1,36,80,90,31
+TEST00027,Hannah Robinson,Master,1,Biology,2022,2024,Data Analysis,0.3,7,SQL:0.3;Tableau:0.3;Snowflake:0.3;Spark:0.3;Redis:0.3,0,,,39,4,4,25
+TEST00028,Joseph King,Master,1,Electrical Engineering,2023,2024,Data Analysis,2.6,5,Pandas:2.0;Python:1.5;Jira:1.5;Excel:0.8;Scala:0.7,1,Clearwater Systems,1,71,27,19,32
+TEST00029,Bryan Wilson,High School,1,,2015,2019,DevOps/Infrastructure,5.0,6,Nginx:4.5;Prometheus:3.7;Docker:2.9;GCP:1.9;Pandas:1.0,1,Salesforce,2,39,53,43,66
+TEST00030,Daniel Lee,Master,1,Economics,2009,2010,Data Analysis,15.9,12,BigQuery:13.9;Tableau:13.2;Spark:10.3;NumPy:9.6;Azure:9.5,4,Cobalt Systems,1,56,92,92,33
+TEST00031,Richard Hunter,Bachelor,1,Mathematics,2009,2013,QA/Testing,12.4,13,Cypress:12.1;Java:11.9;GitHub Actions:11.2;JavaScript:9.2;Docker:9.2,3,IBM,2,52,82,91,39
+TEST00032,Laurie Taylor,High School,1,,2016,2020,DevOps/Infrastructure,6.1,8,Hugging Face:5.9;Kubernetes:5.8;Datadog:5.6;Bash:4.9;Pandas:4.1,1,BrightPath Solutions,1,30,51,60,38
+TEST00033,Matthew Mack,Bachelor,3,Software Engineering,2009,2012,Data Analysis,13.5,13,Power BI:10.8;Grafana:10.7;Excel:10.6;Tableau:7.6;Kotlin:6.9,4,Atlassian,2,64,79,79,38
+TEST00034,Charles Webster,Bachelor,2,Electrical Engineering,2005,2008,Data/AI/ML,17.1,15,AWS:16.6;Selenium:16.3;Spark:16.2;Pandas:13.2;Hugging Face:12.9,3,IBM,2,62,90,95,37
+TEST00035,Jerry Robinson,Master,1,Information Systems,2015,2017,Product/Design,9.2,9,JavaScript:8.1;Sketch:7.7;Node.js:7.0;Spring Boot:6.9;Jira:5.0,1,BrightPath Solutions,1,63,68,80,34
+TEST00036,Keith Frye,Bachelor,1,Computer Science,2019,2023,Data Analysis,1.2,7,NumPy:1.2;Looker:1.1;Spark:1.0;PostgreSQL:1.0;Jenkins:0.7,1,Keystone Apps,1,56,17,18,35
+TEST00037,Brandy Jackson,Bachelor,1,Biology,2020,2024,Software Development,0.7,7,Java:0.7;Node.js:0.7;CI/CD:0.7;GraphQL:0.7;Snowflake:0.7,0,,,42,8,22,21
+TEST00038,Janice Hoffman,Bachelor,1,Computer Science,2018,2021,QA/Testing,3.0,7,PyTorch:2.3;Cypress:2.2;Figma:2.0;GitHub Actions:1.4;Postman:1.3,1,Clearwater Systems,1,57,27,22,28
+TEST00039,Lynn Garcia,PhD,1,Computer Science,2013,2017,Data/AI/ML,7.7,9,Spark:7.2;SQL:5.1;MLflow:5.0;GitHub Actions:4.8;Airflow:4.7,2,Adobe,2,100,67,76,55
+TEST00040,Elizabeth Duran,Bachelor,1,Software Engineering,2008,2012,Software Development,13.7,14,Next.js:13.0;React:12.9;CI/CD:12.7;Grafana:12.5;TensorFlow:11.0,4,Spotify,2,66,74,93,63
+TEST00041,Aaron Myers,Bachelor,1,Data Science,2011,2015,Data Analysis,9.8,12,dbt:9.6;Pandas:7.8;Git:7.8;Looker:6.9;Java:5.5,3,Ironwood Labs,1,55,62,68,42
+TEST00042,Nathaniel Burgess,Master,2,Information Systems,2018,2020,Data Analysis,4.4,8,PostgreSQL:4.2;NumPy:4.0;React:3.1;Ruby:2.7;BigQuery:2.2,2,Beacon Interactive,1,68,47,48,35
+TEST00043,Bobby Ball,Master,1,Data Science,2000,2002,Data/AI/ML,24.2,16,Docker:23.9;Bash:23.5;Figma:23.0;Snowflake:20.4;MLflow:17.7,4,Cloudflare,2,76,100,99,50
+TEST00044,Angela Allen,High School,1,,1996,2000,Data Analysis,25.2,16,PostgreSQL:24.2;SQL:23.0;Figma:22.9;Playwright:19.4;Power BI:17.6,4,Uber,2,33,100,98,57
+TEST00045,Angela K. Diaz,Bachelor,1,Business Administration,2007,2010,DevOps/Infrastructure,15.0,12,Grafana:14.3;Python:14.0;Redis:12.7;Swift:12.7;TypeScript:12.7,3,Keystone Apps,1,44,81,89,40
+TEST00046,Charles Miller,Master,3,Software Engineering,2010,2011,Product/Design,14.6,13,Figma:14.2;Spark:11.7;TypeScript:11.0;Snowflake:8.1;Looker:7.7,3,Oracle,2,85,86,95,45
+TEST00047,Anthony Mendez,Bachelor,3,Information Systems,2017,2021,Data Analysis,4.8,8,Snowflake:4.7;Elasticsearch:2.8;PostgreSQL:2.4;Spark:2.4;Sketch:2.4,2,IBM,2,48,43,46,59
+TEST00048,Steven Haynes,Master,1,Communications,2014,2016,Software Development,8.7,10,Git:7.9;Docker:7.5;FastAPI:6.6;C#:4.8;C++:4.3,1,Cloudflare,2,52,64,73,56
+TEST00049,Michael Jones,Bachelor,1,Data Science,2015,2018,Product/Design,6.6,9,Playwright:6.4;SQL:5.9;Databricks:5.5;React:4.3;Tableau:4.3,3,Adobe,2,62,58,74,50
+TEST00050,Matthew F. Gomez,High School,1,,2018,2021,Data/AI/ML,5.3,7,React:4.9;Spark:3.2;SQL:2.3;DynamoDB:1.8;LangChain:1.4,1,Foxglove Media,1,39,50,48,37
+TEST00051,William Stone,Master,2,Economics,2017,2019,Data/AI/ML,6.8,9,Databricks:6.4;Elasticsearch:6.4;Spring Boot:5.6;Python:3.1;LangChain:2.9,2,Uber,2,55,57,65,51
+TEST00052,Lawrence Williams,Bachelor,1,Communications,2017,2021,Data Analysis,4.2,9,Airflow:4.0;NumPy:3.9;Python:3.5;MongoDB:3.5;Kotlin:3.2,2,BrightPath Solutions,1,38,42,57,33
+TEST00053,Veronica Perez,High School,1,,2020,2023,QA/Testing,2.8,7,Git:2.3;JavaScript:2.3;DynamoDB:2.3;CI/CD:1.7;REST APIs:1.1,1,Ironwood Labs,1,36,28,30,38
+TEST00054,Chelsea Lee,PhD,1,Software Engineering,2015,2020,Data/AI/ML,4.8,8,AWS:4.6;Pandas:4.2;Snowflake:4.2;TensorFlow:3.7;GitHub Actions:3.2,2,SAP,2,87,47,55,61
+TEST00055,Karen Carrillo,Bachelor,2,Mathematics,2011,2015,QA/Testing,11.1,13,Postman:9.7;DynamoDB:9.0;Jira:8.6;Cypress:8.1;dbt:7.5,2,Salesforce,2,59,76,90,39
+TEST00056,Thomas Anderson,Bachelor,1,Information Systems,2011,2014,Product/Design,11.5,12,Excel:10.8;Postman:9.8;Tableau:9.7;Sketch:9.3;Confluence:7.5,1,Shopify,2,50,78,78,68
+TEST00057,Joshua Martinez,Bachelor,1,Physics,1992,1996,Software Development,29.4,16,gRPC:28.7;NumPy:26.9;MongoDB:25.0;TypeScript:18.7;React:18.6,5,Oracle,2,46,94,90,46
+TEST00058,Vincent Snyder,Bachelor,1,Computer Science,2020,2024,Product/Design,1.2,7,TypeScript:1.1;React:1.0;SQL:0.8;Confluence:0.7;Spark:0.7,1,Ironwood Labs,1,56,12,14,40
+TEST00059,Troy Morris,PhD,1,Computer Science,2021,2024,Data Analysis,1.4,4,Redshift:1.1;dbt:1.0;FastAPI:0.8;Looker:0.7,1,Beacon Interactive,1,94,19,8,30
+TEST00060,Rodney Lewis,Bachelor,1,Electrical Engineering,2020,2023,QA/Testing,1.6,4,gRPC:1.2;JavaScript:0.9;Cypress:0.7;Playwright:0.6,1,Palantir,2,52,20,8,69
+TEST00061,Tanya Morgan,Bachelor,1,Data Science,2019,2022,DevOps/Infrastructure,3.6,7,Jenkins:2.4;Terraform:2.3;Bash:2.2;Ansible:2.0;GitHub Actions:1.3,2,Airbnb,2,62,31,30,58
+TEST00062,Tracy Stark,High School,1,,2009,2013,DevOps/Infrastructure,12.3,13,Cypress:12.0;Docker:11.2;Terraform:10.4;Ruby:9.9;Java:9.7,5,Adobe,2,36,74,90,55
+TEST00063,Tracy Ray,High School,1,,2014,2018,Data Analysis,7.7,10,Tableau:7.1;React:6.2;Redis:6.0;Pandas:5.7;dbt:4.0,2,Adobe,2,42,60,68,43
+TEST00064,Corey Pearson,Bachelor,2,Communications,2013,2016,Software Development,8.9,8,Spring Boot:6.3;Angular:6.1;Confluence:6.1;REST APIs:5.8;CI/CD:4.5,3,IBM,2,41,57,64,49
+TEST00065,Alison S. Parker,Master,1,Communications,2013,2015,QA/Testing,9.4,9,Cypress:7.4;Hugging Face:5.0;Jira:4.4;TypeScript:3.2;gRPC:1.9,2,Foxglove Media,1,38,70,56,24
+TEST00066,Miguel Tran,Master,3,Biology,2023,2024,Software Development,1.8,7,MySQL:1.6;AWS:1.3;PostgreSQL:1.2;pytest:1.2;Spring Boot:1.1,1,Summit Digital,1,46,19,23,35
+TEST00067,Richard Williams,Bachelor,1,Economics,2015,2019,Data Analysis,7.0,10,Redis:6.7;Python:5.4;Snowflake:5.3;Go:4.9;Spark:3.5,1,IBM,2,45,64,77,66
+TEST00068,Daniel Landry,Bachelor,1,Economics,2017,2020,QA/Testing,4.4,8,Java:4.3;pytest:4.3;Spark:3.8;JavaScript:2.9;Kafka:2.7,1,Harbor Point Tech,1,47,43,50,35
+TEST00069,Albert Jackson,Bachelor,1,Data Science,2018,2021,Software Development,3.3,6,Pandas:3.2;Docker:2.9;TypeScript:2.9;Redis:2.8;GraphQL:2.6,2,Salesforce,2,59,38,43,51
+TEST00070,Gabriella Abbott,Master,2,Data Science,2024,2025,DevOps/Infrastructure,1.6,6,GitHub Actions:1.3;Bash:1.1;Python:0.9;Django:0.7;Kafka:0.6,1,Summit Digital,1,74,28,25,33
+TEST00071,Melanie Landry,Master,2,Physics,2011,2012,DevOps/Infrastructure,12.9,14,CI/CD:12.0;Git:11.7;JavaScript:10.6;Kubernetes:10.5;Grafana:10.4,4,Netflix,3,69,75,96,84
+TEST00072,Ryan Colon,Master,2,Data Science,2022,2023,DevOps/Infrastructure,2.4,7,Python:2.1;Spark:2.1;Azure:2.0;Playwright:1.7;Ruby:1.4,1,Beacon Interactive,1,79,31,32,39
+TEST00073,Anthony Nelson,High School,1,,2003,2006,QA/Testing,19.7,15,Rust:18.8;Playwright:17.5;Elasticsearch:15.9;Kubernetes:14.3;Python:14.2,4,Ironwood Labs,1,33,98,98,33
+TEST00074,April T. Hernandez,High School,1,,2011,2014,Software Development,12.3,11,Redis:12.0;Java:10.9;MySQL:8.9;Vue.js:8.5;FastAPI:8.2,3,Clearwater Systems,1,34,84,88,34
+TEST00075,Nathan Mckee,High School,1,,2019,2023,DevOps/Infrastructure,1.6,6,Docker:1.3;Go:1.1;Linux:1.1;CI/CD:1.0;Selenium:0.9,1,Palantir,2,40,27,11,68
+TEST00076,Patrick Weeks,Master,3,Economics,2020,2021,Software Development,3.3,8,Django:3.2;TypeScript:3.2;Spring Boot:3.1;Redis:2.7;Scala:2.5,2,Lumen Works,1,58,34,49,34
+TEST00077,Bruce S. Mendoza,High School,1,,2019,2023,Product/Design,1.0,7,Looker:0.9;TypeScript:0.9;Figma:0.8;Confluence:0.7;Sketch:0.6,1,Foxglove Media,1,31,7,18,38
+TEST00078,Norman Barton,Bachelor,1,Physics,2017,2020,Product/Design,4.0,8,Sketch:3.9;REST APIs:3.6;Looker:3.5;Redshift:3.5;Redis:3.4,2,Summit Digital,1,50,37,45,40
+TEST00079,Bradley Gonzales,Bachelor,1,Business Administration,2012,2016,Product/Design,8.5,11,Spark:7.5;Confluence:7.1;Excel:6.6;Looker:5.9;NumPy:4.0,2,Foxglove Media,1,45,59,79,40
+TEST00080,Benjamin Miller,PhD,1,Computer Science,2016,2020,Data Analysis,4.3,6,Redshift:4.3;dbt:4.2;Ansible:4.0;Tableau:3.7;Pandas:3.4,1,Ironwood Labs,1,88,45,49,33
+TEST00081,Jennifer Young,PhD,1,Information Systems,2007,2012,Data/AI/ML,13.1,13,AWS:13.0;Python:12.1;NumPy:10.9;Azure:8.6;LangChain:8.1,4,Adobe,2,80,79,95,33
+TEST00082,Stephanie Stephens,High School,1,,2021,2025,Product/Design,1.0,4,Confluence:1.0;BigQuery:0.9;Bash:0.8;Jira:0.6,1,Foxglove Media,1,38,17,9,30
+TEST00083,Emily Walker,High School,1,,2012,2015,Software Development,9.4,12,GraphQL:9.1;REST APIs:8.1;React:7.5;Redis:6.3;Spark:6.3,2,SAP,2,32,58,71,56
+TEST00084,Kristin Romero,Bachelor,1,Communications,2014,2017,Software Development,8.8,11,Node.js:8.2;Docker:8.0;Spring Boot:8.0;JavaScript:7.9;FastAPI:5.4,1,Summit Digital,1,30,66,75,34
+TEST00085,Michael Page,Bachelor,2,Communications,2014,2018,DevOps/Infrastructure,7.3,10,Sketch:7.3;GitHub Actions:7.1;Redis:7.0;Kafka:6.7;PostgreSQL:6.6,1,Clearwater Systems,1,28,59,79,30
+TEST00086,David Barker,Bachelor,2,Computer Science,2013,2017,Product/Design,7.2,10,SQL:7.0;Confluence:7.0;TypeScript:6.8;Jira:4.3;PyTorch:3.8,2,Cloudflare,2,61,61,70,55
+TEST00087,Donald Turner,Bachelor,3,Business Administration,1999,2003,Data Analysis,21.3,15,Pandas:19.8;pytest:19.7;Python:19.2;Power BI:18.2;dbt:16.6,3,NVIDIA,3,45,88,92,48
+TEST00088,Lucas Garcia,Master,2,Biology,2016,2018,Data/AI/ML,7.2,10,Hugging Face:7.2;BigQuery:7.0;Spark:6.2;Figma:6.2;Snowflake:5.9,1,Clearwater Systems,1,50,57,78,28
+TEST00089,Sarah Johnson,Bachelor,1,Communications,2013,2017,Product/Design,8.3,9,Airflow:8.2;SQL:8.0;React:7.8;BigQuery:5.4;Power BI:4.6,3,IBM,2,39,70,70,38
+TEST00090,Linda Melendez,Master,3,Electrical Engineering,2024,2025,Software Development,1.2,7,Node.js:1.1;GraphQL:1.0;Docker:1.0;FastAPI:0.8;JavaScript:0.7,1,BrightPath Solutions,1,77,15,16,43
+TEST00091,Catherine Perry,High School,1,,2017,2021,Software Development,4.3,8,Python:3.7;Bash:3.7;Angular:3.3;Airflow:2.7;gRPC:2.5,1,Airbnb,2,36,40,50,58
+TEST00092,Cory Jennings,High School,1,,2010,2013,Data/AI/ML,11.9,12,Python:8.9;AWS:8.5;Sketch:7.8;PyTorch:7.0;Hugging Face:6.4,1,Atlassian,2,40,80,88,61
+TEST00093,Monique Johnson,High School,1,,2018,2022,Data/AI/ML,2.7,6,Airflow:2.3;GitHub Actions:1.8;TensorFlow:1.4;Python:1.0;SQL:1.0,1,Adobe,2,33,34,22,62
+TEST00094,Norman Bowers,Bachelor,1,Mathematics,2018,2021,Data/AI/ML,3.0,5,TensorFlow:2.9;Node.js:2.4;CI/CD:1.8;Python:1.5;Snowflake:1.2,2,Amazon,3,53,27,30,69
+TEST00095,John Caldwell,Master,1,Physics,2018,2020,Data Analysis,4.4,6,PostgreSQL:4.3;Excel:2.6;Tableau:2.1;DynamoDB:1.7;PyTorch:1.5,1,Harbor Point Tech,1,68,39,37,37
+TEST00096,James Robinson,Bachelor,1,Physics,2015,2018,Data/AI/ML,7.5,8,dbt:7.5;PostgreSQL:5.8;Scala:4.2;Hugging Face:3.0;AWS:2.8,3,Keystone Apps,1,51,68,68,36
+TEST00097,Cheryl Ruiz,Bachelor,1,Business Administration,2020,2024,Data Analysis,0.4,6,Airflow:0.4;NumPy:0.4;Excel:0.4;PostgreSQL:0.4;MySQL:0.4,0,,,40,15,8,21
+TEST00098,Emily Parker,Bachelor,2,Computer Science,2022,2025,DevOps/Infrastructure,0.8,7,Ansible:0.8;Python:0.8;AWS:0.8;C++:0.8;Swift:0.8,0,,,53,16,19,14
+TEST00099,Angela Lee,Master,1,Information Systems,2023,2024,DevOps/Infrastructure,1.9,6,GitHub Actions:1.8;Terraform:1.7;Nginx:1.7;Grafana:1.7;Datadog:1.2,1,Cobalt Systems,1,71,23,25,29
+TEST00100,Debra Wheeler,Master,1,Information Systems,2016,2017,Data/AI/ML,8.2,8,Databricks:7.9;Node.js:6.0;PyTorch:5.6;Docker:5.5;Postman:5.4,2,Stonebridge IT,1,64,70,68,43
+TEST00101,Jamie Brown,Master,1,Data Science,2011,2013,Data Analysis,11.4,10,Ansible:11.2;Snowflake:7.0;Tableau:5.5;Pandas:5.2;CI/CD:4.4,2,Vantage Analytics,1,75,70,71,38
+TEST00102,Michael Sanders,Bachelor,2,Computer Science,2014,2017,QA/Testing,7.3,8,Angular:6.8;C#:6.8;GraphQL:5.7;GitHub Actions:5.4;Git:5.4,1,Stonebridge IT,1,56,58,69,40
+TEST00103,Patrick Hoffman,Bachelor,1,Electrical Engineering,2015,2018,Software Development,7.2,9,GraphQL:7.0;FastAPI:4.4;Ruby:3.5;PostgreSQL:3.5;Go:3.3,2,IBM,2,50,55,66,42
+TEST00104,Alexander Moreno,Master,1,Physics,2017,2019,Software Development,6.7,9,MySQL:5.3;JavaScript:4.7;Node.js:4.4;Prometheus:3.8;REST APIs:3.2,1,Ironwood Labs,1,63,50,64,34
+TEST00105,Kristi Flores,High School,1,,2015,2019,Data/AI/ML,6.8,9,DynamoDB:6.6;SQL:4.5;NumPy:3.4;Hugging Face:3.3;Python:2.8,2,Shopify,2,37,58,59,49
+TEST00106,Tyler Jensen,Master,1,Business Administration,2024,2025,Product/Design,1.1,5,Tableau:1.0;Nginx:0.7;Looker:0.6;TypeScript:0.6;Power BI:0.5,1,Keystone Apps,1,59,14,8,32
+TEST00107,Amanda Navarro,Bachelor,2,Mathematics,2017,2020,Data Analysis,5.6,8,PostgreSQL:4.8;Redshift:4.7;Kubernetes:4.0;Python:2.1;Next.js:2.0,1,Stonebridge IT,1,51,55,50,32
+TEST00108,Angela Brown,High School,1,,2013,2017,DevOps/Infrastructure,8.6,11,Ansible:8.2;Ruby:7.2;Confluence:5.5;Tableau:5.2;Kafka:4.8,3,Palantir,2,39,70,69,60
+TEST00109,Bradley Cook,High School,1,,2008,2011,Data/AI/ML,14.3,14,Datadog:14.2;Django:10.2;gRPC:9.6;Snowflake:8.8;LangChain:8.5,3,Salesforce,2,33,84,89,55
+TEST00110,Donna Mejia,Master,1,Mathematics,2020,2022,Product/Design,2.4,7,Prometheus:2.4;SQL:1.9;TypeScript:1.6;Sketch:1.5;Ansible:1.3,1,Keystone Apps,1,65,28,31,37
+TEST00111,John Campos,PhD,1,Economics,2021,2025,Product/Design,1.2,4,Jenkins:1.0;Power BI:0.9;React:0.6;Datadog:0.6,1,Spotify,2,63,13,8,66
+TEST00112,Madeline R. Jones,Bachelor,1,Software Engineering,2013,2017,DevOps/Infrastructure,8.9,11,Pandas:7.9;Terraform:7.6;Java:7.2;PyTorch:6.3;Go:5.7,1,Clearwater Systems,1,58,64,74,39
+TEST00113,Monique T. Wallace,Bachelor,2,Computer Science,2015,2019,Data/AI/ML,6.9,7,Redshift:6.8;Redis:5.9;PyTorch:5.8;NumPy:4.0;SQL:2.4,1,Palantir,2,62,58,59,59
+TEST00114,Vincent Hamilton,Master,1,Data Science,2003,2004,Data/AI/ML,21.2,16,Grafana:20.1;Pandas:20.0;Spark:19.0;NumPy:18.8;TensorFlow:14.4,5,Netflix,3,74,83,100,73
+TEST00115,Kristina G. Holland,Master,1,Electrical Engineering,2019,2020,Product/Design,4.8,6,Excel:4.3;Looker:4.2;Sketch:4.1;Jira:2.8;GitHub Actions:2.4,1,Nova Tech Group,1,71,44,39,36
+TEST00116,Travis Ray,Bachelor,2,Communications,2020,2024,Product/Design,1.6,7,Kotlin:1.5;Sketch:1.1;PostgreSQL:0.7;React:0.6;TypeScript:0.6,1,Lumen Works,1,35,12,14,37
+TEST00117,Eric Harrison,Bachelor,1,Communications,2011,2015,DevOps/Infrastructure,10.3,11,GitHub Actions:10.1;Grafana:9.7;React:9.6;FastAPI:9.1;Go:7.3,3,Cobalt Systems,1,37,71,85,31
+TEST00118,Michele Jones,High School,1,,1992,1996,DevOps/Infrastructure,29.4,16,Git:28.9;TensorFlow:28.3;Go:27.4;Datadog:22.4;Redis:21.8,4,Adobe,2,31,95,98,39
+TEST00119,Teresa Davis,Bachelor,1,Biology,2012,2016,Data/AI/ML,9.5,9,MLflow:7.6;Nginx:5.5;PyTorch:5.3;Pandas:3.8;Docker:3.4,3,Stripe,2,39,71,55,50
+TEST00120,Susan Mendoza,Master,1,Data Science,2017,2019,DevOps/Infrastructure,6.4,9,Confluence:6.4;Linux:3.7;Django:3.4;GitHub Actions:3.3;Databricks:2.9,1,Redwood Data,1,73,60,61,33
+TEST00121,Audrey Moreno,High School,1,,2020,2024,Data Analysis,0.9,6,Azure:0.9;Looker:0.8;Tableau:0.7;Pandas:0.7;GCP:0.6,0,,,41,10,7,24
+TEST00122,Courtney Conner,Master,2,Software Engineering,2024,2025,Data Analysis,0.8,5,BigQuery:0.8;NumPy:0.8;Python:0.8;Redis:0.8;Snowflake:0.7,0,,,78,12,13,15
+TEST00123,Steven Lang,High School,1,,2007,2011,Data/AI/ML,14.3,13,Python:14.3;Snowflake:14.2;AWS:13.9;SQL:13.4;BigQuery:12.7,4,Redwood Data,1,36,82,87,36
+TEST00124,Laura Chambers,Master,1,Electrical Engineering,2021,2022,Data Analysis,2.4,6,SQL:2.2;Power BI:1.9;dbt:1.5;GCP:1.3;Snowflake:1.2,1,Cloudflare,2,76,29,20,60
+TEST00125,Sandra Miller,Bachelor,1,Communications,2011,2015,Software Development,9.2,9,Spring Boot:8.9;MongoDB:8.9;Django:7.7;TypeScript:7.7;JavaScript:6.9,3,Palantir,2,29,65,77,48
+TEST00126,Nicole Peters,Bachelor,1,Communications,2020,2024,Product/Design,1.9,6,SQL:1.8;LangChain:1.7;Redshift:1.5;TypeScript:1.3;Power BI:0.9,1,Ironwood Labs,1,35,22,26,34
+TEST00127,Amy Snyder,Master,1,Electrical Engineering,2002,2003,Data Analysis,22.9,16,SQL:22.0;Power BI:20.3;PyTorch:20.0;dbt:19.2;Kubernetes:18.6,3,Meridian Software,1,73,91,97,32
+TEST00128,Mark Owens,Bachelor,1,Software Engineering,2013,2017,Software Development,8.6,8,JavaScript:8.0;React:7.2;Ansible:6.4;TypeScript:5.3;Django:3.0,3,Snowflake,2,56,69,61,59
+TEST00129,Katie Anderson,Bachelor,1,Information Systems,2023,2026,Software Development,0.5,5,Go:0.5;pytest:0.5;Spring Boot:0.5;Hugging Face:0.5;Tableau:0.5,0,,,45,8,5,21
+TEST00130,Curtis Smith,Bachelor,1,Biology,2018,2022,Product/Design,2.9,7,SQL:2.8;Hugging Face:2.1;Confluence:1.5;Scikit-learn:1.5;MongoDB:1.3,1,Cobalt Systems,1,34,32,29,40
+TEST00131,Jason Hunt,Master,2,Economics,2018,2020,Software Development,4.0,6,gRPC:4.0;Prometheus:3.4;Node.js:3.1;Confluence:2.9;MySQL:2.4,1,Ironwood Labs,1,49,41,42,39
+TEST00132,Maria Kelley,Bachelor,1,Economics,2021,2024,Data Analysis,1.5,7,Node.js:1.5;Airflow:1.1;Redshift:0.9;Excel:0.9;PostgreSQL:0.7,1,Lumen Works,1,50,20,24,29
+TEST00133,Nancy Mcdowell,PhD,1,Communications,2018,2021,Product/Design,3.9,7,Power BI:3.8;Jira:2.3;Confluence:2.2;Pandas:2.2;MongoDB:2.1,1,Clearwater Systems,1,51,32,31,31
+TEST00134,Justin Mitchell,PhD,2,Economics,2020,2025,Data Analysis,0.1,6,Tableau:0.1;Redshift:0.1;Looker:0.1;NumPy:0.1;Hugging Face:0.1,0,,,64,4,0,13
+TEST00135,Bradley Hughes,Master,1,Information Systems,2014,2016,DevOps/Infrastructure,10.2,12,Kafka:9.8;REST APIs:9.4;Docker:8.0;Ansible:6.9;FastAPI:6.9,2,Salesforce,2,66,77,75,66
+TEST00136,Jesse Schroeder,PhD,2,Biology,2020,2024,Data/AI/ML,1.5,6,Python:1.5;Scikit-learn:1.4;Docker:1.3;GitHub Actions:0.7;PyTorch:0.6,1,Cobalt Systems,1,50,22,17,29
+TEST00137,David D. Irwin,High School,1,,2016,2019,QA/Testing,6.0,10,Playwright:4.8;Docker:4.8;Sketch:3.8;Jira:3.1;Git:2.8,3,Spotify,2,33,48,55,53
+TEST00138,John Fowler,Bachelor,1,Physics,2012,2015,QA/Testing,9.8,9,GitHub Actions:9.6;TypeScript:9.5;Go:8.6;Playwright:8.0;Django:6.2,4,Palantir,2,50,56,76,35
+TEST00139,Michael Wheeler,PhD,1,Physics,2020,2024,DevOps/Infrastructure,1.8,6,Linux:1.7;GitHub Actions:1.4;Redis:1.3;Scikit-learn:0.6;JavaScript:0.6,1,Cloudflare,2,77,22,18,75
+TEST00140,Laura F. Sanders,Master,1,Communications,2014,2015,Product/Design,10.0,10,Confluence:8.2;Jira:7.7;Linux:7.4;Power BI:7.1;TypeScript:5.9,2,Atlassian,2,45,73,66,52
+TEST00141,Kenneth Spence,PhD,1,Business Administration,2021,2025,Data/AI/ML,1.7,4,Cypress:0.8;Datadog:0.8;PyTorch:0.7;Docker:0.6,1,Clearwater Systems,1,63,17,6,31
+TEST00142,Randy Harmon,Bachelor,1,Physics,2021,2024,Data Analysis,1.9,8,Spark:1.4;Python:1.4;Pandas:1.4;Angular:1.2;GraphQL:1.1,1,Meridian Software,1,46,18,25,37
+TEST00143,Courtney Garcia,Bachelor,1,Information Systems,2021,2025,DevOps/Infrastructure,0.1,7,Prometheus:0.1;Kubernetes:0.1;Docker:0.1;GitHub Actions:0.1;PostgreSQL:0.1,0,,,55,7,8,23
+TEST00144,Rose Arnold,Bachelor,2,Biology,2019,2023,Software Development,1.1,4,Bash:0.9;Git:0.8;Grafana:0.8;Docker:0.6,1,Shopify,2,36,9,7,64
+TEST00145,Danny Jones,Bachelor,1,Electrical Engineering,2016,2020,Product/Design,5.5,7,SQL:4.8;Bash:3.6;Excel:2.9;Confluence:2.9;Jira:1.7,1,Nova Tech Group,1,61,51,33,30
+TEST00146,Elizabeth Gray,Bachelor,2,Communications,2013,2017,Product/Design,8.8,9,Power BI:7.5;Node.js:7.4;Excel:7.1;Tableau:6.6;SQL:6.2,2,Shopify,2,31,62,86,46
+TEST00147,Lisa Martin,Bachelor,2,Business Administration,2016,2019,QA/Testing,7.1,7,GraphQL:6.8;JavaScript:5.1;Java:4.4;Prometheus:4.0;Hugging Face:2.0,1,Keystone Apps,1,49,58,61,35
+TEST00148,Lawrence Price,Bachelor,1,Communications,2017,2021,QA/Testing,4.4,6,Confluence:3.5;Docker:1.9;pytest:1.6;TypeScript:1.3;CI/CD:1.1,1,Stonebridge IT,1,42,45,25,41
+TEST00149,Amanda Collins,Bachelor,1,Computer Science,2011,2014,Data Analysis,11.4,11,MongoDB:9.5;Power BI:9.3;Excel:7.6;NumPy:7.5;GraphQL:6.2,2,SAP,2,59,76,90,61
+TEST00150,John Sandoval,High School,1,,2013,2017,QA/Testing,8.6,9,Java:8.5;GraphQL:8.2;Docker:7.7;Jira:6.5;Playwright:4.2,1,Nova Tech Group,1,40,76,79,37
+TEST00151,Erin Cisneros,PhD,1,Business Administration,2016,2019,QA/Testing,6.8,8,Postman:5.2;Swift:4.4;pytest:3.3;Git:2.9;Playwright:2.3,2,Summit Digital,1,65,58,52,40
+TEST00152,Joshua N. Evans,Master,1,Biology,2020,2022,Data Analysis,3.7,9,Spark:3.7;Pandas:3.3;Excel:2.8;FastAPI:2.3;Redshift:2.1,1,Atlassian,2,44,38,54,61
+TEST00153,Kathryn Roberts,PhD,1,Biology,2018,2022,Data Analysis,3.8,9,BigQuery:3.6;LangChain:3.3;NumPy:2.5;PostgreSQL:2.2;Kafka:1.9,2,Cloudflare,2,61,38,53,54
+TEST00154,Kevin Lyons,Master,1,Information Systems,2016,2017,DevOps/Infrastructure,8.4,9,Bash:7.3;Tableau:6.7;Datadog:5.7;CI/CD:4.0;Kubernetes:2.9,3,Snowflake,2,70,67,66,40
+TEST00155,Michael Walker,High School,1,,1993,1997,Data/AI/ML,27.8,16,Nginx:27.7;Databricks:27.3;Airflow:27.0;SQL:26.9;Excel:26.9,5,IBM,2,36,97,85,45
+TEST00156,Jessica Monroe,High School,1,,2022,2026,Software Development,0.5,7,REST APIs:0.5;Redis:0.5;pytest:0.5;Angular:0.5;Ruby:0.5,0,,,32,3,13,15
+TEST00157,William Guerra,Bachelor,1,Communications,2020,2024,Data/AI/ML,1.6,5,Databricks:1.5;Python:1.0;JavaScript:1.0;MLflow:0.9;Power BI:0.8,1,Foxglove Media,1,36,17,17,31
+TEST00158,Amy Li,High School,1,,2007,2011,Data/AI/ML,13.0,14,FastAPI:12.7;Spark:11.5;Databricks:11.2;Kafka:10.7;PyTorch:10.6,2,Lumen Works,1,30,79,88,33
+TEST00159,Mathew Aguilar,High School,1,,2021,2024,Data Analysis,1.8,5,Power BI:1.6;Go:1.6;Pandas:1.5;Spark:0.9;Airflow:0.6,1,BrightPath Solutions,1,39,16,15,47
+TEST00160,Sean Powers,Master,1,Business Administration,1998,2000,Data Analysis,24.3,16,Pandas:21.2;SQL:19.6;BigQuery:19.3;Looker:19.2;AWS:18.3,4,Shopify,2,51,98,100,60
+TEST00161,Sarah Pope,Bachelor,3,Physics,2005,2008,Data/AI/ML,17.7,16,GCP:17.2;Kafka:17.1;AWS:16.8;Docker:15.2;Python:14.0,2,IBM,2,57,92,90,44
+TEST00162,John Davidson,Master,1,Biology,2018,2019,Software Development,6.3,7,Git:5.9;Elasticsearch:4.9;LangChain:4.3;Python:3.3;Django:3.0,3,Palantir,2,46,51,58,62
+TEST00163,Francisco Kelly,High School,1,,2019,2022,Software Development,2.4,7,Spring Boot:2.1;Angular:2.1;gRPC:1.8;Node.js:1.6;PyTorch:1.4,1,Foxglove Media,1,28,32,29,37
+TEST00164,Tonya P. Patton,Bachelor,1,Communications,2005,2008,DevOps/Infrastructure,17.8,14,Kubernetes:16.1;CI/CD:13.5;Terraform:12.6;GraphQL:12.5;Linux:12.4,2,Salesforce,2,38,93,98,72
+TEST00165,Juan Reyes,Bachelor,3,Information Systems,2013,2017,Software Development,8.6,9,pytest:8.5;Airflow:7.8;JavaScript:6.7;gRPC:4.8;Prometheus:3.8,2,Cobalt Systems,1,51,59,72,28
+TEST00166,Tammy Summers,Bachelor,1,Electrical Engineering,2014,2018,Software Development,7.4,10,React:6.6;JavaScript:6.0;Kubernetes:5.2;PostgreSQL:4.5;pytest:3.7,2,Oracle,2,49,63,73,45
+TEST00167,Cody S. Estes,Master,1,Computer Science,2013,2014,Data/AI/ML,10.7,9,TensorFlow:10.7;Python:10.0;Azure:9.1;Scikit-learn:8.6;BigQuery:8.2,3,SAP,2,83,69,81,36
+TEST00168,Anne Bryan,Master,1,Biology,2016,2017,Data/AI/ML,7.7,10,Grafana:7.3;Airflow:6.3;Redis:5.8;AWS:5.4;Databricks:4.4,2,Uber,2,48,68,71,55
+TEST00169,William Estrada,Bachelor,1,Business Administration,2020,2024,Product/Design,1.2,7,Next.js:1.2;Figma:1.1;Jenkins:1.1;Confluence:1.0;Java:0.8,1,Vantage Analytics,1,49,10,21,32
+TEST00170,David Mccullough,Bachelor,1,Electrical Engineering,2016,2020,DevOps/Infrastructure,4.4,9,Jenkins:4.1;Redis:4.0;Python:3.8;AWS:3.7;Cypress:3.3,2,Stripe,2,57,37,58,60
+TEST00171,Cynthia Faulkner,Bachelor,1,Communications,2017,2021,Data/AI/ML,5.0,9,pytest:5.0;Databricks:4.8;Spring Boot:4.8;Scikit-learn:4.7;TensorFlow:4.6,2,Ironwood Labs,1,37,52,61,31
+TEST00172,Thomas Mueller,Bachelor,1,Electrical Engineering,2013,2016,QA/Testing,9.9,11,Excel:8.1;Looker:8.0;pytest:6.3;Git:6.2;GitHub Actions:5.0,3,Redwood Data,1,57,73,73,37
+TEST00173,Samuel Roberson,Master,2,Data Science,2023,2024,QA/Testing,1.9,6,React:1.9;C#:1.6;Playwright:1.5;Python:1.1;TypeScript:0.7,1,Meridian Software,1,82,21,21,40
+TEST00174,Gloria Wells,Bachelor,1,Economics,2019,2022,Software Development,3.5,8,MySQL:3.4;JavaScript:3.1;CI/CD:2.6;Django:2.4;C++:1.8,2,Nova Tech Group,1,45,32,43,35
+TEST00175,Larry Higgins,Bachelor,1,Physics,2010,2013,Data Analysis,11.8,13,Spark:11.2;BigQuery:11.2;Swift:11.1;Snowflake:9.7;Jira:9.3,2,Airbnb,2,48,86,86,44
+TEST00176,Kristin Weber,Bachelor,1,Electrical Engineering,2017,2020,Data Analysis,5.4,9,FastAPI:5.3;Python:4.2;NumPy:4.2;C++:4.1;Looker:3.6,1,Adobe,2,60,49,68,67
+TEST00177,Alexandria Foster,Bachelor,3,Business Administration,2017,2020,DevOps/Infrastructure,5.9,9,CI/CD:5.9;GitHub Actions:5.8;Cypress:3.4;Postman:2.8;Spring Boot:2.3,1,Atlassian,2,53,57,55,66
+TEST00178,Pamela Paul,PhD,1,Information Systems,2005,2008,Data/AI/ML,16.0,12,Scala:14.3;Pandas:11.4;Snowflake:10.9;Docker:10.5;Spark:10.1,2,IBM,2,72,82,98,67
+TEST00179,Eric Farmer,Bachelor,2,Data Science,2011,2014,Data Analysis,10.4,10,Power BI:7.5;NumPy:7.4;Next.js:6.9;Snowflake:5.1;Python:4.4,4,Redwood Data,1,58,74,76,39
+TEST00180,Stephanie Ballard,Bachelor,1,Data Science,2022,2025,Data/AI/ML,1.7,7,Docker:1.7;FastAPI:1.6;SQL:1.5;Spark:1.3;Python:1.0,1,Stripe,2,56,18,28,65
+TEST00181,Tasha Williams,High School,1,,2018,2021,Product/Design,4.2,7,Git:3.7;SQL:3.6;Scikit-learn:3.1;React:3.0;Vue.js:2.9,2,Ironwood Labs,1,28,45,44,32
+TEST00182,Patrick Gilbert,Bachelor,1,Biology,2013,2016,Software Development,10.0,9,JavaScript:9.6;MySQL:8.9;FastAPI:7.4;REST APIs:6.1;Tableau:5.9,2,Lumen Works,1,30,70,78,32
+TEST00183,Michael Carson,Bachelor,1,Computer Science,2020,2023,Data/AI/ML,2.9,7,Pandas:2.4;Databricks:2.2;Snowflake:2.1;Git:2.1;GCP:1.8,1,Airbnb,2,63,28,22,66
+TEST00184,Ashley Jacobs,Bachelor,1,Biology,2014,2017,Data/AI/ML,8.0,10,Snowflake:7.5;PyTorch:6.9;Pandas:6.4;Redshift:6.0;Tableau:5.7,2,IBM,2,37,62,81,42
+TEST00185,Jeffrey Bright,Bachelor,1,Software Engineering,2021,2024,Software Development,1.9,7,Go:1.9;Scala:1.3;MySQL:1.2;Spring Boot:1.2;Snowflake:1.2,1,Stonebridge IT,1,56,27,19,29
+TEST00186,Gabriel Sanders,Bachelor,1,Electrical Engineering,1993,1996,Software Development,29.5,16,Spring Boot:26.2;PostgreSQL:26.0;Looker:24.3;TypeScript:23.8;React:23.8,4,SAP,2,47,90,92,30
+TEST00187,William Jordan,Bachelor,1,Economics,2015,2018,Data/AI/ML,6.3,9,Pandas:6.1;Airflow:5.9;MLflow:5.2;LangChain:4.6;TensorFlow:3.1,3,Uber,2,44,53,70,49
+TEST00188,Yvonne L. Chambers,Master,1,Software Engineering,2018,2020,QA/Testing,4.9,9,Spring Boot:4.9;C#:4.8;Playwright:4.3;GitHub Actions:4.3;pytest:2.6,2,Stonebridge IT,1,73,53,60,30
+TEST00189,Heather Lutz,High School,1,,2021,2024,Data/AI/ML,1.0,6,Go:1.0;LangChain:0.9;Spark:0.9;Docker:0.8;BigQuery:0.7,1,Ironwood Labs,1,30,17,9,38
+TEST00190,Hunter Burch,Master,1,Communications,2012,2013,Data/AI/ML,11.4,13,Scikit-learn:8.1;Python:7.6;TypeScript:5.7;MLflow:5.2;SQL:4.4,3,Spotify,2,50,72,80,39
+TEST00191,Craig Medina,Bachelor,2,Computer Science,2021,2024,QA/Testing,1.8,5,Java:1.4;Tableau:1.3;TypeScript:0.9;pytest:0.9;BigQuery:0.6,1,BrightPath Solutions,1,60,22,13,32
+TEST00192,Michelle White,High School,1,,2018,2021,Product/Design,3.1,7,Kotlin:2.2;Figma:1.8;Tableau:1.8;pytest:1.1;Sketch:0.9,2,Keystone Apps,1,40,38,35,35
+TEST00193,Michael Ramos,High School,1,,2015,2018,Data Analysis,7.9,11,SQL:7.3;Power BI:5.2;NumPy:4.5;REST APIs:3.8;Tableau:3.7,1,Meridian Software,1,41,66,69,40
+TEST00194,Eric Olson,Bachelor,1,Communications,2016,2019,QA/Testing,5.0,7,Jira:5.0;Snowflake:4.6;Playwright:4.2;Rust:3.5;Git:3.3,2,Uber,2,31,47,59,56
+TEST00195,Robert Fowler,Master,1,Economics,2016,2018,QA/Testing,7.5,10,Git:6.4;Selenium:5.8;Spark:4.7;Docker:4.5;TypeScript:3.6,3,Uber,2,53,63,72,40
+TEST00196,Caitlyn Ware,High School,1,,2019,2023,Product/Design,1.3,7,Git:1.3;FastAPI:1.1;Power BI:1.0;React:0.7;SQL:0.7,1,Uber,2,27,12,18,64
+TEST00197,Stephanie Burton,Master,1,Data Science,2013,2014,Software Development,11.9,12,Python:9.1;Redis:7.5;Spring Boot:6.7;GraphQL:5.8;Java:5.6,4,Palantir,2,76,82,80,57
+TEST00198,Mark Kennedy,Bachelor,1,Biology,1995,1998,QA/Testing,26.8,16,Docker:26.7;Hugging Face:23.6;Jira:22.6;Kafka:22.6;TypeScript:21.7,4,Shopify,2,31,100,90,67
+TEST00199,Meagan James,Master,1,Information Systems,2016,2017,Software Development,8.3,11,FastAPI:8.3;Rust:7.9;JavaScript:7.7;Vue.js:7.5;Spring Boot:7.5,1,Cobalt Systems,1,56,68,83,40
+TEST00200,Drew Morrison,Master,2,Economics,2014,2015,DevOps/Infrastructure,9.9,10,Nginx:9.8;Redis:7.5;Azure:5.1;Prometheus:4.9;React:4.8,4,Datadog,2,50,75,68,35

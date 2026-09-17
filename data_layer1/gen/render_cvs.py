@@ -132,7 +132,7 @@ def page_count(pdf_path: Path) -> int:
     return count
 
 
-def render_record(record: dict, out_path: Path, seed: int, scanned_frac: float, fake: Faker) -> dict:
+def render_record(record: dict, out_path: Path, seed: int, scanned: bool, fake: Faker) -> dict:
     rng = random.Random(f"{seed}-{record['id']}")
     name = rng.choices(TEMPLATE_NAMES, weights=TEMPLATE_WEIGHTS, k=1)[0]
     _, template_fn, difficulty, _ = TEMPLATE_BY_NAME[name]
@@ -168,7 +168,6 @@ def render_record(record: dict, out_path: Path, seed: int, scanned_frac: float, 
             name, difficulty = "classic_ats", "easy"
             build_pdf(record, lean, TPL.tpl_classic_ats, fake, out_path)
 
-    scanned = rng.random() < scanned_frac
     pages = scan_degrade(out_path, rng) if scanned else page_count(out_path)
 
     return {
@@ -233,13 +232,22 @@ def main():
         records = load_jsonl(split_dir / f"{split}.jsonl")
         if args.limit:
             records = records[:args.limit]
+
+        # Chosen per split rather than flipped per CV. A 4% chance applied 200
+        # times can land on zero, and it did: the test split came out with no
+        # scanned CVs at all, leaving the LLM escalation path unexercised on
+        # held-out data. Sampling an exact count guarantees both splits carry
+        # the tier they are supposed to test.
+        chooser = random.Random(f"{args.seed}-scanned-{split}")
+        scanned_ids = set(chooser.sample([record["id"] for record in records],
+                                         round(len(records) * args.scanned_frac)))
         out_dir = split_dir / "cvs_pdf"
         out_dir.mkdir(parents=True, exist_ok=True)
 
         for record in records:
             out_path = out_dir / f"{record['id']}.pdf"
             try:
-                meta = render_record(record, out_path, args.seed, args.scanned_frac, fake)
+                meta = render_record(record, out_path, args.seed, record["id"] in scanned_ids, fake)
             except PermissionError:
                 blocked.append(str(out_path))
                 continue

@@ -23,6 +23,8 @@ from pathlib import Path
 
 from faker import Faker
 
+import tiers
+
 # ---------------------------------------------------------------------------
 # Reference data (small, inline versions of the eventual data_gen/*.py
 # taxonomy modules described in README.md)
@@ -104,22 +106,6 @@ SKILLS = {
     "Git": 0.70, "Confluence": 0.48,
 }
 
-# company_name -> tier (1 = FAANG/MAANG-level, 2 = well-known large tech, 3 = everything else)
-COMPANIES = {
-    # Tier 1
-    "Google": 1, "Meta": 1, "Apple": 1, "Amazon": 1, "Microsoft": 1,
-    "Netflix": 1, "Nvidia": 1, "OpenAI": 1, "DeepMind": 1,
-    # Tier 2
-    "Uber": 2, "Airbnb": 2, "Salesforce": 2, "Adobe": 2, "IBM": 2,
-    "Oracle": 2, "SAP": 2, "Spotify": 2, "Stripe": 2, "Shopify": 2,
-    "Intel": 2, "Cisco": 2, "LinkedIn": 2, "Palantir": 2, "Dell": 2,
-    # Tier 3 (generic / smaller companies)
-    "BrightPath Solutions": 3, "Nova Tech Group": 3, "Summit Digital": 3,
-    "Clearwater Systems": 3, "Meridian Software": 3, "Blue Orbit Labs": 3,
-    "Ridgeline Analytics": 3, "Ironwood Consulting": 3, "Cobalt Applications": 3,
-    "Vantage Point Technologies": 3, "Silverline Data": 3, "Fenwick Digital": 3,
-    "Amber Creek Software": 3, "Northbridge IT": 3, "Lumen Works": 3,
-}
 # Skills a person in each domain actually tends to list. Most of a candidate's
 # stack is drawn from here so a DevOps engineer doesn't end up with LangChain
 # as their headline skill; the remainder comes from the full taxonomy, since
@@ -154,11 +140,18 @@ DOMAIN_SKILLS = {
     ],
 }
 
-COMPANY_NAMES = list(COMPANIES.keys())
-COMPANY_WEIGHTS = [0.06 if COMPANIES[company] == 1 else 0.28 if COMPANIES[company] == 2 else 0.66
+COMPANIES = tiers.COMPANY_TIERS
+COMPANY_NAMES = list(COMPANIES)
+# World-class employers are rare in any real pool; unknown ones are the bulk.
+COMPANY_WEIGHTS = [{3: 0.06, 2: 0.28, 1: 0.66}[COMPANIES[company]]
                    for company in COMPANY_NAMES]
 
-TIER_POINTS = {1: 100, 2: 65, 3: 35}
+UNIVERSITY_NAMES = list(tiers.UNIVERSITY_TIERS)
+UNIVERSITY_WEIGHTS = [{3: 0.08, 2: 0.27, 1: 0.65}[tiers.UNIVERSITY_TIERS[name]]
+                      for name in UNIVERSITY_NAMES]
+
+# Higher tier is better now, so the points table is keyed the same way round.
+TIER_POINTS = {3: 100, 2: 65, 1: 35}
 CURRENT_YEAR = 2026
 
 # Career length is drawn per band rather than from one curve, so every stage
@@ -184,9 +177,9 @@ def noisy(value, sigma=4.5):
     return clip(round(value + random.gauss(0, sigma)))
 
 
-def gen_institution(fake: Faker) -> str:
-    suffix = random.choice(["University", "Institute of Technology", "State University", "National University"])
-    return f"{fake.city()} {suffix}"
+def gen_institution() -> str:
+    """A real university name, drawn so most candidates went somewhere ordinary."""
+    return random.choices(UNIVERSITY_NAMES, weights=UNIVERSITY_WEIGHTS, k=1)[0]
 
 
 def months_to_ym(total_months: int) -> str:
@@ -217,16 +210,19 @@ def gen_education(total_years: float, fake: Faker) -> tuple:
             "level": "High School",
             "field": None,
             "institution": f"{fake.city()} High School",
+            "tier": tiers.UNKNOWN,       # a school name is not a prestige signal
             "start_year": end_year - duration,
             "end_year": end_year,
         }]
         return entries, level_base, 1.0
 
     field, field_weight = random.choice(EDUCATION_FIELDS)
+    institution = gen_institution()
     entries = [{
         "level": level,
         "field": field,
-        "institution": gen_institution(fake),
+        "institution": institution,
+        "tier": tiers.university_tier(institution),
         "start_year": end_year - duration,
         "end_year": end_year,
     }]
@@ -234,10 +230,12 @@ def gen_education(total_years: float, fake: Faker) -> tuple:
     if level in ("Master", "PhD"):
         bachelor_end = entries[0]["start_year"] - random.randint(0, 1)
         bachelor_duration = random.randint(*DEGREE_YEARS["Bachelor"])
+        bachelor_institution = gen_institution()
         entries.append({
             "level": "Bachelor",
             "field": field if random.random() < 0.7 else random.choice(EDUCATION_FIELDS)[0],
-            "institution": gen_institution(fake),
+            "institution": bachelor_institution,
+            "tier": tiers.university_tier(bachelor_institution),
             "start_year": bachelor_end - bachelor_duration,
             "end_year": bachelor_end,
         })
@@ -380,7 +378,9 @@ def flatten(record: dict) -> dict:
     top_skills = sorted(record["skills"], key=lambda skill: skill["years"], reverse=True)[:5]
     top_skills_str = ";".join(f"{skill['name']}:{skill['years']}" for skill in top_skills)
     if record["companies"]:
-        best_company = max(record["companies"], key=lambda company: (company["tier"] == 1, company["years"]))
+        # Higher tier is better, so the tier sorts directly - no == comparison
+        # to get backwards when the scale changes.
+        best_company = max(record["companies"], key=lambda company: (company["tier"], company["years"]))
         best_company_name = best_company["name"]
         best_company_tier = best_company["tier"]
     else:
@@ -391,6 +391,7 @@ def flatten(record: dict) -> dict:
         "id": record["id"],
         "name": record["name"],
         "education_level": top_edu["level"],
+        "education_tier": top_edu["tier"],
         "education_field": top_edu["field"] or "",
         "education_start_year": top_edu["start_year"],
         "grad_year": top_edu["end_year"],
